@@ -103,20 +103,22 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `$ART_MD` (checkout `
 
 | Iteration / Instructions                                                                           | Status  |
 | -------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Rename Records to Art MD `./instructions/rename-records-to-art-md.md`                   | `READY` |
+| Iteration: Rename Records to Art MD `./instructions/rename-records-to-art-md.md`                   | `DONE`  |
 | Iteration: Update Knowledge and Package File `./instructions/update-knowledge-and-package-file.md` | `READY` |
 
 ### Iteration: Rename Records to Art MD
 
 **ID:** `rename-records-to-art-md`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Rename the project, repository, and namespace records to Art MD scope, and rename the workspace repository record.
 
 **Description:** Update `$ART_MD/_records` (project, repository, namespace) with the Art MD purpose and description, and rename `$WORKSPACE/_records/repositories/art-js.art` to `art-md.art` (a copy of `$ART_MD/_records/repository.art`).
 
 **Instructions:** `./instructions/rename-records-to-art-md.md`
+
+**Report:** `./instructions/rename-records-to-art-md__report.md`
 
 **Changes:**
 
@@ -135,10 +137,10 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `$ART_MD` (checkout `
 
 #### Commits:
 
-| ID                                   | Repository / Checkout / Branch    | Policy   | Hash | Status     |
-| ------------------------------------ | --------------------------------- | -------- | ---- | ---------- |
-| `rename-records-to-art-md`           | Art MD / `$ART_MD` / `building`   | `NOPUSH` |      | `AUTHORED` |
-| `update-workspace-repository-record` | Workspace / `$WORKSPACE` / `main` | `NOPUSH` |      | `AUTHORED` |
+| ID                                   | Repository / Checkout / Branch    | Policy   | Hash      | Status      |
+| ------------------------------------ | --------------------------------- | -------- | --------- | ----------- |
+| `rename-records-to-art-md`           | Art MD / `$ART_MD` / `building`   | `NOPUSH` | `c4c8978` | `COMMITTED` |
+| `update-workspace-repository-record` | Workspace / `$WORKSPACE` / `main` | `NOPUSH` | `d1681fe` | `COMMITTED` |
 
 ##### Commit: `rename-records-to-art-md`
 
@@ -198,7 +200,7 @@ docs(art-md): Update README, guide, and package description to Art MD scope.
 
 ### Next
 
-Delegate the next `READY` iteration: `rename-records-to-art-md`.
+Delegate the next `READY` iteration: `update-knowledge-and-package-file`.
 
 ### Blockers
 
