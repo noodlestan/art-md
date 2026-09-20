@@ -8,9 +8,9 @@
 
 **Skill:** `write-milestone`
 
-**Purpose:** Rename the current Art JS repository to Art MD, extract all remaining placeholder packages into a new Art JS repository, and consolidate the Artificials umbrella project and the Noodlestan website to reflect the new repository layout.
+**Purpose:** Separate Art MD (the art language) and Art JS (libraries for extracting, validating, and projecting art) so that knowledge, roadmaps, and backlogs can have a more focused scope.
 
-**Description:** Splits the current monorepo into two repositories — Art MD (renamed, hosting the md core: parser, serializer, constructs, primitives, spec, and pipeline-tests) and Art JS (new, receiving the placeholder libs and cli packages) — then updates the Artificials umbrella project and the Noodlestan website.
+**Description:** Renames the current Art JS repository to Art MD, extracts all remaining placeholder packages into a new Art JS repository, and updates the Artificials umbrella project and the Noodlestan website to reflect the new repository layout.
 
 ## Mandatory Reading
 
@@ -22,14 +22,14 @@
 
 This section lists the path variables used throughout the Milestone file and its downstream work items. All file references in the Milestone and downstream work items MUST use these variables — never bare filesystem paths.
 
-| Variable          | Resolved Path                      | Purpose                                                            |
-| ----------------- | ---------------------------------- | ------------------------------------------------------------------ |
-| `$WORKSPACE`      | Current working directory          | Workspace root directory.                                          |
-| `$PROJECT`        | `checkouts/art-js-planning`        | Current checkout; renamed to Repository: Art MD by this milestone. |
-| `$ART_MD`         | `$PROJECT` (renamed)               | Repository: Art MD checkout.                                       |
-| `$ART_JS`         | `checkouts/art-js` (to be created) | Repository: Art JS checkout.                                       |
-| `$ARTIFICIALS`    | `checkouts/artificials`            | Repository: Artificials checkout.                                  |
-| `$NOODLESTAN_WEB` | `checkouts/noodlestan-web`         | Repository: Noodlestan Web checkout.                               |
+| Variable          | Resolved Path                                  | Purpose                              |
+| ----------------- | ---------------------------------------------- | ------------------------------------ |
+| `$WORKSPACE`      | Current working directory                      | Workspace root directory.            |
+| `$PROJECT`        | `checkouts/art-js-planning`                    | Current checkout for planning only.  |
+| `$ART_MD`         | `checkouts/art-md-building` (after rename)     | Repository: Art MD checkout.         |
+| `$ART_JS`         | `checkouts/art-js-building` (to be re-created) | Repository: Art JS checkout.         |
+| `$ARTIFICIALS`    | `checkouts/artificials`                        | Repository: Artificials checkout.    |
+| `$NOODLESTAN_WEB` | `checkouts/noodlestan-web`                     | Repository: Noodlestan Web checkout. |
 
 ## Summary
 
@@ -43,11 +43,11 @@ This section describes the upstream sources, guides, knowledge, required skills,
 
 This section lists the upstream sources of work that influence the goals, scope, and constraints of this Milestone.
 
-| Kind        | Path                                | Role                                                      |
-| ----------- | ----------------------------------- | --------------------------------------------------------- |
-| Briefing    | `$PROJECT/_backlog/_architect.md`   | Art JS backlog briefing: approach and milestone sequence. |
-| Briefing    | `$PROJECT/_roadmap/_architect.md`   | Art JS roadmap briefing: follow-ups and work sequence.    |
-| Parking Lot | `$PROJECT/_roadmap/_parking-lot.md` | Roadmap WIP tracker: pending items and follow-ups.        |
+| Kind        | Path                               | Role                                                      |
+| ----------- | ---------------------------------- | --------------------------------------------------------- |
+| Briefing    | `$ART_MD/_backlog/_architect.md`   | Art JS backlog briefing: approach and milestone sequence. |
+| Briefing    | `$ART_MD/_roadmap/_architect.md`   | Art JS roadmap briefing: follow-ups and work sequence.    |
+| Parking Lot | `$ART_MD/_roadmap/_parking-lot.md` | Roadmap WIP tracker: pending items and follow-ups.        |
 
 ### Required Skills
 
@@ -55,7 +55,6 @@ This section lists the skills required to prepare, execute, or verify this Miles
 
 - `write-milestone` — Writes this milestone. Required for Planning Work Item.
 - `write-plan` — Writes the downstream plans. Required for Planning Work Item.
-- `scaffold` — Scaffolds the new Art JS repository. Required for Planning Work Item.
 - `render-template` — Renders milestone and plan artefacts. Required for Drafting, Refining.
 
 ### Domains
@@ -79,7 +78,6 @@ This section lists the kinds of resources included in the work scope of the Mile
 | ---------- | ------------ | ------------------------------------------------- |
 | Repository | Repositories | `$DOMAINS/repositories/structures/repository.art` |
 | Project    | Projects     | `$DOMAINS/projects/structures/project.art`        |
-| Workspace  | Workspaces   | `$DOMAINS/workspaces/structures/workspace.art`    |
 
 ### Workflows
 
@@ -107,11 +105,11 @@ This section lists all workflow operations involved in the Milestone.
 This section describes the context knowledge required for the different phases of work so that it can be included in downstream artefacts.
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
+::READ `$ART_MD/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$WORKSPACE/_records/repositories/art-js.art` (Record) — Current repository record; renamed to Art MD by this milestone. Relevant for Planning Work Item.
 ::READ `$WORKSPACE/_records/repositories/artificials.art` (Record) — Umbrella repository record to consolidate. Relevant for Planning Work Item.
 ::READ `$WORKSPACE/_records/repositories/noodlestan-web.art` (Record) — Website repository record to update. Relevant for Planning Work Item.
-::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
+::READ `$ART_MD/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
 
 ## Scope
 
@@ -121,9 +119,9 @@ Changes in 4 repositories: the current Art JS repo is renamed to Art MD; a new A
 
 ### (Scope) Repository: Artificials
 
-**Record:** `$WORKSPACE/_records/repositories/artificials.art`
+**Record:** `$ARTIFICIALS/_records/repository.art`
 
-**Role:** Umbrella project coordinating owned repositories; needs consolidation to list Art MD and Art JS.
+**Role:** Repo for the umbrella project coordinating the art projects; needs consolidation to list Art MD and Art JS.
 
 **Partial:**
 
@@ -147,12 +145,12 @@ Changes in 4 repositories: the current Art JS repo is renamed to Art MD; a new A
 **Partial:**
 
 - `owner` — Project: Art MD (renamed from Project: Art JS)
-- `remote` — `git@github.com:noodlestan/art-js.git` (to become `art-md`)
+- `remote` — `git@github.com:noodlestan/art-md.git` (already updated)
 
 **Changes:**
 
-- Rename repository, project, namespace, and license records from Art JS to Art MD.
-- Update `$PROJECT/_guide.md` and references to the repository name.
+- Update records at `$ART_MD/_records` rename repository, remote, adapt purposes and descriptions to new scope.
+- Update knowledge: README, `_guide.md`, `package.json` description.
 - Remove the placeholder packages extracted to Art JS.
 
 **Operations:**
@@ -177,7 +175,8 @@ Changes in 4 repositories: the current Art JS repo is renamed to Art MD; a new A
 **Changes:**
 
 - Create the repository and scaffold the project skeleton.
-- Create project, repository, namespace, and package records.
+- Create the records at `$ART_JS/_records` (project, repository, namespace) with purposes and descriptions adapted to new scope.
+- Update knowledge: README, `_guide.md`, `package.json` description.
 - Receive the extracted placeholder packages from Art MD.
 
 **Dependencies:**
@@ -205,7 +204,7 @@ Changes in 4 repositories: the current Art JS repo is renamed to Art MD; a new A
 
 ## Execution Context
 
-Execution occurs from `$WORKSPACE/`; the rename happens in `$PROJECT` (checkout `checkouts/art-js-planning`), the new Art JS repository is created as a new checkout, and the Artificials and Noodlestan Web checkouts are updated in their own repositories.
+Execution occurs from `$WORKSPACE/`; the rename happens in `ART_MD` (checkout `checkouts/art-js-building`), the new Art JS repository is created as a new checkout, and the Artificials and Noodlestan Web checkouts are updated in their own repositories.
 
 ---
 
@@ -215,9 +214,9 @@ This section describes the ordered phases used to organise downstream work, iden
 
 | Index | Name        | Status     |
 | ----- | ----------- | ---------- |
-| #1    | Prepare     | `PLANNING` |
+| #1    | Prepare     | `READY`    |
 | #2    | Migrate     | `PLANNING` |
-| #3    | Consolidate | `PLANNING` |
+| #3    | Consolidate | `DRAFT`    |
 
 ### Phase: 1 — Prepare
 
@@ -249,7 +248,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Consolidate the repository list in the Artificials umbrella project and update the Noodlestan website.
 
-**Status:** `PLANNING`
+**Status:** `DRAFT`
 
 **Dependencies:**
 
@@ -261,59 +260,17 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
+| Phase | Resource / Record                                                                                                            | Status     |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| 1     | Plan: Rename Repository to Art MD `_backlog/3-now/plan-rename-repository-to-art-md/plan.md`                                  | `READY`    |
+| -     |                                                                                                                              |            |
+| 2     | Plan: Create Art JS Repository `_backlog/4-next/plan-create-art-js-repository/plan.md`                                       | `READY`    |
+| 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/6-plan/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `PLANNING` |
+| -     |                                                                                                                              |            |
+| 3     | Plan: Consolidate Repos in Artificials (create)                                                                              | `DRAFT`    |
+| 3     | Plan: Update Noodlestan Website(create)                                                                                      | `DRAFT`    |
+
 The following items are not yet captured in a work item document.
-
-### Plan: Rename Repository to Art MD
-
-**Status:** `DRAFT`
-
-**Purpose:** Rename the current Art JS repository to Art MD.
-
-**Description:** Rename repository, project, namespace, and license records, update the project guide and references, and rename the git remote.
-
-**Changes:**
-
-- Rename `$PROJECT/_records/project.art`, `repository.art`, `namespace.art` to Art MD.
-- Update `$WORKSPACE/_records/repositories/art-js.art` to Repository: Art MD.
-- Update `$PROJECT/_guide.md` and repository references.
-
-**Dependencies:**
-
-- None.
-
-### Plan: Create Art JS Repository
-
-**Status:** `DRAFT`
-
-**Purpose:** Create and scaffold the new Art JS repository.
-
-**Description:** Create the repository, scaffold the project skeleton, and create project, repository, namespace, and package records.
-
-**Changes:**
-
-- Create the Art JS repository and checkout.
-- Scaffold the project skeleton and records.
-
-**Dependencies:**
-
-- Plan: Rename Repository to Art MD.
-
-### Plan: Extract Libs and CLI Placeholders to Art JS
-
-**Status:** `DRAFT`
-
-**Purpose:** Move the placeholder packages from Art MD to Art JS.
-
-**Description:** Extract the placeholder libs (bundler, program, validator) and cli (bin, dev-server, language-server, tools, watcher) packages from Art MD into the new Art JS repository, updating records and references.
-
-**Changes:**
-
-- Move placeholder packages and their records to `$ART_JS`.
-- Update package records and workspace references.
-
-**Dependencies:**
-
-- Plan: Create Art JS Repository.
 
 ### Plan: Consolidate Repos in Artificials
 
@@ -417,12 +374,11 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 - **Extract all placeholders** — all remaining placeholder packages move to the new Art JS repo; Art MD keeps the md core.
 - **Rename first** — the current repo is renamed to Art MD before extraction begins.
+- **Repository vs Project** — the repository is the physical thing (purpose: to host and manage packages and planning artefacts); the project is the product (purpose: to serve its customers). Purpose states what something is for; description states what it is made of.
 
 ### Knowledge to Update
 
-- **Workspace records** — `$WORKSPACE/_records/repositories/art-js.art` renamed to Art MD; new Art JS record created.
-- **Project records** — `$PROJECT/_records/project.art`, `repository.art`, `namespace.art` updated to Art MD.
-- **Project guide** — `$PROJECT/_guide.md` updated to reflect the new repository layout.
+- Included in the plans.
 
 ### Follow Ups
 
