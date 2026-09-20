@@ -2,9 +2,9 @@
 
 ## Project: Art JS
 
-**Purpose:** Art MD implemented in JS: parse, validate, transform, and serialize back to Art MD or Markdown.
+**Purpose:** Express structured data in Markdown with an extensible language that enables human and machine authoring at scale and automated transformations.
 
-**Description:** Libraries for parsing and working with Art MD content, resources, modules, programs, and projections.
+**Description:** Language specification and JavaScript libraries for extracting structured data it into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content.
 
 **Owner:** Project: Artificials
 

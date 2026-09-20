@@ -2,9 +2,9 @@
 
 ## Repository: Art JS
 
-**Purpose:** Host and manage the Art JS packages and tools, and their planning artefacts.
+**Purpose:** Host and manage the Art MD packages and tools, and their knowledge and planning artefacts.
 
-**Description:** Monorepo containing the Art JS roadmap, library source code and language spec, and their backlogs.
+**Description:** Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code.
 
 **Owner:** Project: Art JS
 
