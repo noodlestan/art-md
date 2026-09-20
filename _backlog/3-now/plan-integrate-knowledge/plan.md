@@ -75,7 +75,7 @@ Execution occurs in `$PROJECT` on branch `building`.
 | Iteration / Instructions                                                                                              | Status  |
 | --------------------------------------------------------------------------------------------------------------------- | ------- |
 | Iteration: Create Primitives Architecture `./plan-integrate-knowledge/instructions/create-primitives-architecture.md` | `DONE`  |
-| Iteration: Update Architecture Documents `./plan-integrate-knowledge/instructions/update-architecture-documents.md`   | `READY` |
+| Iteration: Update Architecture Documents `./plan-integrate-knowledge/instructions/update-architecture-documents.md`   | `DONE`  |
 | Iteration: Update Architecture ADRs `./plan-integrate-knowledge/instructions/update-architecture-adrs.md`             | `READY` |
 
 ### Iteration: Create Primitives Architecture
@@ -130,7 +130,9 @@ knowledge(primitives): Add primitives architecture knowledge.
 
 **Id:** `update-architecture-documents`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./plan-integrate-knowledge/instructions/update-architecture-documents__report.md`
 
 **Purpose:** Refresh the root architecture documents to reflect the refactored package set, moved contracts, and changed constructs-vs-parser semantics.
 
@@ -151,13 +153,17 @@ knowledge(primitives): Add primitives architecture knowledge.
 
 #### Commits:
 
-| ID                          | Repository / Checkout / Branch | Policy       | Hash    | Status     |
-| --------------------------- | ------------------------------ | ------------ | ------- | ---------- |
-| `refresh-architecture-docs` | $PROJECT / `building`          | `AUTONOMOUS` | `(TBD)` | `AUTHORED` |
+| ID                          | Repository / Checkout / Branch | Policy       | Hash      | Status      |
+| --------------------------- | ------------------------------ | ------------ | --------- | ----------- |
+| `refresh-architecture-docs` | $PROJECT / `building`          | `AUTONOMOUS` | `bd42f45` | `COMMITTED` |
 
 ##### Commit: `refresh-architecture-docs`
 
 **Repository:** Art JS
+
+**Hash:** `bd42f45`
+
+**Status:** `COMMITTED`
 
 **Message:**
 
@@ -219,7 +225,7 @@ knowledge(art-js): Restore and update ADR set.
 
 ### Next
 
-Delegate the plan: execute the READY iterations (`update-architecture-documents`, `update-architecture-adrs`) via worker agents. `create-primitives-architecture` is DONE.
+Delegate the plan: execute the READY iteration (`update-architecture-adrs`) via a worker agent. `create-primitives-architecture` and `update-architecture-documents` are DONE.
 
 ### Blockers
 
