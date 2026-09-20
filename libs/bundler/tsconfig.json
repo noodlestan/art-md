@@ -1,5 +1,0 @@
-{
-  "extends": "@noodlestan/tsconfig/libs/tsconfig-vite-node.json",
-  "include": ["src/", "**/*.config.ts"],
-  "exclude": ["**/node_modules/", "**/dist/", "**/coverage/"]
-}
