@@ -1,0 +1,65 @@
+# Module: Language
+
+**Purpose:** Decisions about the art language itself — what it is for, its scope, and its syntax/semantics model.
+
+## Decision: Two Main Use Cases
+
+**Status:** Adopted
+
+**Context:** Art could be positioned in many ways; without a defined core, new candidates (drift-checks, etc.) keep expanding scope and diluting design.
+
+**Decision:** Art has two main use cases: (1) generating agent instructions, and (2) acting as a single source of truth for declarations that are both machine-readable and human/agent-readable. Everything else (context minimisation, fewer contradictions, automated SoT→instructions, portability) is a benefit of these two, not a separate use case.
+
+## Decision: Closed Syntax, Open Semantics
+
+**Status:** Adopted
+
+**Context:** The grammar needs an extensibility model without becoming an ouroboros (spec reading spec). Extensibility at the grammar layer would fragment parsing.
+
+**Decision:** Syntax is closed — implemented in TypeScript, no grammar plugins. Semantics are open and data-driven, extensible via `.art` modules. The core-in-`.art` stays as a testable spec.
+
+## Decision: Any Markdown is Valid `.art`
+
+**Status:** Adopted
+
+**Context:** Art sources and plain markdown coexist in the same tree; a hard file-type wall would make existing markdown invalid and block incremental adoption.
+
+**Decision:** Any markdown file is a valid `.art` file. Files not authored in art require more inference to read correctly, but are never invalid.
+
+## Decision: SectionBlock as the Resource Declaration Carrier
+
+<!-- move the idea to parser, merge with existing ADT there, but ignore the verbose writing style -->
+
+**Status:** Proposal
+
+**Context:** The SectionBlock construct (`# Kind: Name` + tags + content) is what turns a markdown heading into a named, kinded resource, but the grammar spec described it only as "a named structural section" — opaque, and hiding the connection between the grammar and modules layers. Without an explicit statement of its role, the Closed Syntax, Open Semantics split reads as abstract: it is unclear which parts of a declaration the language fixes and which parts domains provide. The programming-language precedent makes the intended model obvious in hindsight: `class` is fixed syntax; the meaning of `class Task` comes from the program. Art needs the equivalent — a fixed construct form whose kinds are open.
+
+**Decision:** The SectionBlock is the resource declaration carrier: `# Kind: Name` declares a resource of that kind with that name. The construct's form (optional kind, name, tags, content) is fixed by the grammar — closed syntax. The meaning of each kind is provided by the structures, the domain declarations in `.art` — open semantics. The grammar and modules layers meet exactly here.
+
+**Consequences:** The parser captures declarations generically: it needs to know only that a resource of kind K named N is declared, never what K means. Domain semantics (fields, constraints, routines) attach to kinds through structures, keeping the core grammar frozen. The construct spec must state this purpose so the grammar-to-modules connection is explicit rather than implied.
+
+## Decision: Create an accessory Template Language
+
+**Status:** Proposal
+
+**Context:** Domain records and other artefacts are expressed as markdown files. Rendering them into per-consumer projections requires templates that carry both deterministic operations (iteration over data sets, field interpolation) and natural-language instructions agents can process; without a dedicated template language that logic leaks into hand-maintained code or duplicated outputs.
+
+**Decision:** Design `.tart` as a template engine with flat, inline directive syntax, so `.tart` sources stay readable and editable in any markdown-capable editor. Generators compile `.tart` templates into the markdown projections consumers read.
+
+## Decision: Projection-Aligned Tags
+
+**Status:** Draft
+
+**Decision:** Tags can be used to filter content or rout to projection specific overloads. Example: `#author`, `#generator`, `#operator`, `#indexer`. Tags determine inclusion, exclusion, or transformation of content per projection.
+
+**Consequences:** The tag set is constrained by the projection taxonomy.
+
+## Decision: Example Localization
+
+**Status:** Draft
+
+**Context:** Examples in instructions are as important as definitions. Examples can extend or adapt the use cases of a routine or structure to other domains, layers, or specific envinroments. Examples are often repeated in many difference places and hard to update.
+
+**Decision:** Example content is authored separately from other resources and referenced in resources via a "template ref" syntax construct. Examples are interpolated at projection time.
+
+**Consequences:** Eliminates repetition and Allows resources to pull speficic examples or example sets. Allows domains to extend or customize other domains. Allows localization of examples on project side. This is a good first use case for art projection.
