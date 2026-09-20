@@ -13,20 +13,20 @@ Phases 0–7 are complete. Phases 8–11 (gap closure, refactoring, archive/publ
 ## Source Tasks
 
 - `_backlog/_architect.md` — Architecture Briefing: Artificial
-- `_backlog/1-done/plan-poc-parse/plan.md` — archived POC plan: learnings, findings, feedback; `attachments/_architect.md` + `attachments/_parking-lot.md` (POC briefing and WIP)
+- `_backlog/0-archive/2026-08-15-lan-poc-parse/plan.md` — archived POC plan: learnings, findings, feedback; `attachments/_architect.md` + `attachments/_parking-lot.md` (POC briefing and WIP)
 
 ## Phase Plans
 
-| Phase                          | Plan                                                                 | Status |
-| ------------------------------ | -------------------------------------------------------------------- | ------ |
-| 0 — Rename packages            | `_backlog/1-done/plan-rename-packages/plan.md`                       | `DONE` |
-| 1 — Bootstrap packages         | `_backlog/1-done/2026-08-23-plan-bootstrap-packages/plan.md`         | `DONE` |
-| 2 — Migrate testing fixtures   | `_backlog/1-done/2026-08-24-plan-migrate-testing-fixtures/plan.md`   | `DONE` |
-| 3 — Migrate and verify         | `_backlog/1-done/2026-08-25-plan-migrate-and-verify/plan.md`         | `DONE` |
-| 4 — Implement constructs       | `_backlog/1-done/2026-08-29-plan-implement-constructs/plan.md`       | `DONE` |
-| 5 — Implement serializer       | `_backlog/1-done/2026-09-01-plan-implement-serializer/plan.md`       | `DONE` |
-| 6 — Migrate tests to pipeline  | `_backlog/1-done/2026-09-02-plan-migrate-tests-pipeline/plan.md`     | `DONE` |
-| 7 — Create knowledge resources | `_backlog/1-done/2026-09-05-plan-create-knowledge-resources/plan.md` | `DONE` |
+| Phase                          | Plan                                                                    | Status |
+| ------------------------------ | ----------------------------------------------------------------------- | ------ |
+| 0 — Rename packages            | `_backlog/0-archive/plan-rename-packages/plan.md`                       | `DONE` |
+| 1 — Bootstrap packages         | `_backlog/0-archive/2026-08-23-plan-bootstrap-packages/plan.md`         | `DONE` |
+| 2 — Migrate testing fixtures   | `_backlog/0-archive/2026-08-24-plan-migrate-testing-fixtures/plan.md`   | `DONE` |
+| 3 — Migrate and verify         | `_backlog/0-archive/2026-08-25-plan-migrate-and-verify/plan.md`         | `DONE` |
+| 4 — Implement constructs       | `_backlog/0-archive/2026-08-29-plan-implement-constructs/plan.md`       | `DONE` |
+| 5 — Implement serializer       | `_backlog/0-archive/2026-09-01-plan-implement-serializer/plan.md`       | `DONE` |
+| 6 — Migrate tests to pipeline  | `_backlog/0-archive/2026-09-02-plan-migrate-tests-pipeline/plan.md`     | `DONE` |
+| 7 — Create knowledge resources | `_backlog/0-archive/2026-09-05-plan-create-knowledge-resources/plan.md` | `DONE` |
 
 Phases 8–11 were split into the **Consolidate** milestone (`_roadmap/4-now/milestone-consolidate/milestone.md`): gap closure, refactoring and test coverage, archive and publish, and knowledge integration.
 
@@ -58,7 +58,7 @@ integrate(md-art-roundtrip): complete parser migration and advance milestone
 
 ## Findings (from archived POC plan)
 
-Integrated from `_backlog/1-done/plan-poc-parse/` (plan.md, `attachments/_architect.md`, `attachments/_parking-lot.md`).
+Integrated from `_backlog/0-archive/plan-poc-parse/` (plan.md, `attachments/_architect.md`, `attachments/_parking-lot.md`).
 
 **Roundtrip fixture strategy** (from the archived POC briefing, MD Art Roundtrip milestone): use incrementally complex fixtures to generate and check-in a validated `art-ast.json` file with a parser test, then generate back and compare the md with a serializer test.
 
