@@ -6,14 +6,16 @@ The Art JS ecosystem is a modular pipeline for parsing and serialising a markdow
 
 ### Primitives (`@art-js/primitives`)
 
-Low-level shared types (`MdastNode`, `VisitContext`, `Point`) and utilities. No internal dependencies — all other libs consume it.
+Provides the base types and utilities the ecosystem is built on: the document contract (`ArtDocument`, `ConstructBase`, `ContainerConstructBase`), the mdast and position types (`MdastNode`, `Point`, `Position`), and the parser visit context (`ParserVisitContext`, `ParserSource`) with its helpers (`nodePosition`, `sectionDepth`). No internal dependencies — all other libs consume it.
+
+**Read more:** [Primitives Architecture](../libs/primitives/architecture/index.md)
 
 ### Constructs (`@art-js/constructs`)
 
-The contract layer of the ecosystem. Defines the factory interfaces that parser and serializer depend on, the data shapes that flow through the pipeline, and an open registry for concrete constructs. Ships both the contract types and the concrete implementations.
+The contract layer of the ecosystem: it binds the parser and serializer. It owns the factory functions, the parser/serializer interfaces, and the data shapes. The package is split into three slices — factories, parsers, serializers. Ships both the contract types and the concrete implementations.
 
-- Contract types: `ConstructParser`, `ConstructToMdast`, `ConstructParserFactory`, `ConstructToMdastFactory`
-- Data shapes: `ArtDocument`, `Construct`, `BlockContent`, `InlineContent`
+- Contract types: `ConstructProcessor` (`captureNode`), `ConstructIntegrator` (`integrate`), `ConstructParser`, `ConstructParserFactory`; `ConstructSerializer` (`toMdast`), `ConstructSerializerFactory`
+- Data shapes: `Construct`, `BlockContent`, `InlineContent` (built on the primitives base types)
 - Open registry: `BlockConstructMap`, `InlineConstructMap` (augmented via declaration merging)
 - Concrete constructs: `FieldBlock`, `FieldInline`, `SectionBlock`, `Tag`, `NaturalBlock`, `NaturalExpression`
 
@@ -21,22 +23,22 @@ The contract layer of the ecosystem. Defines the factory interfaces that parser 
 
 ### Parser (`@art-js/parser`)
 
-Transforms markdown into an `ArtDocument` via a generic dispatch loop. Construct-agnostic — knows only the contract types, never names a concrete construct. The [ecosystem overview](overview.md#the-parse-direction) describes how pre-processors, factories, and the default construct interact.
+Transforms markdown into an `ArtDocument` via a generic dispatch loop. Construct-agnostic — knows only the contract types, never names a concrete construct. The [ecosystem overview](overview.md#the-parse-direction) describes how processors and the default construct interact.
 
-- Entry point: `buildDocument(config, markdown)`
+- Entry point: `parse(markdown)`
 - Config: `ParserConfig` with `defaultConstruct` and `constructs` list
-- Dispatch: pre-processors → factories → `NaturalBlock` fallback
-- Context: `VisitContext` stack for nested constructs
+- Dispatch: processors in order → `NaturalBlock` fallback
+- Context: `ParserVisitContext` stack for nested constructs
 
 **Read more:** [Parser Architecture](../libs/parser/architecture/index.md)
 
 ### Serializer (`@art-js/serializer`)
 
-Transforms an `ArtDocument` back into markdown. Builds a registry from config factories, visits the construct tree bottom-up, and dispatches to `toMdast` adapters. Construct-agnostic — the [ecosystem overview](overview.md#the-serialise-direction) explains the composition decision.
+Transforms an `ArtDocument` back into markdown. Builds a registry from config factories, visits the construct tree bottom-up, and dispatches to `toMdast` implementations. Construct-agnostic — the [ecosystem overview](overview.md#the-serialise-direction) explains the composition decision.
 
-- Entry point: `artAstToMdast(config, document)`
-- Config: `SerializerConfig` with `constructs` list
-- Registry: `Map<string, ConstructToMdast>` keyed by construct name
+- Entry point: `serialize(document)`
+- Config: `SerializerConfig` with `constructs` factory list
+- Registry: `Map<string, ConstructSerializer>` keyed by construct name
 - Sibling placement: block constructs (`SectionBlock`, `FieldBlock`) emit children as siblings
 
 **Read more:** [Serializer Architecture](../libs/serializer/architecture/index.md)
