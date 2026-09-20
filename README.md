@@ -6,18 +6,15 @@ Monorepo containing the Art MD roadmap and backlogs, language spec, architecture
 
 ## Packages
 
-| namespace | dir                | package              | description                            |
-| --------- | ------------------ | -------------------- | -------------------------------------- |
-| `@art-js` | `spec/`            | `@art-js/spec`       | Art Language specification             |
-| `@art-js` | `libs/primitives/` | `@art-js/primitives` | Foundational types and utilities       |
-| `@art-js` | `libs/parser/`     | `@art-js/parser`     | Parses context files and art modules   |
-| `@art-js` | `libs/validator/`  | `@art-js/validator`  | Validates parsed modules               |
-| `@art-js` | `libs/bundler/`    | `@art-js/bundler`    | Bundles Art modules                    |
-| `@art-js` | `libs/program/`    | `@art-js/program`    | Executes parsed Art modules            |
-| `@art-js` | `cli/bin/`         | `@art-js/bin`        | CLI for pipeline commands              |
-| `@art-js` | `cli/dev-server/`  | `@art-js/dev-server` | Local dev server for Art modules       |
-| `@art-js` | `cli/watcher/`     | `@art-js/watcher`    | Watches for changes, triggers rebuilds |
-| `@art-js` | `cli/poc-parse/`   | `@art-js/poc-parse`  | POC parser spike                       |
+| namespace | dir                   | package                     | description                                |
+| --------- | --------------------- | --------------------------- | ------------------------------------------ |
+| `@art-md` | `spec/`               | `@art-md/spec`              | Art Language specification                 |
+| `@art-md` | `libs/primitives/`    | `@art-md/primitives`        | Foundational types and utilities           |
+| `@art-md` | `libs/parser/`        | `@art-md/parser`            | Parses context files and art modules       |
+| `@art-md` | `libs/serializer/`    | `@art-md/serializer`        | Serializes Art AST back to markdown        |
+| `@art-md` | `libs/constructs/`    | `@art-md/constructs`        | Construct factories for Art parser records |
+| `@art-md` | `cli/pipeline-tests/` | `@art-md/pipeline-test-cli` | Test scripts for the parser and serializer |
+| `@art-md` | `cli/bin/`            | `@art-md/bin`               | CLI for pipeline commands                  |
 
 ## Development
 
