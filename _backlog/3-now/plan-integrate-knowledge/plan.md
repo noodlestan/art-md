@@ -2,7 +2,7 @@
 
 **Id:** `integrate-knowledge`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -72,11 +72,11 @@ Execution occurs in `$PROJECT` on branch `building`.
 
 ## Items:
 
-| Iteration / Instructions                                                                                              | Status  |
-| --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Create Primitives Architecture `./plan-integrate-knowledge/instructions/create-primitives-architecture.md` | `DONE`  |
-| Iteration: Update Architecture Documents `./plan-integrate-knowledge/instructions/update-architecture-documents.md`   | `DONE`  |
-| Iteration: Update Architecture ADRs `./plan-integrate-knowledge/instructions/update-architecture-adrs.md`             | `READY` |
+| Iteration / Instructions                                                                                              | Status |
+| --------------------------------------------------------------------------------------------------------------------- | ------ |
+| Iteration: Create Primitives Architecture `./plan-integrate-knowledge/instructions/create-primitives-architecture.md` | `DONE` |
+| Iteration: Update Architecture Documents `./plan-integrate-knowledge/instructions/update-architecture-documents.md`   | `DONE` |
+| Iteration: Update Architecture ADRs `./plan-integrate-knowledge/instructions/update-architecture-adrs.md`             | `DONE` |
 
 ### Iteration: Create Primitives Architecture
 
@@ -177,7 +177,9 @@ knowledge(art-js): Refresh ecosystem architecture docs after refactor.
 
 **Id:** `update-architecture-adrs`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./plan-integrate-knowledge/instructions/update-architecture-adrs__report.md`
 
 **Purpose:** Restore and update the ADR set to capture the design decisions from the refactoring iterations.
 
@@ -204,13 +206,17 @@ knowledge(art-js): Refresh ecosystem architecture docs after refactor.
 
 #### Commits:
 
-| ID                        | Repository / Checkout / Branch | Policy       | Hash    | Status     |
-| ------------------------- | ------------------------------ | ------------ | ------- | ---------- |
-| `restore-and-update-adrs` | $PROJECT / `building`          | `AUTONOMOUS` | `(TBD)` | `AUTHORED` |
+| ID                        | Repository / Checkout / Branch | Policy       | Hash      | Status      |
+| ------------------------- | ------------------------------ | ------------ | --------- | ----------- |
+| `restore-and-update-adrs` | $PROJECT / `building`          | `AUTONOMOUS` | `327adfd` | `COMMITTED` |
 
 ##### Commit: `restore-and-update-adrs`
 
 **Repository:** Art JS
+
+**Hash:** `327adfd`
+
+**Status:** `COMMITTED`
 
 **Message:**
 
@@ -225,7 +231,7 @@ knowledge(art-js): Restore and update ADR set.
 
 ### Next
 
-Delegate the plan: execute the READY iteration (`update-architecture-adrs`) via a worker agent. `create-primitives-architecture` and `update-architecture-documents` are DONE.
+All iterations are DONE: `create-primitives-architecture`, `update-architecture-documents`, `update-architecture-adrs`. Plan complete.
 
 ### Blockers
 
