@@ -1,4 +1,4 @@
-import type { ContainerConstructBase } from '@art-js/primitives';
+import type { ContainerConstructBase } from '@art-md/primitives';
 
 import type { BlockContent } from '../../types';
 import type { Tag } from '../Tag';

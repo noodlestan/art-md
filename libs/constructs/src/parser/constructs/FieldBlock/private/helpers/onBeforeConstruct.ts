@@ -1,4 +1,4 @@
-import type { ConstructBase, ParserVisitContext } from '@art-js/primitives';
+import type { ConstructBase, ParserVisitContext } from '@art-md/primitives';
 
 const FIELD_BLOCK_BOUNDARIES = new Set(['FieldBlock', 'FieldInline', 'SectionBlock']);
 

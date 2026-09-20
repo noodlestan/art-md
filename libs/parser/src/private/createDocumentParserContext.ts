@@ -1,5 +1,5 @@
-import { createArtDocumentFromNode } from '@art-js/constructs';
-import { createParserVisitContext } from '@art-js/primitives';
+import { createArtDocumentFromNode } from '@art-md/constructs';
+import { createParserVisitContext } from '@art-md/primitives';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 
 import type { DocumentVisitContext } from './types';

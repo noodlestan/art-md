@@ -1,5 +1,5 @@
 {
-  "name": "@art-js/constructs",
+  "name": "@art-md/constructs",
   "version": "0.0.1",
   "description": "Construct factories for Art parser records.",
   "author": "Noodlestan Collective",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/noodlestan/art-js",
+    "url": "https://github.com/noodlestan/art-md",
     "directory": "libs/constructs/"
   },
   "type": "module",
@@ -33,7 +33,7 @@
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {
-    "@art-js/primitives": "*",
+    "@art-md/primitives": "*",
     "mdast-util-from-markdown": "^2.0.0",
     "mdast-util-phrasing": "^4.1.0"
   },

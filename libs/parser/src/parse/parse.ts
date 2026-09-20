@@ -1,4 +1,4 @@
-import { type ArtDocument } from '@art-js/primitives';
+import { type ArtDocument } from '@art-md/primitives';
 
 import { buildDocument } from '../buildDocument/buildDocument';
 import { createDefaultConfig } from '../config';

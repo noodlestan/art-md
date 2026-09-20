@@ -1,4 +1,4 @@
-import type { ParserVisitContext } from '@art-js/primitives';
+import type { ParserVisitContext } from '@art-md/primitives';
 
 import type { SectionBlock } from '../../../../../factories';
 

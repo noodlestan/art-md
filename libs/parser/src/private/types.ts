@@ -1,4 +1,4 @@
-import type { ArtDocument, ParserVisitContext } from '@art-js/primitives';
+import type { ArtDocument, ParserVisitContext } from '@art-md/primitives';
 
 export type DocumentVisitContext = ParserVisitContext & {
 	construct: ArtDocument;

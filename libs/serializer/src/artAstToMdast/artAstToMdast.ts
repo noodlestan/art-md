@@ -1,5 +1,5 @@
-import type { ConstructSerializer } from '@art-js/constructs';
-import type { ArtDocument } from '@art-js/primitives';
+import type { ConstructSerializer } from '@art-md/constructs';
+import type { ArtDocument } from '@art-md/primitives';
 import type { Node, Root } from 'mdast';
 
 import type { SerialisableNode, SerializerConfig } from '../config/types';

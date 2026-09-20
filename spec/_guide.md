@@ -1,6 +1,6 @@
 # Spec
 
-The `@art-js/spec` package is the artificial language specification, written in art. Content package consumed by the parser, validator, and bundler packages.
+The `@art-md/spec` package is the artificial language specification, written in art. Content package consumed by the parser, validator, and bundler packages.
 
 ## Recommended Reading
 

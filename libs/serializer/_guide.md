@@ -1,6 +1,6 @@
 # Serializer
 
-The `@art-js/serializer` package serializes Art AST back to markdown.
+The `@art-md/serializer` package serializes Art AST back to markdown.
 
 ## Recommended Reading
 

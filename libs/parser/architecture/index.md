@@ -1,8 +1,8 @@
 # Parser Architecture
 
-The `@art-js/parser` package transforms raw markdown into an `ArtDocument`.
+The `@art-md/parser` package transforms raw markdown into an `ArtDocument`.
 
-The parser is **construct-agnostic** — it drives detection entirely through the contract types from `@art-js/constructs` and never names a concrete construct.
+The parser is **construct-agnostic** — it drives detection entirely through the contract types from `@art-md/constructs` and never names a concrete construct.
 
 ## Documents
 

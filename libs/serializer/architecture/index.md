@@ -1,8 +1,8 @@
 # Serializer Architecture
 
-The `@art-js/serializer` package transforms an `ArtDocument` back into markdown.
+The `@art-md/serializer` package transforms an `ArtDocument` back into markdown.
 
-The serializer is **construct-agnostic** — it drives conversion entirely through the contract types from `@art-js/constructs` and never names a concrete construct.
+The serializer is **construct-agnostic** — it drives conversion entirely through the contract types from `@art-md/constructs` and never names a concrete construct.
 
 ## Documents
 

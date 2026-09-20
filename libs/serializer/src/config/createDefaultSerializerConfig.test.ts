@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { createDefaultSerializerConfig } from './createDefaultSerializerConfig';
 
-vi.mock('@art-js/constructs', () => ({
+vi.mock('@art-md/constructs', () => ({
 	CONSTRUCT_SERIALIZERS: [
 		vi.fn(() => ({ name: 'Document' })),
 		vi.fn(() => ({ name: 'FieldBlock' })),

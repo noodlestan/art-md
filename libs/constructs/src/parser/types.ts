@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { MdastNode, ParserVisitContext } from '@art-js/primitives';
+import type { MdastNode, ParserVisitContext } from '@art-md/primitives';
 
 import type { Construct } from '../factories';
 

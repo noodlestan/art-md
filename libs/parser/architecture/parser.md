@@ -1,10 +1,10 @@
 # Parser Implementation
 
-**Purpose:** Explain how the `@art-js/parser` package maps raw markdown into an `ArtDocument` — the MD to Art mapping, the parser entry point, and the document builder's visit loop and dispatch. It is written from the parser's perspective: how nodes are claimed, how constructs enter capturing mode, and how the context stack is mutated.
+**Purpose:** Explain how the `@art-md/parser` package maps raw markdown into an `ArtDocument` — the MD to Art mapping, the parser entry point, and the document builder's visit loop and dispatch. It is written from the parser's perspective: how nodes are claimed, how constructs enter capturing mode, and how the context stack is mutated.
 
 ## MD to Art Overview
 
-The parser walks an mdast tree and produces an `ArtDocument` populated with constructs. The mapping is driven by the construct contract types from `@art-js/constructs`; the parser itself never names a concrete construct.
+The parser walks an mdast tree and produces an `ArtDocument` populated with constructs. The mapping is driven by the construct contract types from `@art-md/constructs`; the parser itself never names a concrete construct.
 
 ### Block / Phrasing Boundary
 

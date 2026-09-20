@@ -1,4 +1,4 @@
-import type { MdastNode, ParserVisitContext } from '@art-js/primitives';
+import type { MdastNode, ParserVisitContext } from '@art-md/primitives';
 
 export function rawSlice(node: MdastNode, context: ParserVisitContext): string {
 	if (!node.position?.start || !node.position?.end) {

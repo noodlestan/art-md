@@ -1,5 +1,5 @@
-import type { ParserVisitContext } from '@art-js/primitives';
-import { makeDocumentMock, makeParserVisitContextMock } from '@art-js/primitives/src/test/helpers';
+import type { ParserVisitContext } from '@art-md/primitives';
+import { makeDocumentMock, makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it } from 'vitest';
 
 import { makeFieldBlockFixture, makeSectionBlockFixture } from '../../../../../test/helpers';

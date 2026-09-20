@@ -37,4 +37,4 @@
 
 **Examples:**
 
-- Execute the **Routine: Validate Module** with the `%path` pointing to `artificials/art-js/spec/language/modules/validate` to validate all `.art` files in that module.
+- Execute the **Routine: Validate Module** with the `%path` pointing to `artificials/art-md/spec/language/modules/validate` to validate all `.art` files in that module.

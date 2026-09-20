@@ -1,4 +1,4 @@
-import { makeParserVisitContextMock } from '@art-js/primitives/src/test/helpers';
+import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import type { Node } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { describe, expect, it, vi } from 'vitest';

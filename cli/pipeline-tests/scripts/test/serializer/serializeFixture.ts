@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import type { ArtDocument } from '@art-js/primitives';
-import { serialize } from '@art-js/serializer';
+import type { ArtDocument } from '@art-md/primitives';
+import { serialize } from '@art-md/serializer';
 
 import type { SerializeResult } from './types';
 

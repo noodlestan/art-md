@@ -1,4 +1,4 @@
-import { CONSTRUCT_SERIALIZERS } from '@art-js/constructs';
+import { CONSTRUCT_SERIALIZERS } from '@art-md/constructs';
 
 import type { SerializerConfig } from './types';
 

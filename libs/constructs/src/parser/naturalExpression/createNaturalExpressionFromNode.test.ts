@@ -1,10 +1,10 @@
-import type { MdastNode } from '@art-js/primitives';
-import { nodePositionMock } from '@art-js/primitives/src/test/helpers';
+import type { MdastNode } from '@art-md/primitives';
+import { nodePositionMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
 import { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode';
 
-vi.mock('@art-js/primitives/src/parser/helpers', () => {
+vi.mock('@art-md/primitives/src/parser/helpers', () => {
 	return nodePositionMock();
 });
 

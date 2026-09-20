@@ -1,6 +1,6 @@
 # Primitives Implementation
 
-The `@art-js/primitives` package implements the visit context mechanics shared by the parser pipeline.
+The `@art-md/primitives` package implements the visit context mechanics shared by the parser pipeline.
 
 The visit context is the mutable stack the parser drives construct detection and capture through. It is created and extended in two steps:
 

@@ -1,4 +1,4 @@
-import { type ArtDocument, createArtDocument } from '@art-js/primitives';
+import { type ArtDocument, createArtDocument } from '@art-md/primitives';
 
 import type { DocumentFactoryData } from './types';
 

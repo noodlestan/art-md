@@ -1,5 +1,5 @@
 /**
- * @mocks nodePosition() from `@art-js/primitives`
+ * @mocks nodePosition() from `@art-md/primitives`
  */
 
 import { vi } from 'vitest';

@@ -1,6 +1,6 @@
 # Serializer API
 
-The `@art-js/serializer` package transforms an `ArtDocument` back into markdown. It is **construct-agnostic** — it knows only the contract types defined by `@art-js/constructs` (see [Constructs API](../../constructs/architecture/api.md)).
+The `@art-md/serializer` package transforms an `ArtDocument` back into markdown. It is **construct-agnostic** — it knows only the contract types defined by `@art-md/constructs` (see [Constructs API](../../constructs/architecture/api.md)).
 
 ## SerializerConfig
 
@@ -42,7 +42,7 @@ The conversion core. Takes a `SerializerConfig` and an `ArtDocument`, returns an
 
 ### Contract Reference
 
-The serializer depends on two types from `@art-js/constructs`:
+The serializer depends on two types from `@art-md/constructs`:
 
 - **ConstructSerializerFactory** — factory function that produces a `ConstructSerializer` adapter. See [Constructs API → Construct Serializer API](../../constructs/architecture/api.md#construct-serializer-api).
 - **ConstructSerializer** — the adapter type: `{ readonly name: string; toMdast(node, children): Node }`. The construct name is the registry key; `toMdast` converts one construct record into an mdast node, receiving already-converted children.

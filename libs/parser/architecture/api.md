@@ -1,6 +1,6 @@
 # Parser API
 
-The `@art-js/parser` package transforms raw markdown into an ArtDocument. It is **construct-agnostic** — it knows only the contract types defined by `@art-js/constructs` (see [Constructs API](../../constructs/architecture/api.md)).
+The `@art-md/parser` package transforms raw markdown into an ArtDocument. It is **construct-agnostic** — it knows only the contract types defined by `@art-md/constructs` (see [Constructs API](../../constructs/architecture/api.md)).
 
 ## ParserConfig
 
@@ -28,6 +28,6 @@ The public entry point is `parse` in `src/parse/parse.ts`. Its contract is **mar
 
 ## Constructs Overview
 
-The parser drives detection through the construct contract types from `@art-js/constructs`. Each construct contributes a parser (and optionally a serializer) that knows how to recognise and build its own records; the parser stays construct-agnostic and never names a concrete construct.
+The parser drives detection through the construct contract types from `@art-md/constructs`. Each construct contributes a parser (and optionally a serializer) that knows how to recognise and build its own records; the parser stays construct-agnostic and never names a concrete construct.
 
 See [Constructs Architecture](../../constructs/architecture/index.md) for the full details of the construct layers (factories, parsers, serializers) and their contracts.

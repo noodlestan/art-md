@@ -1,4 +1,4 @@
-import { sectionDepth } from '@art-js/primitives';
+import { sectionDepth } from '@art-md/primitives';
 import type { Heading } from 'mdast';
 
 import type { SectionBlock } from '../../../../../factories';

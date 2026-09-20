@@ -3,8 +3,8 @@ import type {
 	Construct,
 	ConstructIntegrator,
 	ConstructParser,
-} from '@art-js/constructs';
-import type { ArtDocument, ParserVisitContext } from '@art-js/primitives';
+} from '@art-md/constructs';
+import type { ArtDocument, ParserVisitContext } from '@art-md/primitives';
 import type { RootContent } from 'mdast';
 import type { Node } from 'unist';
 import { SKIP, visit } from 'unist-util-visit';

@@ -1,4 +1,4 @@
-import type { ConstructBase } from '@art-js/primitives';
+import type { ConstructBase } from '@art-md/primitives';
 
 import type { Tag } from '../../Tag';
 

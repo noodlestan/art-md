@@ -11,7 +11,7 @@
 
 ## Layout
 
-The `@art-js/constructs` package is split into three layers, each with its own `src/` folder and public surface:
+The `@art-md/constructs` package is split into three layers, each with its own `src/` folder and public surface:
 
 ```
 src/

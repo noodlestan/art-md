@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { createDefaultParserConfig } from './createDefaultParserConfig';
 
-vi.mock('@art-js/constructs', () => ({
+vi.mock('@art-md/constructs', () => ({
 	CONSTRUCT_PARSERS: [
 		vi.fn(() => ({ name: 'FieldInline' })),
 		vi.fn(() => ({ name: 'FieldBlock' })),

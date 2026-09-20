@@ -1,7 +1,7 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import { serialize } from '@art-js/serializer';
+import { serialize } from '@art-md/serializer';
 
 import { diffLines } from '../shared/diffLines';
 import { readFileUtf8 } from '../shared/readFileUtf8';

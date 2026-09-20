@@ -1,6 +1,6 @@
 # Bin
 
-The `@art-js/bin` package is a CLI that exposes all core pipeline commands.
+The `@art-md/bin` package is a CLI that exposes all core pipeline commands.
 
 ## Recommended Reading
 

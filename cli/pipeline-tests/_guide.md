@@ -1,6 +1,6 @@
 # Pipeline Test CLI
 
-The `@art-js/pipeline-test-cli` package provides test scripts for the parser and serializer pipeline.
+The `@art-md/pipeline-test-cli` package provides test scripts for the parser and serializer pipeline.
 
 ## Recommended Reading
 

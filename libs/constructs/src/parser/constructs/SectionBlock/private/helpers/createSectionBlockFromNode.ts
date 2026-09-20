@@ -1,5 +1,5 @@
-import { nodePosition } from '@art-js/primitives';
-import type { ParserVisitContext } from '@art-js/primitives';
+import { nodePosition } from '@art-md/primitives';
+import type { ParserVisitContext } from '@art-md/primitives';
 import type { Heading } from 'mdast';
 
 import { type SectionBlock, createSectionBlock } from '../../../../../factories';

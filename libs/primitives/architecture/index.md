@@ -1,6 +1,6 @@
 # Primitives Architecture
 
-The `@art-js/primitives` package provides the base types and utilities the Art pipeline is built on.
+The `@art-md/primitives` package provides the base types and utilities the Art pipeline is built on.
 
 ## Documents
 

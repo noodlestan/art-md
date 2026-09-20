@@ -1,6 +1,6 @@
 # Constructs
 
-The `@art-js/constructs` package provides construct factories for Art parser records.
+The `@art-md/constructs` package provides construct factories for Art parser records.
 
 ## Recommended Reading
 

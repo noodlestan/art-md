@@ -1,5 +1,5 @@
-import type { MdastNode, ParserVisitContext } from '@art-js/primitives';
-import { nodePosition } from '@art-js/primitives';
+import type { MdastNode, ParserVisitContext } from '@art-md/primitives';
+import { nodePosition } from '@art-md/primitives';
 import type { Node } from 'mdast';
 import { phrasing } from 'mdast-util-phrasing';
 

@@ -1,5 +1,5 @@
-import type { ConstructIntegrator, ConstructParser, ConstructProcessor } from '@art-js/constructs';
-import type { ConstructBase } from '@art-js/primitives';
+import type { ConstructIntegrator, ConstructParser, ConstructProcessor } from '@art-md/constructs';
+import type { ConstructBase } from '@art-md/primitives';
 import { SKIP, visit } from 'unist-util-visit';
 import { describe, expect, it, vi } from 'vitest';
 

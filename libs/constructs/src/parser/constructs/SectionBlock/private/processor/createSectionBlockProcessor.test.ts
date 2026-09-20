@@ -1,4 +1,4 @@
-import { makeParserVisitContextMock } from '@art-js/primitives/src/test/helpers';
+import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
 import { createSectionBlockFromNodeMock } from '../../../../../test/helpers';

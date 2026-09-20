@@ -1,6 +1,6 @@
 # Primitives
 
-The `@art-js/primitives` package provides foundational types and utilities for Art modules.
+The `@art-md/primitives` package provides foundational types and utilities for Art modules.
 
 ## Recommended Reading
 

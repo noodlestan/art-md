@@ -1,5 +1,5 @@
-import type { FieldBlock, NaturalBlock, SectionBlock } from '@art-js/constructs';
-import type { ArtDocument } from '@art-js/primitives';
+import type { FieldBlock, NaturalBlock, SectionBlock } from '@art-md/constructs';
+import type { ArtDocument } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
 import { serialize } from './serializer';

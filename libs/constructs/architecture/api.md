@@ -1,6 +1,6 @@
 # Constructs API
 
-The `@art-js/constructs` package defines the **contract** that binds the parser and serializer. It owns three things: the factory functions each construct exposes, the parser/serializer interfaces each side depends on, and the data shapes that flow through the pipeline. Neither the parser nor the serializer knows about concrete constructs — they only know these types.
+The `@art-md/constructs` package defines the **contract** that binds the parser and serializer. It owns three things: the factory functions each construct exposes, the parser/serializer interfaces each side depends on, and the data shapes that flow through the pipeline. Neither the parser nor the serializer knows about concrete constructs — they only know these types.
 
 ## Construct Factories API
 
@@ -118,7 +118,7 @@ The registry is an **open registry**. The block and inline maps are declared as 
 
 ```ts
 // In an extending package
-declare module '@art-js/constructs/src/constructs/types' {
+declare module '@art-md/constructs/src/constructs/types' {
   interface BlockConstructMap {
     MyConstruct: MyConstruct;
   }
@@ -129,7 +129,7 @@ The `interface` declarations are exempted from the No Interface convention via a
 
 ### ArtDocument
 
-The top-level intermediate representation produced by the parser and consumed by the serializer. Defined in `@art-js/primitives` (`libs/primitives/src/document/types.ts`). It is a container construct holding a list of child constructs:
+The top-level intermediate representation produced by the parser and consumed by the serializer. Defined in `@art-md/primitives` (`libs/primitives/src/document/types.ts`). It is a container construct holding a list of child constructs:
 
 ```ts
 type ArtDocument = ContainerConstructBase & {

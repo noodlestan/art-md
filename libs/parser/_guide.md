@@ -1,6 +1,6 @@
 # Parser
 
-The `@art-js/parser` package parses context files and art modules into structured representations.
+The `@art-md/parser` package parses context files and art modules into structured representations.
 
 ## Recommended Reading
 

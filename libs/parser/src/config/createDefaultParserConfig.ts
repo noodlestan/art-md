@@ -1,4 +1,4 @@
-import { CONSTRUCT_PARSERS, DEFAULT_CONSTRUCT_PARSER } from '@art-js/constructs';
+import { CONSTRUCT_PARSERS, DEFAULT_CONSTRUCT_PARSER } from '@art-md/constructs';
 
 import type { ParserConfig } from './types';
 

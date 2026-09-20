@@ -1,4 +1,4 @@
-import type { ConstructParserFactory } from '@art-js/constructs';
+import type { ConstructParserFactory } from '@art-md/constructs';
 
 export type ParserConfig = {
 	defaultConstruct: ConstructParserFactory;

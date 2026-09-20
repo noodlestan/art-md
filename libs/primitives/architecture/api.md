@@ -1,6 +1,6 @@
 # Primitives API
 
-The `@art-js/primitives` package exposes the base types and entry points shared by the constructs, parser, and serializer packages.
+The `@art-md/primitives` package exposes the base types and entry points shared by the constructs, parser, and serializer packages.
 
 ## Types
 

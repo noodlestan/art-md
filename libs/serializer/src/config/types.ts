@@ -1,4 +1,4 @@
-import type { ConstructSerializerFactory } from '@art-js/constructs';
+import type { ConstructSerializerFactory } from '@art-md/constructs';
 
 export type SerialisableNode = {
 	construct: string;

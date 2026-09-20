@@ -1,6 +1,6 @@
 import * as fs from 'node:fs';
 
-import { parse } from '@art-js/parser';
+import { parse } from '@art-md/parser';
 
 import type { ParseResult } from './types';
 

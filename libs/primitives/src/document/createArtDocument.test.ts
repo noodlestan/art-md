@@ -1,9 +1,9 @@
-import { nodePositionMock } from '@art-js/primitives/src/test/helpers';
+import { nodePositionMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
 import { createArtDocument } from './createArtDocument';
 
-vi.mock('@art-js/primitives', () => {
+vi.mock('@art-md/primitives', () => {
 	return nodePositionMock();
 });
 

@@ -1,4 +1,4 @@
-import { type ArtDocument, nodePosition } from '@art-js/primitives';
+import { type ArtDocument, nodePosition } from '@art-md/primitives';
 import type { Node } from 'unist';
 
 import { createDocument } from '../../factories';

@@ -1,5 +1,5 @@
 {
-  "name": "@art-js/spec",
+  "name": "@art-md/spec",
   "version": "0.0.1",
   "description": "The artificial language specification, written in art. Content package consumed by the parser, validator, and bundler packages.",
   "author": "Noodlestan Collective",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/noodlestan/art-js",
+    "url": "https://github.com/noodlestan/art-md",
     "directory": "spec/"
   },
   "type": "module",

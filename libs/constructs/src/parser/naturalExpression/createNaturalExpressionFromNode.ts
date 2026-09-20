@@ -1,5 +1,5 @@
-import { type MdastNode } from '@art-js/primitives';
-import { nodePosition } from '@art-js/primitives/src/parser/helpers';
+import { type MdastNode } from '@art-md/primitives';
+import { nodePosition } from '@art-md/primitives/src/parser/helpers';
 
 import type { NaturalExpression } from '../../factories';
 
