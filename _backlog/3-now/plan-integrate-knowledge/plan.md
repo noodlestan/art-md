@@ -74,7 +74,7 @@ Execution occurs in `$PROJECT` on branch `building`.
 
 | Iteration / Instructions                                                                                              | Status  |
 | --------------------------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Create Primitives Architecture `./plan-integrate-knowledge/instructions/create-primitives-architecture.md` | `READY` |
+| Iteration: Create Primitives Architecture `./plan-integrate-knowledge/instructions/create-primitives-architecture.md` | `DONE`  |
 | Iteration: Update Architecture Documents `./plan-integrate-knowledge/instructions/update-architecture-documents.md`   | `READY` |
 | Iteration: Update Architecture ADRs `./plan-integrate-knowledge/instructions/update-architecture-adrs.md`             | `READY` |
 
@@ -82,7 +82,9 @@ Execution occurs in `$PROJECT` on branch `building`.
 
 **Id:** `create-primitives-architecture`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./plan-integrate-knowledge/instructions/create-primitives-architecture__report.md`
 
 **Purpose:** Create the missing `libs/primitives/architecture/` knowledge so the primitives package is documented like its siblings (constructs, parser, serializer).
 
@@ -103,13 +105,17 @@ Execution occurs in `$PROJECT` on branch `building`.
 
 #### Commits:
 
-| ID                            | Repository / Checkout / Branch | Policy       | Hash    | Status     |
-| ----------------------------- | ------------------------------ | ------------ | ------- | ---------- |
-| `add-primitives-architecture` | $PROJECT / `building`          | `AUTONOMOUS` | `(TBD)` | `AUTHORED` |
+| ID                            | Repository / Checkout / Branch | Policy       | Hash      | Status      |
+| ----------------------------- | ------------------------------ | ------------ | --------- | ----------- |
+| `add-primitives-architecture` | $PROJECT / `building`          | `AUTONOMOUS` | `f81418c` | `COMMITTED` |
 
 ##### Commit: `add-primitives-architecture`
 
 **Repository:** Art JS
+
+**Hash:** `f81418c`
+
+**Status:** `COMMITTED`
 
 **Message:**
 
@@ -213,7 +219,7 @@ knowledge(art-js): Restore and update ADR set.
 
 ### Next
 
-Delegate the plan: execute the READY iterations (`create-primitives-architecture`, `update-architecture-documents`, `update-architecture-adrs`) via worker agents.
+Delegate the plan: execute the READY iterations (`update-architecture-documents`, `update-architecture-adrs`) via worker agents. `create-primitives-architecture` is DONE.
 
 ### Blockers
 
