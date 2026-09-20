@@ -8,13 +8,13 @@
 
 **Skill:** `write-milestone`
 
-**Purpose:** Implement the next set of artificial constructs — `ResourceBlock`, `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, `ContextSymbol` — and register them in the constructs package.
+**Purpose:** Implement the next set of artificial constructs — `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, `ContextSymbol` — and register them in the constructs package.
 
 **Description:** Extend the `@art-js/artificial-constructs` package with the block and inline constructs the language spec calls for, following the existing factory pattern (parser + to-mdast + types per construct) and registering them in the open `ConstructMap` registry.
 
 ## Summary
 
-The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, `NaturalBlock`, `NaturalExpression`, `SectionBlock`, and `Tag`. This milestone adds the next tier of constructs — `ResourceBlock`, `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, and `ContextSymbol` — each implemented as a parser factory, a to-mdast serializer, and private types, then registered in `BlockConstructMap` / `InlineConstructMap`. Scope and exact construct set to be confirmed against the language spec (`spec/`) during planning.
+The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, `NaturalBlock`, `NaturalExpression`, `SectionBlock`, and `Tag`. This milestone adds the next tier of constructs — `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, and `ContextSymbol` — each implemented as a parser factory, a to-mdast serializer, and private types, then registered in `BlockConstructMap` / `InlineConstructMap`. Scope and exact construct set to be confirmed against the language spec (`spec/`) during planning.
 
 ## Source Tasks
 
@@ -25,17 +25,18 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 ## Phases
 
-| Index | Name                        | Status  |
-| ----- | --------------------------- | ------- |
-| #1    | Refine Grammar              | `DRAFT` |
-| #2    | Implement block constructs  | `DRAFT` |
-| #3    | Implement inline constructs | `DRAFT` |
+| Index | Name                            | Status  |
+| ----- | ------------------------------- | ------- |
+| #1    | Refine Grammar                  | `DRAFT` |
+| #2    | Implement block constructs      | `DRAFT` |
+| #3    | Implement inline constructs     | `DRAFT` |
+| #4    | Implement expression constructs | `DRAFT` |
 
 ### Phase: 1 — Refine Grammar
 
 **Goal:** Confirm which constructs to implement and their shapes.
 
-**Description:** Cross-check `ResourceBlock`, `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, and `ContextSymbol` against the language spec and existing constructs; confirm whether `ResourceBlock` exists (it does not today) and finalise the construct set and their field/child shapes.
+**Description:** Cross-check `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, and `ContextSymbol` against the language spec and existing constructs; confirm whether `ResourceBlock` exists (it does not today) and finalise the construct set and their field/child shapes.
 
 **Status:** `DRAFT`
 
@@ -47,7 +48,7 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 **Goal:** Implement the block-level constructs.
 
-**Description:** Implement `ResourceBlock`, `ExampleBlock`, and `VocabularyDefinition` as parser factories, to-mdast serializers, and private types, following the existing `SectionBlock`/`FieldBlock` pattern.
+**Description:** Implement `ExampleBlock` as parser factories, to-mdast serializers, and private types, following the existing `FieldBlock` pattern.
 
 **Status:** `DRAFT`
 
@@ -57,9 +58,21 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 ### Phase: 3 — Implement inline constructs
 
-**Goal:** Implement the inline/expression-level constructs.
+**Goal:** Implement the inline constructs.
 
-**Description:** Implement `ExampleInline`, `Identifier`, and `ContextSymbol` as inline constructs, following the `FieldInline`/`Tag` pattern.
+**Description:** Implement `ExampleInline` and `VocabularyDefinition` as inline constructs, following the `FieldInline` pattern.
+
+**Status:** `DRAFT`
+
+**Dependencies:**
+
+- Phase 1 — Refine Grammar
+
+### Phase: 4 — Implement expression constructs
+
+**Goal:** Implement the expression-level constructs.
+
+**Description:** Implement `Identifier` and `ContextSymbol` as inline constructs, following the `FieldInline`/`Tag` pattern.
 
 **Status:** `DRAFT`
 
@@ -69,24 +82,13 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 ## Items
 
-The following items are not yet captured in a work item document.
+The milestone is not yet captured in work item documents. Each phase may be translated into one or more plans.
 
-### Plan: Implement Constructs
-
-**Status:** `DRAFT`
-
-**Purpose:** Implement the next tier of constructs in `@art-js/artificial-constructs`.
-
-**Description:** Plan the implementation of `ResourceBlock`, `ExampleBlock`, `ExampleInline`, `VocabularyDefinition`, `Identifier`, and `ContextSymbol`, with per-construct instructions and fixtures.
-
-**Changes:**
+Changes will typically involved:
 
 - `libs/constructs/src/constructs/` — new construct directories
 - `libs/constructs/src/registry.ts` — extend `ConstructMap`
-
-**Dependencies:**
-
-- Spec: `spec/` — construct definitions
+- `libs/constructs/architecture/*` — capture new examples and variants of construct. Eventually also applicable to `libs/primitives/`, `libs/parser`, and `libs/serializer` when planning uncovers changes required in these libraries as well.
 
 ## Work
 
