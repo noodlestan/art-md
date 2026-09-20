@@ -2,7 +2,7 @@
 
 **ID:** `rename-repository-to-art-md`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -101,10 +101,10 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `$ART_MD` (checkout `
 
 ## Items:
 
-| Iteration / Instructions                                                                           | Status  |
-| -------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Rename Records to Art MD `./instructions/rename-records-to-art-md.md`                   | `DONE`  |
-| Iteration: Update Knowledge and Package File `./instructions/update-knowledge-and-package-file.md` | `READY` |
+| Iteration / Instructions                                                                           | Status |
+| -------------------------------------------------------------------------------------------------- | ------ |
+| Iteration: Rename Records to Art MD `./instructions/rename-records-to-art-md.md`                   | `DONE` |
+| Iteration: Update Knowledge and Package File `./instructions/update-knowledge-and-package-file.md` | `DONE` |
 
 ### Iteration: Rename Records to Art MD
 
@@ -162,13 +162,15 @@ records(workspace): Rename art-js repository record to art-md.
 
 **ID:** `update-knowledge-and-package-file`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Update the README, guide, and package description to Art MD scope.
 
 **Description:** Update `$ART_MD` README, `_guide.md`, and `package.json` description to scope down to Art MD.
 
 **Instructions:** `./instructions/update-knowledge-and-package-file.md`
+
+**Report:** `./instructions/update-knowledge-and-package-file__report.md`
 
 **Changes:**
 
@@ -182,9 +184,9 @@ records(workspace): Rename art-js repository record to art-md.
 
 #### Commits:
 
-| ID                                  | Repository / Checkout / Branch  | Policy   | Hash | Status     |
-| ----------------------------------- | ------------------------------- | -------- | ---- | ---------- |
-| `update-knowledge-and-package-file` | Art MD / `$ART_MD` / `building` | `NOPUSH` |      | `AUTHORED` |
+| ID                                  | Repository / Checkout / Branch  | Policy   | Hash      | Status      |
+| ----------------------------------- | ------------------------------- | -------- | --------- | ----------- |
+| `update-knowledge-and-package-file` | Art MD / `$ART_MD` / `building` | `NOPUSH` | `01fc271` | `COMMITTED` |
 
 READY Commit: `update-knowledge-and-package-file`
 
@@ -200,7 +202,7 @@ docs(art-md): Update README, guide, and package description to Art MD scope.
 
 ### Next
 
-Delegate the next `READY` iteration: `update-knowledge-and-package-file`.
+All iterations are DONE.
 
 ### Blockers
 
