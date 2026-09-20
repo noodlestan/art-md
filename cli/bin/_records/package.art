@@ -6,13 +6,13 @@
 
 **Description:** Provides an entry point to bundler, program, validator, parser, and watcher.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `cli/bin/`
 
-**Canonical Name:** `@art-js/bin`
+**Canonical Name:** `@art-md/bin`
 
 **Published:** `true`
 
@@ -42,15 +42,5 @@
 
 - Dev:
   - Package Dependency Set: Cli Development
-
-**Scripts:**
-
-- Package Script Set: Artificials Cli Build
-- Package Script Set: Common Scripts
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: CLI Package
-- Scaffolder Skeleton: Package Common
 
 **License:** License: Noodlestan 2026 MIT

@@ -6,13 +6,13 @@
 
 **Description:** Foundational types and utilities for Art modules.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `libs/primitives/`
 
-**Canonical Name:** `@art-js/primitives`
+**Canonical Name:** `@art-md/primitives`
 
 **Published:** `true`
 
@@ -40,15 +40,5 @@
 
 - Dev:
   - Package Dependency Set: Solid Lib Development
-
-**Scripts:**
-
-- Package Script Set: Artificial Lib Build
-- Package Script Set: Common Scripts
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: Lib Package
-- Scaffolder Skeleton: Package Common
 
 **License:** License: Noodlestan 2026 MIT

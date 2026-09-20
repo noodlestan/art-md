@@ -6,13 +6,13 @@
 
 **Description:** Serializes Art AST back to markdown.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `libs/serializer/`
 
-**Canonical Name:** `@art-js/serializer`
+**Canonical Name:** `@art-md/serializer`
 
 **Published:** `true`
 
@@ -39,21 +39,11 @@
 **Dependencies:**
 
 - Runtime:
-  - `@art-js/primitives`
-  - `@art-js/constructs`
+  - `@art-md/primitives`
+  - `@art-md/constructs`
   - `mdast-util-to-markdown` @ `2.0.0`
 
 - Dev:
   - Package Dependency Set: Solid Lib Development
-
-**Scripts:**
-
-- Package Script Set: Artificial Lib Build
-- Package Script Set: Common Scripts
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: Lib Package
-- Scaffolder Skeleton: Package Common
 
 **License:** License: Noodlestan 2026 MIT

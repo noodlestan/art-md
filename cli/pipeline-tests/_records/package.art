@@ -6,13 +6,13 @@
 
 **Description:** Provides test scripts to exercise the parser and serializer against a shared fixture suite.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `cli/pipeline-tests/`
 
-**Canonical Name:** `@art-js/pipeline-test-cli`
+**Canonical Name:** `@art-md/pipeline-test-cli`
 
 **Published:** `true`
 
@@ -37,16 +37,5 @@
 **PackageFile:** `package.json`
 
 **Dependencies:**
-
-**Scripts:**
-
-- `test`: runs test-parser and test-serializer against stable fixtures
-- `test-parser`: test all fixtures against snapshots
-- `test-serializer`: test all numbered fixtures
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: CLI Package
-- Scaffolder Skeleton: Package Common
 
 **License:** License: Noodlestan 2026 MIT

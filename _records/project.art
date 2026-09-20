@@ -1,18 +1,18 @@
 # Module
 
-## Project: Art JS
+## Project: Art MD
 
 **Purpose:** Express structured data in Markdown with an extensible language that enables human and machine authoring at scale and automated transformations.
 
 **Description:** Language specification and JavaScript libraries for extracting structured data it into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content.
 
-**Owner:** Project: Artificials
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
-**Repository:** Repository: Art JS
+**Repository:** Repository: Art MD
 
-**Code:** https://github.com/noodlestan/art-js
+**Code:** https://github.com/noodlestan/art-md
 
 **Resources:**
 
@@ -20,7 +20,9 @@
 - Package: Serializer
 - Package: Constructs
 - Package: Primitives
+- Package: Spec
 - Package: Pipeline Tests
+- Package: Bin
 
 **Private:** `false`
 

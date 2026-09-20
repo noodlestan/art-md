@@ -8,7 +8,7 @@
 
 **Path:** `libs/serializer/`
 
-**Canonical Name:** `@art-js/serializer`
+**Canonical Name:** `@art-md/serializer`
 
 **Version:** `0.0.1`
 
@@ -21,17 +21,7 @@
 **Dependencies:**
 
 - Runtime:
-  - `@art-js/primitives`
-  - `@art-js/constructs`
-
-**Scripts:**
-
-- Package Script Set: Lib Build
-- Package Script Set: Common Scripts
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: Lib Package
-- Scaffolder Skeleton: Package Common
+  - `@art-md/primitives`
+  - `@art-md/constructs`
 
 **PackageFile:** package.json

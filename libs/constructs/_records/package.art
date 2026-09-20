@@ -6,13 +6,13 @@
 
 **Description:** Creates block and inline construct records from markdown AST nodes.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `libs/constructs/`
 
-**Canonical Name:** `@art-js/constructs`
+**Canonical Name:** `@art-md/constructs`
 
 **Published:** `true`
 
@@ -39,16 +39,6 @@
 **Dependencies:**
 
 - Runtime:
-  - `@art-js/primitives`
-
-**Scripts:**
-
-- Package Script Set: Artificial Lib Build
-- Package Script Set: Common Scripts
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: Lib Package
-- Scaffolder Skeleton: Package Common
+  - `@art-md/primitives`
 
 **License:** License: Noodlestan 2026 MIT

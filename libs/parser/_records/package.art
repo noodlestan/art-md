@@ -6,13 +6,13 @@
 
 **Description:** Parses context files and art modules into structured representations.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `libs/parser/`
 
-**Canonical Name:** `@art-js/parser`
+**Canonical Name:** `@art-md/parser`
 
 **Published:** `true`
 
@@ -39,23 +39,13 @@
 **Dependencies:**
 
 - Runtime:
-  - `@art-js/primitives`
-  - `@art-js/constructs`
+  - `@art-md/primitives`
+  - `@art-md/constructs`
   - `mdast-util-from-markdown` @ `^2.0.0` — Generates mdast from MD.
   - `unist-util-visit` @ `^5.0.0` — mdast traversing.
 - Dev:
   - Package Dependency Set: Solid Lib Development
   - `tsx`: `^4.8.1` - WIP REMOVE when pipeline-tests exist
-  - `@art-js/serializer` — WIP REMOVE same reason
-
-**Scripts:**
-
-- Package Script Set: Artificial Lib Build
-- Package Script Set: Common Scripts
-
-**Scaffolders:**
-
-- Scaffolder Skeleton: Lib Package
-- Scaffolder Skeleton: Package Common
+  - `@art-md/serializer` — WIP REMOVE same reason
 
 **License:** License: Noodlestan 2026 MIT

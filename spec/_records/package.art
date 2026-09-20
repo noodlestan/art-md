@@ -6,13 +6,13 @@
 
 **Description:** Content package consumed by the parser, validator, and bundler packages.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
 **Path:** `spec/`
 
-**Canonical Name:** `@art-js/spec`
+**Canonical Name:** `@art-md/spec`
 
 **Published:** `false`
 
@@ -35,9 +35,5 @@
 **PackageManager:** `npm@10.2.3`
 
 **PackageFile:** `package.json`
-
-**Scripts:**
-
-- Package Script Set: Common Scripts
 
 **License:** License: Noodlestan 2026 MIT

@@ -6,7 +6,7 @@
 
 **Description:** Art Language and modules implementation. The (reactive) pipeline flows from bundler to compiler to validator to parser to sources.
 
-**Owner:** Project: Art JS
+**Owner:** Project: Art MD
 
 **Author:** Noodlestan Collective
 
