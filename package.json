@@ -1,7 +1,7 @@
 {
   "name": "noodlestan/art-js",
   "version": "0.0.1",
-  "description": "Libraries for parsing and working with Art MD content, resources, modules, programs, and projections.",
+  "description": "Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code.",
   "author": "Noodlestan",
   "license": "MIT",
   "private": true,

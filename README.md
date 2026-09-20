@@ -1,8 +1,8 @@
-# Art JS
+# Art MD
 
-> Art MD implemented in JS: parse, validate, transform, and serialize back to Art MD or Markdown.
+> Host and manage the Art MD packages and tools, and their knowledge and planning artefacts.
 
-Libraries for parsing and working with Art MD content, resources, modules, programs, and projections.
+Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code.
 
 ## Packages
 

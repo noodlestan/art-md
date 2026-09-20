@@ -1,8 +1,8 @@
-# Guide: Art JS
+# Guide: Art MD
 
-> Host and manage the Art JS packages and tools, and their planning artefacts.
+> Host and manage the Art MD packages and tools, and their knowledge and planning artefacts.
 
-Monorepo containing the Art JS roadmap, library source code and language spec, and their backlogs.
+Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code.
 
 Uses Workflow: Planning Work with one backlog per package, coordinating with Workflow: Roadmapping from one project-wide roadmap.
 
@@ -31,7 +31,7 @@ spec/               — the artificial language specification
 
 | Project           | Guide                          | Backlog     |
 | ----------------- | ------------------------------ | ----------- |
-| Art JS (root)     | `_guide.md`                    | `_backlog/` |
+| Art MD (root)     | `_guide.md`                    | `_backlog/` |
 | Bin               | `cli/bin/_guide.md`            | `NONE`      |
 | Dev Server        | `cli/dev-server/_guide.md`     | `NONE`      |
 | Pipeline Test CLI | `cli/pipeline-tests/_guide.md` | `NONE`      |
