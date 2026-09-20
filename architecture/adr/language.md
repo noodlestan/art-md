@@ -26,18 +26,6 @@
 
 **Decision:** Any markdown file is a valid `.art` file. Files not authored in art require more inference to read correctly, but are never invalid.
 
-## Decision: SectionBlock as the Resource Declaration Carrier
-
-<!-- move the idea to parser, merge with existing ADT there, but ignore the verbose writing style -->
-
-**Status:** Proposal
-
-**Context:** The SectionBlock construct (`# Kind: Name` + tags + content) is what turns a markdown heading into a named, kinded resource, but the grammar spec described it only as "a named structural section" — opaque, and hiding the connection between the grammar and modules layers. Without an explicit statement of its role, the Closed Syntax, Open Semantics split reads as abstract: it is unclear which parts of a declaration the language fixes and which parts domains provide. The programming-language precedent makes the intended model obvious in hindsight: `class` is fixed syntax; the meaning of `class Task` comes from the program. Art needs the equivalent — a fixed construct form whose kinds are open.
-
-**Decision:** The SectionBlock is the resource declaration carrier: `# Kind: Name` declares a resource of that kind with that name. The construct's form (optional kind, name, tags, content) is fixed by the grammar — closed syntax. The meaning of each kind is provided by the structures, the domain declarations in `.art` — open semantics. The grammar and modules layers meet exactly here.
-
-**Consequences:** The parser captures declarations generically: it needs to know only that a resource of kind K named N is declared, never what K means. Domain semantics (fields, constraints, routines) attach to kinds through structures, keeping the core grammar frozen. The construct spec must state this purpose so the grammar-to-modules connection is explicit rather than implied.
-
 ## Decision: Create an accessory Template Language
 
 **Status:** Proposal
@@ -58,8 +46,8 @@
 
 **Status:** Draft
 
-**Context:** Examples in instructions are as important as definitions. Examples can extend or adapt the use cases of a routine or structure to other domains, layers, or specific envinroments. Examples are often repeated in many difference places and hard to update.
+**Context:** Examples in instructions are as important as definitions. Examples can extend or adapt the use cases of a routine or structure to other domains, layers, or specific environments. Examples are often repeated in many different places and hard to update.
 
 **Decision:** Example content is authored separately from other resources and referenced in resources via a "template ref" syntax construct. Examples are interpolated at projection time.
 
-**Consequences:** Eliminates repetition and Allows resources to pull speficic examples or example sets. Allows domains to extend or customize other domains. Allows localization of examples on project side. This is a good first use case for art projection.
+**Consequences:** Eliminates repetition and allows resources to pull specific examples or example sets. Allows domains to extend or customize other domains. Allows localization of examples on project side. This is a good first use case for art projection.
