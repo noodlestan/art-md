@@ -2,10 +2,6 @@
 
 ## 0.0.1
 
-### Changed
-
-- **Publishing preparation:** moved placeholder construct stubs, drafted pseudo-art content (primitives, structures, types, modules, resources, routines), and WIP diagrams to `spec-wip/`; `spec/` now contains only the publishable grammar and package metadata.
-
 ### Added
 
 - **Package structure:** skeleton of the artificial language specification — grammar, primitives, structures, types, modules, resources, and routines sections written in art.

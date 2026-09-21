@@ -143,9 +143,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                                        | Repository / Checkout / Branch  | Policy   | Hash | Status     |
-| ----------------------------------------- | ------------------------------- | -------- | ---- | ---------- |
-| `move-placeholder-constructs-to-spec-wip` | Art MD / `$ART_MD` / `building` | `NOPUSH` |      | `AUTHORED` |
+| ID                                        | Repository / Checkout / Branch  | Policy   | Hash      | Status      |
+| ----------------------------------------- | ------------------------------- | -------- | --------- | ----------- |
+| `move-placeholder-constructs-to-spec-wip` | Art MD / `$ART_MD` / `building` | `NOPUSH` | `b9989c9` | `COMMITTED` |
 
 ##### Commit: `move-placeholder-constructs-to-spec-wip`
 
@@ -185,9 +185,9 @@ migrate(package-spec): Move placeholder construct stubs to spec-wip.
 
 #### Commits:
 
-| ID                                 | Repository / Checkout / Branch  | Policy   | Hash | Status     |
-| ---------------------------------- | ------------------------------- | -------- | ---- | ---------- |
-| `move-drafted-content-to-spec-wip` | Art MD / `$ART_MD` / `building` | `NOPUSH` |      | `AUTHORED` |
+| ID                                 | Repository / Checkout / Branch  | Policy   | Hash      | Status      |
+| ---------------------------------- | ------------------------------- | -------- | --------- | ----------- |
+| `move-drafted-content-to-spec-wip` | Art MD / `$ART_MD` / `building` | `NOPUSH` | `83384fa` | `COMMITTED` |
 
 ##### Commit: `move-drafted-content-to-spec-wip`
 
@@ -223,9 +223,9 @@ migrate(package-spec): Move drafted pseudo-art content to spec-wip.
 
 #### Commits:
 
-| ID                              | Repository / Checkout / Branch  | Policy   | Hash | Status     |
-| ------------------------------- | ------------------------------- | -------- | ---- | ---------- |
-| `move-wip-diagrams-to-spec-wip` | Art MD / `$ART_MD` / `building` | `NOPUSH` |      | `AUTHORED` |
+| ID                              | Repository / Checkout / Branch  | Policy   | Hash      | Status      |
+| ------------------------------- | ------------------------------- | -------- | --------- | ----------- |
+| `move-wip-diagrams-to-spec-wip` | Art MD / `$ART_MD` / `building` | `NOPUSH` | `7127f24` | `COMMITTED` |
 
 ##### Commit: `move-wip-diagrams-to-spec-wip`
 
@@ -265,9 +265,9 @@ migrate(package-spec): Move WIP diagrams to spec-wip.
 
 #### Commits:
 
-| ID                                        | Repository / Checkout / Branch  | Policy   | Hash | Status     |
-| ----------------------------------------- | ------------------------------- | -------- | ---- | ---------- |
-| `fix-typos-and-broken-references-in-spec` | Art MD / `$ART_MD` / `building` | `NOPUSH` |      | `AUTHORED` |
+| ID                                        | Repository / Checkout / Branch  | Policy   | Hash      | Status      |
+| ----------------------------------------- | ------------------------------- | -------- | --------- | ----------- |
+| `fix-typos-and-broken-references-in-spec` | Art MD / `$ART_MD` / `building` | `NOPUSH` | `07f540d` | `COMMITTED` |
 
 ##### Commit: `fix-typos-and-broken-references-in-spec`
 
@@ -304,9 +304,10 @@ refs(package-spec): Fix broken references and typos; reword WIP refs to (PLANNED
 
 #### Commits:
 
-| ID                        | Repository / Checkout / Branch  | Policy   | Hash | Status     |
-| ------------------------- | ------------------------------- | -------- | ---- | ---------- |
-| `update-package-metadata` | Art MD / `$ART_MD` / `building` | `NOPUSH` |      | `AUTHORED` |
+| ID                        | Repository / Checkout / Branch  | Policy   | Hash      | Status      |
+| ------------------------- | ------------------------------- | -------- | --------- | ----------- |
+| `update-package-metadata` | Art MD / `$ART_MD` / `building` | `NOPUSH` | `cfe38d5` | `COMMITTED` |
+| `move-spec-wip-to-root`   | Art MD / `$ART_MD` / `building` | `NOPUSH` | `4d21408` | `COMMITTED` |
 
 ##### Commit: `update-package-metadata`
 
@@ -314,6 +315,14 @@ refs(package-spec): Fix broken references and typos; reword WIP refs to (PLANNED
 
 ```text
 docs(package-spec): Update package metadata for publishing.
+```
+
+##### Commit: `move-spec-wip-to-root`
+
+**Message:**
+
+```text
+migrate(spec): Move spec-wip to root.
 ```
 
 ---

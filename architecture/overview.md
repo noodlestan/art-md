@@ -1,30 +1,48 @@
 # Art MD
 
-**Art MD** is a **Markdown** dialect for expressing structured data and declarations in a human-readable form. Its implementation is built around an extensible set of constructs and a parser architecture that maps Markdown nodes to those constructs while preserving the structure and semantics of the source. The construct registry is open, allowing the language to grow through new constructs without requiring a redesign of the parser architecture.
+**Art MD** is a **Markdown** dialect for expressing structured data and declarations in a human-readable form, implemented in an extensible set of [constructs](../libs/constructs/README.md) and a [parser](../libs/parser/README.md) and [serializer](../libs/serializer/README.md) pair that map Markdown nodes to constructs and preserve the structure and semantics of the source. The construct registry is open, allowing the language to grow through new constructs without requiring a redesign of the parser architecture.
 
 ## Art AST
 
-Art MD represents Markdown as an **_Art AST_**: a hierarchical tree derived from Markdown content (via `mdast`), with nodes classified as **Art Constructs** such as sections, fields, comments, tags, and other language elements. `ArtDocument` is the document representation of this tree. The classified structure makes the data within an Art document available for extraction and updating while retaining the information needed to serialise it back to Markdown.
+Art MD represents Markdown as an **_Art AST_**: a hierarchical tree derived from Markdown content (via `mdast`), with nodes classified as **Constructs** such as sections, fields, comments, tags, and other language elements. `ArtDocument` is the document representation of this tree. The classified structure makes the data within an Art document available for extraction and updating while retaining the information needed to serialise it back to Markdown.
 
-## Parsing and Serialisation
+## Layers
 
-The core of the ecosystem is the bidirectional translation between Markdown and ArtDocument: Markdown is parsed into an ArtDocument, and an ArtDocument is serialised back to Markdown. `@art-md/primitives` provides the low-level types used throughout this implementation, including ArtDocument, the construct base types (ConstructBase, ContainerConstructBase), the mdast and position types (MdastNode, Point, Position), and the parser visit context (ParserVisitContext, ParserSource). Three packages implement parsing and serialisation, each with a distinct role and a strict separation of concerns.
+### The Contract Layer: `@art-md/primitives`
 
-##
+**Status:** WIP
 
-### The Contract Layer: `@art-md/constructs`
+`@art-md/primitives` is the contract layer: it declares the contracts that the other layers implement and consume, and has no internal dependencies. It is organised into five slices:
 
-`@art-md/constructs` is the contract layer that binds the parser and serializer. It owns the factory functions, the parser/serializer interfaces, and the data shapes. It defines three things:
+- `codec/` — the `ArtCodec` contract: document-level parsing and serialisation with the overloaded API `parse(markdown)` | `parse(context, markdown)` and `serialize(document)` | `serialize(context, document)`.
+- `source/` — the source contracts: `ArtContentSource` (source identity plus lazy/idempotent acquisition and caching of raw content) and `ArtDocumentSource` (lazy/idempotent parsing and caching of an `ArtDocument`), together with the `createArtDocumentSource(codec, contentSource)` factory.
+- `parser/context/` — the parser operation context: `ParseContext` and `ParserContextData` with `createParseContext()`, plus the retained internal traversal context `ParserVisitContext`, which now carries the `parseContext` so constructs can reach it.
+- `serializer/context/` — the serializer operation context: `SerializeContext` and `SerializerContextData` with `createSerializeContext()`.
+- `constructs/` and `document/` — the base types (`ConstructBase`, `ContainerConstructBase`), the mdast and position types (`MdastNode`, `Point`, `Position`), and the document representation (`ArtDocument`).
+
+The operation contexts are independent of content sources: they carry only the content source `uri` (a string), never the source itself.
+
+### The Constructs Layer: `@art-md/constructs`
+
+**Status:** WIP
+
+This package defines the constructs contracts — factory, parser, and serializer — and owns the factory functions for the built-in constructs.
+
+It is the layer that binds the parser and serializer: both depend on it through their runtime configuration, which holds lists of construct factories.
 
 1. **Contract types** — `ConstructProcessor` (`captureNode`) and `ConstructIntegrator` (`integrate`) for the parse direction; `ConstructSerializer` (`toMdast`) for the serialise direction; and the factories `ConstructParserFactory` and `ConstructSerializerFactory`. These interfaces are the only thing the parser and serializer know about individual constructs.
 
 2. **Data shapes and registry** — `Construct`, `BlockContent`, and `InlineContent` describe the intermediate representation, built on the primitives base types. The `BlockConstructMap` and `InlineConstructMap` interfaces form an _open registry_: new construct types are added via TypeScript declaration merging, not by modifying a central enum.
 
-The constructs package also ships the concrete implementations: each construct (e.g. `FieldBlock`, `SectionBlock`, `Tag`) exports both a parser factory and a serializer factory. These concrete factories are _not_ imported by the parser or serializer directly — they are composed at configuration time.
+The constructs package also ships the concrete implementations: every construct (e.g. `FieldBlock`, `SectionBlock`, `Tag`) exports a function to create instances from pure data and a serializer factory. Some implement also the parser contract. These concrete factories are _not_ imported by the parser or serializer directly — they are composed at configuration time.
 
 ### The Parse Direction: `@art-md/parser`
 
-The parser transforms raw markdown into an `ArtDocument`. Its entry point is `parse(markdown)`. Its core (`buildDocument` in `builder.ts`) drives a generic algorithm:
+**Status:** WIP
+
+The parser transforms raw markdown into an `ArtDocument`. It depends on `@art-md/constructs` and accepts a `ParserConfig` holding construct factories. Its entry points are overloaded: `parse(markdown, config)` or `parse(context, markdown, config)`, both returning a `ParseResult` (document + context). For a streamlined API that owns the construct configuration, use the codec instead.
+
+Its core (`buildDocument` in `builder.ts`) drives a generic algorithm:
 
 1. Parse the markdown into an mdast tree.
 2. Visit each node and consult the config's `ConstructProcessor`s in order. The first processor whose `captureNode` returns a record claims the node.
@@ -35,21 +53,20 @@ There is no separate pre-processor stage. The parser's configuration (`ParserCon
 
 ### The Serialise Direction: `@art-md/serializer`
 
-The serializer transforms an `ArtDocument` back into markdown. Its entry point is `serialize(document)`. Its core (`artAstToMdast` in `artAstToMdast.ts`) builds a **registry** from the config: each `ConstructSerializerFactory` is instantiated and stored in a `Map<string, ConstructSerializer>` keyed by the construct's name. When walking the `ArtDocument`, it looks up each node by this key and dispatches to the matching `toMdast` implementation.
+**Status:** WIP
+
+The serializer transforms an `ArtDocument` back into markdown. Like the parser, it depends on `@art-md/constructs` and accepts a `SerializerConfig` holding construct factories. Its entry points are overloaded: `serialize(document, config)` or `serialize(context, document, config)`, both returning a `SerializeResult` (content + context). For a streamlined API that owns the construct configuration, use the codec instead.
+
+Its core (`artAstToMdast` in `artAstToMdast.ts`) builds a **registry** from the config: each `ConstructSerializerFactory` is instantiated and stored in a `Map<string, ConstructSerializer>` keyed by the construct's name. When walking the `ArtDocument`, it looks up each node by this key and dispatches to the matching `toMdast` implementation.
 
 Like the parser, the serializer's configuration (`SerializerConfig`) holds only a list of `ConstructSerializerFactory`. It never names a concrete construct — it dispatches generically through the registry.
 
-### Where the Ecosystem Is Glued Together
+### The Codec Layer: `@art-md/codec`
 
-The only place where concrete constructs and the pipeline meet is in the **default config factories**:
+**Status:** Planned
 
-- `createDefaultConfig.ts` (parser) imports concrete construct parser factories from `@art-md/constructs` and wires them into a `ParserConfig`.
-- `createDefaultSerializerConfig.ts` (serializer) imports concrete `ConstructSerializer` factories from `@art-md/constructs` and wires them into a `SerializerConfig`.
+The codec layer provides the streamlined document-level API. The `ArtCodec` contract is declared in `@art-md/primitives` under `codec/`; the `@art-md/codec` package owns the configured implementation and `createCodec()`.
 
-This is a **composition decision**, not a hardcoded dependency. The parser and serializer libraries have no import-level knowledge of `FieldBlock`, `SectionBlock`, or any other concrete construct. A consumer could supply a completely different set of constructs by providing a custom config.
+`ArtCodec` exposes the overloaded `parse`/`serialize` API — `parse(markdown)` | `parse(context, markdown)` and `serialize(document)` | `serialize(context, document)` — while owning the construct configuration, so no config is passed per call. It performs document-level parsing and serialisation only: no source I/O, no record knowledge.
 
-### Separation
-
-Parser and serializer are independent of each other. They share only the data contract defined by `@art-md/constructs`, built on the primitives base types.
-
-Neither package imports from the other. Both depend on `@art-md/primitives` directly. A consumer can use the parser without the serializer, or vice versa. The only binding between them is the shared vocabulary of construct types and the `ArtDocument` intermediate representation.
+The dependency direction is `ArtDocumentSource` → `ArtCodec` → `ArtContentSource`: `ArtDocumentSource` composes an `ArtContentSource` and an `ArtCodec`, and concrete sources (e.g. `FSContentSource`) implement only `ArtContentSource`. The operation contexts (`ParseContext`, `SerializeContext`) are independent of content sources.

@@ -1,4 +1,4 @@
-# Artificial Language
+# Wip: Art MD
 
 ## Diagram
 

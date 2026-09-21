@@ -14,8 +14,9 @@ Agents SHOULD scan these files for definitions and resource locations when faced
 ```
 _records/           — package records
 grammar/            — grammar definitions (publishable content)
-spec-wip/           — work-in-progress content (placeholders, drafts, WIP diagrams)
 ```
+
+Work-in-progress content (placeholders, drafts, WIP diagrams) lives in `../spec-wip/`, outside this package, and is not published.
 
 ## Records Management
 
