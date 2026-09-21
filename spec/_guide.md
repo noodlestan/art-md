@@ -13,13 +13,8 @@ Agents SHOULD scan these files for definitions and resource locations when faced
 
 ```
 _records/           — package records
-grammar/            — grammar definitions
-modules/            — module definitions
-primitives/         — primitive definitions
-resources/          — resource definitions
-routines/           — routine definitions
-structures/         — structure definitions
-types/              — type definitions
+grammar/            — grammar definitions (publishable content)
+spec-wip/           — work-in-progress content (placeholders, drafts, WIP diagrams)
 ```
 
 ## Records Management

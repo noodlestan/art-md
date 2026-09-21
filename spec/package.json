@@ -15,9 +15,11 @@
   },
   "type": "module",
   "files": [
-    "dist",
+    "grammar",
     "LICENSE-MIT",
-    "README.md"
+    "README.md",
+    "_guide.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "lint": "prettier . -c",
