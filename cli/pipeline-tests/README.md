@@ -4,11 +4,11 @@
 
 Provides test scripts to exercise the parser and serializer against a shared fixture suite.
 
-This package is part of the [@artificials](../../README.md) toolkit.
+This package is part of the [Art MD toolkit](../../README.md) toolkit.
 
 ## Development
 
-Make sure you read the [@artificials README](../../README.md) first.
+Make sure you read the [Art MD README](../../README.md) first.
 
 ### Scripts
 

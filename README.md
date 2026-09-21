@@ -1,8 +1,8 @@
 # Art MD
 
-> Host and manage the Art MD packages and tools, and their knowledge and planning artefacts.
+> Express structured data in Markdown with an extensible language that enables human and machine authoring at scale and automated transformations.
 
-Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code.
+Language specification and JavaScript libraries for extracting structured data into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content.
 
 ## Packages
 
@@ -10,11 +10,11 @@ Monorepo containing the Art MD roadmap and backlogs, language spec, architecture
 | --------- | --------------------- | --------------------------- | ------------------------------------------ |
 | `@art-md` | `spec/`               | `@art-md/spec`              | Art Language specification                 |
 | `@art-md` | `libs/primitives/`    | `@art-md/primitives`        | Foundational types and utilities           |
-| `@art-md` | `libs/parser/`        | `@art-md/parser`            | Parses context files and art modules       |
+| `@art-md` | `libs/parser/`        | `@art-md/parser`            | Parses markdown/art to Art AST             |
 | `@art-md` | `libs/serializer/`    | `@art-md/serializer`        | Serializes Art AST back to markdown        |
 | `@art-md` | `libs/constructs/`    | `@art-md/constructs`        | Construct factories for Art parser records |
 | `@art-md` | `cli/pipeline-tests/` | `@art-md/pipeline-test-cli` | Test scripts for the parser and serializer |
-| `@art-md` | `cli/bin/`            | `@art-md/bin`               | CLI for pipeline commands                  |
+| `@art-md` | `cli/bin/`            | `@art-md/bin`               | CLI for parser/serialization. commands     |
 
 ## Development
 

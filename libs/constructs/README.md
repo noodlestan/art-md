@@ -4,11 +4,11 @@
 
 Construct factories and helpers used by the Art parser and serializer.
 
-This package is part of the [Art-JS toolkit](../../README.md).
+This package is part of the [Art MD toolkit](../../README.md).
 
 ## Development
 
-Make sure you read the [Art-JS README](../../README.md) first.
+Make sure you read the [Art MD README](../../README.md) first.
 
 ### Build Targets
 
