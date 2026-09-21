@@ -212,11 +212,11 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `ART_MD` (checkout `c
 
 This section describes the ordered phases used to organise downstream work, identifying blocking dependencies across resources of different owners.
 
-| Index | Name        | Status     |
-| ----- | ----------- | ---------- |
-| #1    | Prepare     | `DONE`     |
-| #2    | Migrate     | `DONE`     |
-| #3    | Consolidate | `PLANNING` |
+| Index | Name        | Status    |
+| ----- | ----------- | --------- |
+| #1    | Prepare     | `DONE`    |
+| #2    | Migrate     | `DONE`    |
+| #3    | Consolidate | `WORKING` |
 
 ### Phase: 1 — Prepare
 
@@ -244,11 +244,11 @@ This section describes the ordered phases used to organise downstream work, iden
 
 ### Phase: 3 — Consolidate
 
-**Goal:** Update the Artificials umbrella and the Noodlestan website to reflect the new repository layout.
+**Goal:** Update the Artificials umbrella and the Noodlestan website to reflect the new repository layout, and prepare the spec package for publishing.
 
-**Description:** Consolidate the repository list in the Artificials umbrella project and update the Noodlestan website.
+**Description:** Consolidate the repository list in the Artificials umbrella project, update the Noodlestan website, and separate the publishable spec content from placeholders, drafts, and WIP diagrams.
 
-**Status:** `PLANNING`
+**Status:** `WORKING`
 
 **Dependencies:**
 
@@ -267,8 +267,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | 2     | Plan: Create Art JS Repository `_backlog/1-done/plan-create-art-js-repository/plan.md`                                       | `DONE`     |
 | 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/1-done/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `DONE`     |
 | -     |                                                                                                                              |            |
-| 3     | Plan: Consolidate Repos in Artificials `_backlog/1-done/plan-consolidate-repos-in-artificials/plan.md`(create)               | `READY`    |
-| 3     | Plan: Update Noodlestan Website `_backlog/3-now/plan-update-noodlestan-website/plan.md`(create)                              | `PLANNING` |
+| 3     | Plan: Consolidate Repos in Artificials `_backlog/1-done/plan-consolidate-repos-in-artificials/plan.md`(create)               | `DONE`     |
+| 3     | Plan: Update Noodlestan Website `_backlog/1-done/plan-update-noodlestan-website/plan.md`(create)                             | `DONE`     |
+| 3     | Plan: Prepare Spec for Publishing `_backlog/3-now/plan-prepare-spec-for-publishing/plan.md`(create)                          | `PLANNING` |
 
 ---
 

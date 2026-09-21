@@ -2,7 +2,7 @@
 
 **ID:** `update-noodlestan-website`
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -41,20 +41,20 @@ Update the Noodlestan website content and links to reflect the new repository la
 
 ### Required Skills
 
-- `write-plan` — Writes execution plans and implementation instructions. Required for Planning Work Item.
+- `write-plan` — Writes execution plans and implementation instructions. Required for DONE Work Item.
 - `render-template` — Renders plan and instruction artefacts. Required for Drafting, Refining.
 
 ### Domains
 
-| Domain / Path                           | Description                                                                        |
-| --------------------------------------- | ---------------------------------------------------------------------------------- |
-| Domain: Plans `$DOMAINS/plans/index.md` | Planning lifecycle for contextualising, drafting, planning, and integrating plans. |
+| Domain / Path                           | Description                                                                |
+| --------------------------------------- | -------------------------------------------------------------------------- |
+| Domain: Plans `$DOMAINS/plans/index.md` | DONE lifecycle for contextualising, drafting, DONE, and integrating plans. |
 
 ### Knowledge
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$NOODLESTAN_WEB/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$WORKSPACE/_records/repositories/noodlestan-web.art` (Record) — Website repository record to update. Relevant for Planning Work Item.
+::READ `$WORKSPACE/_records/repositories/noodlestan-web.art` (Record) — Website repository record to update. Relevant for DONE Work Item.
 
 ## Scope
 
@@ -84,15 +84,15 @@ Execution occurs from `$WORKSPACE/`; the Noodlestan Web checkout `$NOODLESTAN_WE
 
 ## Items:
 
-| Iteration / Instructions                     | Status     |
-| -------------------------------------------- | ---------- |
-| Iteration: Update Noodlestan Website Content | `PLANNING` |
+| Iteration / Instructions                     | Status |
+| -------------------------------------------- | ------ |
+| Iteration: Update Noodlestan Website Content | `DONE` |
 
 ### Iteration: Update Noodlestan Website Content
 
 **ID:** `update-noodlestan-website-content`
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Purpose:** Update the Noodlestan website to reflect the new repository layout.
 
@@ -111,9 +111,9 @@ Execution occurs from `$WORKSPACE/`; the Noodlestan Web checkout `$NOODLESTAN_WE
 
 #### Commits:
 
-| ID                                  | Repository / Checkout / Branch              | Policy   | Hash | Status     |
-| ----------------------------------- | ------------------------------------------- | -------- | ---- | ---------- |
-| `update-noodlestan-website-content` | Noodlestan Web / `$NOODLESTAN_WEB` / `main` | `NOPUSH` |      | `AUTHORED` |
+| ID                                  | Repository / Checkout / Branch              | Policy   | Hash      | Status      |
+| ----------------------------------- | ------------------------------------------- | -------- | --------- | ----------- |
+| `update-noodlestan-website-content` | Noodlestan Web / `$NOODLESTAN_WEB` / `main` | `NOPUSH` | `a087f03` | `COMMITTED` |
 
 ##### Commit: `update-noodlestan-website-content`
 
