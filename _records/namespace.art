@@ -2,9 +2,9 @@
 
 ## Namespace: Art MD
 
-**Purpose:** Tools for working with Art files.
+**Purpose:** Express structured data in Markdown with an extensible language.
 
-**Description:** Art Language and modules implementation. The (reactive) pipeline flows from bundler to compiler to validator to parser to sources.
+**Description:** Art MD language spec, libraries, and tools.
 
 **Owner:** Project: Art MD
 
