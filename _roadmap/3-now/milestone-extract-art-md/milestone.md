@@ -267,50 +267,12 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | 2     | Plan: Create Art JS Repository `_backlog/1-done/plan-create-art-js-repository/plan.md`                                       | `DONE`     |
 | 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/1-done/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `DONE`     |
 | -     |                                                                                                                              |            |
-| 3     | Plan: Consolidate Repos in Artificials (create)                                                                              | `PLANNING` |
-| 3     | Plan: Update Noodlestan Website(create)                                                                                      | `PLANNING` |
-
-The following items are not yet captured in a work item document.
-
-### Plan: Consolidate Repos in Artificials
-
-**Status:** `DRAFT`
-
-**Purpose:** Update the Artificials umbrella to list the owned projects and repositories.
-
-**Description:** Consolidate the repository list in the Artificials umbrella project to include Art MD and Art JS.
-
-**Changes:**
-
-- Update the Artificials repository record and roadmap to list Art MD and Art JS.
-
-**Dependencies:**
-
-- Plan: Extract Libs and CLI Placeholders to Art JS.
-
-### Plan: Update Noodlestan Website
-
-**Status:** `DRAFT`
-
-**Purpose:** Update the Noodlestan website to reflect the new repository layout.
-
-**Description:** Update website content referencing the Art JS and Art MD repositories.
-
-**Changes:**
-
-- Update website content and links in `$NOODLESTAN_WEB`.
-
-**Dependencies:**
-
-- Plan: Consolidate Repos in Artificials.
+| 3     | Plan: Consolidate Repos in Artificials `_backlog/3-now/plan-consolidate-repos-in-artificials/plan.md`(create)                | `READY`    |
+| 3     | Plan: Update Noodlestan Website `_backlog/4-next/plan-update-noodlestan-website/plan.md`(create)                             | `PLANNING` |
 
 ---
 
 ## Work
-
-### Next
-
-Plan the repository rename to Art MD (Phase 1).
 
 ### Blockers
 
