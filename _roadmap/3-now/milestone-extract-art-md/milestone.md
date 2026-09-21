@@ -212,11 +212,11 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `ART_MD` (checkout `c
 
 This section describes the ordered phases used to organise downstream work, identifying blocking dependencies across resources of different owners.
 
-| Index | Name        | Status  |
-| ----- | ----------- | ------- |
-| #1    | Prepare     | `DONE`  |
-| #2    | Migrate     | `READY` |
-| #3    | Consolidate | `DRAFT` |
+| Index | Name        | Status     |
+| ----- | ----------- | ---------- |
+| #1    | Prepare     | `DONE`     |
+| #2    | Migrate     | `DONE`     |
+| #3    | Consolidate | `PLANNING` |
 
 ### Phase: 1 — Prepare
 
@@ -236,7 +236,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Create and scaffold the new Art JS repository, then extract the placeholder libs and cli packages from Art MD into Art JS.
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -248,7 +248,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Consolidate the repository list in the Artificials umbrella project and update the Noodlestan website.
 
-**Status:** `DRAFT`
+**Status:** `PLANNING`
 
 **Dependencies:**
 
@@ -260,15 +260,15 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
-| Phase | Resource / Record                                                                                                           | Status  |
-| ----- | --------------------------------------------------------------------------------------------------------------------------- | ------- |
-| 1     | Plan: Rename Repository to Art MD `_backlog/1-done/plan-rename-repository-to-art-md/plan.md`                                | `DONE`  |
-| -     |                                                                                                                             |         |
-| 2     | Plan: Create Art JS Repository `_backlog/3-now/plan-create-art-js-repository/plan.md`                                       | `READY` |
-| 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/3-now/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `READY` |
-| -     |                                                                                                                             |         |
-| 3     | Plan: Consolidate Repos in Artificials (create)                                                                             | `DRAFT` |
-| 3     | Plan: Update Noodlestan Website(create)                                                                                     | `DRAFT` |
+| Phase | Resource / Record                                                                                                            | Status     |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| 1     | Plan: Rename Repository to Art MD `_backlog/1-done/plan-rename-repository-to-art-md/plan.md`                                 | `DONE`     |
+| -     |                                                                                                                              |            |
+| 2     | Plan: Create Art JS Repository `_backlog/1-done/plan-create-art-js-repository/plan.md`                                       | `DONE`     |
+| 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/1-done/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `DONE`     |
+| -     |                                                                                                                              |            |
+| 3     | Plan: Consolidate Repos in Artificials (create)                                                                              | `PLANNING` |
+| 3     | Plan: Update Noodlestan Website(create)                                                                                      | `PLANNING` |
 
 The following items are not yet captured in a work item document.
 

@@ -1,5 +1,10 @@
 # Milestone: Art Codec
 
+## Mandatory Reading
+
+- `architecture/components.md` – planned packages in the context of
+- `$ART_JS/`
+
 ## Changes
 
 ### `@art-js/codec`
