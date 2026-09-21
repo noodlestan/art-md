@@ -1,14 +1,20 @@
-# Art JS Ecosystem Overview
+# Art MD
 
-The **art-js** repository is a modular JavaScript ecosystem for parsing and serialising a domain-specific markdown dialect called Art-MD. Its defining architectural choice is a **construct-agnostic pipeline**: the parser and serializer know nothing about which concrete constructs exist. They operate on a shared contract — factory types and data shapes — and concrete constructs are injected at configuration time.
+**Art MD** is a **Markdown** dialect for expressing structured data and declarations in a human-readable form. Its implementation is built around an extensible set of constructs and a parser architecture that maps Markdown nodes to those constructs while preserving the structure and semantics of the source. The construct registry is open, allowing the language to grow through new constructs without requiring a redesign of the parser architecture.
 
-## Art MD
+## Art AST
 
-The core of the ecosystem is a bidirectional pipeline: markdown → `ArtDocument` (parse) and `ArtDocument` → markdown (serialise). `@art-js/primitives` provides the low-level types the contract layer and pipeline build on: `ArtDocument`, the construct base types (`ConstructBase`, `ContainerConstructBase`), the mdast and position types (`MdastNode`, `Point`, `Position`), and the parser visit context (`ParserVisitContext`, `ParserSource`). Three packages implement the pipeline, each with a distinct role and a strict separation of concerns.
+Art MD represents Markdown as an **_Art AST_**: a hierarchical tree derived from Markdown content (via `mdast`), with nodes classified as **Art Constructs** such as sections, fields, comments, tags, and other language elements. `ArtDocument` is the document representation of this tree. The classified structure makes the data within an Art document available for extraction and updating while retaining the information needed to serialise it back to Markdown.
 
-### The Contract Layer: `@art-js/constructs`
+## Parsing and Serialisation
 
-`@art-js/constructs` is the contract layer that binds the parser and serializer. It owns the factory functions, the parser/serializer interfaces, and the data shapes. It defines three things:
+The core of the ecosystem is the bidirectional translation between Markdown and ArtDocument: Markdown is parsed into an ArtDocument, and an ArtDocument is serialised back to Markdown. `@art-md/primitives` provides the low-level types used throughout this implementation, including ArtDocument, the construct base types (ConstructBase, ContainerConstructBase), the mdast and position types (MdastNode, Point, Position), and the parser visit context (ParserVisitContext, ParserSource). Three packages implement parsing and serialisation, each with a distinct role and a strict separation of concerns.
+
+##
+
+### The Contract Layer: `@art-md/constructs`
+
+`@art-md/constructs` is the contract layer that binds the parser and serializer. It owns the factory functions, the parser/serializer interfaces, and the data shapes. It defines three things:
 
 1. **Contract types** — `ConstructProcessor` (`captureNode`) and `ConstructIntegrator` (`integrate`) for the parse direction; `ConstructSerializer` (`toMdast`) for the serialise direction; and the factories `ConstructParserFactory` and `ConstructSerializerFactory`. These interfaces are the only thing the parser and serializer know about individual constructs.
 
@@ -16,7 +22,7 @@ The core of the ecosystem is a bidirectional pipeline: markdown → `ArtDocument
 
 The constructs package also ships the concrete implementations: each construct (e.g. `FieldBlock`, `SectionBlock`, `Tag`) exports both a parser factory and a serializer factory. These concrete factories are _not_ imported by the parser or serializer directly — they are composed at configuration time.
 
-### The Parse Direction: `@art-js/parser`
+### The Parse Direction: `@art-md/parser`
 
 The parser transforms raw markdown into an `ArtDocument`. Its entry point is `parse(markdown)`. Its core (`buildDocument` in `builder.ts`) drives a generic algorithm:
 
@@ -27,7 +33,7 @@ The parser transforms raw markdown into an `ArtDocument`. Its entry point is `pa
 
 There is no separate pre-processor stage. The parser's configuration (`ParserConfig`) holds only two fields: `defaultConstruct` and a list of `ConstructParserFactory`. The parser core never names a specific construct type. It drives detection entirely through the contract interfaces.
 
-### The Serialise Direction: `@art-js/serializer`
+### The Serialise Direction: `@art-md/serializer`
 
 The serializer transforms an `ArtDocument` back into markdown. Its entry point is `serialize(document)`. Its core (`artAstToMdast` in `artAstToMdast.ts`) builds a **registry** from the config: each `ConstructSerializerFactory` is instantiated and stored in a `Map<string, ConstructSerializer>` keyed by the construct's name. When walking the `ArtDocument`, it looks up each node by this key and dispatches to the matching `toMdast` implementation.
 
@@ -37,20 +43,13 @@ Like the parser, the serializer's configuration (`SerializerConfig`) holds only 
 
 The only place where concrete constructs and the pipeline meet is in the **default config factories**:
 
-- `createDefaultConfig.ts` (parser) imports concrete construct parser factories from `@art-js/constructs` and wires them into a `ParserConfig`.
-- `createDefaultSerializerConfig.ts` (serializer) imports concrete `ConstructSerializer` factories from `@art-js/constructs` and wires them into a `SerializerConfig`.
+- `createDefaultConfig.ts` (parser) imports concrete construct parser factories from `@art-md/constructs` and wires them into a `ParserConfig`.
+- `createDefaultSerializerConfig.ts` (serializer) imports concrete `ConstructSerializer` factories from `@art-md/constructs` and wires them into a `SerializerConfig`.
 
 This is a **composition decision**, not a hardcoded dependency. The parser and serializer libraries have no import-level knowledge of `FieldBlock`, `SectionBlock`, or any other concrete construct. A consumer could supply a completely different set of constructs by providing a custom config.
 
 ### Separation
 
-Parser and serializer are independent of each other. They share only the data contract defined by `@art-js/constructs`, built on the primitives base types. Neither package imports from the other. Both depend on `@art-js/primitives` directly. A consumer can use the parser without the serializer, or vice versa. The only binding between them is the shared vocabulary of construct types and the `ArtDocument` intermediate representation.
+Parser and serializer are independent of each other. They share only the data contract defined by `@art-md/constructs`, built on the primitives base types.
 
-## Planned Packages
-
-The following packages are part of the art-js ecosystem but are not yet implemented or their roles are not yet defined in code:
-
-- `@art-js/dev-server`
-- `@art-js/language-server`
-- `@art-js/watcher`
-- `@art-js/tools`
+Neither package imports from the other. Both depend on `@art-md/primitives` directly. A consumer can use the parser without the serializer, or vice versa. The only binding between them is the shared vocabulary of construct types and the `ArtDocument` intermediate representation.

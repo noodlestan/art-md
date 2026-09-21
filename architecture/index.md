@@ -1,10 +1,10 @@
-# Art JS Architecture
+# Art MD Architecture
 
 ## Documents
 
 | Document                                           | Description                                              |
 | -------------------------------------------------- | -------------------------------------------------------- |
-| [principles.md](principles.md)                     | Design principles for the Art JS ecosystem               |
+| [principles.md](principles.md)                     | Design principles for the Art MD libraries               |
 | [overview.md](overview.md)                         | Art MD, Constructs, Parser, Serializer, Planned Packages |
 | [components.md](components.md)                     | Components, relationships, and package links             |
 | [art-md-fixture-tests.md](art-md-fixture-tests.md) | Fixture test suite for parser and serializer             |

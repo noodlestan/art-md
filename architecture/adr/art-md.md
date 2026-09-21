@@ -34,7 +34,7 @@
 
 **Context:** The constructs package spans three concerns: factories, parsers, serializers.
 
-**Decision:** Split `@art-js/constructs` into three independent slices — factories, parsers, serializers — with one folder per construct per slice.
+**Decision:** Split `@art-md/constructs` into three independent slices — factories, parsers, serializers — with one folder per construct per slice.
 
 ## Decision: Parser/Serializer Independent from Constructs
 
@@ -42,7 +42,7 @@
 
 **Context:** Parsers and serializers must not hardcode constructs.
 
-**Decision:** The parser and serializer pipelines are construct-agnostic. They drive detection through the `@art-js/constructs` contract types; wiring happens through config factories. Neither names a concrete construct.
+**Decision:** The parser and serializer pipelines are construct-agnostic. They drive detection through the `@art-md/constructs` contract types; wiring happens through config factories. Neither names a concrete construct.
 
 ## Decision: Natural Block Fallback
 

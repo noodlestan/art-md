@@ -1,16 +1,18 @@
-# Art JS Components
+# Art MD Components
 
-The Art JS ecosystem is a modular pipeline for parsing and serialising a markdown dialect (Art-MD). Components are organised into core libraries (`libs/`) and CLI tools (`cli/`).
+The Art MD implementation consists of a parser, a serialiser, and a set of constructs that implement Art MD as a Markdown dialect. The parser and serialiser operate on those constructs to translate between Markdown and Art MD's structured representation.
+
+Components are organised into core libraries (libs/) and CLI tools (cli/).
 
 ## Core Libraries
 
-### Primitives (`@art-js/primitives`)
+### Primitives (`@art-md/primitives`)
 
 Provides the base types and utilities the ecosystem is built on: the document contract (`ArtDocument`, `ConstructBase`, `ContainerConstructBase`), the mdast and position types (`MdastNode`, `Point`, `Position`), and the parser visit context (`ParserVisitContext`, `ParserSource`) with its helpers (`nodePosition`, `sectionDepth`). No internal dependencies — all other libs consume it.
 
 **Read more:** [Primitives Architecture](../libs/primitives/architecture/index.md)
 
-### Constructs (`@art-js/constructs`)
+### Constructs (`@art-md/constructs`)
 
 The contract layer of the ecosystem: it binds the parser and serializer. It owns the factory functions, the parser/serializer interfaces, and the data shapes. The package is split into three slices — factories, parsers, serializers. Ships both the contract types and the concrete implementations.
 
@@ -21,7 +23,7 @@ The contract layer of the ecosystem: it binds the parser and serializer. It owns
 
 **Read more:** [Constructs Architecture](../libs/constructs/architecture/index.md)
 
-### Parser (`@art-js/parser`)
+### Parser (`@art-md/parser`)
 
 Transforms markdown into an `ArtDocument` via a generic dispatch loop. Construct-agnostic — knows only the contract types, never names a concrete construct. The [ecosystem overview](overview.md#the-parse-direction) describes how processors and the default construct interact.
 
@@ -32,7 +34,7 @@ Transforms markdown into an `ArtDocument` via a generic dispatch loop. Construct
 
 **Read more:** [Parser Architecture](../libs/parser/architecture/index.md)
 
-### Serializer (`@art-js/serializer`)
+### Serializer (`@art-md/serializer`)
 
 Transforms an `ArtDocument` back into markdown. Builds a registry from config factories, visits the construct tree bottom-up, and dispatches to `toMdast` implementations. Construct-agnostic — the [ecosystem overview](overview.md#the-serialise-direction) explains the composition decision.
 
@@ -43,50 +45,62 @@ Transforms an `ArtDocument` back into markdown. Builds a registry from config fa
 
 **Read more:** [Serializer Architecture](../libs/serializer/architecture/index.md)
 
-### Validator (`@art-js/validator`)
-
-Checks parsed modules against structural and semantic rules — required fields, valid construct nesting, naming conventions. Sits between parsing and execution.
-
-### Program (`@art-js/program`)
-
-Executes parsed and validated Art modules. Manages program state, resolves cross-module references, drives the execution model.
-
-### Bundler (`@art-js/bundler`)
-
-Resolves module dependencies, applies bundling rules, produces distributable artifacts. Consumes parser and validator output.
-
 ## CLI Surface
 
-### Bin (`@art-js/bin`)
+### Bin (`@art-md/bin`)
 
-Primary CLI entry point. Exposes parse, serialize, validate, bundle, and run commands.
+Primary CLI entry point. Exposes parse, serialize, validate.
 
-### Pipeline Tests (`@art-js/pipeline-tests`)
+### Pipeline Tests (`@art-md/pipeline-tests`)
 
 Fixture-based test suite for the parser and serializer roundtrip. See [art-md-fixture-tests.md](art-md-fixture-tests.md) for fixture anatomy.
 
-### Dev Server (`@art-js/dev-server`)
-
-Local development server with live-reload for interactive Art module testing. (Scaffolded.)
-
-### Watcher (`@art-js/watcher`)
-
-File system watcher that triggers rebuilds on source changes. Powers the dev experience. (Scaffolded.)
-
-### Language Server (`@art-js/language-server`)
-
-LSP server for Art and context files (work in progress). Will provide go-to-definition, diagnostics, completions. (Scaffolded.)
-
-### Tools (`@art-js/tools`)
-
-Deterministic utility operations for agents working with Art and context files. (Scaffolded.)
-
-## Spec (`@art-js/spec`)
+## Spec (`@art-md/spec`)
 
 The Art language specification, written in Art itself. Consumed by parser, validator, and bundler. Both documentation and test data.
 
+## Planned Packages
+
+The following packages are part of the art-md ecosystem but are not yet implemented or their roles are not yet defined in code:
+
+### Bin (`@art-md/bin`)
+
+Using `commander` and `$ART_WORK/cli/work` as a template.
+
+Separate entry points:
+
+- `art-md-parser` (configured via codec)
+- `art-md-serializer` (configured via codec)
+- `art-md-validator` (later, also configured via codec)
+
+- `art-md` consolidated entry point with `parse` and `serialize` commands (later validate) and a `--write` to output to file.
+
+### Codec (`@art-md/codec`)
+
+**Status:** PLANNED
+
+Document-level parsing and serialisation only. No source I/O, no record knowledge.
+
+Primary types: `Codec`, `ArtCodecConfig`. Responsibility: parse and serialise `ArtDocument` using configured constructs.
+
+### Source (`@art-md/source`)
+
+**Status:** PLANNED
+
+Acquire/cache raw content, then parse/cache an `ArtDocument`.
+
+Primary types: `ContentSource`, `ArtDocumentSource`. Responsibility: source identity plus lazy/idempotent acquisition and caching of raw content and parsed documents.
+
+### Validator (`@art-md/validator`)
+
+**Status:** PLANNED
+
+Validate Art Ast trees. Validate Markdown – although there is no invalid Markdown, there is possibly a world of hints that can be generated. Will establish the context for validator in `@art-js/validator` to express and track document and construct level validations.
+
+Establish AST Schema. Derive tools.
+
 ## Archived
 
-### `@art-js/poc-parse`
+### `@art-md/poc-parse`
 
-This package was used to prototype different options for the parser. The POC parser logic has been superseded by the `@art-js/parser`, `@art-js/constructs`, and `@art-js/serializer` packages. Last version of the POC can be found on [Github noodlestan/art-js](https://github.com/noodlestan/art-js/tree/e2940760f1b3fe8811b49d8dd724b82d1e668514/cli/poc-parse).
+This package was used to prototype different options for the parser. The POC parser logic has been superseded by the `@art-md/parser`, `@art-md/constructs`, and `@art-md/serializer` packages. Last version of the POC can be found on [Github noodlestan/art-js](https://github.com/noodlestan/art-js/tree/e2940760f1b3fe8811b49d8dd724b82d1e668514/cli/poc-parse).
