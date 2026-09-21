@@ -7,7 +7,7 @@
 - **Context Mock Naming** – Context mocks use `{contextName}Mock`.
 - **Test Description Prefixes** – Test descriptions start with `WHEN`, `FOR`, or `GIVEN` in all caps.
 - **Helper Grouping** – Group helpers by domain under `constructs/{ConstructName}/` or `primitives/`.
-- **Cross-Package Mock Ownership** – Mocks for `@art-js/primitives` functions live in the `primitives` package.
+- **Cross-Package Mock Ownership** – Mocks for `@art-md/primitives` functions live in the `primitives` package.
 - **Import Style Preference** – Prefer static imports over async imports in `vi.mock()` blocks when possible.
 
 ## Verbose Conventions
