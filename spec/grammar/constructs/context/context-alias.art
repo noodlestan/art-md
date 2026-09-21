@@ -29,13 +29,13 @@
 
 **Examples:**
 
-Defining an ContextAlias of an existing ContextSymbol:
+Defining a ContextAlias of an existing ContextSymbol:
 
 ```md
 `%feedback-items` as `%filtered-feedback`
 ```
 
-Defining an ContextAlias for a natural language expression:
+Defining a ContextAlias for a natural language expression:
 
 ```md
 the matching feedback items as `%filtered-feedback`

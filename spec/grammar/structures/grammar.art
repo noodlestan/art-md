@@ -12,4 +12,4 @@
 
 - `id` - kebab case identification of the grammar. Example: "artificial".
 - `name` - canonical name. Example: "artificial".
-- `constructs` - flat list of constructors classified with category
+- `constructs` - flat list of constructors classified with category.

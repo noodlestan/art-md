@@ -10,7 +10,7 @@
 
 **Shape**
 
-- `id` - kebab case identifier. Example: `example-inline".
+- `id` - kebab case identifier. Example: "example-inline".
 - `name` - canonical name. Example: "ExampleInline".
 - `category` - Name of the parent block. Examples: "Examples", "Directives", "Statements".
 - `purpose` - What this construct offers. Example: "Provide a way to illustrate concepts and instructions next to the source.".

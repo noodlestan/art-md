@@ -3,7 +3,7 @@
 ## Uses
 
 ::READ (Construct: NaturalExpression) FROM `../expressions/natural-expression.art`.
-::READ (Construct: NaturalExpression) FROM `../expressions/natural-name.art`.
+::READ (Construct: NaturalName) FROM `../expressions/natural-name.art`.
 
 ## Construct: FieldInline
 

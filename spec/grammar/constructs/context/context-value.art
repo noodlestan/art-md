@@ -24,7 +24,7 @@ A ContextValue is expressed as a natural language expression but may contain sym
 **Rules:**
 
 - A ContextValue SHOULD identify the target context values unambiguously.
-- A ContextValue MAY reference one or more context values by existing symbols or via a natural language expressions.
+- A ContextValue MAY reference one or more context values by existing symbols or via natural language expressions.
 - A ContextValue MAY classify or add specificity to values.
 - A ContextValue MAY combine multiple context values into a single expression.
 - A ContextValue MAY apply one or more operations to the identified context values.
@@ -56,7 +56,7 @@ ContextValue classifying values:
 ... the filtered `%report.feedback`...
 ```
 
-ContextValue adding specifity:
+ContextValue adding specificity:
 
 ```md
 ... the `%filtered-feedback` of the `%delegation-report`...

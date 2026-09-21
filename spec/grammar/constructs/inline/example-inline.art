@@ -2,7 +2,7 @@
 
 ## Uses
 
-::READ (Construct: NaturalExpression) FROM `../expressions/identifier.art`.
+::READ (Construct: NaturalExpression) FROM `../expressions/natural-expression.art`.
 
 ## Construct: ExampleInline
 

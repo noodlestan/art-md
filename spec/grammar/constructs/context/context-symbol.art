@@ -52,6 +52,6 @@ Expressions enclosed in backticks and starting with a percentage sign.
 
 ```md
 Match the `%search-terms` against the `%well-known` list of resource types.
-With each `%spec` in `%task.specificions`.
-Identify the `%task.specificions.[%first].name` as `%name`.
+With each `%spec` in `%task.specifications`.
+Identify the `%task.specifications.[%first].name` as `%name`.
 ```

@@ -1,7 +1,5 @@
 # Module
 
-<!-- WIP add Validate field to constructs (extra rules, oriented for validation) -->
-
 **Purpose:** Define the meaning and interpretation rules of artificial instructions, enabling the generation of instructions that express intent clearly and their consistent interpretation with minimal ambiguity.
 
 **Description:** Semantics define how artificial language constructs communicate intent through explicit notation, conventions, and interpretation rules. They guide how instructions are generated and interpreted but do not define how an artificial system performs internal reasoning, reference resolution, execution, or data management.
@@ -59,7 +57,7 @@ Invocation with aliased input:
 With the matching feedback items as `%items`, execute the **Process: Consolidate Feedback**.
 ```
 
-Invocation with ContextValue containing multitple input:
+Invocation with ContextValue containing multiple input:
 
 ```md
 With `%items`, `%filter`, and `%scope`, Execute the **Process: Search Feedback**.
@@ -80,7 +78,7 @@ With the `%filtered-feedback`, execute the **Process: Generate Report**, with th
 Invocation with generic outcome:
 
 ```md
-With the `%filtered-feedback`, execute the **Process: Generate Report** to generte generate a report.
+With the `%filtered-feedback`, execute the **Process: Generate Report** to generate a report.
 ```
 
 Invocation with identified outcome:
@@ -95,7 +93,7 @@ Invocation with aliased outcome:
 With the `%filtered-feedback`, execute the **Process: Consolidate Feedback** to generate the `%feedback-table` as `%feedback`.
 ```
 
-### Semantics: Procedure Inputs
+### Semantics: Procedure Inputs (PLANNED)
 
 **Purpose:** Define how procedure inputs are identified within a procedure block.
 
@@ -132,7 +130,7 @@ With the input `%item`, execute the following workflow:
 2. Classify the item according to its type.
 ```
 
-### Semantics: Procedure Outputs
+### Semantics: Procedure Outputs (PLANNED)
 
 **Purpose:** Define how procedure results are identified and named.
 
@@ -158,7 +156,7 @@ Example of using an existing output Symbol:
 Return the generated `%table-of-contents`.
 ```
 
-Example of defining of using ContextAlias to match the procedure output symbol.
+Example of defining using ContextAlias to match the procedure output symbol.
 
 ```
 Return the first row of the table as `%top-priority`.

@@ -1,7 +1,5 @@
 # Module
 
-<!-- WIP add Validate field to constructs (extra rules, oriented for validation) -->
-
 ## Declares
 
 ### Vocabulary
@@ -16,13 +14,13 @@
 
 **Artificial Schema** — The defined shape of an artificial structure, including its fields and the semantics associated with each field.
 
-**Artificial Construct** — WIP
+**Artificial Construct** — (PLANNED)
 
 **Block Construct** — A language construct whose syntax spans multiple lines, including headings, content blocks, and nested structures.
 
 **Inline Construct** — A language construct expressed within a single line or as an embedded element within another construct.
 
-**Artificial Declaration** — A resource definition that introduces a name and its content, interpreted as WIP
+**Artificial Declaration** — A resource definition that introduces a name and its content, interpreted as (PLANNED)
 
 **Vocabulary Declaration** — A declaration of a term related to its declaration context, along with its definition and optional examples. Example: "**Artificial Operation** — A transformation applied to ..."
 
