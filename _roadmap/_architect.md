@@ -8,6 +8,10 @@ Agents SHOULD scan these files for relevant clarifications when faced with ambig
 
 - `architecture/index.md`
 
+## Context
+
+- None.
+
 ## Findings
 
 - None.
@@ -27,8 +31,3 @@ Agents SHOULD scan these files for relevant clarifications when faced with ambig
 - Technical Debt
 
 ## Follow Ups
-
-- Reactive core (chokidar → signals → memo recompute) — blocked on POC; signals + directivity need exercised grammar.
-- Template engine research (Nunjucks/Handlebars/Liquid vs `.tart` requirements) — parallelizable.
-- Precompiled rewrite (install-time compilation + per-project overrides, using render-cost evidence from the POC).
-- Standalone build of the compile command — `bin/compile`, backed by ADR.
