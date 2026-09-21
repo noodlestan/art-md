@@ -113,7 +113,7 @@ Update the project record to the Art MD scope.
 Read `$ART_MD/_records/project.art` and update the `purpose` and `description` fields:
 
 - **Project.purpose:** "Express structured data in Markdown with an extensible language that enables human and machine authoring at scale and automated transformations."
-- **Project.description:** "Language specification and JavaScript libraries for extracting structured data it into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content."
+- **Project.description:** "Language specification and JavaScript libraries for extracting structured data into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content."
 
 Keep all other fields unchanged.
 

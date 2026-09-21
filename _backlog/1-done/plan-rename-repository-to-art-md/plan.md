@@ -124,7 +124,7 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `$ART_MD` (checkout `
 
 - Update `$ART_MD/_records/project.art`:
   - **Project.purpose:** "Express structured data in Markdown with an extensible language that enables human and machine authoring at scale and automated transformations."
-  - **Project.description:** "Language specification and JavaScript libraries for extracting structured data it into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content."
+  - **Project.description:** "Language specification and JavaScript libraries for extracting structured data into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content."
 - Update `$ART_MD/_records/repository.art`:
   - **Repository.purpose:** "Host and manage the Art MD packages and tools, and their knowledge and planning artefacts."
   - **Repository.description:** "Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code."
