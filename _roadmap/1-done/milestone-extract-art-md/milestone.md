@@ -212,11 +212,11 @@ Execution occurs from `$WORKSPACE/`; the rename happens in `ART_MD` (checkout `c
 
 This section describes the ordered phases used to organise downstream work, identifying blocking dependencies across resources of different owners.
 
-| Index | Name        | Status    |
-| ----- | ----------- | --------- |
-| #1    | Prepare     | `DONE`    |
-| #2    | Migrate     | `DONE`    |
-| #3    | Consolidate | `WORKING` |
+| Index | Name        | Status |
+| ----- | ----------- | ------ |
+| #1    | Prepare     | `DONE` |
+| #2    | Migrate     | `DONE` |
+| #3    | Consolidate | `DONE` |
 
 ### Phase: 1 — Prepare
 
@@ -248,7 +248,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Consolidate the repository list in the Artificials umbrella project, update the Noodlestan website, and separate the publishable spec content from placeholders, drafts, and WIP diagrams.
 
-**Status:** `WORKING`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -260,16 +260,16 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
-| Phase | Resource / Record                                                                                                            | Status  |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------- | ------- |
-| 1     | Plan: Rename Repository to Art MD `_backlog/1-done/plan-rename-repository-to-art-md/plan.md`                                 | `DONE`  |
-| -     |                                                                                                                              |         |
-| 2     | Plan: Create Art JS Repository `_backlog/1-done/plan-create-art-js-repository/plan.md`                                       | `DONE`  |
-| 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/1-done/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `DONE`  |
-| -     |                                                                                                                              |         |
-| 3     | Plan: Consolidate Repos in Artificials `_backlog/1-done/plan-consolidate-repos-in-artificials/plan.md`(create)               | `DONE`  |
-| 3     | Plan: Update Noodlestan Website `_backlog/1-done/plan-update-noodlestan-website/plan.md`(create)                             | `DONE`  |
-| 3     | Plan: Prepare Spec for Publishing `_backlog/3-now/plan-prepare-spec-for-publishing/plan.md`(create)                          | `READY` |
+| Phase | Resource / Record                                                                                                            | Status |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 1     | Plan: Rename Repository to Art MD `_backlog/1-done/plan-rename-repository-to-art-md/plan.md`                                 | `DONE` |
+| -     |                                                                                                                              |        |
+| 2     | Plan: Create Art JS Repository `_backlog/1-done/plan-create-art-js-repository/plan.md`                                       | `DONE` |
+| 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/1-done/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `DONE` |
+| -     |                                                                                                                              |        |
+| 3     | Plan: Consolidate Repos in Artificials `_backlog/1-done/plan-consolidate-repos-in-artificials/plan.md`(create)               | `DONE` |
+| 3     | Plan: Update Noodlestan Website `_backlog/1-done/plan-update-noodlestan-website/plan.md`(create)                             | `DONE` |
+| 3     | Plan: Prepare Spec for Publishing `_backlog/1-done/plan-prepare-spec-for-publishing/plan.md`(create)                         | `DONE` |
 
 ---
 
