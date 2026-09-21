@@ -2,7 +2,7 @@
 
 **ID:** `consolidate-repos-in-artificials`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -83,15 +83,15 @@ Execution occurs from `$WORKSPACE/`; the Artificials checkout `$ARTIFICIALS` (ch
 
 ## Items:
 
-| Iteration / Instructions            | Status  |
-| ----------------------------------- | ------- |
-| Iteration: Update Repository Record | `READY` |
+| Iteration / Instructions            | Status |
+| ----------------------------------- | ------ |
+| Iteration: Update Repository Record | `DONE` |
 
 ### Iteration: Update Repository Record
 
 **ID:** `update-repository-record`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Update the Artificials umbrella to list Art MD and Art JS.
 
@@ -114,9 +114,9 @@ Execution occurs from `$WORKSPACE/`; the Artificials checkout `$ARTIFICIALS` (ch
 
 #### Commits:
 
-| ID                         | Repository / Checkout / Branch        | Policy   | Hash | Status     |
-| -------------------------- | ------------------------------------- | -------- | ---- | ---------- |
-| `update-repository-record` | Artificials / `$ARTIFICIALS` / `main` | `NOPUSH` |      | `AUTHORED` |
+| ID                         | Repository / Checkout / Branch        | Policy   | Hash      | Status      |
+| -------------------------- | ------------------------------------- | -------- | --------- | ----------- |
+| `update-repository-record` | Artificials / `$ARTIFICIALS` / `main` | `NOPUSH` | `99eddd7` | `COMMITTED` |
 
 ##### Commit: `update-repository-record`
 

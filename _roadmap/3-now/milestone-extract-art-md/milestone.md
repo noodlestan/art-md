@@ -267,8 +267,8 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | 2     | Plan: Create Art JS Repository `_backlog/1-done/plan-create-art-js-repository/plan.md`                                       | `DONE`     |
 | 2     | Plan: Extract Libs and CLI Placeholders to Art JS `_backlog/1-done/plan-extract-libs-and-cli-placeholders-to-art-js/plan.md` | `DONE`     |
 | -     |                                                                                                                              |            |
-| 3     | Plan: Consolidate Repos in Artificials `_backlog/3-now/plan-consolidate-repos-in-artificials/plan.md`(create)                | `READY`    |
-| 3     | Plan: Update Noodlestan Website `_backlog/4-next/plan-update-noodlestan-website/plan.md`(create)                             | `PLANNING` |
+| 3     | Plan: Consolidate Repos in Artificials `_backlog/1-done/plan-consolidate-repos-in-artificials/plan.md`(create)               | `READY`    |
+| 3     | Plan: Update Noodlestan Website `_backlog/3-now/plan-update-noodlestan-website/plan.md`(create)                              | `PLANNING` |
 
 ---
 
