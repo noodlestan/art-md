@@ -22,11 +22,10 @@
 
 This section lists the path variables used throughout the Plan file and its downstream work items. All file references in the Plan and downstream work items MUST use these variables — never bare filesystem paths.
 
-| Variable     | Resolved Path               | Purpose                                  |
-| ------------ | --------------------------- | ---------------------------------------- |
-| `$WORKSPACE` | Current working directory   | Workspace root directory.                |
-| `$PROJECT`   | `checkouts/art-md-planning` | Planning checkout for Art MD.            |
-| `$ART_MD`    | `checkouts/art-md-building` | Repository: Art MD checkout (execution). |
+| Variable     | Resolved Path                                               | Purpose                              |
+| ------------ | ----------------------------------------------------------- | ------------------------------------ |
+| `$WORKSPACE` | Current working directory                                   | Workspace root directory.            |
+| `$PROJECT`   | Provided with prompt. Typically `checkouts/art-md-building` | Repository root for all code changes |
 
 ## Summary
 
@@ -127,8 +126,6 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Description:** Move the 16 WIP placeholder construct stubs (directives, procedural, statements) from `spec/grammar/constructs/` to `spec-wip/grammar/constructs/`.
 
-**Instructions:** `./instructions/move-placeholder-constructs-to-spec-wip.md`
-
 **Changes:**
 
 - Create `spec-wip/grammar/constructs/` mirroring the moved categories.
@@ -166,8 +163,6 @@ migrate(package-spec): Move placeholder construct stubs to spec-wip.
 **Purpose:** Remove the drafted pseudo-art content from `spec/` so only publishable grammar/constructs remain.
 
 **Description:** Move the drafted pseudo-art content (primitives, structures, types, modules, resources, routines) from `spec/` to `spec-wip/`, preserving their internal directory structure.
-
-**Instructions:** `./instructions/move-drafted-content-to-spec-wip.md`
 
 **Changes:**
 
@@ -209,8 +204,6 @@ migrate(package-spec): Move drafted pseudo-art content to spec-wip.
 
 **Description:** Move the remaining `_wip.md` diagram files from `spec/` to `spec-wip/`.
 
-**Instructions:** `./instructions/move-wip-diagrams-to-spec-wip.md`
-
 **Changes:**
 
 - Move `spec/_wip.md` to `spec-wip/_wip.md`.
@@ -246,8 +239,6 @@ migrate(package-spec): Move WIP diagrams to spec-wip.
 **Purpose:** Ensure the remaining `spec/` content is coherent, self-contained, and free of typos and broken references.
 
 **Description:** Proofread the remaining `spec/` files, verify every `::READ` directive resolves within `spec/`, and reword any reference to content moved to `spec-wip/` as `(PLANNED)`.
-
-**Instructions:** `./instructions/fix-typos-and-broken-references-in-spec.md`
 
 **Changes:**
 
@@ -288,8 +279,6 @@ refs(package-spec): Fix broken references and typos; reword WIP refs to (PLANNED
 **Purpose:** Update the package metadata to reflect the publishable spec content.
 
 **Description:** Update `package.json`, `_guide.md`, `README.md`, and `CHANGELOG.md` in `$ART_MD/spec/` to describe the publishable grammar/constructs content and the `spec-wip/` location.
-
-**Instructions:** `./instructions/update-package-metadata.md`
 
 **Changes:**
 
@@ -349,15 +338,11 @@ This section lists the impediments to progress and the work items they involve.
 
 **Purpose:** Prepare the execution environment.
 
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
 Run from the `$WORKSPACE` root:
 
 ```bash
 npm ci # to install dependencies.
 ```
-
-**Instructions:** (From `$ART_MD/_guide.md`)
 
 Run from the repository root (monorepo):
 
@@ -369,16 +354,12 @@ npm ci # to install dependencies.
 
 **Purpose:** Write standardized message according to context conventions.
 
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
 1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
 2. Write the commit message following the rules defined there.
 
 ### Verifying Completion
 
 **Purpose:** Confirms that the work item has been completed and satisfies its intended outcome.
-
-**Instructions:** (From `$ART_MD/_guide.md`)
 
 Runs automatically on pre-commit hook (from the repository root):
 
@@ -389,8 +370,6 @@ npm run ci # lint, test and build
 ### Verifying Step
 
 **Purpose:** Confirms that a step is correct before continuing.
-
-**Instructions:** (From `$ART_MD/spec/_guide.md`)
 
 Run from the package directory:
 

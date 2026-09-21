@@ -4,6 +4,7 @@ WIP tracker, structured like the session parking lot: **ACTIONABLE** (in progres
 
 ## ACTIONABLE
 
+- **Rename README titles** — Currently read legacy name `# artificial-parser` should be package name `# @art-md/parser`.
 - **Reword "Pipeline" Prose** — Review `architecture/` and `_roadmap/` and reword any prose that describes the architecture as a “pipeline”, replacing it with accurate language describing the bidirectional relationship between Markdown, the Art AST, parsing, and serialisation without introducing a new architectural abstraction.
 
 ## PENDING
