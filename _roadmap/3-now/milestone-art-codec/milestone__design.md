@@ -2,9 +2,25 @@
 
 **Attachment to:** Milestone: Art Codec (`./milestone.md`)
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Purpose:** Capture the design for the codec and source contracts, applying the design changes to the original milestone draft: contracts move to `@art-md/primitives` (sources and codec), operation contexts are captured, and no new `@art-md/source` package is created.
+
+## Lock Down
+
+Locked down by Plan: Create Codec Spec (iteration `lock-down-design`). The design was validated against the plan requirements and the current codebase, refined where needed, and is now the authoritative source for `architecture/codec.md` and the downstream implementation plans.
+
+**Validation:**
+
+- Contracts (`ArtCodec`, `ArtContentSource`, `ArtDocumentSource`, `ParseContext`/`ParserContextData`, `SerializeContext`/`SerializerContextData`, `ParseResult`/`SerializeResult`), operation contexts, overloaded entry points, and dependency direction match the plan requirements.
+- `ParserVisitContext` (primitives `parser/context/types.ts`) currently lacks `parseContext`; the design adds it so constructs can reach the parse context.
+- `createDocumentParserContext()` (parser `private/`) returns a `DocumentVisitContext`; the design renames it to `createDocumentVisitContext()` and adds the `parseContext` parameter.
+- `parse(markdown)` and `serialize(document)` current signatures match the design's current-state claims; the overloads extend them without breaking raw-input usage.
+- `ParserConfig` (`defaultConstruct`, `constructs`) and `SerializerConfig` (`constructs`) match the design's entry-point signatures.
+
+**Refinements:**
+
+- None required — the design was already complete and consistent with the milestone decisions. Plan drafts that contradict it (e.g. `ParseContext` carrying `contentSource`) are refined in iteration `refine-remaining-plan-drafts`.
 
 ## Design Changes
 
