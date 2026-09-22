@@ -110,7 +110,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                         | Status  |
 | -------------------------------------------------------------------------------- | ------- |
-| Iteration: Add Operation Contexts `./instructions/add-operation-contexts.md`     | `READY` |
+| Iteration: Add Operation Contexts `./instructions/add-operation-contexts.md`     | `DONE`  |
 | Iteration: Add Codec Contract and Results `./instructions/add-codec-contract.md` | `READY` |
 | Iteration: Add Source Contracts `./instructions/add-source-contracts.md`         | `READY` |
 
@@ -118,7 +118,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Id:** `add-operation-contexts`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/add-operation-contexts__report.md`
 
 **Purpose:** Let parser and serializer operations carry a source uri.
 
@@ -140,9 +142,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                       | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ------------------------ | -------------------------------- | -------- | ----- | ---------- |
-| `add-operation-contexts` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                       | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------------ | -------------------------------- | -------- | --------- | ----------- |
+| `add-operation-contexts` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `84a1fcb` | `COMMITTED` |
 
 ##### Commit: `add-operation-contexts`
 
@@ -232,7 +234,7 @@ build(codec): add source contracts to primitives
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next `READY` instruction (`add-operation-contexts`).
+Delegate the next `READY` instruction (`add-codec-contract`).
 
 ### Blockers
 
@@ -300,7 +302,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 ### Evidence
 
-- None yet.
+- `ParseContext`/`SerializeContext` operation contexts and factories added to `@art-md/primitives` and exported; unit tests added; repo `npm run ci` and pipeline tests pass (commit `84a1fcb`).
 
 ### Findings
 
