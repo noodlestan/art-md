@@ -25,7 +25,7 @@ Locked down by Plan: Create Codec Spec (iteration `lock-down-design`). The desig
 ## Design Changes
 
 - Source contracts (`ArtContentSource`, `ArtDocumentSource`) are declared in `@art-md/primitives` under `source/`.
-- `ArtCodec` is declared as a contract in `@art-md/primitives` under `codec/`; `@art-md/codec` owns its configured implementation and `createCodec()`.
+- `ArtCodec` is declared as a contract in `@art-md/primitives` under `codec/`; `@art-md/codec` owns its configured implementation and `createArtCodec()`.
 - `ParseContext` is added under `parser/context/` with `uri: string` carrying the `ArtContentSource` uri; it does not carry the content source itself.
 - `SerializeContext` is added under `serializer/context/` with `uri: string` carrying the `ArtContentSource` uri; it does not carry the content source itself.
 - `createParseContext(data: ParserContextData)` and `createSerializeContext(data: SerializerContextData)` are added in primitives; both data types are `{ uri: string }` (same shape, different names).
@@ -286,16 +286,22 @@ export function createSerializeContext(data: SerializerContextData): SerializeCo
 
 ## Codec Package (`@art-md/codec`)
 
-**Files:** `libs/codec/src/types.ts` (`ArtCodecConfig`), `libs/codec/src/createCodec.ts` (`createCodec`)
+**Files:** `libs/codec/src/types.ts` (`ArtCodecConfig`, `PartialArtCodecConfig`), `libs/codec/src/createArtCodec.ts` (`createArtCodec`)
 
-**Responsibility:** owns the configured codec implementation and `createCodec()`. The package intentionally stays small so alternative/configured codecs can exist independently.
+**Responsibility:** owns the configured codec implementation and `createArtCodec()`. The package intentionally stays small so alternative/configured codecs can exist independently.
 
 ```ts
 export interface ArtCodecConfig {
-  constructs: ConstructRegistry;
+  parserConfig: ParserConfig;
+  serializerConfig: SerializerConfig;
 }
 
-export function createCodec(config: ArtCodecConfig): ArtCodec;
+export interface PartialArtCodecConfig {
+  parserConfig?: Partial<ParserConfig>;
+  serializerConfig?: Partial<SerializerConfig>;
+}
+
+export function createArtCodec(config: PartialArtCodecConfig): ArtCodec;
 ```
 
 ## Entry Point Changes

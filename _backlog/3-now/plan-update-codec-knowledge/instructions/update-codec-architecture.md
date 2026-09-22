@@ -69,11 +69,6 @@ Run from the repository root (monorepo) in `$PROJECT`:
 npm ci # to install dependencies.
 ```
 
-### Writing Commit Message
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
-
 ### Verifying Completion
 
 Runs automatically on pre-commit hook (from the repository root):
@@ -102,7 +97,7 @@ This iteration aligns the architecture documentation with the implemented codec 
 
 **Execute:**
 
-1. In `$PROJECT/architecture/components.md`, update the `### Codec (@art-md/codec)` section: change `**Status:** PLANNED` to `**Status:** IMPLEMENTED` and update the primary types line to `Primary types: ArtCodecConfig, ConstructRegistry, createCodec(). Responsibility: parse and serialise ArtDocument using configured constructs.`
+1. In `$PROJECT/architecture/components.md`, update the `### Codec (@art-md/codec)` section: change `**Status:** PLANNED` to `**Status:** IMPLEMENTED` and update the primary types line to `Primary types: ArtCodecConfig, PartialArtCodecConfig, createArtCodec(). Responsibility: parse and serialise ArtDocument using configured constructs.`
 2. Remove the `### Source (@art-md/source)` section (the source contracts live in `@art-md/primitives`; no `@art-md/source` package is created).
 
 **Expected:** `components.md` reflects the implemented codec and no longer lists a planned Source package.
@@ -113,7 +108,7 @@ This iteration aligns the architecture documentation with the implemented codec 
 
 **Execute:**
 
-1. In `$PROJECT/architecture/overview.md`, update the `### The Codec Layer: @art-md/codec` section: change `**Status:** Planned` to `**Status:** Implemented` and confirm the description matches the implementation (the `ArtCodec` contract lives in `@art-md/primitives` under `codec/`; `@art-md/codec` owns the configured implementation and `createCodec()`; the overloaded `parse`/`serialize` API owns the construct configuration; dependency direction `ArtDocumentSource` → `ArtCodec` → `ArtContentSource`).
+1. In `$PROJECT/architecture/overview.md`, update the `### The Codec Layer: @art-md/codec` section: change `**Status:** Planned` to `**Status:** Implemented` and confirm the description matches the implementation (the `ArtCodec` contract lives in `@art-md/primitives` under `codec/`; `@art-md/codec` owns the configured implementation and `createArtCodec()`; the overloaded `parse`/`serialize` API owns the construct configuration; dependency direction `ArtDocumentSource` → `ArtCodec` → `ArtContentSource`).
 
 **Expected:** `overview.md` reflects the implemented codec layer.
 
@@ -134,11 +129,11 @@ This iteration aligns the architecture documentation with the implemented codec 
 
 **Status:** Adopted
 
-**Context:** The codec and source contracts are shared across the parser, serializer, and future content sources. They must be declared once and consumed by the packages that implement them.
+**Context:** The codec and source abstractions are shared across parser, serializer, and concrete content sources.
 
-**Decision:** Declare the `ArtCodec`, `ArtContentSource`, and `ArtDocumentSource` contracts in `@art-md/primitives` under `codec/` and `source/`. The `@art-md/codec` package owns the configured implementation and `createCodec()`.
+**Decision:** The `ArtCodec`, `ArtContentSource`, and `ArtDocumentSource` contracts live in `@art-md/primitives`. `@art-md/codec` provides the codec implementation `createArtCodec()`.
 
-**Consequences:** The contracts are importable from a single package; `@art-md/codec` stays small so alternative/configured codecs can exist independently.
+**Consequences:** The contracts have a stable, dependency-light home that can be consumed by different implementations. The codec package can evolve independently, while alternative codec and source implementations remain loosely coupled to the rest of the system.
 
 ## Decision: Dependency Direction
 
@@ -146,19 +141,15 @@ This iteration aligns the architecture documentation with the implemented codec 
 
 **Context:** A document source composes a content source and a codec. The dependency direction must be explicit and acyclic.
 
-**Decision:** `ArtDocumentSource` → `ArtCodec` → `ArtContentSource`. `ArtDocumentSource` composes an `ArtContentSource` and an `ArtCodec`; concrete sources (e.g. `FSContentSource`) implement only `ArtContentSource`. The operation contexts (`ParseContext`, `SerializeContext`) are independent of content sources.
-
-**Consequences:** `ArtCodec` does not depend on `ArtDocumentSource`; the layering is not circular.
+**Decision:** The `ArtDocumentSource` is final and composes an `ArtContentSource` and an `ArtCodec`. The codec depends only on the content-level abstractions it needs and concrete content sources implement read/write without depending on the codec or document source. `ParseContext` and `SerializeContext` remain independent of content sources.
 
 ## Decision: Codec Owns Construct Configuration
 
 **Status:** Adopted
 
-**Context:** The codec exposes a streamlined document-level API. The construct configuration must be owned once, not passed per call.
+**Context:** The codec exposes a streamlined document-level API. The codec construct configuration must be passed once, not passed per call.
 
-**Decision:** `@art-md/codec` owns the construct configuration via `ArtCodecConfig` and `createCodec()`. The `ArtCodec` overloaded `parse`/`serialize` API takes no config per call.
-
-**Consequences:** Callers use `codec.parse(markdown)` / `codec.serialize(document)` without assembling a config; the codec performs document-level parsing and serialisation only — no source I/O, no record knowledge.
+**Decision:** A codec is created with its construct configuration and retains that configuration for its document-level operations. Its `parse()` and `serialize()` methods therefore operate against the codec's configured constructs rather than receiving configuration for each call.
 ```
 
 **Expected:** `architecture/adr/codec.md` records the codec decisions.
@@ -169,7 +160,7 @@ This iteration aligns the architecture documentation with the implemented codec 
 
 **Execute:**
 
-1. Read `$PROJECT/architecture/codec.md` and confirm it matches the implementation: the `ArtCodec` contract in `@art-md/primitives` under `codec/`, the `@art-md/codec` package owning `createCodec()`, the overloaded entry points, and the dependency direction.
+1. Read `$PROJECT/architecture/codec.md` and confirm it matches the implementation: the `ArtCodec` contract in `@art-md/primitives` under `codec/`, the `@art-md/codec` package owning `createArtCodec()`, the overloaded entry points, and the dependency direction.
 2. If any detail is stale (e.g. a signature or file location), update it to match the implementation.
 
 **Expected:** `architecture/codec.md` matches the implemented packages.
@@ -185,7 +176,7 @@ This iteration aligns the architecture documentation with the implemented codec 
 **Message:**
 
 ```
-docs(codec): update architecture knowledge
+arch(codec): update architecture knowledge
 ```
 
 ---

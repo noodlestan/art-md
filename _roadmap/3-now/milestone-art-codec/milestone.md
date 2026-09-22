@@ -10,7 +10,7 @@
 
 **Purpose:** Implement the codec and source contracts for document-level parsing and serialisation, with operation contexts, so that the parser and serializer can operate on content sources and the CLI can be configured via a codec.
 
-**Description:** Declare the source and codec contracts in `@art-md/primitives`, implement the `@art-md/codec` package with `createCodec()`, add operation contexts (`ParseContext`, `SerializeContext`) and overloaded entry points to the parser and serializer, and update the architecture knowledge.
+**Description:** Declare the source and codec contracts in `@art-md/primitives`, implement the `@art-md/codec` package with `createArtCodec()`, add operation contexts (`ParseContext`, `SerializeContext`) and overloaded entry points to the parser and serializer, and update the architecture knowledge.
 
 ## Mandatory Reading
 
@@ -112,7 +112,7 @@ This section describes the context knowledge required for the different phases o
 
 This section describes the working scope coordinated by the Milestone.
 
-Changes in 4 packages in `$PROJECT`: `@art-md/primitives` gains the source and codec contracts and the operation contexts; `@art-md/codec` is created with the configured implementation and `createCodec()`; `@art-md/parser` and `@art-md/serializer` gain overloaded entry points accepting operation contexts. No new `@art-md/source` package is created — source contracts live in primitives. The detailed design is captured in the `./milestone__design.md` attachment.
+Changes in 4 packages in `$PROJECT`: `@art-md/primitives` gains the source and codec contracts and the operation contexts; `@art-md/codec` is created with the configured implementation and `createArtCodec()`; `@art-md/parser` and `@art-md/serializer` gain overloaded entry points accepting operation contexts. No new `@art-md/source` package is created — source contracts live in primitives. The detailed design is captured in the `./milestone__design.md` attachment.
 
 ### (Scope) Package: Primitives
 
@@ -141,7 +141,7 @@ Changes in 4 packages in `$PROJECT`: `@art-md/primitives` gains the source and c
 
 **Record:** To be created at `$PROJECT/libs/codec/_records/package.art`
 
-**Role:** Owns the configured codec implementation and `createCodec()`.
+**Role:** Owns the configured codec implementation and `createArtCodec()`.
 
 **Partial:**
 
@@ -152,7 +152,7 @@ Changes in 4 packages in `$PROJECT`: `@art-md/primitives` gains the source and c
 **Changes:**
 
 - Scaffold the package (package.json, records, `_guide.md`, README, CHANGELOG).
-- Implement `ArtCodecConfig` and `createCodec()`.
+- Implement `ArtCodecConfig`, `PartialArtCodecConfig`, and `createArtCodec()`.
 - Implement the overloaded `parse`/`serialize` API.
 
 **Dependencies:**
@@ -255,7 +255,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Goal:** Create the `@art-md/codec` package.
 
-**Description:** Scaffold the package and implement `ArtCodecConfig`, `createCodec()`, and the overloaded `parse`/`serialize`. Rename `cli/pipeline-tests` to `cli/codec-test` and make the test scripts use the `codec` packages as opposed to parser and config directly.
+**Description:** Scaffold the package and implement `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec()`, and the overloaded `parse`/`serialize`. Rename `cli/pipeline-tests` to `cli/codec-test` and make the test scripts use the `codec` packages as opposed to parser and config directly.
 
 **Status:** `READY`
 
@@ -366,7 +366,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 ### Decisions
 
-- **Contracts in primitives** — source contracts (`ArtContentSource`, `ArtDocumentSource`) and the `ArtCodec` contract live in `@art-md/primitives`; `@art-md/codec` owns the implementation and `createCodec()`.
+- **Contracts in primitives** — source contracts (`ArtContentSource`, `ArtDocumentSource`) and the `ArtCodec` contract live in `@art-md/primitives`; `@art-md/codec` owns the implementation and `createArtCodec()`.
 - **Operation contexts** — `ParseContext` and `SerializeContext` carry `uri: string` — the document source identifier; parser and serializer entry points accept them via overloads.
 - **Dependency direction** — ContentSource → operation Context → Codec → ArtDocument; `ArtDocumentSource` composes an `ArtContentSource` and an `ArtCodec`.
 

@@ -264,15 +264,6 @@ Run from the repository root (monorepo):
 npm ci # to install dependencies.
 ```
 
-### Writing Commit Message
-
-**Purpose:** Write standardized message according to context conventions.
-
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
-
 ### Verifying Completion
 
 **Purpose:** Confirms that the work item has been completed and satisfies its intended outcome.

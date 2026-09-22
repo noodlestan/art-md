@@ -69,11 +69,6 @@ Run from the repository root (monorepo) in `$PROJECT`:
 npm ci # to install dependencies.
 ```
 
-### Writing Commit Message
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
-
 ### Verifying Completion
 
 Runs automatically on pre-commit hook (from the repository root):
@@ -117,7 +112,7 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
 {
   "name": "@art-md/codec",
   "version": "0.0.1",
-  "description": "Configured codec implementation for document-level parsing and serialisation.",
+  "description": "Configurable Art MD codec: parse and serialize Art MD",
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,
@@ -171,35 +166,25 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
 1. Create `$PROJECT/libs/codec/README.md`:
 
 ```markdown
-# @art-md/codec
+# @art-mdc
 
-Configured codec implementation for document-level parsing and serialisation.
+> Configurable Art MD codec: parse and serialize Art MD
 
-The `@art-md/codec` package owns the configured codec implementation and `createCodec()`. It stays small so alternative/configured codecs can exist independently. The `ArtCodec` contract lives in `@art-md/primitives`.
+Owns the `createArtCodec(config)` factory.
 ```
 
 2. Create `$PROJECT/libs/codec/_guide.md` with the package layout and operations, mirroring the structure of `$PROJECT/libs/parser/_guide.md` (Setting Up, Verifying Completion, Verifying Step) adapted for the codec package.
 
-3. Create `$PROJECT/libs/codec/CHANGELOG.md` with an initial entry:
-
-```markdown
-# Changelog
-
-## 0.0.1
-
-- Initial scaffold of the `@art-md/codec` package.
-```
-
-4. Create `$PROJECT/libs/codec/_records/package.art`:
+3. Create `$PROJECT/libs/codec/_records/package.art`:
 
 ```text
 # Module
 
 ## Package: Codec
 
-**Purpose:** Configured codec implementation for document-level parsing and serialisation.
+**Purpose:** Configurable Art MD codec: parse and serialize Art MD.
 
-**Description:** Owns the configured codec implementation and `createCodec()`.
+**Description:** Owns the `createArtCodec(config)` factory.
 
 **Owner:** Project: Art MD
 

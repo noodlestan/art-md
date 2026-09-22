@@ -70,11 +70,6 @@ Run from the repository root (monorepo) in `$PROJECT`:
 npm ci # to install dependencies.
 ```
 
-### Writing Commit Message
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
-
 ### Verifying Completion
 
 Runs automatically on pre-commit hook (from the repository root):

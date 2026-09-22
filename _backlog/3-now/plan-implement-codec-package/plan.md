@@ -8,9 +8,9 @@
 
 **Skill:** `write-plan`
 
-**Purpose:** Create the `@art-md/codec` package owning the configured codec implementation and `createCodec()`, and rename `cli/pipeline-tests` to `cli/codec-tests` so the test scripts point at the codec dependency.
+**Purpose:** Create the `@art-md/codec` package owning the configured codec implementation and `createArtCodec()`, and rename `cli/pipeline-tests` to `cli/codec-tests` so the test scripts point at the codec dependency.
 
-**Description:** Scaffold the `@art-md/codec` package and implement `ArtCodecConfig`, `ConstructRegistry`, `createCodec()`, and the overloaded `parse`/`serialize` API against the `ArtCodec` contract from `@art-md/primitives`. Rename `cli/pipeline-tests` to `cli/codec-tests`, point the `test-parser`/`test-serializer` scripts at the codec dependency, and remove the temporary config assembly and the direct parser/serializer dependencies from the test suite. The package intentionally stays small so alternative/configured codecs can exist independently.
+**Description:** Scaffold the `@art-md/codec` package and implement `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec()`, and the overloaded `parse`/`serialize` API against the `ArtCodec` contract from `@art-md/primitives`. `createArtCodec` accepts a partial config and falls back to the default constructs. Rename `cli/pipeline-tests` to `cli/codec-tests`, point the `test-parser`/`test-serializer` scripts at the codec dependency, and remove the temporary config assembly and the direct parser/serializer dependencies from the test suite. The package intentionally stays small so alternative/configured codecs can exist independently.
 
 ## Mandatory Reading
 
@@ -29,7 +29,7 @@ This section lists the path variables used throughout the Plan file and its down
 
 ## Summary
 
-Create the `@art-md/codec` package with `ArtCodecConfig`, `ConstructRegistry`, `createCodec()`, and the overloaded `parse`/`serialize` implementation, and rename `cli/pipeline-tests` to `cli/codec-tests` so the test scripts point at the codec dependency and drop the temporary config assembly.
+Create the `@art-md/codec` package with `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec()`, and the overloaded `parse`/`serialize` implementation, and rename `cli/pipeline-tests` to `cli/codec-tests` so the test scripts point at the codec dependency and drop the temporary config assembly.
 
 ## Context
 
@@ -77,7 +77,7 @@ Create the `@art-md/codec` package in `$PROJECT/libs/codec/` and rename `cli/pip
 
 **Record:** To be created at `$PROJECT/libs/codec/_records/package.art`
 
-**Role:** Owns the configured codec implementation and `createCodec()`.
+**Role:** Owns the configured codec implementation and `createArtCodec()`.
 
 **Partial:**
 
@@ -88,14 +88,14 @@ Create the `@art-md/codec` package in `$PROJECT/libs/codec/` and rename `cli/pip
 **Changes:**
 
 - Scaffold the package following the sibling libs pattern: `package.json`, `tsconfig.json`, `tsconfig.vite.json`, `vite.config.ts`, `vitest.config.ts`, `.eslintrc.cjs`, `.npmignore`, `.prettierignore`, `LICENSE-MIT`, `README.md`, `_guide.md`, `CHANGELOG.md`, and `_records/` (`package.art`, `npm-deployment.art`).
-- Add `src/types.ts` — `ConstructRegistry` and `ArtCodecConfig` with `constructs: ConstructRegistry`.
-- Add `src/createCodec.ts` — `createCodec(config: ArtCodecConfig): ArtCodec`.
+- Add `src/types.ts` — `ArtCodecConfig` (`parserConfig: ParserConfig`, `serializerConfig: SerializerConfig`) and `PartialArtCodecConfig` (optional partial parser/serializer configs), reusing the existing parser/serializer config types.
+- Add `src/createArtCodec.ts` — `createArtCodec(config?: PartialArtCodecConfig): ArtCodec`, using the provided values or the default constructs.
 - Add the `ArtCodec` implementation — document-level parsing and serialisation only; no source I/O; no record knowledge; owns the construct configuration; exposes the overloaded API:
   - `parse(markdown: string): ParseResult`
   - `parse(context: ParseContext, markdown: string): ParseResult`
   - `serialize(document: ArtDocument): SerializeResult`
   - `serialize(context: SerializeContext, document: ArtDocument): SerializeResult`
-- Add `src/index.ts` — export `ArtCodecConfig`, `ConstructRegistry`, `createCodec`, and the implementation.
+- Add `src/index.ts` — export `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec`, and the implementation.
 - Add tests for the overloaded entry points.
 - Register package in `$PROJECT/architecture/components.md` and `_records/project.art`.
 
@@ -121,7 +121,7 @@ Create the `@art-md/codec` package in `$PROJECT/libs/codec/` and rename `cli/pip
 - Rename `cli/pipeline-tests` to `cli/codec-tests` (directory, package name, records, `_guide.md`, `README.md`, `CHANGELOG.md`).
 - Point the `test-parser` and `test-serializer` scripts at the codec dependency: use `codec.parse(markdown)` / `codec.serialize(document)` instead of assembling the config.
 - Remove the temporary config assembly added in `update-parser-serializer-entry-points`.
-- Replace the `@art-md/parser` and `@art-md/serializer` dependencies with `@art-md/codec`; retain `@art-md/constructs` to build the codec config (the codec owns the construct configuration at runtime, but the test suite must provide the constructs to `createCodec`).
+- Replace the `@art-md/parser` and `@art-md/serializer` dependencies with `@art-md/codec`; drop `@art-md/constructs` too, since `createArtCodec` provides the default constructs and the test suite no longer needs to assemble a config.
 
 **Dependencies:**
 
@@ -186,18 +186,18 @@ build(codec): scaffold codec package
 
 **Status:** `READY`
 
-**Purpose:** Implement the codec types and `createCodec()` against the `ArtCodec` contract.
+**Purpose:** Implement the codec types and `createArtCodec()` against the `ArtCodec` contract.
 
-**Description:** Add `ConstructRegistry` and `ArtCodecConfig` in `src/types.ts`, `createCodec()` in `src/createCodec.ts`, the package index, and unit tests for the overloaded entry points.
+**Description:** Add `ArtCodecConfig` and `PartialArtCodecConfig` in `src/types.ts`, `createArtCodec()` in `src/createArtCodec.ts`, the package index, and unit tests for the overloaded entry points.
 
 **Instructions:** `./instructions/implement-codec.md`
 
 **Changes:**
 
-- Add `src/types.ts` — `ConstructRegistry` (`defaultConstruct`, `constructs`, `serializers`) and `ArtCodecConfig` (`constructs: ConstructRegistry`).
-- Add `src/createCodec.ts` — `createCodec(config)` builds the parser and serializer configs from the registry and returns an `ArtCodec` wrapping the parser/serializer entry points.
-- Add `src/index.ts` — export `ArtCodecConfig`, `ConstructRegistry`, `createCodec`.
-- Add `src/createCodec.test.ts` — coverage for the overloaded `parse`/`serialize` entry points.
+- Add `src/types.ts` — `ArtCodecConfig` (`parserConfig: ParserConfig`, `serializerConfig: SerializerConfig`) and `PartialArtCodecConfig` (optional partial parser/serializer configs), reusing the existing parser/serializer config types.
+- Add `src/createArtCodec.ts` — `createArtCodec(config?: PartialArtCodecConfig)` returns an `ArtCodec` wrapping the parser/serializer entry points, using the provided config values or the default constructs.
+- Add `src/index.ts` — export `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec`.
+- Add `src/createArtCodec.test.ts` — coverage for the overloaded `parse`/`serialize` entry points using the default codec config.
 
 **Dependencies:**
 
@@ -214,7 +214,7 @@ build(codec): scaffold codec package
 **Message:**
 
 ```text
-feat(codec): implement createCodec
+build(codec): implement createArtCodec
 ```
 
 ### Iteration: Rename Pipeline Tests to Codec Tests
@@ -292,15 +292,6 @@ Run from the repository root (monorepo):
 npm ci # to install dependencies.
 ```
 
-### Writing Commit Message
-
-**Purpose:** Write standardized message according to context conventions.
-
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
-
 ### Verifying Completion
 
 **Purpose:** Confirms that the work item has been completed and satisfies its intended outcome.
@@ -342,14 +333,14 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 ### Findings
 
 - **Codec stays small** — the package intentionally stays small so alternative/configured codecs can exist independently.
-- **`ConstructRegistry` is undefined in the design** — the locked design references `ConstructRegistry` in `ArtCodecConfig` but never defines it. This plan defines it as `{ defaultConstruct: ConstructParserFactory; constructs: ConstructParserFactory[]; serializers: ConstructSerializerFactory[] }` so the codec can build both the parser and serializer configs from a single registry.
+- **`ArtCodecConfig` reuses existing config types** — holds `parserConfig: ParserConfig` and `serializerConfig: SerializerConfig` directly, reusing types that already exist.
 - **Pipeline tests become codec tests** — `cli/pipeline-tests` is renamed to `cli/codec-tests`; the test scripts point at the codec dependency and drop the temporary config assembly.
-- **Constructs dependency retained in codec-tests** — the test suite must provide the constructs to `createCodec`, so `@art-md/constructs` is retained; `@art-md/parser` and `@art-md/serializer` are removed.
+- **Constructs dependency dropped from codec-tests** — `createArtCodec` provides the default constructs, so the test suite no longer needs to assemble a config; `@art-md/constructs`, `@art-md/parser`, and `@art-md/serializer` are all removed from codec-tests.
 
 ### Decisions
 
-- **Codec owns configuration** — `@art-md/codec` owns `ArtCodecConfig` and `createCodec()`; the `ArtCodec` contract lives in `@art-md/primitives`.
-- **`ConstructRegistry` bundles parser and serializer factories** — defined in the codec package as `{ defaultConstruct, constructs, serializers }`; `createCodec` derives the `ParserConfig` and `SerializerConfig` from it.
+- **Codec owns configuration** — `@art-md/codec` owns `ArtCodecConfig`, `PartialArtCodecConfig`, and `createArtCodec()`; the `ArtCodec` contract lives in `@art-md/primitives`.
+- **`createArtCodec` accepts a partial config with defaults** — `parserConfig`/`serializerConfig` are optional and partial; each provided value is used as-is (no array merging) and falls back to the default constructs (`DEFAULT_CONSTRUCT_PARSER`, `CONSTRUCT_PARSERS`, `CONSTRUCT_SERIALIZERS`).
 - **No source I/O in codec** — the codec parses and serialises documents only; source acquisition happens through `ArtContentSource` in the operation contexts.
 - **Tests point at the codec** — `cli/pipeline-tests` is renamed to `cli/codec-tests`; the test scripts use the codec and drop the temporary config assembly and the direct parser/serializer dependencies.
 

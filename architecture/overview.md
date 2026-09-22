@@ -65,7 +65,7 @@ Like the parser, the serializer's configuration (`SerializerConfig`) holds only 
 
 **Status:** Planned
 
-The codec layer provides the streamlined document-level API. The `ArtCodec` contract is declared in `@art-md/primitives` under `codec/`; the `@art-md/codec` package owns the configured implementation and `createCodec()`.
+The codec layer provides the streamlined document-level API. The `ArtCodec` contract is declared in `@art-md/primitives` under `codec/`; the `@art-md/codec` package owns the configured implementation and `createArtCodec()`.
 
 `ArtCodec` exposes the overloaded `parse`/`serialize` API — `parse(markdown)` | `parse(context, markdown)` and `serialize(document)` | `serialize(context, document)` — while owning the construct configuration, so no config is passed per call. It performs document-level parsing and serialisation only: no source I/O, no record knowledge.
 

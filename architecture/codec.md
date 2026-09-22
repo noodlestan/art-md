@@ -37,7 +37,7 @@ libs/primitives/src/
 └── index.ts
 ```
 
-The `@art-md/codec` package owns the configured codec implementation and `createCodec()`; it stays small so alternative/configured codecs can exist independently.
+The `@art-md/codec` package owns the configured codec implementation and `createArtCodec()`; it stays small so alternative/configured codecs can exist independently.
 
 ## The Contracts at a Glance
 

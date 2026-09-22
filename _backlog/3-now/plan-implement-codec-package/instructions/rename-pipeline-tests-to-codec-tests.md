@@ -45,8 +45,7 @@ Rename `cli/pipeline-tests` to `cli/codec-tests` and point the test scripts at t
 ## Mandatory Reading
 
 - Design attachment (authoritative source code + file locations): `$PROJECT/_roadmap/3-now/milestone-art-codec/milestone__design.md` — read `## Codec Package (@art-md/codec)`.
-- Prerequisite: this iteration depends on `implement-codec` (the `@art-md/codec` package with `createCodec`) and `update-parser-serializer-entry-points` (the temporary config assembly in the test scripts).
-- Constructs exports (the registry factories): `$PROJECT/libs/constructs/src/parser/public.ts` and `$PROJECT/libs/constructs/src/serializer/public.ts` — read `CONSTRUCT_PARSERS`, `DEFAULT_CONSTRUCT_PARSER`, `CONSTRUCT_SERIALIZERS`.
+- Prerequisite: this iteration depends on `implement-codec` (the `@art-md/codec` package with `createArtCodec`) and `update-parser-serializer-entry-points` (the temporary config assembly in the test scripts).
 - Guide: `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 - ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` — TypeScript conventions.
 - Commit conventions: `$WORKSPACE/knowledge/conventions/writing-commit-message.art` — Defines commit message conventions. Relevant for Writing Commit Message.
@@ -69,11 +68,6 @@ Run from the repository root (monorepo) in `$PROJECT`:
 ```bash
 npm ci # to install dependencies.
 ```
-
-### Writing Commit Message
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
 
 ### Verifying Completion
 
@@ -149,8 +143,7 @@ git mv cli/pipeline-tests cli/codec-tests
     "ci": "npm run lint && npm run build && npm run test"
   },
   "dependencies": {
-    "@art-md/codec": "*",
-    "@art-md/constructs": "*"
+    "@art-md/codec": "*"
   },
   "devDependencies": {
     "tsx": "4.8.1"
@@ -158,7 +151,7 @@ git mv cli/pipeline-tests cli/codec-tests
 }
 ```
 
-**Expected:** The CLI directory is renamed and the package is `@art-md/codec-test-cli` depending on `@art-md/codec` and `@art-md/constructs`.
+**Expected:** The CLI directory is renamed and the package is `@art-md/codec-test-cli` depending on `@art-md/codec`.
 
 ### Step `2 / 6` — Add the shared codec helper and update the test scripts
 
@@ -171,21 +164,10 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
 1. Create `$PROJECT/cli/codec-tests/scripts/test/shared/makeCodec.ts`:
 
 ```ts
-import { createCodec } from '@art-md/codec';
-import {
-  CONSTRUCT_PARSERS,
-  CONSTRUCT_SERIALIZERS,
-  DEFAULT_CONSTRUCT_PARSER,
-} from '@art-md/constructs';
+import { createArtCodec } from '@art-md/codec';
 
 export function makeCodec() {
-  return createCodec({
-    constructs: {
-      defaultConstruct: DEFAULT_CONSTRUCT_PARSER,
-      constructs: CONSTRUCT_PARSERS,
-      serializers: CONSTRUCT_SERIALIZERS,
-    },
-  });
+  return createArtCodec();
 }
 ```
 
@@ -466,7 +448,7 @@ build(codec): rename pipeline-tests to codec-tests
 - Verify that commits have been executed but NOT pushed (policy `NOPUSH`).
 - Verify `cli/pipeline-tests` is gone and `cli/codec-tests` exists with package name `@art-md/codec-test-cli`.
 - Verify the test scripts use `codec.parse`/`codec.serialize` and no longer assemble the config.
-- Verify `package.json` depends on `@art-md/codec` and `@art-md/constructs` (not `@art-md/parser`/`@art-md/serializer`).
+- Verify `package.json` depends on `@art-md/codec` (not `@art-md/parser`/`@art-md/serializer`/`@art-md/constructs`).
 - Verify the records, docs, and workspace references reflect the rename.
 - Execute the **Verifying Completion** step as defined in the "Operating Instructions" section.
 - Report according to the "How to Report Back to the Delegator" instructions.

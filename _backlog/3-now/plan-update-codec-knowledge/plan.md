@@ -103,7 +103,7 @@ Update the knowledge resources in `$PROJECT` (planning checkout) to reflect the 
 
 **Changes:**
 
-- Update `architecture/components.md` — remove the Source package from Planned Packages; update the Codec package description (owns the configured implementation and `createCodec()`; the `ArtCodec` contract lives in primitives).
+- Update `architecture/components.md` — remove the Source package from Planned Packages; update the Codec package description (owns the configured implementation and `createArtCodec()`; the `ArtCodec` contract lives in primitives).
 - Update `architecture/overview.md` — describe the dependency direction ContentSource → operation Context → Codec → ArtDocument, with `ArtDocumentSource` composing an `ArtContentSource` and an `ArtCodec`.
 - Create `architecture/adr/codec.md` — establish context, use cases, purpose and principles; record the dependency direction decision.
 - Ensure `architecture/codec.md` matches the implementation (contracts, package ownership, entry points).
@@ -180,7 +180,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 **Message:**
 
 ```text
-docs(codec): update records and guides
+records(codec): update records and guides
 ```
 
 ### Iteration: Update Codec Architecture
@@ -218,7 +218,7 @@ docs(codec): update records and guides
 **Message:**
 
 ```text
-docs(codec): update architecture knowledge
+arch(codec): update architecture knowledge
 ```
 
 ## Work
@@ -258,15 +258,6 @@ Run from the repository root (monorepo):
 ```bash
 npm ci # to install dependencies.
 ```
-
-### Writing Commit Message
-
-**Purpose:** Write standardized message according to context conventions.
-
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
 
 ### Verifying Completion
 

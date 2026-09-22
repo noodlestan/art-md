@@ -40,7 +40,7 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 ## Goals
 
-Implement the codec types (`ConstructRegistry`, `ArtCodecConfig`) and `createCodec()` in `@art-md/codec`, exposing the overloaded `parse`/`serialize` API against the `ArtCodec` contract, and register the package. Commit `feat(codec): implement createCodec`.
+Implement the codec config types (`ArtCodecConfig`, `PartialArtCodecConfig`) and `createArtCodec()` in `@art-md/codec`, exposing the overloaded `parse`/`serialize` API against the `ArtCodec` contract, and register the package. Commit `feat(codec): implement createArtCodec`.
 
 ## Mandatory Reading
 
@@ -72,11 +72,6 @@ Run from the repository root (monorepo) in `$PROJECT`:
 npm ci # to install dependencies.
 ```
 
-### Writing Commit Message
-
-1. Read commit message conventions from `$WORKSPACE/knowledge/conventions/writing-commit-message.art`.
-2. Write the commit message following the rules defined there.
-
 ### Verifying Completion
 
 Runs automatically on pre-commit hook (from the repository root):
@@ -97,10 +92,10 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 ## Changes
 
-This iteration implements the codec types and `createCodec()` and registers the package.
+This iteration implements the codec types and `createArtCodec()` and registers the package.
 
-- Step 1 / 6 — Add `src/types.ts` (`ConstructRegistry`, `ArtCodecConfig`)
-- Step 2 / 6 — Add `src/createCodec.ts` (`createCodec`)
+- Step 1 / 6 — Add `src/types.ts` (`ArtCodecConfig`, `PartialArtCodecConfig`)
+- Step 2 / 6 — Add `src/createArtCodec.ts` (`createArtCodec`)
 - Step 3 / 6 — Add `src/index.ts` (exports)
 - Step 4 / 6 — Add unit tests
 - Step 5 / 6 — Register the package
@@ -108,9 +103,9 @@ This iteration implements the codec types and `createCodec()` and registers the 
 
 ## Steps
 
-### Step `1 / 6` — Add `src/types.ts` (`ConstructRegistry`, `ArtCodecConfig`)
+### Step `1 / 6` — Add `src/types.ts` (`ArtCodecConfig`, `PartialArtCodecConfig`)
 
-**Goal:** Define the codec config types.
+**Goal:** Define the codec config types, reusing the existing parser and serializer config types.
 
 **Execute:**
 
@@ -119,32 +114,38 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
 1. Create `$PROJECT/libs/codec/src/types.ts`:
 
 ```ts
-import type { ConstructParserFactory, ConstructSerializerFactory } from '@art-md/constructs';
-
-export type ConstructRegistry = {
-  defaultConstruct: ConstructParserFactory;
-  constructs: ConstructParserFactory[];
-  serializers: ConstructSerializerFactory[];
-};
+import type { ParserConfig } from '@art-md/parser';
+import type { SerializerConfig } from '@art-md/serializer';
 
 export type ArtCodecConfig = {
-  constructs: ConstructRegistry;
+  parserConfig: ParserConfig;
+  serializerConfig: SerializerConfig;
+};
+
+export type PartialArtCodecConfig = {
+  parserConfig?: Partial<ParserConfig>;
+  serializerConfig?: Partial<SerializerConfig>;
 };
 ```
 
-**Expected:** `ConstructRegistry` bundles the parser and serializer factories so `createCodec` can derive both configs from a single registry.
+**Expected:** `ArtCodecConfig` holds the parser and serializer configs directly, reusing the existing `ParserConfig` and `SerializerConfig` types; `PartialArtCodecConfig` makes both optional and partial so `createArtCodec` can fall back to defaults.
 
-### Step `2 / 6` — Add `src/createCodec.ts` (`createCodec`)
+### Step `2 / 6` — Add `src/createArtCodec.ts` (`createArtCodec`)
 
-**Goal:** Implement `createCodec(config)` returning an `ArtCodec` that wraps the parser and serializer entry points with the configured constructs.
+**Goal:** Implement `createArtCodec(config?)` returning an `ArtCodec` that wraps the parser and serializer entry points, using the provided config values or the default constructs.
 
 **Execute:**
 
 Follow the TypeScript conventions (see Mandatory Reading) for all code written in this step.
 
-1. Create `$PROJECT/libs/codec/src/createCodec.ts`:
+1. Create `$PROJECT/libs/codec/src/createArtCodec.ts`:
 
 ```ts
+import {
+  CONSTRUCT_PARSERS,
+  CONSTRUCT_SERIALIZERS,
+  DEFAULT_CONSTRUCT_PARSER,
+} from '@art-md/constructs';
 import { parse } from '@art-md/parser';
 import type {
   ArtCodec,
@@ -156,15 +157,15 @@ import type {
 } from '@art-md/primitives';
 import { serialize } from '@art-md/serializer';
 
-import type { ArtCodecConfig } from './types';
+import type { PartialArtCodecConfig } from './types';
 
-export function createCodec(config: ArtCodecConfig): ArtCodec {
+export function createArtCodec(config: PartialArtCodecConfig = {}): ArtCodec {
   const parserConfig = {
-    defaultConstruct: config.constructs.defaultConstruct,
-    constructs: config.constructs.constructs,
+    defaultConstruct: config.parserConfig?.defaultConstruct ?? DEFAULT_CONSTRUCT_PARSER,
+    constructs: config.parserConfig?.constructs ?? CONSTRUCT_PARSERS,
   };
   const serializerConfig = {
-    constructs: config.constructs.serializers,
+    constructs: config.serializerConfig?.constructs ?? CONSTRUCT_SERIALIZERS,
   };
 
   return {
@@ -191,7 +192,7 @@ export function createCodec(config: ArtCodecConfig): ArtCodec {
 }
 ```
 
-**Expected:** `createCodec` returns an `ArtCodec` whose `parse`/`serialize` accept either the raw input or a context, with the construct configuration baked in.
+**Expected:** `createArtCodec` returns an `ArtCodec` whose `parse`/`serialize` accept either the raw input or a context. Each provided config value is used as-is (no array merging); missing values fall back to the default constructs (`DEFAULT_CONSTRUCT_PARSER`, `CONSTRUCT_PARSERS`, `CONSTRUCT_SERIALIZERS`).
 
 ### Step `3 / 6` — Add `src/index.ts` (exports)
 
@@ -204,12 +205,12 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
 1. Create `$PROJECT/libs/codec/src/index.ts`:
 
 ```ts
-export { createCodec } from './createCodec';
+export { createArtCodec } from './createArtCodec';
 
-export type { ArtCodecConfig, ConstructRegistry } from './types';
+export type { ArtCodecConfig, PartialArtCodecConfig } from './types';
 ```
 
-**Expected:** `createCodec`, `ArtCodecConfig`, and `ConstructRegistry` are importable from `@art-md/codec`.
+**Expected:** `createArtCodec`, `ArtCodecConfig`, and `PartialArtCodecConfig` are importable from `@art-md/codec`.
 
 ### Step `4 / 6` — Add unit tests
 
@@ -225,33 +226,17 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
    - Separate setup, invocation, and assertion blocks with empty lines.
    - Document helper purpose with `/** @mocks ... */` or `/** @provides ... */` headers.
 
-2. Create `$PROJECT/libs/codec/src/createCodec.test.ts`:
+2. Create `$PROJECT/libs/codec/src/createArtCodec.test.ts`:
 
 ```ts
-import {
-  CONSTRUCT_PARSERS,
-  CONSTRUCT_SERIALIZERS,
-  DEFAULT_CONSTRUCT_PARSER,
-} from '@art-md/constructs';
-import { createParseContext, createSerializeContext, type ArtCodec } from '@art-md/primitives';
+import { createParseContext, createSerializeContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { createCodec } from './createCodec';
+import { createArtCodec } from './createArtCodec';
 
-/** @provides a codec configured with the default constructs. */
-function makeCodecMock(): ArtCodec {
-  return createCodec({
-    constructs: {
-      defaultConstruct: DEFAULT_CONSTRUCT_PARSER,
-      constructs: CONSTRUCT_PARSERS,
-      serializers: CONSTRUCT_SERIALIZERS,
-    },
-  });
-}
-
-describe('createCodec', () => {
+describe('createArtCodec', () => {
   it('WHEN parsing raw markdown returns a ParseResult', () => {
-    const codec = makeCodecMock();
+    const codec = createArtCodec();
 
     const result = codec.parse('# Hello');
 
@@ -260,7 +245,7 @@ describe('createCodec', () => {
   });
 
   it('GIVEN a parse context, returns it on the result', () => {
-    const codec = makeCodecMock();
+    const codec = createArtCodec();
     const context = createParseContext({ uri: 'file:///a.md' });
 
     const result = codec.parse(context, '# Hello');
@@ -269,7 +254,7 @@ describe('createCodec', () => {
   });
 
   it('WHEN serializing a document returns a SerializeResult', () => {
-    const codec = makeCodecMock();
+    const codec = createArtCodec();
 
     const result = codec.serialize({
       construct: 'Document',
@@ -280,7 +265,7 @@ describe('createCodec', () => {
   });
 
   it('GIVEN a serialize context, returns it on the result', () => {
-    const codec = makeCodecMock();
+    const codec = createArtCodec();
     const context = createSerializeContext({ uri: 'file:///a.md' });
 
     const result = codec.serialize(context, {
@@ -295,7 +280,7 @@ describe('createCodec', () => {
 
 3. Review the unit tests you added and confirm they follow the conventions in `$PROJECT/conventions/unit-tests/index.md` (naming, `WHEN`/`FOR`/`GIVEN` prefixes, block spacing, helper headers).
 
-**Expected:** The codec unit tests pass and cover the overloaded entry points.
+**Expected:** The codec unit tests pass and cover the overloaded entry points using the default codec config (`createArtCodec()` with no arguments).
 
 ### Step `5 / 6` — Register the package
 
@@ -305,7 +290,7 @@ describe('createCodec', () => {
 
 Follow the TypeScript conventions (see Mandatory Reading) for all code written in this step.
 
-1. Update the `### Codec (@art-md/codec)` section of `$PROJECT/architecture/components.md` to reflect the implemented package: change `**Status:** PLANNED` to `**Status:** IMPLEMENTED` and update the primary types line to `Primary types: ArtCodecConfig, ConstructRegistry, createCodec(). Responsibility: parse and serialise ArtDocument using configured constructs.`
+1. Update the `### Codec (@art-md/codec)` section of `$PROJECT/architecture/components.md` to reflect the implemented package: change `**Status:** PLANNED` to `**Status:** IMPLEMENTED` and update the primary types line to `Primary types: ArtCodecConfig, PartialArtCodecConfig, createArtCodec(). Responsibility: parse and serialise ArtDocument using configured constructs.`
 2. Add `- Package: Codec` to the `**Resources:**` list in `$PROJECT/_records/project.art` (after `- Package: Primitives`).
 
 **Expected:** The codec package is registered in the architecture components and project records.
@@ -321,7 +306,7 @@ Follow the TypeScript conventions (see Mandatory Reading) for all code written i
 **Message:**
 
 ```
-feat(codec): implement createCodec
+build(codec): implement createArtCodec
 ```
 
 ---
@@ -331,9 +316,9 @@ feat(codec): implement createCodec
 **Instructions:**
 
 - Verify that commits have been executed but NOT pushed (policy `NOPUSH`).
-- Verify `libs/codec/src/types.ts` defines `ConstructRegistry` and `ArtCodecConfig`.
-- Verify `libs/codec/src/createCodec.ts` implements `createCodec(config): ArtCodec` with the overloaded `parse`/`serialize`.
-- Verify `libs/codec/src/index.ts` exports `createCodec`, `ArtCodecConfig`, and `ConstructRegistry`.
+- Verify `libs/codec/src/types.ts` defines `ArtCodecConfig` (`parserConfig: ParserConfig`, `serializerConfig: SerializerConfig`) and `PartialArtCodecConfig` (optional partial parser/serializer configs).
+- Verify `libs/codec/src/createArtCodec.ts` implements `createArtCodec(config?): ArtCodec` with the overloaded `parse`/`serialize`, using the provided values or the default constructs.
+- Verify `libs/codec/src/index.ts` exports `createArtCodec`, `ArtCodecConfig`, and `PartialArtCodecConfig`.
 - Verify unit tests were added and follow the unit-test conventions.
 - Verify the package is registered in `architecture/components.md` and `_records/project.art`.
 - Execute the **Verifying Completion** step as defined in the "Operating Instructions" section.
