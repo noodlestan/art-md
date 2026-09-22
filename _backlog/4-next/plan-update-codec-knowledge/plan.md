@@ -2,7 +2,7 @@
 
 **ID:** `update-codec-knowledge`
 
-**Status:** `DRAFT`
+**Status:** `PLANNING`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -39,11 +39,11 @@ This section describes the upstream sources, guides, knowledge, required skills,
 
 This section lists the upstream sources of work that influence the goals, scope, and constraints of this Plan.
 
-| Kind      | Path                                                                | Role                                                   |
-| --------- | ------------------------------------------------------------------- | ------------------------------------------------------ |
-| Milestone | `$PROJECT/_roadmap/4-next/milestone-art-codec/milestone.md`         | Coordinates this plan within the Art Codec milestone.  |
-| Design    | `$PROJECT/_roadmap/4-next/milestone-art-codec/milestone__design.md` | The design the knowledge reflects.                     |
-| Spec      | `$PROJECT/architecture/codec.md`                                    | The implementation spec to keep in sync with the code. |
+| Kind      | Path                                                               | Role                                                   |
+| --------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
+| Milestone | `$PROJECT/_roadmap/3-now/milestone-art-codec/milestone.md`         | Coordinates this plan within the Art Codec milestone.  |
+| Design    | `$PROJECT/_roadmap/3-now/milestone-art-codec/milestone__design.md` | The design the knowledge reflects.                     |
+| Spec      | `$PROJECT/architecture/codec.md`                                   | The implementation spec to keep in sync with the code. |
 
 ### Required Skills
 
@@ -142,7 +142,84 @@ Execution occurs from `$WORKSPACE/`; the knowledge resources are updated in the 
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan.
 
-Iterations are not yet defined — this is a draft plan. The change set above is captured from the milestone; iterations will be drafted when the plan is refined. The knowledge updates land in the last iteration of this plan.
+| Iteration / Instructions                                                                       | Status  |
+| ---------------------------------------------------------------------------------------------- | ------- |
+| Iteration: Update Codec Records and Guides `./instructions/update-codec-records-and-guides.md` | `READY` |
+| Iteration: Update Codec Architecture `./instructions/update-codec-architecture.md`             | `READY` |
+
+### Iteration: Update Codec Records and Guides
+
+**Id:** `update-codec-records-and-guides`
+
+**Status:** `READY`
+
+**Purpose:** Register the codec package in the project record and the repository guides.
+
+**Description:** Add `Package: Codec` to `_records/project.art`, add the `@art-md/codec` row to the `README.md` packages table, and add the Codec project row to the `_guide.md` projects table.
+
+**Instructions:** `./instructions/update-codec-records-and-guides.md`
+
+**Changes:**
+
+- Add `- Package: Codec` to the `Resources` list in `_records/project.art`.
+- Add the `@art-md/codec` row to the `README.md` packages table.
+- Add the Codec project row to the `_guide.md` projects table.
+
+**Dependencies:**
+
+- Package: Codec — the package must exist before the record is updated.
+
+#### Commits:
+
+| ID                                | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| --------------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `update-codec-records-and-guides` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+
+##### Commit: `update-codec-records-and-guides`
+
+**Message:**
+
+```text
+docs(codec): update records and guides
+```
+
+### Iteration: Update Codec Architecture
+
+**Id:** `update-codec-architecture`
+
+**Status:** `READY`
+
+**Purpose:** Align the architecture documentation with the implemented codec and source contracts.
+
+**Description:** Update `architecture/components.md` and `architecture/overview.md`, create `architecture/adr/codec.md`, and ensure `architecture/codec.md` matches the implementation.
+
+**Instructions:** `./instructions/update-codec-architecture.md`
+
+**Changes:**
+
+- Update `architecture/components.md` — remove the Source package from Planned Packages; update the Codec package description.
+- Update `architecture/overview.md` — describe the dependency direction and the implemented codec layer.
+- Create `architecture/adr/codec.md` — record the dependency direction decision.
+- Ensure `architecture/codec.md` matches the implementation.
+
+**Dependencies:**
+
+- Package: Codec — the implementation must exist before the docs are aligned.
+- Package: Parser and Package: Serializer — the entry point changes must exist before the docs are aligned.
+
+#### Commits:
+
+| ID                          | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| --------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `update-codec-architecture` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+
+##### Commit: `update-codec-architecture`
+
+**Message:**
+
+```text
+docs(codec): update architecture knowledge
+```
 
 ## Work
 
@@ -150,7 +227,7 @@ Iterations are not yet defined — this is a draft plan. The change set above is
 
 This section states the immediate action needed to advance the Plan.
 
-Draft the iterations for the knowledge updates.
+Delegate the next READY instruction (`update-codec-records-and-guides`).
 
 ### Blockers
 
@@ -219,6 +296,7 @@ npm run ci # lint, test and build
 ### Findings
 
 - **Knowledge lags implementation** — the knowledge updates land in the last iteration so the docs reflect the implemented packages.
+- **`overview.md` already describes the codec layer** — the codec and source contracts are already described in `architecture/overview.md`; the update aligns the status and details with the implemented packages.
 
 ### Decisions
 

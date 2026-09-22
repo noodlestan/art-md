@@ -4,9 +4,9 @@
 
 **Source:** Design: Art Codec and Source Contracts (`_roadmap/3-now/milestone-art-codec/milestone__design.md`)
 
-**Purpose:** Implementation spec for the codec and source contracts: the primitives layout, the contracts and their responsibilities, the codec package ownership, the dependency direction, and the parser/serializer entry point changes. Downstream implementation plans implement against this spec.
+**Purpose:** A living guide for how the codec and source contracts work together. It is anchored on the symbols and contracts declared in `@art-md/primitives` and the `@art-md/codec` package, and explains how a parse, a serialise, and a document-source read/write flow through them. It deliberately does not restate every signature — the authoritative, full contract definitions live in the design attachment (`milestone__design.md`).
 
-## Primitives Layout
+## Layout
 
 The contracts live in `@art-md/primitives` under `libs/primitives/src/`:
 
@@ -21,6 +21,7 @@ libs/primitives/src/
 │   ├── createArtDocumentSource.ts
 │   └── index.ts
 ├── parser/
+│   ├── types.ts              ← ParseResult
 │   ├── context/
 │   │   ├── types.ts          ← ParseContext, ParserContextData, ParserVisitContext (carries parseContext)
 │   │   ├── createParseContext.ts
@@ -28,6 +29,7 @@ libs/primitives/src/
 │   │   └── private/
 │   └── ...
 ├── serializer/
+│   ├── types.ts              ← SerializeResult
 │   ├── context/
 │   │   ├── types.ts          ← SerializeContext, SerializerContextData
 │   │   └── createSerializeContext.ts
@@ -35,202 +37,83 @@ libs/primitives/src/
 └── index.ts
 ```
 
-## Contracts
+The `@art-md/codec` package owns the configured codec implementation and `createCodec()`; it stays small so alternative/configured codecs can exist independently.
 
-### ArtCodec (in `@art-md/primitives` under `codec/`)
+## The Contracts at a Glance
 
-**Responsibility:** document-level parsing and serialisation only. No source I/O. No record knowledge.
+- `ArtCodec` (`codec/types.ts`) — document-level parse and serialise. No source I/O, no record knowledge. Owns the construct configuration.
+- `ArtContentSource` (`source/types.ts`) — source identity plus lazy/idempotent acquisition and caching of raw content. Knows nothing about Art documents or records.
+- `ArtDocumentSource` (`source/types.ts`) — lazy/idempotent parse and caching of an `ArtDocument` from an `ArtContentSource`. Composes a content source and a codec.
+- `ParseContext` / `SerializeContext` (`parser/context/types.ts`, `serializer/context/types.ts`) — operation contexts carrying the content-source `uri`; they do not carry the content source itself.
+- `ParseResult` / `SerializeResult` (`parser/types.ts`, `serializer/types.ts`) — carry the produced document/content together with the operation context, so the caller can read warnings recorded on the context.
+- `ParserVisitContext` (`parser/context/types.ts`) — internal traversal context; now carries `parseContext` so constructs can reach the parse context.
 
-```ts
-export interface ArtCodec {
-  parse(markdown: string): ParseResult;
-  parse(context: ParseContext, markdown: string): ParseResult;
-  serialize(document: ArtDocument): SerializeResult;
-  serialize(context: SerializeContext, document: ArtDocument): SerializeResult;
-}
-```
+## How a Parse Flows
 
-The codec owns the construct configuration, so it is not passed per call (unlike the standalone parser/serializer entry points, which take a `ParserConfig`/`SerializerConfig`).
-
-### ParseResult / SerializeResult (in `@art-md/primitives`)
-
-**Responsibility:** carry the produced document/content together with the operation context, so the caller can read warnings recorded on the context.
+The parser entry point is `parse()` in `libs/parser/src/parse/parse.ts`. It accepts either raw markdown or a `ParseContext`, each with a `ParserConfig`, and returns a `ParseResult`:
 
 ```ts
-export interface ParseResult {
-  document: ArtDocument;
-  context: ParseContext;
-}
-
-export interface SerializeResult {
-  content: string;
-  context: SerializeContext;
-}
+parse(markdown, config) | parse(context, markdown, config) → ParseResult
 ```
 
-### ArtContentSource (in `@art-md/primitives` under `source/`)
+1. The entry point builds a `DocumentVisitContext` via `createDocumentVisitContext(markdown, parseContext)` (parser package `private/`). This parses the source to an mdast tree and wraps it in a `ParserVisitContext` that carries the `parseContext`.
+2. The visitor loop walks the mdast tree. Each construct's `processor.captureNode(currentContext, node)` claims nodes that belong to it; `integrator.integrate(currentContext, node, construct)` captures children and pushes nested contexts for container constructs.
+3. Because `ParserVisitContext` now carries `parseContext`, a construct can reach the source uri — e.g. `context.parseContext.uri` — through the processor and integrator.
+4. The result is a `ParseResult { document, context }`, so the caller can read warnings recorded on the context.
 
-**Responsibility:** source identity plus lazy/idempotent acquisition and caching of raw content. It knows nothing about Art documents or records.
+## How a Serialise Flows
+
+The serializer entry point is `serialize()` in `libs/serializer/src/serializer/serialize.ts` (renamed from `serializer.ts`). It accepts either an `ArtDocument` or a `SerializeContext`, each with a `SerializerConfig`, and returns a `SerializeResult`:
 
 ```ts
-export interface ArtContentSource {
-  readonly type: string;
-  readonly uri: string;
-  readonly maybeContent: string | undefined;
-  readContent(): Promise<string>;
-  writeContent(content: string): Promise<void>;
-}
+serialize(document, config) | serialize(context, document, config) → SerializeResult
 ```
 
-### ArtDocumentSource (in `@art-md/primitives` under `source/`)
+1. The entry point converts the `ArtDocument` to an mdast tree (`artAstToMdast`), then to markdown.
+2. The result is a `SerializeResult { content, context }`, so the caller can read warnings recorded on the context.
 
-**Responsibility:** lazy/idempotent parsing and caching of an `ArtDocument` from an `ArtContentSource`. It knows nothing about records.
+## How a Document Source Composes Codec and Content Source
 
-```ts
-export interface ArtDocumentSource {
-  readonly type: string;
-  readonly uri: string;
-  readonly maybeDocument: ArtDocument | undefined;
-  readDocument(): Promise<ArtDocument>;
-  writeDocument(doc: ArtDocument): Promise<void>;
-}
-```
+`createArtDocumentSource(codec, contentSource)` (`source/createArtDocumentSource.ts`) composes an `ArtCodec` and an `ArtContentSource` into an `ArtDocumentSource`:
 
-### createArtDocumentSource() (in `@art-md/primitives` under `source/`)
+- `readDocument()` lazily reads content through `contentSource.readContent()`, parses it through `codec.parse(...)`, and caches the resulting `ArtDocument`.
+- `writeDocument(doc)` serialises through `codec.serialize(...)` and writes through `contentSource.writeContent(...)`.
 
-```ts
-export function createArtDocumentSource(
-  codec: ArtCodec,
-  contentSource: ArtContentSource,
-): ArtDocumentSource;
-```
-
-Lazily/idempotently reads content through `contentSource`, parses through `codec`, caches the document, and writes through `codec` + `contentSource`.
-
-### ParseContext (in `@art-md/primitives` under `parser/context/`)
-
-**Responsibility:** parser-operation context carrying the `ArtContentSource` uri; it does not carry the content source itself.
-
-```ts
-export type ParserContextData = {
-  uri: string;
-};
-
-export type ParseContext = {
-  uri: string;
-};
-
-export function createParseContext(data: ParserContextData): ParseContext;
-```
-
-### ParserVisitContext (in `@art-md/primitives` under `parser/context/`)
-
-**Responsibility:** internal traversal context, retained; now carries `parseContext: ParseContext` so constructs can reach the parse context.
-
-```ts
-export type ParserVisitContext = {
-  readonly construct: ConstructBase;
-  readonly source: ParserSource;
-  readonly parseContext: ParseContext; // NEW
-  captureChildConstruct(child: ConstructBase): void;
-  onBeforeConstruct(construct: ConstructBase): ParserVisitContext;
-  childContext(
-    construct: ContainerConstructBase,
-    onBeforeConstruct?: OnBeforeConstruct,
-  ): ParserVisitContext;
-  parent(): ParserVisitContext | undefined;
-};
-```
-
-### createDocumentVisitContext() (renamed from `createDocumentParserContext()`)
-
-**Responsibility:** builds the `DocumentVisitContext` from raw markdown, carrying the `ParseContext`.
-
-```ts
-export function createDocumentVisitContext(
-  markdown: string,
-  parseContext: ParseContext,
-): DocumentVisitContext;
-```
-
-### SerializeContext (in `@art-md/primitives` under `serializer/context/`)
-
-**Responsibility:** serializer-operation context carrying the `ArtContentSource` uri; it does not carry the content source itself.
-
-```ts
-export type SerializerContextData = {
-  uri: string;
-};
-
-export type SerializeContext = {
-  uri: string;
-};
-
-export function createSerializeContext(data: SerializerContextData): SerializeContext;
-```
-
-## Codec Package (`@art-md/codec`)
-
-**Responsibility:** owns the configured codec implementation and `createCodec()`. The package intentionally stays small so alternative/configured codecs can exist independently.
-
-```ts
-export interface ArtCodecConfig {
-  constructs: ConstructRegistry;
-}
-
-export function createCodec(config: ArtCodecConfig): ArtCodec;
-```
-
-The codec implements the `ArtCodec` contract from `@art-md/primitives`: document-level parsing and serialisation only; no source I/O; no record knowledge; owns the construct configuration; exposes the overloaded API `parse(markdown)` | `parse(context, markdown)` and `serialize(document)` | `serialize(context, document)`.
-
-## Entry Point Changes
-
-- Parser entry points accept either raw markdown or `ParseContext`, each with a `ParserConfig`, and return `ParseResult` (document + context); markdown and config are always mandatory, and the context is the first argument when provided.
-
-```ts
-export function parse(markdown: string, config: ParserConfig): ParseResult;
-export function parse(context: ParseContext, markdown: string, config: ParserConfig): ParseResult;
-```
-
-- Serializer entry points accept either an `ArtDocument` or `SerializeContext`, each with a `SerializerConfig`, and return `SerializeResult` (content + context); the document and config are always mandatory, and the context is the first argument when provided.
-
-```ts
-export function serialize(document: ArtDocument, config: SerializerConfig): SerializeResult;
-export function serialize(
-  context: SerializeContext,
-  document: ArtDocument,
-  config: SerializerConfig,
-): SerializeResult;
-```
-
-- `libs/serializer/src/serializer/serializer.ts` is renamed to `serialize.ts` (the entry point is `serialize()`).
+Both reads are idempotent: the document is cached on `maybeDocument` and only re-parsed when the content changes.
 
 ## Dependency Direction
 
-`ArtCodec` is a contract consumed by `ArtDocumentSource`. But `ArtCodec` does not depend on `ArtDocumentSource`.
+`ArtCodec` is a contract consumed by `ArtDocumentSource`, but `ArtCodec` does not depend on `ArtDocumentSource`:
 
 ```
-ArtDocumentSource
-        │
-        │ uses
-        ↓
-    ArtCodec
-        │
-        │ uses
-        ↓
- ArtContentSource
-```
+ArtDocumentSource → ArtCodec → ArtContentSource
 
-More precisely, the types are:
-
-```
-ArtDocumentSource
-    → ArtCodec
-    → ArtContentSource
-
-ArtCodec
-    → ParseContext
-    → SerializeContext
+ArtCodec → ParseContext → SerializeContext
 ```
 
 That is not circular. `ArtCodec` sits between `ArtDocumentSource` and `ArtContentSource`; the operation contexts are independent of content sources. Concrete sources (e.g. `FSContentSource`, `MemoryContentSource`) implement only `ArtContentSource`.
+
+## Scenarios
+
+### Scenario 1: Parsing Raw Markdown
+
+Call `parse(markdown, config)` when you have raw markdown and no source context. The entry point builds a default `ParseContext` internally.
+
+### Scenario 2: Parsing with a Context
+
+Call `parse(context, markdown, config)` when you want the operation to carry a source `uri` (e.g. to record warnings against a source). Create the context with `createParseContext({ uri })`.
+
+### Scenario 3: Reading a Document Through a Source
+
+Use `createArtDocumentSource(codec, contentSource)` when you want a lazy, cached `ArtDocument` backed by a content source. `readDocument()` parses on first access and caches.
+
+### Scenario 4: Adding a New Concrete Source
+
+Implement only `ArtContentSource` (`readContent`/`writeContent` plus `type`/`uri`/`maybeContent`). The source knows nothing about Art documents; compose it with a codec via `createArtDocumentSource` to get document-level access.
+
+## Decision Guide
+
+- **Raw markdown, no source** — use `parse(markdown, config)` / `serialize(document, config)`.
+- **Need a source uri / warnings on the operation** — pass a context: `parse(context, markdown, config)` / `serialize(context, document, config)`.
+- **Lazy, cached document backed by a source** — use `createArtDocumentSource(codec, contentSource)`.
+- **New source type** — implement `ArtContentSource` only; never `ArtDocumentSource` directly.

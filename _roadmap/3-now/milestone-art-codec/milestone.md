@@ -212,10 +212,10 @@ This section describes the ordered phases used to organise downstream work, iden
 | Index | Name                               | Status    |
 | ----- | ---------------------------------- | --------- |
 | #1    | Spec                               | `WORKING` |
-| #2    | Primitives Contracts               | `DRAFT`   |
-| #3    | Parser and Serializer Entry Points | `DRAFT`   |
-| #4    | Codec Package                      | `DRAFT`   |
-| #5    | Knowledge                          | `DRAFT`   |
+| #2    | Primitives Contracts               | `READY`   |
+| #3    | Parser and Serializer Entry Points | `READY`   |
+| #4    | Codec Package                      | `READY`   |
+| #5    | Knowledge                          | `READY`   |
 
 ### Phase: 1 — Spec
 
@@ -235,7 +235,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Add `source/`, `codec/`, `parser/context/` (`ParseContext`), and `serializer/context/` (`SerializeContext`) to primitives.
 
-**Status:** `DRAFT`
+**Status:** `READY`
 
 **Dependencies:**
 
@@ -247,7 +247,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** `parse` accepts raw markdown or `ParseContext`; `serialize` accepts an `ArtDocument` or `SerializeContext`.
 
-**Status:** `DRAFT`
+**Status:** `READY`
 
 **Dependencies:**
 
@@ -257,7 +257,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Scaffold the package and implement `ArtCodecConfig`, `createCodec()`, and the overloaded `parse`/`serialize`. Rename `cli/pipeline-tests` to `cli/codec-test` and make the test scripts use the `codec` packages as opposed to parser and config directly.
 
-**Status:** `DRAFT`
+**Status:** `READY`
 
 **Dependencies:**
 
@@ -271,7 +271,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Update `_records/project.art`, README, root `_guide`, `architecture/components.md`, `architecture/overview.md`, `architecture/adr/codec.md`, and the primitives architecture; ensure `architecture/codec.md` matches the implementation.
 
-**Status:** `DRAFT`
+**Status:** `READY`
 
 **Dependencies:**
 
@@ -288,13 +288,13 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | ----- | ----------------------------------------------------------------------------------------------------------------------------- | --------- |
 | 1     | Plan: Create Codec Spec `$PROJECT/_backlog/3-now/plan-create-codec-spec/plan.md`                                              | `WORKING` |
 | -     |                                                                                                                               |           |
-| 2     | Plan: Implement Primitives Contracts `$PROJECT/_backlog/6-plan/plan-implement-primitives-contracts/plan.md`                   | `DRAFT`   |
+| 2     | Plan: Implement Primitives Contracts `$PROJECT/_backlog/4-next/plan-implement-primitives-contracts/plan.md`                   | `READY`   |
 | -     |                                                                                                                               |           |
-| 3     | Plan: Update Parser and Serializer Entry Points `$PROJECT/_backlog/6-plan/plan-update-parser-serializer-entry-points/plan.md` | `DRAFT`   |
+| 3     | Plan: Update Parser and Serializer Entry Points `$PROJECT/_backlog/4-next/plan-update-parser-serializer-entry-points/plan.md` | `READY`   |
 | -     |                                                                                                                               |           |
-| 4     | Plan: Implement Codec Package `$PROJECT/_backlog/6-plan/plan-implement-codec-package/plan.md`                                 | `DRAFT`   |
+| 4     | Plan: Implement Codec Package `$PROJECT/_backlog/4-next/plan-implement-codec-package/plan.md`                                 | `READY`   |
 | -     |                                                                                                                               |           |
-| 5     | Plan: Update Codec Knowledge `$PROJECT/_backlog/6-plan/plan-update-codec-knowledge/plan.md`                                   | `DRAFT`   |
+| 5     | Plan: Update Codec Knowledge `$PROJECT/_backlog/4-next/plan-update-codec-knowledge/plan.md`                                   | `READY`   |
 
 ---
 
@@ -304,7 +304,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 This section states the immediate action needed to advance the Milestone.
 
-Plan the first plan: `create-codec-spec`.
+Delegate the READY plans: `implement-primitives-contracts`, `update-parser-serializer-entry-points`, `implement-codec-package`, `update-codec-knowledge`.
 
 ### Blockers
 
