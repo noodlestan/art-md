@@ -7,6 +7,7 @@
 | [principles.md](principles.md)                     | Design principles for the Art MD libraries               |
 | [overview.md](overview.md)                         | Art MD, Constructs, Parser, Serializer, Planned Packages |
 | [components.md](components.md)                     | Components, relationships, and package links             |
+| [codec.md](codec.md)                               | Codec and source contracts implementation spec           |
 | [art-md-fixture-tests.md](art-md-fixture-tests.md) | Fixture test suite for parser and serializer             |
 
 ## Package Architecture References
