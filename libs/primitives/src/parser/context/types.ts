@@ -23,3 +23,11 @@ export type ParserVisitContext = {
 	): ParserVisitContext;
 	parent(): ParserVisitContext | undefined;
 };
+
+export type ParserContextData = {
+	uri: string;
+};
+
+export type ParseContext = {
+	uri: string;
+};

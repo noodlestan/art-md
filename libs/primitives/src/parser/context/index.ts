@@ -1,3 +1,5 @@
 export { createParserVisitContext } from './createParserVisitContext';
 
-export type { ParserVisitContext } from './types';
+export { createParseContext } from './createParseContext';
+
+export type { ParseContext, ParserContextData, ParserVisitContext } from './types';
