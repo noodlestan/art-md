@@ -2,7 +2,7 @@
 
 **ID:** `create-codec-spec`
 
-**Status:** `WORKING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -142,11 +142,11 @@ Execution occurs from `$WORKSPACE/`; the design, spec, and plan drafts are writt
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                 | Status    |
-| ---------------------------------------------------------------------------------------- | --------- |
-| Iteration: Lock Down Design `./instructions/lock-down-design.md`                         | `DONE`    |
-| Iteration: Create Codec Implementation Spec `./instructions/create-codec-spec.md`        | `DONE`    |
-| Iteration: Refine Remaining Plan Drafts `./instructions/refine-remaining-plan-drafts.md` | `WORKING` |
+| Iteration / Instructions                                                                 | Status |
+| ---------------------------------------------------------------------------------------- | ------ |
+| Iteration: Lock Down Design `./instructions/lock-down-design.md`                         | `DONE` |
+| Iteration: Create Codec Implementation Spec `./instructions/create-codec-spec.md`        | `DONE` |
+| Iteration: Refine Remaining Plan Drafts `./instructions/refine-remaining-plan-drafts.md` | `DONE` |
 
 ### Iteration: Lock Down Design
 
@@ -230,7 +230,7 @@ arch(codec): Add codec implementation spec.
 
 **Id:** `refine-remaining-plan-drafts`
 
-**Status:** `WORKING`
+**Status:** `DONE`
 
 **Purpose:** Allow agents to carry out codec implementation in small increments.
 
@@ -249,9 +249,9 @@ arch(codec): Add codec implementation spec.
 
 #### Commits:
 
-| ID                             | Repository / Checkout / Branch   | Policy   | Hash | Status     |
-| ------------------------------ | -------------------------------- | -------- | ---- | ---------- |
-| `refine-remaining-plan-drafts` | Art MD / `$PROJECT` / `planning` | `NOPUSH` |      | `AUTHORED` |
+| ID                             | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------------------ | -------------------------------- | -------- | --------- | ----------- |
+| `refine-remaining-plan-drafts` | Art MD / `$PROJECT` / `planning` | `NOPUSH` | `bc276a4` | `COMMITTED` |
 
 ##### Commit: `refine-remaining-plan-drafts`
 
@@ -269,7 +269,7 @@ plan(codec): Refine codec implementation plans.
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next `PLANNED` instruction: `lock-down-design`.
+This plan is complete. All iterations are `DONE`; the 4 downstream plans are `READY` in `_backlog/4-next/`.
 
 ### Blockers
 

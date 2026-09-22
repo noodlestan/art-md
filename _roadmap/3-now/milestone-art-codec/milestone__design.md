@@ -38,33 +38,6 @@ Locked down by Plan: Create Codec Spec (iteration `lock-down-design`). The desig
 - `ArtCodec` exposes the overloaded `parse`/`serialize` API — `(markdown)` or `(context, markdown)` — while owning the construct configuration; the codec itself does not perform source I/O.
 - Architecture docs/ADRs describe the dependency direction as ArtDocumentSource → ArtCodec → ArtContentSource, with `ArtDocumentSource` composing an `ArtContentSource` and an `ArtCodec`; operation contexts are independent of content sources; concrete sources such as `FSContentSource` implement only `ArtContentSource`.
 
-## Primitives Layout
-
-```
-libs/primitives/src/
-├── constructs/
-├── document/
-├── codec/
-│   └── types.ts              ← ArtCodec contract
-├── source/
-│   ├── types.ts              ← ArtContentSource, ArtDocumentSource
-│   ├── createArtDocumentSource.ts
-│   └── index.ts
-├── parser/
-│   ├── context/
-│   │   ├── types.ts          ← ParseContext, ParserContextData, ParserVisitContext (carries parseContext)
-│   │   ├── createParseContext.ts
-│   │   ├── createParserVisitContext.ts   (existing, retained)
-│   │   └── private/
-│   └── ...
-├── serializer/
-│   ├── context/
-│   │   ├── types.ts          ← SerializeContext, SerializerContextData
-│   │   └── createSerializeContext.ts
-│   └── ...
-└── index.ts
-```
-
 ## Relationships
 
 ```
@@ -150,6 +123,8 @@ That is not circular. `ArtCodec` sits between `ArtDocumentSource` and `ArtConten
 
 ### ArtCodec (contract in `@art-md/primitives` under `codec/`)
 
+**File:** `libs/primitives/src/codec/types.ts`
+
 **Responsibility:** document-level parsing and serialisation only. No source I/O. No record knowledge.
 
 ```ts
@@ -164,6 +139,8 @@ export interface ArtCodec {
 The codec owns the construct configuration, so it is not passed per call (unlike the standalone parser/serializer entry points, which take a `ParserConfig`/`SerializerConfig`).
 
 ### ParseResult / SerializeResult (in `@art-md/primitives`)
+
+**Files:** `libs/primitives/src/parser/types.ts` (`ParseResult`), `libs/primitives/src/serializer/types.ts` (`SerializeResult`)
 
 **Responsibility:** carry the produced document/content together with the operation context, so the caller can read warnings recorded on the context.
 
@@ -181,6 +158,8 @@ export interface SerializeResult {
 
 ### ArtContentSource (contract in `@art-md/primitives` under `source/`)
 
+**File:** `libs/primitives/src/source/types.ts`
+
 **Responsibility:** source identity plus lazy/idempotent acquisition and caching of raw content. It knows nothing about Art documents or records.
 
 ```ts
@@ -194,6 +173,8 @@ export interface ArtContentSource {
 ```
 
 ### ArtDocumentSource (contract in `@art-md/primitives` under `source/`)
+
+**File:** `libs/primitives/src/source/types.ts`
 
 **Responsibility:** lazy/idempotent parsing and caching of an `ArtDocument` from an `ArtContentSource`. It knows nothing about records.
 
@@ -209,6 +190,8 @@ export interface ArtDocumentSource {
 
 ### createArtDocumentSource() (in `@art-md/primitives` under `source/`)
 
+**File:** `libs/primitives/src/source/createArtDocumentSource.ts`
+
 ```ts
 export function createArtDocumentSource(
   codec: ArtCodec,
@@ -217,6 +200,8 @@ export function createArtDocumentSource(
 ```
 
 ### ParseContext (in `@art-md/primitives` under `parser/context/`)
+
+**File:** `libs/primitives/src/parser/context/types.ts` (`ParseContext`, `ParserContextData`), `libs/primitives/src/parser/context/createParseContext.ts` (`createParseContext`)
 
 **Responsibility:** parser-operation context carrying the `ArtContentSource` uri; it does not carry the content source itself.
 
@@ -233,6 +218,8 @@ export function createParseContext(data: ParserContextData): ParseContext;
 ```
 
 ### ParserVisitContext (in `@art-md/primitives` under `parser/context/`)
+
+**File:** `libs/primitives/src/parser/context/types.ts`
 
 **Responsibility:** internal traversal context, retained; now carries `parseContext: ParseContext` so constructs can reach the parse context.
 
@@ -253,6 +240,8 @@ export type ParserVisitContext = {
 
 ### createDocumentVisitContext() (renamed from `createDocumentParserContext()`)
 
+**File:** `libs/parser/src/private/createDocumentVisitContext.ts` (renamed from `createDocumentParserContext.ts`); `DocumentVisitContext` type in `libs/parser/src/private/types.ts`
+
 **Responsibility:** builds the `DocumentVisitContext` from raw markdown, carrying the `ParseContext`.
 
 ```ts
@@ -264,7 +253,7 @@ export function createDocumentVisitContext(
 
 ### Context Injection into Constructs
 
-The visitor context carries the parse context, so constructs receive it through the processor and integrator:
+The visitor context carries the parse context, so constructs receive it through the processor and integrator. This happens in the parser package's visitor loop (`libs/parser/src/buildDocument/`):
 
 ```ts
 processor?.captureNode(currentContext, node);
@@ -278,6 +267,8 @@ context.parseContext.uri;
 ```
 
 ### SerializeContext (in `@art-md/primitives` under `serializer/context/`)
+
+**File:** `libs/primitives/src/serializer/context/types.ts` (`SerializeContext`, `SerializerContextData`), `libs/primitives/src/serializer/context/createSerializeContext.ts` (`createSerializeContext`)
 
 **Responsibility:** serializer-operation context carrying the `ArtContentSource` uri; it does not carry the content source itself.
 
@@ -295,6 +286,8 @@ export function createSerializeContext(data: SerializerContextData): SerializeCo
 
 ## Codec Package (`@art-md/codec`)
 
+**Files:** `libs/codec/src/types.ts` (`ArtCodecConfig`), `libs/codec/src/createCodec.ts` (`createCodec`)
+
 **Responsibility:** owns the configured codec implementation and `createCodec()`. The package intentionally stays small so alternative/configured codecs can exist independently.
 
 ```ts
@@ -307,14 +300,14 @@ export function createCodec(config: ArtCodecConfig): ArtCodec;
 
 ## Entry Point Changes
 
-- Parser entry points accept either raw markdown or `ParseContext`, each with a `ParserConfig`, and return `ParseResult` (document + context); markdown and config are always mandatory, and the context is the first argument when provided.
+- Parser entry points accept either raw markdown or `ParseContext`, each with a `ParserConfig`, and return `ParseResult` (document + context); markdown and config are always mandatory, and the context is the first argument when provided. Entry point: `libs/parser/src/parse/parse.ts`.
 
 ```ts
 export function parse(markdown: string, config: ParserConfig): ParseResult;
 export function parse(context: ParseContext, markdown: string, config: ParserConfig): ParseResult;
 ```
 
-- Serializer entry points accept either an `ArtDocument` or `SerializeContext`, each with a `SerializerConfig`, and return `SerializeResult` (content + context); the document and config are always mandatory, and the context is the first argument when provided.
+- Serializer entry points accept either an `ArtDocument` or `SerializeContext`, each with a `SerializerConfig`, and return `SerializeResult` (content + context); the document and config are always mandatory, and the context is the first argument when provided. Entry point: `libs/serializer/src/serializer/serialize.ts`.
 
 ```ts
 export function serialize(document: ArtDocument, config: SerializerConfig): SerializeResult;
@@ -331,7 +324,7 @@ export function serialize(
 ## Knowledge to Update
 
 - `architecture/components.md` — update planned packages: remove the Source package; describe the codec contract in primitives and the `@art-md/codec` package.
-- `architecture/codec.md` — create as the implementation spec.
+- `architecture/codec.md` — living guide for how the codec and source contracts work, owning the primitives layout; this design attachment is the authoritative implementation spec.
 - `architecture/adr/codec.md` — establish context, use cases, purpose and principles; describe the dependency direction.
 - `architecture/overview.md` — describe the dependency direction ArtDocumentSource → ArtCodec → ArtContentSource, with operation contexts independent of content sources.
 - `libs/primitives/architecture/index.md` and `api.md` — document the new primitives contracts.
