@@ -2,7 +2,7 @@
 
 **ID:** `create-codec-spec`
 
-**Status:** `READY`
+**Status:** `WORKING`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -142,18 +142,17 @@ Execution occurs from `$WORKSPACE/`; the design, spec, and plan drafts are writt
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                               | Status  |
-| ------------------------------------------------------------------------------------------------------ | ------- |
-| Iteration: Lock Down Design `./instructions/lock-down-design.md`                                       | `READY` |
-| Iteration: Create Codec Implementation Spec `./instructions/create-codec-spec.md`                      | `READY` |
-| Iteration: Register Spec in Architecture Index `./instructions/register-spec-in-architecture-index.md` | `READY` |
-| Iteration: Refine Remaining Plan Drafts `./instructions/refine-remaining-plan-drafts.md`               | `READY` |
+| Iteration / Instructions                                                                 | Status    |
+| ---------------------------------------------------------------------------------------- | --------- |
+| Iteration: Lock Down Design `./instructions/lock-down-design.md`                         | `DONE`    |
+| Iteration: Create Codec Implementation Spec `./instructions/create-codec-spec.md`        | `DONE`    |
+| Iteration: Refine Remaining Plan Drafts `./instructions/refine-remaining-plan-drafts.md` | `WORKING` |
 
 ### Iteration: Lock Down Design
 
 **Id:** `lock-down-design`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Refine the design attachment with all implementation details so it is the authoritative source for the spec and downstream plans.
 
@@ -173,16 +172,16 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                 | Repository / Checkout / Branch   | Policy   | Hash | Status     |
-| ------------------ | -------------------------------- | -------- | ---- | ---------- |
-| `lock-down-design` | Art MD / `$PROJECT` / `planning` | `NOPUSH` |      | `AUTHORED` |
+| ID                 | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------ | -------------------------------- | -------- | --------- | ----------- |
+| `lock-down-design` | Art MD / `$PROJECT` / `planning` | `NOPUSH` | `1c1e2ec` | `COMMITTED` |
 
 ##### Commit: `lock-down-design`
 
 **Message:**
 
 ```text
-docs(architecture): Lock down codec and source design details.
+plan(codec): Lock down codec and source design details.
 ```
 
 ---
@@ -191,7 +190,7 @@ docs(architecture): Lock down codec and source design details.
 
 **Id:** `create-codec-spec`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Create `architecture/codec.md` as the implementation spec capturing the design.
 
@@ -213,16 +212,16 @@ docs(architecture): Lock down codec and source design details.
 
 #### Commits:
 
-| ID                  | Repository / Checkout / Branch   | Policy   | Hash | Status     |
-| ------------------- | -------------------------------- | -------- | ---- | ---------- |
-| `create-codec-spec` | Art MD / `$PROJECT` / `planning` | `NOPUSH` |      | `AUTHORED` |
+| ID                  | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `create-codec-spec` | Art MD / `$PROJECT` / `planning` | `NOPUSH` | `433357c` | `COMMITTED` |
 
 ##### Commit: `create-codec-spec`
 
 **Message:**
 
 ```text
-docs(architecture): Add codec implementation spec.
+arch(codec): Add codec implementation spec.
 ```
 
 ---
@@ -231,11 +230,11 @@ docs(architecture): Add codec implementation spec.
 
 **Id:** `refine-remaining-plan-drafts`
 
-**Status:** `READY`
+**Status:** `WORKING`
 
-**Purpose:** Refine the contracts and changes for the remaining plans to match the locked-down design.
+**Purpose:** Allow agents to carry out codec implementation in small increments.
 
-**Description:** Update the remaining plan drafts (implement-primitives-contracts, implement-codec-package, update-parser-serializer-entry-points, update-codec-knowledge) to reflect the locked-down design.
+**Description:** Update the 4 plan drafts to reflect the locked-down design. Note that plans are stale: they prescribe implementation of decisions meanwhile revoked, and many details are missing.
 
 **Changes:**
 
@@ -259,7 +258,7 @@ docs(architecture): Add codec implementation spec.
 **Message:**
 
 ```text
-docs(plans): Refine remaining plan drafts to match the locked-down design.
+plan(codec): Refine codec implementation plans.
 ```
 
 ---
