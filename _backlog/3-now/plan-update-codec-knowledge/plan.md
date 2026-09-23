@@ -144,14 +144,16 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                                       | Status  |
 | ---------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Update Codec Records and Guides `./instructions/update-codec-records-and-guides.md` | `READY` |
+| Iteration: Update Codec Records and Guides `./instructions/update-codec-records-and-guides.md` | `DONE`  |
 | Iteration: Update Codec Architecture `./instructions/update-codec-architecture.md`             | `READY` |
 
 ### Iteration: Update Codec Records and Guides
 
 **Id:** `update-codec-records-and-guides`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/update-codec-records-and-guides__report.md`
 
 **Purpose:** Register the codec package in the project record and the repository guides.
 
@@ -171,9 +173,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                                | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| --------------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `update-codec-records-and-guides` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                                | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| --------------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `update-codec-records-and-guides` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `68bbdd6` | `COMMITTED` |
 
 ##### Commit: `update-codec-records-and-guides`
 
@@ -227,7 +229,7 @@ arch(codec): update architecture knowledge
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next READY instruction (`update-codec-records-and-guides`).
+Delegate the next READY instruction (`update-codec-architecture`).
 
 ### Blockers
 
@@ -282,7 +284,7 @@ npm run ci # lint, test and build
 
 ### Evidence
 
-- None yet.
+- `@art-md/codec` registered in `_records/project.art`, `README.md`, and `_guide.md`; repo `npm run ci` passes (commit `68bbdd6`).
 
 ### Findings
 
