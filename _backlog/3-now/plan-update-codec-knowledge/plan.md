@@ -2,7 +2,7 @@
 
 **ID:** `update-codec-knowledge`
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 

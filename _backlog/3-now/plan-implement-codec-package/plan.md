@@ -2,7 +2,7 @@
 
 **ID:** `implement-codec-package`
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 

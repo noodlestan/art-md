@@ -2,7 +2,7 @@
 
 **ID:** `implement-primitives-contracts`
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
