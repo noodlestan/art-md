@@ -2,7 +2,7 @@
 
 **ID:** `art-codec`
 
-**Status:** `WORKING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/roadmaps/templates/milestone.tart`
 
@@ -209,13 +209,13 @@ Execution occurs from `$WORKSPACE/`; package work is performed in the Art MD che
 
 This section describes the ordered phases used to organise downstream work, identifying blocking dependencies across resources of different owners.
 
-| Index | Name                               | Status    |
-| ----- | ---------------------------------- | --------- |
-| #1    | Spec                               | `WORKING` |
-| #2    | Primitives Contracts               | `READY`   |
-| #3    | Parser and Serializer Entry Points | `READY`   |
-| #4    | Codec Package                      | `READY`   |
-| #5    | Knowledge                          | `READY`   |
+| Index | Name                               | Status |
+| ----- | ---------------------------------- | ------ |
+| #1    | Spec                               | `DONE` |
+| #2    | Primitives Contracts               | `DONE` |
+| #3    | Parser and Serializer Entry Points | `DONE` |
+| #4    | Codec Package                      | `DONE` |
+| #5    | Knowledge                          | `DONE` |
 
 ### Phase: 1 — Spec
 
@@ -223,7 +223,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Write the implementation spec capturing the design: contracts in primitives, codec package, operation contexts, overloaded entry points, and dependency direction. Lock down details in `milestone__design.md`.
 
-**Status:** `WORKING`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -235,7 +235,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Add `source/`, `codec/`, `parser/context/` (`ParseContext`), and `serializer/context/` (`SerializeContext`) to primitives.
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -247,7 +247,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** `parse` accepts raw markdown or `ParseContext`; `serialize` accepts an `ArtDocument` or `SerializeContext`.
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -257,7 +257,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Scaffold the package and implement `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec()`, and the overloaded `parse`/`serialize`. Rename `cli/pipeline-tests` to `cli/codec-test` and make the test scripts use the `codec` packages as opposed to parser and config directly.
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -271,7 +271,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Update `_records/project.art`, README, root `_guide`, `architecture/components.md`, `architecture/overview.md`, `architecture/adr/codec.md`, and the primitives architecture; ensure `architecture/codec.md` matches the implementation.
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -284,17 +284,17 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
-| Phase | Resource / Record                                                                                                             | Status    |
-| ----- | ----------------------------------------------------------------------------------------------------------------------------- | --------- |
-| 1     | Plan: Create Codec Spec `$PROJECT/_backlog/3-now/plan-create-codec-spec/plan.md`                                              | `WORKING` |
-| -     |                                                                                                                               |           |
-| 2     | Plan: Implement Primitives Contracts `$PROJECT/_backlog/4-next/plan-implement-primitives-contracts/plan.md`                   | `READY`   |
-| -     |                                                                                                                               |           |
-| 3     | Plan: Update Parser and Serializer Entry Points `$PROJECT/_backlog/4-next/plan-update-parser-serializer-entry-points/plan.md` | `READY`   |
-| -     |                                                                                                                               |           |
-| 4     | Plan: Implement Codec Package `$PROJECT/_backlog/4-next/plan-implement-codec-package/plan.md`                                 | `READY`   |
-| -     |                                                                                                                               |           |
-| 5     | Plan: Update Codec Knowledge `$PROJECT/_backlog/4-next/plan-update-codec-knowledge/plan.md`                                   | `READY`   |
+| Phase | Resource / Record                                                                                                            | Status |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 1     | Plan: Create Codec Spec `$PROJECT/_backlog/1-done/plan-create-codec-spec/plan.md`                                            | `DONE` |
+| -     |                                                                                                                              |        |
+| 2     | Plan: Implement Primitives Contracts `$PROJECT/_backlog/3-now/plan-implement-primitives-contracts/plan.md`                   | `DONE` |
+| -     |                                                                                                                              |        |
+| 3     | Plan: Update Parser and Serializer Entry Points `$PROJECT/_backlog/3-now/plan-update-parser-serializer-entry-points/plan.md` | `DONE` |
+| -     |                                                                                                                              |        |
+| 4     | Plan: Implement Codec Package `$PROJECT/_backlog/3-now/plan-implement-codec-package/plan.md`                                 | `DONE` |
+| -     |                                                                                                                              |        |
+| 5     | Plan: Update Codec Knowledge `$PROJECT/_backlog/3-now/plan-update-codec-knowledge/plan.md`                                   | `DONE` |
 
 ---
 
