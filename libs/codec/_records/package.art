@@ -1,0 +1,47 @@
+# Module
+
+## Package: Codec
+
+**Purpose:** Configurable Art MD codec: parse and serialize Art MD.
+
+**Description:** Owns the `createArtCodec(config)` factory.
+
+**Owner:** Project: Art MD
+
+**Author:** Noodlestan Collective
+
+**Path:** `libs/codec/`
+
+**Canonical Name:** `@art-md/codec`
+
+**Published:** `true`
+
+**Private:** `false`
+
+**Deployment:** NPM Package Deployment: Codec
+
+**Files:**
+
+- `dist`
+- `LICENSE-MIT`
+- `README.md`
+
+**Language:** Typescript
+
+**Engines:**
+
+- Node: `>= 22`
+
+**PackageManager:** `npm@10.2.3`
+
+**PackageFile:** `package.json`
+
+**Dependencies:**
+
+- Runtime:
+  - `@art-md/primitives`
+  - `@art-md/constructs`
+  - `@art-md/parser`
+  - `@art-md/serializer`
+
+**License:** License: Noodlestan 2026 MIT
