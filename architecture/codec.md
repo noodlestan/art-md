@@ -1,10 +1,6 @@
 # Codec and Source Contracts
 
-**Status:** `LOCKED`
-
-**Source:** Design: Art Codec and Source Contracts (`_roadmap/3-now/milestone-art-codec/milestone__design.md`)
-
-**Purpose:** A living guide for how the codec and source contracts work together. It is anchored on the symbols and contracts declared in `@art-md/primitives` and the `@art-md/codec` package, and explains how a parse, a serialise, and a document-source read/write flow through them. It deliberately does not restate every signature — the authoritative, full contract definitions live in the design attachment (`milestone__design.md`).
+**Purpose:** Explain how the codec and source contracts work together. It is anchored on the symbols and contracts declared in `@art-md/primitives` and the `@art-md/codec` package, and explains how a parse, a serialise, and a document-source read/write flow through them.
 
 ## Layout
 
@@ -12,29 +8,22 @@ The contracts live in `@art-md/primitives` under `libs/primitives/src/`:
 
 ```
 libs/primitives/src/
-├── constructs/
-├── document/
 ├── codec/
 │   └── types.ts              ← ArtCodec contract
 ├── source/
 │   ├── types.ts              ← ArtContentSource, ArtDocumentSource
-│   ├── createArtDocumentSource.ts
-│   └── index.ts
+│   └── createArtDocumentSource.ts
 ├── parser/
 │   ├── types.ts              ← ParseResult
-│   ├── context/
-│   │   ├── types.ts          ← ParseContext, ParserContextData, ParserVisitContext (carries parseContext)
-│   │   ├── createParseContext.ts
-│   │   ├── createParserVisitContext.ts   (existing, retained)
-│   │   └── private/
-│   └── ...
-├── serializer/
-│   ├── types.ts              ← SerializeResult
-│   ├── context/
-│   │   ├── types.ts          ← SerializeContext, SerializerContextData
-│   │   └── createSerializeContext.ts
-│   └── ...
-└── index.ts
+│   └── context/
+│       ├── types.ts          ← ParseContext, ParserContextData, ParserVisitContext (carries parseContext)
+│       ├── createParseContext.ts
+│       └── createParserVisitContext.ts   (existing, retained)
+└── serializer/
+    ├── types.ts              ← SerializeResult
+    └── context/
+        ├── types.ts          ← SerializeContext, SerializerContextData
+        └── createSerializeContext.ts
 ```
 
 The `@art-md/codec` package owns the configured codec implementation and `createArtCodec()`; it stays small so alternative/configured codecs can exist independently.
@@ -63,7 +52,7 @@ parse(markdown, config) | parse(context, markdown, config) → ParseResult
 
 ## How a Serialise Flows
 
-The serializer entry point is `serialize()` in `libs/serializer/src/serializer/serialize.ts` (renamed from `serializer.ts`). It accepts either an `ArtDocument` or a `SerializeContext`, each with a `SerializerConfig`, and returns a `SerializeResult`:
+The serializer entry point is `serialize()` in `libs/serializer/src/serializer/serialize.ts`. It accepts either an `ArtDocument` or a `SerializeContext`, each with a `SerializerConfig`, and returns a `SerializeResult`:
 
 ```ts
 serialize(document, config) | serialize(context, document, config) → SerializeResult

@@ -1,4 +1,4 @@
-# @art-mdc
+# @art-md/codec
 
 > Configurable Art MD codec: parse and serialize Art MD
 
