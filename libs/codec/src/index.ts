@@ -1,3 +1,3 @@
-// WIP // PLACHOLDER
+export { createArtCodec } from './createArtCodec';
 
-export const placeholder = undefined;
+export type { ArtCodecConfig, PartialArtCodecConfig } from './types';

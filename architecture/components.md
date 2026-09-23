@@ -77,11 +77,11 @@ Separate entry points:
 
 ### Codec (`@art-md/codec`)
 
-**Status:** PLANNED
+**Status:** IMPLEMENTED
 
 Document-level parsing and serialisation only. No source I/O, no record knowledge.
 
-Primary types: `Codec`, `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec`. Responsibility: parse and serialise `ArtDocument` using configured constructs.
+Primary types: `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec()`. Responsibility: parse and serialise `ArtDocument` using configured constructs.
 
 ### Source (`@art-md/source`)
 

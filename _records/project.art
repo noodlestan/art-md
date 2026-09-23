@@ -20,6 +20,7 @@
 - Package: Serializer
 - Package: Constructs
 - Package: Primitives
+- Package: Codec
 - Package: Spec
 - Package: Pipeline Tests
 - Package: Bin
