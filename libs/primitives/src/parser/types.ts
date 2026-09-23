@@ -9,6 +9,10 @@ import type {
 	TableContent,
 } from 'mdast';
 
+import type { ArtDocument } from '../document';
+
+import type { ParseContext } from './context';
+
 type ChildNode =
 	| RootContent
 	| BlockContent
@@ -35,3 +39,8 @@ export type Position = {
 	start: Point;
 	end: Point;
 };
+
+export interface ParseResult {
+	document: ArtDocument;
+	context: ParseContext;
+}

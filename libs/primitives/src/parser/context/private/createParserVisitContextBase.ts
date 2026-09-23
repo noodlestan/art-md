@@ -1,15 +1,18 @@
 import type { ConstructBase, ContainerConstructBase } from '../../../constructs';
-import type { OnBeforeConstruct, ParserSource, ParserVisitContext } from '../types';
+import { createParseContext } from '../createParseContext';
+import type { OnBeforeConstruct, ParseContext, ParserSource, ParserVisitContext } from '../types';
 
 export function createParserVisitContextBase(
 	source: ParserSource,
 	construct: ContainerConstructBase,
 	parentContext: ParserVisitContext | undefined,
 	onBeforeConstruct?: OnBeforeConstruct,
+	parseContext: ParseContext = createParseContext({ uri: '' }),
 ): ParserVisitContext {
 	const context: ParserVisitContext = {
 		construct,
 		source,
+		parseContext,
 		captureChildConstruct(child: ConstructBase) {
 			construct.children.push(child);
 		},
@@ -17,7 +20,13 @@ export function createParserVisitContextBase(
 			return onBeforeConstruct ? onBeforeConstruct(construct, context) : context;
 		},
 		childContext(construct: ContainerConstructBase, onBeforeConstruct?: OnBeforeConstruct) {
-			return createParserVisitContextBase(source, construct, context, onBeforeConstruct);
+			return createParserVisitContextBase(
+				source,
+				construct,
+				context,
+				onBeforeConstruct,
+				parseContext,
+			);
 		},
 		parent() {
 			return parentContext;

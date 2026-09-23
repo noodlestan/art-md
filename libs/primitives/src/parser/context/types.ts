@@ -15,6 +15,7 @@ export type ParserSource = {
 export type ParserVisitContext = {
 	readonly construct: ConstructBase;
 	readonly source: ParserSource;
+	readonly parseContext: ParseContext;
 	captureChildConstruct(child: ConstructBase): void;
 	onBeforeConstruct(construct: ConstructBase): ParserVisitContext;
 	childContext(
