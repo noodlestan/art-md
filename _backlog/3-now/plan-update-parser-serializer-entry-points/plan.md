@@ -162,14 +162,16 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                                   | Status  |
 | ------------------------------------------------------------------------------------------ | ------- |
-| Iteration: Update Parser Entry Point `./instructions/update-parser-entry-point.md`         | `READY` |
+| Iteration: Update Parser Entry Point `./instructions/update-parser-entry-point.md`         | `DONE`  |
 | Iteration: Update Serializer Entry Point `./instructions/update-serializer-entry-point.md` | `READY` |
 
 ### Iteration: Update Parser Entry Point
 
 **Id:** `update-parser-entry-point`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/update-parser-entry-point__report.md`
 
 **Purpose:** Let the parser entry point accept a `ParseContext` and return a `ParseResult`.
 
@@ -192,9 +194,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                          | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| --------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `update-parser-entry-point` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                          | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| --------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `update-parser-entry-point` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `dfed74c` | `COMMITTED` |
 
 ##### Commit: `update-parser-entry-point`
 
@@ -248,7 +250,7 @@ build(serializer): add context overload to serialize entry point
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next READY instruction (`update-parser-entry-point`).
+Delegate the next READY instruction (`update-serializer-entry-point`).
 
 ### Blockers
 
@@ -315,7 +317,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 ### Evidence
 
-- None yet.
+- Parser `parse` entry point overloaded to accept `ParseContext` and return `ParseResult`; `createDocumentParserContext` renamed to `createDocumentVisitContext`; parser config exported; pipeline test updated as sync change; repo `npm run ci` and pipeline tests pass (commit `dfed74c`).
 
 ### Findings
 
