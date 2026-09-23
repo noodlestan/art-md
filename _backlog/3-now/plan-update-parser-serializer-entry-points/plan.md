@@ -160,10 +160,10 @@ Execution occurs from `$WORKSPACE/`; the parser and serializer packages are upda
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                   | Status  |
-| ------------------------------------------------------------------------------------------ | ------- |
-| Iteration: Update Parser Entry Point `./instructions/update-parser-entry-point.md`         | `DONE`  |
-| Iteration: Update Serializer Entry Point `./instructions/update-serializer-entry-point.md` | `READY` |
+| Iteration / Instructions                                                                   | Status |
+| ------------------------------------------------------------------------------------------ | ------ |
+| Iteration: Update Parser Entry Point `./instructions/update-parser-entry-point.md`         | `DONE` |
+| Iteration: Update Serializer Entry Point `./instructions/update-serializer-entry-point.md` | `DONE` |
 
 ### Iteration: Update Parser Entry Point
 
@@ -210,7 +210,9 @@ build(parser): add context overload to parse entry point
 
 **Id:** `update-serializer-entry-point`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/update-serializer-entry-point__report.md`
 
 **Purpose:** Let the serializer entry point accept a `SerializeContext` and return a `SerializeResult`.
 
@@ -232,9 +234,9 @@ build(parser): add context overload to parse entry point
 
 #### Commits:
 
-| ID                              | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ------------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `update-serializer-entry-point` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                              | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `update-serializer-entry-point` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `f3c031a` | `COMMITTED` |
 
 ##### Commit: `update-serializer-entry-point`
 
@@ -250,7 +252,7 @@ build(serializer): add context overload to serialize entry point
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next READY instruction (`update-serializer-entry-point`).
+All iterations DONE. Plan `update-parser-serializer-entry-points` complete.
 
 ### Blockers
 
@@ -318,6 +320,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 ### Evidence
 
 - Parser `parse` entry point overloaded to accept `ParseContext` and return `ParseResult`; `createDocumentParserContext` renamed to `createDocumentVisitContext`; parser config exported; pipeline test updated as sync change; repo `npm run ci` and pipeline tests pass (commit `dfed74c`).
+- Serializer `serialize` entry point overloaded to accept `SerializeContext` and return `SerializeResult`; `serializer.ts` renamed to `serialize.ts`; serializer config exported; pipeline tests updated as sync change; repo `npm run ci` and pipeline tests pass (commit `f3c031a`).
 
 ### Findings
 
