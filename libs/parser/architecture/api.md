@@ -21,10 +21,11 @@ The parser core never names a specific construct type. It drives detection entir
 ## Entry Point
 
 ```ts
-function parse(markdown: string): ArtDocument;
+function parse(markdown: string, config: ParserConfig): ParseResult;
+function parse(context: ParseContext, markdown: string, config: ParserConfig): ParseResult;
 ```
 
-The public entry point is `parse` in `src/parse/parse.ts`. Its contract is **markdown only** — it takes a markdown source string and returns an `ArtDocument`. Configuration is currently fixed to the default parser config; config injection will be allowed later.
+The public entry point is `parse` in `src/parse/parse.ts`. It accepts either raw markdown or a `ParseContext`, each with a `ParserConfig`, and returns a `ParseResult` (document + context). Markdown and config are always mandatory; when a context is provided it is the first argument. The raw-markdown overload builds a default `ParseContext` internally.
 
 ## Constructs Overview
 

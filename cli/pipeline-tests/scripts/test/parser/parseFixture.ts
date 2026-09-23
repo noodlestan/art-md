@@ -1,6 +1,6 @@
 import * as fs from 'node:fs';
 
-import { parse } from '@art-md/parser';
+import { createDefaultConfig, parse } from '@art-md/parser';
 
 import type { ParseResult } from './types';
 
@@ -18,9 +18,9 @@ export function parseFixture(filePath: string): ParseResult {
 
 	const startTime = Date.now();
 	try {
-		const document = parse(content);
+		const result = parse(content, createDefaultConfig());
 		const durationMs = Date.now() - startTime;
-		return { success: true, document, durationMs };
+		return { success: true, document: result.document, durationMs };
 	} catch (error) {
 		const durationMs = Date.now() - startTime;
 		return {

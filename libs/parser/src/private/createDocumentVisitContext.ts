@@ -1,9 +1,13 @@
 import { createArtDocumentFromNode } from '@art-md/constructs';
-import { createParserVisitContext } from '@art-md/primitives';
+import { type ParseContext, createParserVisitContext } from '@art-md/primitives';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 
 import type { DocumentVisitContext } from './types';
-export function createDocumentParserContext(markdown: string): DocumentVisitContext {
+
+export function createDocumentVisitContext(
+	markdown: string,
+	parseContext: ParseContext,
+): DocumentVisitContext {
 	const tree = fromMarkdown(markdown);
 	const document = createArtDocumentFromNode(tree);
 
@@ -12,5 +16,5 @@ export function createDocumentParserContext(markdown: string): DocumentVisitCont
 		markdown,
 	};
 
-	return createParserVisitContext(document, source) as DocumentVisitContext;
+	return createParserVisitContext(document, source, parseContext) as DocumentVisitContext;
 }

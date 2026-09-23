@@ -1,3 +1,3 @@
-export { createDocumentParserContext } from './createDocumentParserContext';
+export { createDocumentVisitContext } from './createDocumentVisitContext';
 
 export type * from './types';
