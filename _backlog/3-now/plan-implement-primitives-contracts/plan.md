@@ -108,11 +108,11 @@ Execution occurs from `$WORKSPACE/`; the primitives package is updated in the Ar
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                         | Status  |
-| -------------------------------------------------------------------------------- | ------- |
-| Iteration: Add Operation Contexts `./instructions/add-operation-contexts.md`     | `DONE`  |
-| Iteration: Add Codec Contract and Results `./instructions/add-codec-contract.md` | `DONE`  |
-| Iteration: Add Source Contracts `./instructions/add-source-contracts.md`         | `READY` |
+| Iteration / Instructions                                                         | Status |
+| -------------------------------------------------------------------------------- | ------ |
+| Iteration: Add Operation Contexts `./instructions/add-operation-contexts.md`     | `DONE` |
+| Iteration: Add Codec Contract and Results `./instructions/add-codec-contract.md` | `DONE` |
+| Iteration: Add Source Contracts `./instructions/add-source-contracts.md`         | `DONE` |
 
 ### Iteration: Add Operation Contexts
 
@@ -198,7 +198,9 @@ build(codec): add codec contract and results to primitives
 
 **Id:** `add-source-contracts`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/add-source-contracts__report.md`
 
 **Purpose:** Provide the content and document source contracts and the document-source factory.
 
@@ -218,9 +220,9 @@ build(codec): add codec contract and results to primitives
 
 #### Commits:
 
-| ID                     | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ---------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `add-source-contracts` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                     | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ---------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `add-source-contracts` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `8b2b248` | `COMMITTED` |
 
 ##### Commit: `add-source-contracts`
 
@@ -236,7 +238,7 @@ build(codec): add source contracts to primitives
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next `READY` instruction (`add-source-contracts`).
+All iterations DONE. Plan `implement-primitives-contracts` complete.
 
 ### Blockers
 
@@ -306,6 +308,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 - `ParseContext`/`SerializeContext` operation contexts and factories added to `@art-md/primitives` and exported; unit tests added; repo `npm run ci` and pipeline tests pass (commit `84a1fcb`).
 - `ArtCodec` contract, `ParseResult`/`SerializeResult`, and `parseContext` threading added to `@art-md/primitives`; repo `npm run ci` and pipeline tests pass (commit `351bb36`).
+- `ArtContentSource`/`ArtDocumentSource` contracts and `createArtDocumentSource()` added to `@art-md/primitives`; repo `npm run ci` and pipeline tests pass (commit `8b2b248`).
 
 ### Findings
 
