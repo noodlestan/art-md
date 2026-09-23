@@ -142,10 +142,10 @@ Execution occurs from `$WORKSPACE/`; the knowledge resources are updated in the 
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan.
 
-| Iteration / Instructions                                                                       | Status  |
-| ---------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Update Codec Records and Guides `./instructions/update-codec-records-and-guides.md` | `DONE`  |
-| Iteration: Update Codec Architecture `./instructions/update-codec-architecture.md`             | `READY` |
+| Iteration / Instructions                                                                       | Status |
+| ---------------------------------------------------------------------------------------------- | ------ |
+| Iteration: Update Codec Records and Guides `./instructions/update-codec-records-and-guides.md` | `DONE` |
+| Iteration: Update Codec Architecture `./instructions/update-codec-architecture.md`             | `DONE` |
 
 ### Iteration: Update Codec Records and Guides
 
@@ -189,7 +189,9 @@ records(codec): update records and guides
 
 **Id:** `update-codec-architecture`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/update-codec-architecture__report.md`
 
 **Purpose:** Align the architecture documentation with the implemented codec and source contracts.
 
@@ -211,9 +213,9 @@ records(codec): update records and guides
 
 #### Commits:
 
-| ID                          | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| --------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `update-codec-architecture` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                          | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| --------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `update-codec-architecture` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `a55f646` | `COMMITTED` |
 
 ##### Commit: `update-codec-architecture`
 
@@ -229,7 +231,7 @@ arch(codec): update architecture knowledge
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next READY instruction (`update-codec-architecture`).
+All iterations DONE. Plan `update-codec-knowledge` complete.
 
 ### Blockers
 
@@ -285,6 +287,7 @@ npm run ci # lint, test and build
 ### Evidence
 
 - `@art-md/codec` registered in `_records/project.art`, `README.md`, and `_guide.md`; repo `npm run ci` passes (commit `68bbdd6`).
+- `architecture/components.md` and `overview.md` updated to reflect the implemented codec; `architecture/adr/codec.md` created; `architecture/codec.md` verified against the implementation (commit `a55f646`).
 
 ### Findings
 
