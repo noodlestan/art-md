@@ -1,5 +1,5 @@
 {
-  "name": "@art-md/codec-test-cli",
+  "name": "@art-md/codec-tests",
   "version": "0.0.1",
   "description": "Test scripts for the parser and serializer through the codec.",
   "author": "Noodlestan Collective",

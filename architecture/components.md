@@ -51,7 +51,7 @@ Transforms an `ArtDocument` back into markdown. Builds a registry from config fa
 
 Primary CLI entry point. Exposes parse, serialize, validate.
 
-### Codec Tests (`@art-md/codec-test-cli`)
+### Codec Tests (`@art-md/codec-tests`)
 
 Fixture-based test suite for the parser and serializer roundtrip through the codec. See [art-md-fixture-tests.md](art-md-fixture-tests.md) for fixture anatomy.
 

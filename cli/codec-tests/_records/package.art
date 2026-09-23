@@ -1,6 +1,6 @@
 # Module
 
-## Package: Codec Test CLI
+## Package: Codec Tests
 
 **Purpose:** Test scripts for the parser and serializer through the codec.
 
@@ -12,13 +12,13 @@
 
 **Path:** `cli/codec-tests/`
 
-**Canonical Name:** `@art-md/codec-test-cli`
+**Canonical Name:** `@art-md/codec-tests`
 
 **Published:** `true`
 
 **Private:** `false`
 
-**Deployment:** NPM Package Deployment: Codec Test CLI
+**Deployment:** NPM Package Deployment: Codec Tests
 
 **Files:**
 

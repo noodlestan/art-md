@@ -1,4 +1,4 @@
-# Codec Test CLI
+# Codec Tests
 
 > Test scripts for the parser and serializer through the codec.
 

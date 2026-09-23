@@ -6,15 +6,15 @@ Language specification and JavaScript libraries for extracting structured data i
 
 ## Packages
 
-| namespace | dir                   | package                     | description                                |
-| --------- | --------------------- | --------------------------- | ------------------------------------------ |
-| `@art-md` | `spec/`               | `@art-md/spec`              | Art Language specification                 |
-| `@art-md` | `libs/primitives/`    | `@art-md/primitives`        | Foundational types and utilities           |
-| `@art-md` | `libs/parser/`        | `@art-md/parser`            | Parses markdown/art to Art AST             |
-| `@art-md` | `libs/serializer/`    | `@art-md/serializer`        | Serializes Art AST back to markdown        |
-| `@art-md` | `libs/constructs/`    | `@art-md/constructs`        | Construct factories for Art parser records |
-| `@art-md` | `cli/pipeline-tests/` | `@art-md/pipeline-test-cli` | Test scripts for the parser and serializer |
-| `@art-md` | `cli/bin/`            | `@art-md/bin`               | CLI for parser/serialization. commands     |
+| namespace | dir                | package               | description                                |
+| --------- | ------------------ | --------------------- | ------------------------------------------ |
+| `@art-md` | `spec/`            | `@art-md/spec`        | Art Language specification                 |
+| `@art-md` | `libs/primitives/` | `@art-md/primitives`  | Foundational types and utilities           |
+| `@art-md` | `libs/parser/`     | `@art-md/parser`      | Parses markdown/art to Art AST             |
+| `@art-md` | `libs/serializer/` | `@art-md/serializer`  | Serializes Art AST back to markdown        |
+| `@art-md` | `libs/constructs/` | `@art-md/constructs`  | Construct factories for Art parser records |
+| `@art-md` | `cli/codec-tests`  | `@art-md/codec-tests` | Test scripts for the parser and serializer |
+| `@art-md` | `cli/bin/`         | `@art-md/bin`         | CLI for parser/serialization. commands     |
 
 ## Development
 

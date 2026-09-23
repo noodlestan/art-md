@@ -4,7 +4,7 @@
 
 ### Changed
 
-- **Renamed to `@art-md/codec-test-cli`:** exercises the parser and serializer through the codec.
+- **Renamed to `@art-md/codec-tests`:** exercises the parser and serializer through the codec.
 
 ### Added
 

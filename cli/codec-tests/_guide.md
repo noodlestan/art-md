@@ -1,6 +1,6 @@
-# Codec Test CLI
+# Codec Tests
 
-The `@art-md/codec-test-cli` package provides test scripts for the parser and serializer through the codec.
+The `@art-md/codec-tests` package provides test scripts for the parser and serializer through the codec.
 
 ## Recommended Reading
 

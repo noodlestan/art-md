@@ -1,8 +1,8 @@
 # Module
 
-## NPM Package Deployment: Codec Test CLI
+## NPM Package Deployment: Codec Tests
 
-**Owner:** Package: Codec Test CLI
+**Owner:** Package: Codec Tests
 
 **Status:** `DEPLOYED`
 
@@ -10,7 +10,7 @@
 
 **Deploy:** Deployment Command: NPM Package CLI
 
-**Canonical Name:** `@art-md/codec-test-cli`
+**Canonical Name:** `@art-md/codec-tests`
 
 **Registry:** `https://registry.npmjs.org`
 
