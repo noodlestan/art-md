@@ -45,6 +45,16 @@ Transforms an `ArtDocument` back into markdown. Builds a registry from config fa
 
 **Read more:** [Serializer Architecture](../libs/serializer/architecture/index.md)
 
+### Codec (`@art-md/codec`)
+
+**Status:** IMPLEMENTED
+
+Document-level parsing and serialisation only. No source I/O, no record knowledge.
+
+Primary types: ArtCodecConfig, PartialArtCodecConfig, createArtCodec(). Responsibility: parse and serialise ArtDocument using configured constructs.
+
+**Read more:** [Serializer Architecture](./codec.md)
+
 ## CLI Surface
 
 ### Bin (`@art-md/bin`)
@@ -74,22 +84,6 @@ Separate entry points:
 - `art-md-validator` (later, also configured via codec)
 
 - `art-md` consolidated entry point with `parse` and `serialize` commands (later validate) and a `--write` to output to file.
-
-### Codec (`@art-md/codec`)
-
-**Status:** IMPLEMENTED
-
-Document-level parsing and serialisation only. No source I/O, no record knowledge.
-
-Primary types: `ArtCodecConfig`, `PartialArtCodecConfig`, `createArtCodec()`. Responsibility: parse and serialise `ArtDocument` using configured constructs.
-
-### Source (`@art-md/source`)
-
-**Status:** PLANNED
-
-Acquire/cache raw content, then parse/cache an `ArtDocument`.
-
-Primary types: `ContentSource`, `ArtDocumentSource`. Responsibility: source identity plus lazy/idempotent acquisition and caching of raw content and parsed documents.
 
 ### Validator (`@art-md/validator`)
 

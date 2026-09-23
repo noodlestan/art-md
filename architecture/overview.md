@@ -63,7 +63,7 @@ Like the parser, the serializer's configuration (`SerializerConfig`) holds only 
 
 ### The Codec Layer: `@art-md/codec`
 
-**Status:** Planned
+**Status:** Implemented
 
 The codec layer provides the streamlined document-level API. The `ArtCodec` contract is declared in `@art-md/primitives` under `codec/`; the `@art-md/codec` package owns the configured implementation and `createArtCodec()`.
 
