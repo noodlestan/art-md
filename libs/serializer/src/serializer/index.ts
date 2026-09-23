@@ -1,1 +1,1 @@
-export { serialize } from './serializer';
+export { serialize } from './serialize';

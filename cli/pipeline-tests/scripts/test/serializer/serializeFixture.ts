@@ -2,7 +2,7 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import type { ArtDocument } from '@art-md/primitives';
-import { serialize } from '@art-md/serializer';
+import { createDefaultSerializerConfig, serialize } from '@art-md/serializer';
 
 import type { SerializeResult } from './types';
 
@@ -22,7 +22,8 @@ export function serializeFixture(snapshotPath: string): SerializeResult {
 	}
 
 	try {
-		const parsed = serialize(artDocument);
+		const result = serialize(artDocument, createDefaultSerializerConfig());
+		const parsed = result.content;
 		const durationMs = Date.now() - start;
 
 		if (!parsed || parsed.length === 0) {

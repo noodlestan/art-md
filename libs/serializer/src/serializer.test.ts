@@ -1,7 +1,8 @@
 import type { FieldBlock, NaturalBlock, SectionBlock } from '@art-md/constructs';
-import type { ArtDocument } from '@art-md/primitives';
+import { type ArtDocument, createSerializeContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
+import { createDefaultSerializerConfig } from './config/createDefaultSerializerConfig';
 import { serialize } from './serializer';
 
 describe('serialize', () => {
@@ -10,7 +11,9 @@ describe('serialize', () => {
 			construct: 'Document',
 			children: [{ construct: 'UnknownConstruct' }],
 		} as unknown as ArtDocument;
-		expect(() => serialize(doc)).toThrow('Unknown construct: UnknownConstruct');
+		expect(() => serialize(doc, createDefaultSerializerConfig())).toThrow(
+			'Unknown construct: UnknownConstruct',
+		);
 	});
 
 	it('serializes a Document with nested SectionBlocks', () => {
@@ -25,8 +28,8 @@ describe('serialize', () => {
 				} as SectionBlock,
 			],
 		};
-		const result = serialize(doc);
-		expect(result).toContain('# Title');
+		const result = serialize(doc, createDefaultSerializerConfig());
+		expect(result.content).toContain('# Title');
 	});
 
 	it('serializes a Document with FieldBlocks', () => {
@@ -54,9 +57,9 @@ describe('serialize', () => {
 				} as SectionBlock,
 			],
 		};
-		const result = serialize(doc);
-		expect(result).toContain('**Purpose:**');
-		expect(result).toContain('Test purpose');
+		const result = serialize(doc, createDefaultSerializerConfig());
+		expect(result.content).toContain('**Purpose:**');
+		expect(result.content).toContain('Test purpose');
 	});
 
 	it('serializes a Document with NaturalBlocks', () => {
@@ -71,9 +74,10 @@ describe('serialize', () => {
 				} as NaturalBlock,
 			],
 		};
-		const result = serialize(doc);
-		expect(result).toContain('Hello world');
+		const result = serialize(doc, createDefaultSerializerConfig());
+		expect(result.content).toContain('Hello world');
 	});
+
 	it('serializes nested SectionBlocks without introducing extra blank lines', () => {
 		const doc: ArtDocument = {
 			construct: 'Document',
@@ -98,8 +102,20 @@ describe('serialize', () => {
 				} as SectionBlock,
 			],
 		};
-		const result = serialize(doc);
+		const result = serialize(doc, createDefaultSerializerConfig());
 
-		expect(result).toBe('# Hello World\n\n## Details\n');
+		expect(result.content).toBe('# Hello World\n\n## Details\n');
+	});
+
+	it('GIVEN a serialize context, returns it on the result', () => {
+		const doc: ArtDocument = {
+			construct: 'Document',
+			children: [],
+		};
+		const context = createSerializeContext({ uri: 'file:///a.md' });
+
+		const result = serialize(context, doc, createDefaultSerializerConfig());
+
+		expect(result.context).toBe(context);
 	});
 });

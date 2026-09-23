@@ -17,10 +17,15 @@ The serializer never names a concrete construct. It dispatches entirely through 
 ## Entry Point
 
 ```ts
-function serialize(document: ArtDocument): string;
+function serialize(document: ArtDocument, config: SerializerConfig): SerializeResult;
+function serialize(
+  context: SerializeContext,
+  document: ArtDocument,
+  config: SerializerConfig,
+): SerializeResult;
 ```
 
-The public entry point. Takes an `ArtDocument` and returns a markdown string. It builds the default config, converts the document to an mdast `Root` via `artAstToMdast`, then renders it with `toMarkdown` (using `-` bullets and `_` emphasis).
+The public entry point. It accepts either an `ArtDocument` or a `SerializeContext` — each with a `SerializerConfig` — and returns a `SerializeResult` (content + context). The document and config are always mandatory; the context, when provided, is the first argument. The direct-document overload builds a default `SerializeContext` internally. The serializer converts the document to an mdast `Root` via `artAstToMdast`, then renders it with `toMarkdown` (using `-` bullets and `_` emphasis).
 
 ## artAstToMdast
 
