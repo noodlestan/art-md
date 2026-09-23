@@ -13,6 +13,7 @@ Language specification and JavaScript libraries for extracting structured data i
 | `@art-md` | `libs/parser/`     | `@art-md/parser`      | Parses markdown/art to Art AST             |
 | `@art-md` | `libs/serializer/` | `@art-md/serializer`  | Serializes Art AST back to markdown        |
 | `@art-md` | `libs/constructs/` | `@art-md/constructs`  | Construct factories for Art parser records |
+| `@art-md` | `libs/codec/`      | `@art-md/codec`       | Configured codec implementation            |
 | `@art-md` | `cli/codec-tests`  | `@art-md/codec-tests` | Test scripts for the parser and serializer |
 | `@art-md` | `cli/bin/`         | `@art-md/bin`         | CLI for parser/serialization. commands     |
 

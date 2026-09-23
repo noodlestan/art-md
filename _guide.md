@@ -34,6 +34,7 @@ spec/               — the artificial language specification
 | Art MD (root) | `_guide.md`                 | `_backlog/` |
 | Bin           | `cli/bin/_guide.md`         | `NONE`      |
 | Codec Tests   | `cli/codec-tests/_guide.md` | `NONE`      |
+| Codec         | `libs/codec/_guide.md`      | `NONE`      |
 | Constructs    | `libs/constructs/_guide.md` | `NONE`      |
 | Parser        | `libs/parser/_guide.md`     | `NONE`      |
 | Primitives    | `libs/primitives/_guide.md` | `NONE`      |
