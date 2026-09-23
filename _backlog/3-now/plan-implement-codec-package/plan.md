@@ -140,7 +140,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | Iteration / Instructions                                                                                 | Status  |
 | -------------------------------------------------------------------------------------------------------- | ------- |
 | Iteration: Scaffold Codec Package `./instructions/scaffold-codec-package.md`                             | `DONE`  |
-| Iteration: Implement Codec `./instructions/implement-codec.md`                                           | `READY` |
+| Iteration: Implement Codec `./instructions/implement-codec.md`                                           | `DONE`  |
 | Iteration: Rename Pipeline Tests to Codec Tests `./instructions/rename-pipeline-tests-to-codec-tests.md` | `READY` |
 
 ### Iteration: Scaffold Codec Package
@@ -186,7 +186,9 @@ build(codec): scaffold codec package
 
 **Id:** `implement-codec`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/implement-codec__report.md`
 
 **Purpose:** Implement the codec types and `createArtCodec()` against the `ArtCodec` contract.
 
@@ -207,9 +209,9 @@ build(codec): scaffold codec package
 
 #### Commits:
 
-| ID                | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------- | -------------------------------- | -------- | ----- | ---------- |
-| `implement-codec` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ----------------- | -------------------------------- | -------- | --------- | ----------- |
+| `implement-codec` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `5e18e87` | `COMMITTED` |
 
 ##### Commit: `implement-codec`
 
@@ -262,7 +264,7 @@ build(codec): rename pipeline-tests to codec-tests
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next READY instruction (`implement-codec`).
+Delegate the next READY instruction (`rename-pipeline-tests-to-codec-tests`).
 
 ### Blockers
 
@@ -331,6 +333,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 ### Evidence
 
 - `@art-md/codec` package scaffolded under `libs/codec/` (manifest, configs, docs, records, placeholder `src/index.ts`); workspace registered in `package-lock.json`; repo `npm run ci` passes (commit `3856279`).
+- `ArtCodecConfig`/`PartialArtCodecConfig` and `createArtCodec()` implemented in `@art-md/codec` with unit tests; codec registered in `architecture/components.md` and `_records/project.art`; repo `npm run ci` passes (commit `5e18e87`).
 
 ### Findings
 
