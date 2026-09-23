@@ -139,7 +139,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                                                 | Status  |
 | -------------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Scaffold Codec Package `./instructions/scaffold-codec-package.md`                             | `READY` |
+| Iteration: Scaffold Codec Package `./instructions/scaffold-codec-package.md`                             | `DONE`  |
 | Iteration: Implement Codec `./instructions/implement-codec.md`                                           | `READY` |
 | Iteration: Rename Pipeline Tests to Codec Tests `./instructions/rename-pipeline-tests-to-codec-tests.md` | `READY` |
 
@@ -147,7 +147,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Id:** `scaffold-codec-package`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/scaffold-codec-package__report.md`
 
 **Purpose:** Scaffold the `@art-md/codec` package following the sibling libs pattern.
 
@@ -168,9 +170,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                       | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ------------------------ | -------------------------------- | -------- | ----- | ---------- |
-| `scaffold-codec-package` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                       | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------------ | -------------------------------- | -------- | --------- | ----------- |
+| `scaffold-codec-package` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `3856279` | `COMMITTED` |
 
 ##### Commit: `scaffold-codec-package`
 
@@ -260,7 +262,7 @@ build(codec): rename pipeline-tests to codec-tests
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate the next READY instruction (`scaffold-codec-package`).
+Delegate the next READY instruction (`implement-codec`).
 
 ### Blockers
 
@@ -328,7 +330,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 ### Evidence
 
-- None yet.
+- `@art-md/codec` package scaffolded under `libs/codec/` (manifest, configs, docs, records, placeholder `src/index.ts`); workspace registered in `package-lock.json`; repo `npm run ci` passes (commit `3856279`).
 
 ### Findings
 
