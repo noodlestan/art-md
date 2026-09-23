@@ -1,10 +1,11 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import { createDefaultSerializerConfig, serialize } from '@art-md/serializer';
-
 import { diffLines } from '../shared/diffLines';
+import { makeCodec } from '../shared/makeCodec';
 import { readFileUtf8 } from '../shared/readFileUtf8';
+
+const codec = makeCodec();
 
 export function diffFixtureResults(
 	inputPath: string,
@@ -14,7 +15,7 @@ export function diffFixtureResults(
 	const baseName = path.basename(inputPath);
 
 	const artDocument = JSON.parse(fs.readFileSync(snapshotPath, 'utf-8'));
-	const result = serialize(artDocument, createDefaultSerializerConfig());
+	const result = codec.serialize(artDocument);
 	const parsed = result.content;
 	const source = readFileUtf8(inputPath);
 	const diffs = diffLines(source, parsed);

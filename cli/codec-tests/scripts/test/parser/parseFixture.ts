@@ -1,8 +1,10 @@
 import * as fs from 'node:fs';
 
-import { createDefaultConfig, parse } from '@art-md/parser';
+import { makeCodec } from '../shared/makeCodec';
 
 import type { ParseResult } from './types';
+
+const codec = makeCodec();
 
 export function parseFixture(filePath: string): ParseResult {
 	let content: string;
@@ -18,7 +20,7 @@ export function parseFixture(filePath: string): ParseResult {
 
 	const startTime = Date.now();
 	try {
-		const result = parse(content, createDefaultConfig());
+		const result = codec.parse(content);
 		const durationMs = Date.now() - startTime;
 		return { success: true, document: result.document, durationMs };
 	} catch (error) {

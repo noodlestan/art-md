@@ -1,6 +1,6 @@
-# Pipeline Test CLI
+# Codec Test CLI
 
-The `@art-md/pipeline-test-cli` package provides test scripts for the parser and serializer pipeline.
+The `@art-md/codec-test-cli` package provides test scripts for the parser and serializer through the codec.
 
 ## Recommended Reading
 

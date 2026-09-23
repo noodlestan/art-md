@@ -1,0 +1,41 @@
+# Module
+
+## Package: Codec Test CLI
+
+**Purpose:** Test scripts for the parser and serializer through the codec.
+
+**Description:** Provides test scripts to exercise the parser and serializer through the codec against a shared fixture suite.
+
+**Owner:** Project: Art MD
+
+**Author:** Noodlestan Collective
+
+**Path:** `cli/codec-tests/`
+
+**Canonical Name:** `@art-md/codec-test-cli`
+
+**Published:** `true`
+
+**Private:** `false`
+
+**Deployment:** NPM Package Deployment: Codec Test CLI
+
+**Files:**
+
+- `dist`
+- `LICENSE-MIT`
+- `README.md`
+
+**Language:** Typescript
+
+**Engines:**
+
+- Node: `>= 22`
+
+**PackageManager:** `npm@10.2.3`
+
+**PackageFile:** `package.json`
+
+**Dependencies:**
+
+**License:** License: Noodlestan 2026 MIT

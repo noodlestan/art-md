@@ -22,7 +22,7 @@
 - Package: Primitives
 - Package: Codec
 - Package: Spec
-- Package: Pipeline Tests
+- Package: Codec Tests
 - Package: Bin
 
 **Private:** `false`

@@ -29,16 +29,16 @@ spec/               — the artificial language specification
 
 ## Projects
 
-| Project           | Guide                          | Backlog     |
-| ----------------- | ------------------------------ | ----------- |
-| Art MD (root)     | `_guide.md`                    | `_backlog/` |
-| Bin               | `cli/bin/_guide.md`            | `NONE`      |
-| Pipeline Test CLI | `cli/pipeline-tests/_guide.md` | `NONE`      |
-| Constructs        | `libs/constructs/_guide.md`    | `NONE`      |
-| Parser            | `libs/parser/_guide.md`        | `NONE`      |
-| Primitives        | `libs/primitives/_guide.md`    | `NONE`      |
-| Serializer        | `libs/serializer/_guide.md`    | `NONE`      |
-| Spec              | `spec/_guide.md`               | `NONE`      |
+| Project        | Guide                       | Backlog     |
+| -------------- | --------------------------- | ----------- |
+| Art MD (root)  | `_guide.md`                 | `_backlog/` |
+| Bin            | `cli/bin/_guide.md`         | `NONE`      |
+| Codec Test CLI | `cli/codec-tests/_guide.md` | `NONE`      |
+| Constructs     | `libs/constructs/_guide.md` | `NONE`      |
+| Parser         | `libs/parser/_guide.md`     | `NONE`      |
+| Primitives     | `libs/primitives/_guide.md` | `NONE`      |
+| Serializer     | `libs/serializer/_guide.md` | `NONE`      |
+| Spec           | `spec/_guide.md`            | `NONE`      |
 
 ## Records Management
 
@@ -113,7 +113,7 @@ npm run ci # lint, test and build
 
 **Instructions:**
 
-When making changes to parser, serializer, or constructs packages, execute from `cli/pipeline-tests/`:
+When making changes to parser, serializer, or constructs packages, execute from `cli/codec-tests/`:
 
 ```bash
 npm run test # runs test-parser and test-serializer against stable fixtures

@@ -2,9 +2,12 @@ import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import type { ArtDocument } from '@art-md/primitives';
-import { createDefaultSerializerConfig, serialize } from '@art-md/serializer';
+
+import { makeCodec } from '../shared/makeCodec';
 
 import type { SerializeResult } from './types';
+
+const codec = makeCodec();
 
 export function serializeFixture(snapshotPath: string): SerializeResult {
 	const baseName = path.basename(snapshotPath);
@@ -22,7 +25,7 @@ export function serializeFixture(snapshotPath: string): SerializeResult {
 	}
 
 	try {
-		const result = serialize(artDocument, createDefaultSerializerConfig());
+		const result = codec.serialize(artDocument);
 		const parsed = result.content;
 		const durationMs = Date.now() - start;
 
