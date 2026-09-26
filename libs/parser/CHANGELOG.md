@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 0.0.2
+
+### Added
+
+- **Config injection:** `createDefaultParserConfig()` and the `ParserConfig` type are now exported from the package entry point, so callers can supply their own construct list and default construct.
+- **Context-aware overload:** a new `parse(context, markdown, config)` overload accepts a leading `ParseContext`, which is threaded into the document visit and returned on the result.
+
+### Changed
+
+- **BREAKING — entry point signature:** `parse(markdown)` becomes `parse(markdown, config)`. The `ParserConfig` argument is mandatory, and the context-free overload builds a default `ParseContext` internally.
+- **BREAKING — return type:** `parse()` now returns a `ParseResult` (`{ document, context }`) instead of a bare `ArtDocument`. Read `result.document` to obtain the document.
+
+### Tested
+
+- Unit coverage for both `parse()` overloads, covering config-driven construction, parse context propagation, and the defaulted context.
+
+### Documented
+
+- `architecture/api.md` updated with the new entry point signatures and the `ParseResult` return contract.
+
 ## 0.0.1
 
 ### Added
