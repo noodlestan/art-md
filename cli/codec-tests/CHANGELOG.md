@@ -2,10 +2,6 @@
 
 ## 0.0.1
 
-### Changed
-
-- **Renamed to `@art-md/codec-tests`:** exercises the parser and serializer through the codec.
-
 ### Added
 
 - **Codec parser test:** `test-parser` parses every fixture's markdown through the codec and diffs the resulting `ArtDocument` against its snapshot, with `--write` and `--debug` output.
