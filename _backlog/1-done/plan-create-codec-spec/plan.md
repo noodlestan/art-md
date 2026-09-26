@@ -269,7 +269,7 @@ plan(codec): Refine codec implementation plans.
 
 This section states the immediate action needed to advance the Plan.
 
-This plan is complete. All iterations are `DONE`; the 4 downstream plans are `READY` in `_backlog/4-next/`.
+This plan is complete. All iterations are `DONE`; the 4 downstream plans are `READY` in `_backlog/1-done/`.
 
 ### Blockers
 

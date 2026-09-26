@@ -46,7 +46,7 @@ This iteration produces 1 commit(s): `update-package-readmes`. Commit them in th
 
 ## Mandatory Reading
 
-- Plan: `$PROJECT/_backlog/4-next/plan-use-website-url-in-docs/plan.md` — read `## Scope` and the iteration `update-package-readmes` under `## Items:`.
+- Plan: `$PROJECT/_backlog/1-done/plan-use-website-url-in-docs/plan.md` — read `## Scope` and the iteration `update-package-readmes` under `## Items:`.
 - Guide: `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 - Commit conventions: `$WORKSPACE/knowledge/conventions/writing-commit-message.art` — Defines commit message conventions. Relevant for Writing Commit Message.
 

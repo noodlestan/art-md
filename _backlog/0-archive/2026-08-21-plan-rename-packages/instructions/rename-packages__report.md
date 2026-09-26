@@ -62,7 +62,7 @@ None.
 ### For the planner
 
 - The instruction listed 10 `package.json` files to rename, but `art-js/cli/language-server/` and `art-js/cli/tools/` have no `package.json` — only 8 exist. The record and README renames for these two were completed.
-- `repos/artificial/_backlog/3-now/plan-rename-packages/plan.md` (referenced in Mandatory Reading) does not exist at the stated path; it lives at `repos/artificial/_backlog/4-next/plan-rename-packages/plan.md`. The instruction was self-contained so this did not block execution.
+- `repos/artificial/_backlog/3-now/plan-rename-packages/plan.md` (referenced in Mandatory Reading) does not exist at the stated path; it lives at `repos/artificial/_backlog/1-done/plan-rename-packages/plan.md`. The instruction was self-contained so this did not block execution.
 
 ### For the technical writers
 
