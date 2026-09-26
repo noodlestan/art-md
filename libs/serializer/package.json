@@ -1,6 +1,6 @@
 {
   "name": "@art-md/serializer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Serializes Art AST back to markdown.",
   "author": "Noodlestan Collective",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "sideEffects": false,
   "main": "./src/index.ts",
   "files": [
-    "dist",
+    "src",
     "LICENSE-MIT",
     "README.md"
   ],
