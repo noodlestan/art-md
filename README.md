@@ -2,6 +2,8 @@
 
 > Express structured data in Markdown with an extensible language that enables human and machine authoring at scale and automated transformations.
 
+![](https://raw.githubusercontent.com/noodlestan/artificial/refs/heads/main/assets/art-md-banner-800x400.png)
+
 Language specification and JavaScript libraries for extracting structured data into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content.
 
 **Website:** https://art-md.noodlestan.org
