@@ -2,7 +2,7 @@
 
 **ID:** `scaffold-bin-package`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -123,16 +123,16 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                 | Status     |
-| ---------------------------------------------------------------------------------------- | ---------- |
-| Iteration: Declare Bin Package Contract `./instructions/declare-bin-package-contract.md` | `PLANNING` |
-| Iteration: Document Bin Package `./instructions/document-bin-package.md`                 | `PLANNING` |
+| Iteration / Instructions                                                                 | Status  |
+| ---------------------------------------------------------------------------------------- | ------- |
+| Iteration: Declare Bin Package Contract `./instructions/declare-bin-package-contract.md` | `READY` |
+| Iteration: Document Bin Package `./instructions/document-bin-package.md`                 | `READY` |
 
 ### Iteration: Declare Bin Package Contract
 
 **Id:** `declare-bin-package-contract`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Make the package installable, buildable, and lintable with the three CLI entry points declared in its manifest.
 
@@ -174,7 +174,7 @@ build(bin): declare package contract and entry point exports
 
 **Id:** `document-bin-package`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Align the package's own records and docs with its real role, so the next iteration starts from accurate package knowledge.
 
@@ -214,7 +214,7 @@ docs(bin): document package role, entry points, and operations
 
 This section states the immediate action needed to advance the Plan.
 
-Write instructions for Iteration: Declare Bin Package Contract, then delegate it.
+Delegate Iteration: Declare Bin Package Contract.
 
 ### Blockers
 
