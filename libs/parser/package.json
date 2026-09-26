@@ -1,6 +1,6 @@
 {
   "name": "@art-md/parser",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Parses context files and art modules into structured representations.",
   "author": "Noodlestan Collective",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "sideEffects": false,
   "main": "./src/index.ts",
   "files": [
-    "dist",
+    "src",
     "LICENSE-MIT",
     "README.md"
   ],
