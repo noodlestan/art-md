@@ -2,7 +2,7 @@
 
 **ID:** `consolidate-codec-bin`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -135,16 +135,16 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                               | Status     |
-| -------------------------------------------------------------------------------------- | ---------- |
-| Iteration: Apply CLI Conventions `./instructions/apply-cli-conventions.md`             | `PLANNING` |
-| Iteration: Identify Art Lib Extraction `./instructions/identify-art-lib-extraction.md` | `PLANNING` |
+| Iteration / Instructions                                                               | Status  |
+| -------------------------------------------------------------------------------------- | ------- |
+| Iteration: Apply CLI Conventions `./instructions/apply-cli-conventions.md`             | `READY` |
+| Iteration: Identify Art Lib Extraction `./instructions/identify-art-lib-extraction.md` | `READY` |
 
 ### Iteration: Apply CLI Conventions
 
 **Id:** `apply-cli-conventions`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Bring the implemented CLI in line with the TypeScript conventions and remove the duplication the implementation introduced, without changing behaviour.
 
@@ -183,7 +183,7 @@ refactor(bin): apply typescript conventions and collapse duplication
 
 **Id:** `identify-art-lib-extraction`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Produce the evidence-backed inventory that makes `@art-lib` a creatable follow-up instead of a guess.
 
@@ -224,7 +224,7 @@ docs(bin): record art-lib extraction inventory and follow-up
 
 This section states the immediate action needed to advance the Plan.
 
-Write instructions for Iteration: Apply CLI Conventions, then delegate it.
+Delegate Iteration: Apply CLI Conventions.
 
 ### Blockers
 
