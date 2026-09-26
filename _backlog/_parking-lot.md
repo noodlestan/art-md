@@ -4,7 +4,7 @@ WIP tracker, structured like the session parking lot: **ACTIONABLE** (in progres
 
 ## ACTIONABLE
 
-- None. All actionable items are captured by Plan: Use Website URL In Docs `$PROJECT/_backlog/4-next/plan-use-website-url-in-docs/plan.md`.
+- None.
 
 ## PENDING
 

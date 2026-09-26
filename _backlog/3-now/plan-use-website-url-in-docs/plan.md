@@ -2,7 +2,7 @@
 
 **ID:** `use-website-url-in-docs`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -142,17 +142,17 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 Iterations are grouped by topic. An iteration may carry several commits — one per change — when the changes are independent.
 
-| Iteration / Instructions                                                                   | Status     |
-| ------------------------------------------------------------------------------------------ | ---------- |
-| Iteration: Update Root Readme And Record `./instructions/update-root-readme-and-record.md` | `PLANNING` |
-| Iteration: Update Package Readmes `./instructions/update-package-readmes.md`               | `PLANNING` |
-| Iteration: Reword Pipeline Prose `./instructions/reword-pipeline-prose.md`                 | `PLANNING` |
+| Iteration / Instructions                                                                   | Status  |
+| ------------------------------------------------------------------------------------------ | ------- |
+| Iteration: Update Root Readme And Record `./instructions/update-root-readme-and-record.md` | `READY` |
+| Iteration: Update Package Readmes `./instructions/update-package-readmes.md`               | `READY` |
+| Iteration: Reword Pipeline Prose `./instructions/reword-pipeline-prose.md`                 | `READY` |
 
 ### Iteration: Update Root Readme And Record
 
 **Id:** `update-root-readme-and-record`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Advertise the published website and give the repository front page its banner and quick links.
 
@@ -173,11 +173,11 @@ Iterations are grouped by topic. An iteration may carry several commits — one 
 
 #### Commits:
 
-| ID                            | Repository / Checkout / Branch   | Policy   | Hash  | Status    |
-| ----------------------------- | -------------------------------- | -------- | ----- | --------- |
-| `advertise-the-website`       | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `PLANNED` |
-| `add-root-readme-banner`      | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `PLANNED` |
-| `add-root-readme-quick-links` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `PLANNED` |
+| ID                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ----------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `advertise-the-website`       | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| `add-root-readme-banner`      | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| `add-root-readme-quick-links` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `advertise-the-website`
 
@@ -213,7 +213,7 @@ docs(art-md): add quick links to root README
 
 **Id:** `update-package-readmes`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Bring every package README up to date — website links and current package names.
 
@@ -232,9 +232,9 @@ docs(art-md): add quick links to root README
 
 #### Commits:
 
-| ID                       | Repository / Checkout / Branch   | Policy   | Hash  | Status    |
-| ------------------------ | -------------------------------- | -------- | ----- | --------- |
-| `update-package-readmes` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `PLANNED` |
+| ID                       | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ------------------------ | -------------------------------- | -------- | ----- | ---------- |
+| `update-package-readmes` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `update-package-readmes`
 
@@ -250,7 +250,7 @@ docs(art-md): update package READMEs
 
 **Id:** `reword-pipeline-prose`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Describe the architecture accurately instead of as a pipeline.
 
@@ -268,9 +268,9 @@ docs(art-md): update package READMEs
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch   | Policy   | Hash  | Status    |
-| ----------------------- | -------------------------------- | -------- | ----- | --------- |
-| `reword-pipeline-prose` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `PLANNED` |
+| ID                      | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ----------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `reword-pipeline-prose` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `reword-pipeline-prose`
 
