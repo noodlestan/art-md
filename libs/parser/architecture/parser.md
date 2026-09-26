@@ -63,14 +63,14 @@ Because they are produced inside other constructs' processors, they need no entr
 
 `src/parse/parse.ts` exposes the single public function `parse(markdown: string): ArtDocument`. Its responsibilities:
 
-1. **Build the default config** — `createDefaultConfig()` returns the `ParserConfig` (the default construct and the ordered construct list).
+1. **Build the default config** — `createDefaultParserConfig()` returns the `ParserConfig` (the default construct and the ordered construct list).
 2. **Create the document parser context** — `createDocumentParserContext(markdown)` parses the source to an mdast tree via `fromMarkdown`, initialises the `ArtDocument` via `createArtDocumentFromNode`, and wraps both in a `ParserVisitContext`.
 3. **Instantiate the construct parsers** — calls each `ConstructParserFactory` to produce `ConstructParser` instances.
 4. **Delegate to the builder** — calls `buildDocument(defaultConstruct, constructParsers, docContext)` and returns the resulting `ArtDocument`.
 
 ```ts
 export function parse(markdown: string = ''): ArtDocument {
-  const config = createDefaultConfig();
+  const config = createDefaultParserConfig();
   const docContext = createDocumentParserContext(markdown);
 
   const defaultConstruct = config.defaultConstruct();

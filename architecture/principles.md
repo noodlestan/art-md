@@ -10,7 +10,7 @@ Constructs are registered via TypeScript declaration merging — no central enum
 
 ### Composition Over Hardcoding
 
-The parser and serializer have no import-level dependency on any concrete construct. Wiring happens through config factories (`createDefaultConfig.ts`, `createDefaultSerializerConfig.ts`). A consumer can supply a completely different set of constructs by providing a custom config.
+The parser and serializer have no import-level dependency on any concrete construct. Wiring happens through config factories (`createDefaultParserConfig.ts`, `createDefaultSerializerConfig.ts`). A consumer can supply a completely different set of constructs by providing a custom config.
 
 ### Separation of Concerns
 

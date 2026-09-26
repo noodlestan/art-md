@@ -1,20 +1,20 @@
 import { createParseContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { createDefaultConfig } from '../config';
+import { createDefaultParserConfig } from '../config';
 
 import { parse } from './parse';
 
 describe('parse', () => {
 	it('WHEN called with an empty string returns a Document', () => {
-		const result = parse('', createDefaultConfig());
+		const result = parse('', createDefaultParserConfig());
 
 		expect(result.document.construct).toBe('Document');
 		expect(result.document.children).toEqual([]);
 	});
 
 	it('WHEN parsing a heading into a SectionBlock', () => {
-		const result = parse('# Hello', createDefaultConfig());
+		const result = parse('# Hello', createDefaultParserConfig());
 
 		expect(result.document.construct).toBe('Document');
 		expect(result.document.children).toHaveLength(1);
@@ -26,7 +26,7 @@ describe('parse', () => {
 	});
 
 	it('WHEN parsing a paragraph into a NaturalBlock', () => {
-		const result = parse('Hello world', createDefaultConfig());
+		const result = parse('Hello world', createDefaultParserConfig());
 
 		expect(result.document.construct).toBe('Document');
 		expect(result.document.children).toHaveLength(1);
@@ -37,7 +37,7 @@ describe('parse', () => {
 	});
 
 	it('WHEN parsing a field inline value into a FieldInline', () => {
-		const result = parse('**Greeting:** Hello world', createDefaultConfig());
+		const result = parse('**Greeting:** Hello world', createDefaultParserConfig());
 
 		expect(result.document.construct).toBe('Document');
 		expect(result.document.children).toHaveLength(1);
@@ -48,7 +48,7 @@ describe('parse', () => {
 	});
 
 	it('WHEN parsing a field block into a FieldBlock', () => {
-		const result = parse('**Purpose:**', createDefaultConfig());
+		const result = parse('**Purpose:**', createDefaultParserConfig());
 
 		expect(result.document.construct).toBe('Document');
 		expect(result.document.children).toHaveLength(1);
@@ -59,7 +59,7 @@ describe('parse', () => {
 	});
 
 	it('WHEN parsing a field block with tags', () => {
-		const result = parse('**Purpose:** (#tag)', createDefaultConfig());
+		const result = parse('**Purpose:** (#tag)', createDefaultParserConfig());
 
 		expect(result.document.construct).toBe('Document');
 		expect(result.document.children).toHaveLength(1);
@@ -73,7 +73,7 @@ describe('parse', () => {
 	it('GIVEN a parse context, returns it on the result', () => {
 		const context = createParseContext({ uri: 'file:///a.md' });
 
-		const result = parse(context, '# Hello', createDefaultConfig());
+		const result = parse(context, '# Hello', createDefaultParserConfig());
 
 		expect(result.context).toBe(context);
 		expect(result.document.construct).toBe('Document');
