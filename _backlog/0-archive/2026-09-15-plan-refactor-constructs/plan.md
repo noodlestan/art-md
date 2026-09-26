@@ -402,5 +402,5 @@ None.
 
 ### Follow Ups
 
-- Draft the Test Coverage plan `_backlog/4-next/plan-test-coverage/plan.md`.
+- Draft the Test Coverage plan `_backlog/1-done/plan-test-coverage/plan.md`.
 - Reconcile milestone `consolidate` Items table (stale plan paths/statuses).

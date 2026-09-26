@@ -2,7 +2,7 @@
 
 **ID:** `use-website-url-in-docs`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -142,21 +142,23 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 Iterations are grouped by topic. An iteration may carry several commits — one per change — when the changes are independent.
 
-| Iteration / Instructions                                                                   | Status  |
-| ------------------------------------------------------------------------------------------ | ------- |
-| Iteration: Update Root Readme And Record `./instructions/update-root-readme-and-record.md` | `READY` |
-| Iteration: Update Package Readmes `./instructions/update-package-readmes.md`               | `READY` |
-| Iteration: Reword Pipeline Prose `./instructions/reword-pipeline-prose.md`                 | `READY` |
+| Iteration / Instructions                                                                   | Status |
+| ------------------------------------------------------------------------------------------ | ------ |
+| Iteration: Update Root Readme And Record `./instructions/update-root-readme-and-record.md` | `DONE` |
+| Iteration: Update Package Readmes `./instructions/update-package-readmes.md`               | `DONE` |
+| Iteration: Reword Pipeline Prose `./instructions/reword-pipeline-prose.md`                 | `DONE` |
 
 ### Iteration: Update Root Readme And Record
 
 **Id:** `update-root-readme-and-record`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Advertise the published website and give the repository front page its banner and quick links.
 
 **Description:** Add the `Website` field to `_records/project.art` and the root `README.md`, insert the banner image after the leading blockquote, and add a `Quick Links` block after the introductory paragraph. The changes are independent, so each gets its own commit and the iteration produces three reviewable commits.
+
+**Report:** `./instructions/update-root-readme-and-record__report.md`
 
 **Instructions:** `./instructions/update-root-readme-and-record.md`
 
@@ -173,11 +175,11 @@ Iterations are grouped by topic. An iteration may carry several commits — one 
 
 #### Commits:
 
-| ID                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `advertise-the-website`       | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
-| `add-root-readme-banner`      | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
-| `add-root-readme-quick-links` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                            | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ----------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `advertise-the-website`       | Art MD / `$PROJECT` / `building` | `NOPUSH` | `f0ef3f1` | `COMMITTED` |
+| `add-root-readme-banner`      | Art MD / `$PROJECT` / `building` | `NOPUSH` | `79d6fd1` | `COMMITTED` |
+| `add-root-readme-quick-links` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `e021164` | `COMMITTED` |
 
 ##### Commit: `advertise-the-website`
 
@@ -209,15 +211,24 @@ docs(art-md): add banner to root README
 docs(art-md): add quick links to root README
 ```
 
+#### Evidence
+
+- `_records/project.art` and `README.md` both carry `**Website:** https://art-md.noodlestan.org` (commit `f0ef3f1`).
+- `README.md` renders the banner directly under the leading blockquote (commit `79d6fd1`).
+- `README.md` shows the `**Quick Links:**` list (Demo and Docs, Language Spec) after the introductory paragraph (commit `e021164`).
+- `npx prettier . -c` and `npm run ci` pass after each commit; 43 codec fixtures pass; working tree clean; nothing pushed.
+
 ### Iteration: Update Package Readmes
 
 **Id:** `update-package-readmes`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Bring every package README up to date — website links and current package names.
 
 **Description:** Replace the "part of the Art MD toolkit" sentence in every package README with a website link, and rename the legacy `artificial-*` README headings to their `@art-md/*` package names.
+
+**Report:** `./instructions/update-package-readmes__report.md`
 
 **Instructions:** `./instructions/update-package-readmes.md`
 
@@ -232,9 +243,9 @@ docs(art-md): add quick links to root README
 
 #### Commits:
 
-| ID                       | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ------------------------ | -------------------------------- | -------- | ----- | ---------- |
-| `update-package-readmes` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                       | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------------ | -------------------------------- | -------- | --------- | ----------- |
+| `update-package-readmes` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `9f8d7da` | `COMMITTED` |
 
 ##### Commit: `update-package-readmes`
 
@@ -246,15 +257,23 @@ docs(art-md): add quick links to root README
 docs(art-md): update package READMEs
 ```
 
+#### Evidence
+
+- No package README under `libs/` or `cli/` still contains the `Art MD toolkit` sentence; all six now link `https://art-md.noodlestan.org`.
+- Every package README heading matches its `@art-md/*` package name (commit `9f8d7da`).
+- `npx prettier . -c` and `npm run ci` pass (7/7 turbo tasks, 43 fixtures); working tree clean; nothing pushed.
+
 ### Iteration: Reword Pipeline Prose
 
 **Id:** `reword-pipeline-prose`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Describe the architecture accurately instead of as a pipeline.
 
 **Description:** Review `architecture/` and `_roadmap/` and reword the "pipeline" prose.
+
+**Report:** `./instructions/reword-pipeline-prose__report.md`
 
 **Instructions:** `./instructions/reword-pipeline-prose.md`
 
@@ -268,9 +287,9 @@ docs(art-md): update package READMEs
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `reword-pipeline-prose` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                      | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ----------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `reword-pipeline-prose` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `d83e86c` | `COMMITTED` |
 
 ##### Commit: `reword-pipeline-prose`
 
@@ -279,8 +298,14 @@ docs(art-md): update package READMEs
 **Message:**
 
 ```text
-knowledge(art-md): reword pipeline prose
+docs(art-md): reword pipeline prose
 ```
+
+#### Evidence
+
+- `architecture/principles.md` and `architecture/adr/art-md.md` reworded to describe the bidirectional relationship between Markdown, the Art AST, parsing, and serialisation (commit `fa51737`).
+- Four live `pipeline` occurrences intentionally left in place: remark's third-party pipeline, the `cli/pipeline-tests/` path, and two build/CI pipeline references.
+- `npx prettier . -c` and `npm run ci` pass (7/7 turbo tasks, 43 fixtures); working tree clean; nothing pushed.
 
 ## Work
 
@@ -288,7 +313,7 @@ knowledge(art-md): reword pipeline prose
 
 This section states the immediate action needed to advance the Plan.
 
-Execute the iterations in order; the first two are documentation edits and the last is a review. Each iteration commits once per change.
+All three iterations are `DONE` on `building` — `update-root-readme-and-record` (`f0ef3f1`, `79d6fd1`, `e021164`), `update-package-readmes` (`9f8d7da`), `reword-pipeline-prose` (`fa51737`) — none pushed. The plan is delivered; the changes are pending review and push in `art-md-building`.
 
 ### Blockers
 

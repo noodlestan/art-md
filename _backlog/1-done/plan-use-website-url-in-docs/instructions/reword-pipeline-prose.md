@@ -46,7 +46,7 @@ This iteration produces 1 commit(s): `reword-pipeline-prose`. Commit them in the
 
 ## Mandatory Reading
 
-- Plan: `$PROJECT/_backlog/4-next/plan-use-website-url-in-docs/plan.md` — read `## Scope` and the iteration `reword-pipeline-prose` under `## Items:`.
+- Plan: `$PROJECT/_backlog/1-done/plan-use-website-url-in-docs/plan.md` — read `## Scope` and the iteration `reword-pipeline-prose` under `## Items:`.
 - Guide: `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 - Commit conventions: `$WORKSPACE/knowledge/conventions/writing-commit-message.art` — Defines commit message conventions. Relevant for Writing Commit Message.
 

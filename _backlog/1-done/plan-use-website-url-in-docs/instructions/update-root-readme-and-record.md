@@ -46,7 +46,7 @@ This iteration produces 3 commit(s): `advertise-the-website`, `add-root-readme-b
 
 ## Mandatory Reading
 
-- Plan: `$PROJECT/_backlog/4-next/plan-use-website-url-in-docs/plan.md` — read `## Scope` and the iteration `update-root-readme-and-record` under `## Items:`.
+- Plan: `$PROJECT/_backlog/1-done/plan-use-website-url-in-docs/plan.md` — read `## Scope` and the iteration `update-root-readme-and-record` under `## Items:`.
 - Guide: `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 - Commit conventions: `$WORKSPACE/knowledge/conventions/writing-commit-message.art` — Defines commit message conventions. Relevant for Writing Commit Message.
 
