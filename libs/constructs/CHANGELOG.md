@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.2
+
+### Documented
+
+- Architecture knowledge and README updated.
+
 ## 0.0.1
 
 ### Added
