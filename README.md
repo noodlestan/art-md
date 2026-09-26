@@ -6,6 +6,11 @@
 
 Language specification and JavaScript libraries for extracting structured data into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content.
 
+**Quick Links:**
+
+- [Demo and Docs](https://art-md.noodlestan.org)
+- [Language Spec](https://github.com/noodlestan/art-md/blob/main/spec/README.md)
+
 **Website:** https://art-md.noodlestan.org
 
 ## Packages
