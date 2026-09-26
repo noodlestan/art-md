@@ -1,10 +1,10 @@
-# Artificial Bin
+# @art-md/bin
 
 > Static entry point to parser, validator, compiler, bundler, watcher.
 
 CLI that exposes all core pipeline commands.
 
-This package is part of the [Art MD toolkit](../../README.md) toolkit.
+This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Development
 

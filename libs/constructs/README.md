@@ -1,10 +1,10 @@
-# artificial-constructs
+# @art-md/constructs
 
 > Construct factories for the Art language.
 
 Construct factories and helpers used by the Art parser and serializer.
 
-This package is part of the [Art MD toolkit](../../README.md).
+This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Development
 

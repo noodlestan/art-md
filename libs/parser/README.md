@@ -1,10 +1,10 @@
-# artificial-parser
+# @art-md/parser
 
 > Parses Art modules (.art) and markdown files (.md).
 
 Parses context files and art modules into Art AST representations.
 
-This package is part of the [Art MD toolkit](../../README.md) toolkit.
+This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Development
 

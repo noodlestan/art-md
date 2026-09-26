@@ -1,10 +1,10 @@
-# artificial-primitives
+# @art-md/primitives
 
 > Core primitives for the Art language.
 
 Foundational types and utilities for Art modules.
 
-This package is part of the [Art MD toolkit](../../README.md) toolkit.
+This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Development
 

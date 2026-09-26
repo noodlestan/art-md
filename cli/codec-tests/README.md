@@ -4,7 +4,7 @@
 
 Provides test scripts to exercise the parser and serializer through the codec against a shared fixture suite.
 
-This package is part of the [Art MD toolkit](../../README.md) toolkit.
+This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Development
 

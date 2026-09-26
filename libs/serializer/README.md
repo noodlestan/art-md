@@ -1,10 +1,10 @@
-# artificial-serializer
+# @art-md/serializer
 
 > Serializes Art AST back to markdown.
 
 Exposes serializer entry point and utils.
 
-This package is part of the [Art MD toolkit](../../README.md) toolkit.
+This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Development
 
