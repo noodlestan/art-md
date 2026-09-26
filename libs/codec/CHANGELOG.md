@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.2
+
+### Fixed
+
+- **Package entry point:** `main` declares `./src/index.ts`, but `files` published only `dist/`, publish `src/` instead.
+
 ## 0.0.1
 
 ### Added

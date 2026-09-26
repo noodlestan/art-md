@@ -1,6 +1,6 @@
 {
   "name": "@art-md/codec",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Configurable Art MD codec: parse and serialize Art MD",
   "author": "Noodlestan Collective",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "sideEffects": false,
   "main": "./src/index.ts",
   "files": [
-    "dist",
+    "src",
     "LICENSE-MIT",
     "README.md"
   ],
