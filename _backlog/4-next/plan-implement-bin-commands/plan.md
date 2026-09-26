@@ -2,7 +2,7 @@
 
 **ID:** `implement-bin-commands`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -140,20 +140,20 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                                               | Status     |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `PLANNING` |
-| Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `PLANNING` |
-| Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `PLANNING` |
-| Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `PLANNING` |
-| Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `PLANNING` |
-| Iteration: Verify Bin Coverage `./instructions/verify-bin-coverage.md`                                                 | `PLANNING` |
+| Iteration / Instructions                                                                                               | Status  |
+| ---------------------------------------------------------------------------------------------------------------------- | ------- |
+| Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `READY` |
+| Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `READY` |
+| Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `READY` |
+| Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `READY` |
+| Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `READY` |
+| Iteration: Verify Bin Coverage `./instructions/verify-bin-coverage.md`                                                 | `READY` |
 
 ### Iteration: Implement Operation Log
 
 **Id:** `implement-operation-log`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Give the CLI the operation vocabulary and the logger the commands report through, so every later iteration has a way to record progress.
 
@@ -193,7 +193,7 @@ build(bin): add operation log types and logger
 
 **Id:** `implement-codec-context-and-io`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Give the operations a context to run in — a configured codec, a config, and file/stdin I/O.
 
@@ -234,7 +234,7 @@ build(bin): add codec context, config, and file IO
 
 **Id:** `implement-parse-command`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Implement the `parse` operation end to end, from the `run{CommandName}` layer down to `codec.parse()`.
 
@@ -273,7 +273,7 @@ build(bin): implement doParse operation and runParse
 
 **Id:** `implement-serialize-command`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Implement the `serialize` operation end to end, mirroring `parse` so the two share every layer but the codec call.
 
@@ -311,7 +311,7 @@ build(bin): implement doSerialize operation and runSerialize
 
 **Id:** `implement-command-builders-and-entry-points`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Replace the three stubs with real entry points that share one program builder and one set of command specs.
 
@@ -351,7 +351,7 @@ build(bin): add shared command builders and three entry points
 
 **Id:** `verify-bin-coverage`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Prove the CLI works as an installed binary and that the package meets its configured coverage thresholds.
 
@@ -392,7 +392,7 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 This section states the immediate action needed to advance the Plan.
 
-Write instructions for Iteration: Implement Operation Log, then delegate it.
+Delegate Iteration: Implement Operation Log.
 
 ### Blockers
 
