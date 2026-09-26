@@ -2,7 +2,7 @@
 
 **ID:** `update-bin-knowledge`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -184,18 +184,18 @@ Execution occurs from `$WORKSPACE/`; the package knowledge is written in the Art
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                                                 | Status     |
-| ------------------------------------------------------------------------------------------------------------------------ | ---------- |
-| Iteration: Create Bin Architecture `./instructions/create-bin-architecture.md`                                           | `PLANNING` |
-| Iteration: Propose Art Lib Abstractions `./instructions/propose-art-lib-abstractions.md`                                 | `PLANNING` |
-| Iteration: Register Bin in Project Knowledge `./instructions/register-bin-in-project-knowledge.md`                       | `PLANNING` |
-| Iteration: Record Bin Follow Ups and Milestone Evidence `./instructions/record-bin-follow-ups-and-milestone-evidence.md` | `PLANNING` |
+| Iteration / Instructions                                                                                                 | Status  |
+| ------------------------------------------------------------------------------------------------------------------------ | ------- |
+| Iteration: Create Bin Architecture `./instructions/create-bin-architecture.md`                                           | `READY` |
+| Iteration: Propose Art Lib Abstractions `./instructions/propose-art-lib-abstractions.md`                                 | `READY` |
+| Iteration: Register Bin in Project Knowledge `./instructions/register-bin-in-project-knowledge.md`                       | `READY` |
+| Iteration: Record Bin Follow Ups and Milestone Evidence `./instructions/record-bin-follow-ups-and-milestone-evidence.md` | `READY` |
 
 ### Iteration: Create Bin Architecture
 
 **Id:** `create-bin-architecture`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Give the bin a complete, self-describing architecture reference set so everything known about it lives in one place.
 
@@ -237,7 +237,7 @@ arch(bin): add bin architecture reference set
 
 **Id:** `propose-art-lib-abstractions`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Turn the duplication inventory into concrete, actionable proposals for the Art Lib project so `@art-lib` can be created from evidence rather than guesswork.
 
@@ -277,7 +277,7 @@ docs(bin): propose cli abstractions for art-lib
 
 **Id:** `register-bin-in-project-knowledge`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** List and describe the bin properly in the project's records, README, guide, and architecture documents.
 
@@ -319,7 +319,7 @@ docs(bin): register bin in project records, guides, and architecture
 
 **Id:** `record-bin-follow-ups-and-milestone-evidence`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Close the milestone with its evidence, decisions, and follow-ups recorded, so the work is not left half-documented.
 
@@ -359,7 +359,7 @@ backlog(bin): record follow-ups and milestone evidence
 
 This section states the immediate action needed to advance the Plan.
 
-Write instructions for Iteration: Create Bin Architecture, then delegate it.
+Delegate Iteration: Create Bin Architecture.
 
 ### Blockers
 
