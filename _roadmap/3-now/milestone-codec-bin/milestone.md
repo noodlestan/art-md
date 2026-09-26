@@ -10,7 +10,7 @@
 
 **Purpose:** Build the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`) so that parsing and serialising are exposed as consistent, composable command-line tools following the established Art Work CLI patterns.
 
-**Description:** Create the target CLI package exposing three entry points — `bin/codec` (with `parse`/`serialize` commands), `bin/parse`, and `bin/serialize` — exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`; all three share the same commander builder utilities and the same `doParse`/`doSerialize` implementations, with the `codec` bin reimplementing nothing; then consolidate repeated code between the codec and artwork bins into `@art-lib`.
+**Description:** Deliver the target CLI package (`@art-md/bin`) exposing three entry points — `bin/codec` (with `parse`/`serialize` commands), `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`; all three share the same commander builder utilities and the same `doParse`/`doSerialize` implementations, with the `codec` bin reimplementing nothing. The work is decomposed into four plans: scaffold the package, implement the commands, consolidate the duplicated CLI plumbing into an `@art-lib` follow-up, and capture everything about the bin in its own architecture reference set and in the project records, guides, and architecture.
 
 ## Mandatory Reading
 
@@ -31,7 +31,7 @@ This section lists the path variables used throughout the Milestone file and its
 
 ## Summary
 
-Create the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`) in the target CLI package, following the Art Work CLI patterns (entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs), so that parsing and serialising are exposed as consistent, composable command-line tools; then consolidate repeated code between the codec and artwork bins into `@art-lib`.
+Create the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`) in the target CLI package, following the Art Work CLI patterns (entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs), so that parsing and serialising are exposed as consistent, composable command-line tools; then consolidate repeated code between the codec and artwork bins into `@art-lib`. The work is decomposed into four plans under `$PROJECT/_backlog/6-plan/`.
 
 ## Attachments
 
@@ -119,11 +119,11 @@ This section describes the context knowledge required for the different phases o
 
 This section describes the working scope coordinated by the Milestone.
 
-Changes in the target CLI package in `$BUILD` (canonical name to be confirmed): create three entry points `bin/codec`, `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`; all three share the same commander builder utilities and the same `doParse`/`doSerialize` implementations; the `codec` bin registers `parse`/`serialize` commands without reimplementing anything. The detailed design is captured in the `./milestone__design.md` attachment.
+Changes in the target CLI package in `$BUILD` (canonical name `@art-md/bin`): create three entry points `bin/codec`, `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`; all three share the same commander builder utilities and the same `doParse`/`doSerialize` implementations; the `codec` bin registers `parse`/`serialize` commands without reimplementing anything. The detailed design is captured in the `./milestone__design.md` attachment; the per-plan breakdown of changes, iterations, and commits lives in the downstream plans.
 
-### (Scope) Package: Codec Bin
+### (Scope) Package: Bin
 
-**Record:** To be confirmed — likely `$BUILD/cli/bin/_records/package.art`
+**Record:** `$BUILD/cli/bin/_records/package.art`
 
 **Role:** Owns the three CLI entry points (`bin/codec`, `bin/parse`, `bin/serialize`) and the shared commander builder utilities and `doParse`/`doSerialize` implementations.
 
@@ -131,15 +131,14 @@ Changes in the target CLI package in `$BUILD` (canonical name to be confirmed): 
 
 - `owner` — Project: Art MD
 - `path` — `$BUILD/cli/bin/`
-- `canonicalName` — To be confirmed (likely `@art-md/bin`)
+- `canonicalName` — `@art-md/bin`
 
 **Changes:**
 
-- Scaffold the package (package.json with `bin` exports, records, `_guide.md`, README, CHANGELOG) including a dummy `src/index.ts`.
-- Implement the shared commander builder utilities.
-- Implement the shared `doParse`/`doSerialize` operations.
-- Implement the three entry points `bin/codec`, `bin/parse`, `bin/serialize`.
-- Add unit tests, mocks, and test helpers following the Art Work patterns.
+- Complete the package scaffold: dependencies, the three `bin` exports, the lint config, and the package records and docs.
+- Implement the shared commander builder utilities, the shared `doParse`/`doSerialize` operations, the operation log and logger, and the three entry points.
+- Add unit tests, mocks, and test helpers following the Art Work patterns, and drive coverage over the package's configured thresholds.
+- Write the bin's architecture reference set under `$BUILD/cli/bin/architecture/` and register the package in the project records, README, guide, and architecture.
 
 **Dependencies:**
 
@@ -155,19 +154,22 @@ Execution occurs from `$WORKSPACE/`; package work is performed in the Art MD bui
 
 This section describes the ordered phases used to organise downstream work, identifying blocking dependencies across resources of different owners.
 
-| Index | Name        | Status     |
-| ----- | ----------- | ---------- |
-| #1    | Scaffold    | `PLANNING` |
-| #2    | Commands    | `PLANNING` |
-| #3    | Consolidate | `PLANNING` |
+| Index | Name        | Status     | Plan                                                           |
+| ----- | ----------- | ---------- | -------------------------------------------------------------- |
+| #1    | Scaffold    | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`   |
+| #2    | Commands    | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md` |
+| #3    | Consolidate | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`  |
+| #4    | Knowledge   | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`   |
 
 ### Phase: 1 — Scaffold
 
 **Goal:** Scaffold the target CLI package with a working (dummy) entry point so the build/CI pipeline has a real module to resolve.
 
-**Description:** Create the package (package.json with the three `bin` exports, records, `_guide.md`, README, CHANGELOG) and a dummy `src/index.ts`, mirroring the `Scaffold Bin Codec` plan. Includes a dummy `src/index.ts` to avoid the missing-entry-point blocker.
+**Description:** Complete the package (runtime dependencies, the three `bin` exports, the lint config, the records, `_guide.md`, README, CHANGELOG) and replace the placeholder `src/index.ts` with three stub entry points.
 
 **Status:** `PLANNING`
+
+**Plan:** `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`
 
 **Dependencies:**
 
@@ -177,9 +179,11 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Goal:** Implement the shared commander builder utilities and the `doParse`/`doSerialize` operations, wired into all three entry points.
 
-**Description:** Implement Bin Parse, Bin Serialize, and Bin Codec plans. All three entry points share the same commander builder utils and the same `doParse`/`doSerialize` implementations; the `codec` bin registers `parse`/`serialize` commands without reimplementing anything.
+**Description:** Implement the operation log and logger, the codec context and file I/O, `doParse`/`doSerialize` with their `run{CommandName}` layer, the shared commander builders, and the three entry points, with unit tests throughout and a closing coverage iteration.
 
 **Status:** `PLANNING`
+
+**Plan:** `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md`
 
 **Dependencies:**
 
@@ -189,13 +193,29 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Goal:** Apply conventions, refactor, document, and identify follow-ups for abstracting repeated code between the codec and artwork bins into `@art-lib`.
 
-**Description:** Consolidate the codec CLI: apply conventions, refactor, document, and identify follow-ups for abstracting repeated code between the codec and artwork bins into `@art-lib` (a package of Shared libraries and tools for building CLIs and Tools; purpose: build high quality, consistent CLI and Tool experiences from composable units).
+**Description:** Audit the implemented CLI against the TypeScript conventions, refactor the deviations and the internal duplication, and record an evidence-backed `@art-lib` extraction inventory in the bin's CLI ADR.
 
 **Status:** `PLANNING`
+
+**Plan:** `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`
 
 **Dependencies:**
 
 - Phase 2 — Commands: the commands must be implemented before consolidation.
+
+### Phase: 4 — Knowledge
+
+**Goal:** Capture everything about the bin in `bin/architecture/` and list and describe it properly across the project's records, guides, and architecture.
+
+**Description:** Write the bin's architecture reference set (index, entry points, commands, operations, dependencies, CLI ADR), then register and describe the package in `$PROJECT/README.md`, `$PROJECT/_guide.md`, `_records/project.art`, and the repository `architecture/` documents, and close the milestone with its evidence and follow-ups recorded.
+
+**Status:** `PLANNING`
+
+**Plan:** `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`
+
+**Dependencies:**
+
+- Phase 3 — Consolidate: the `@art-lib` inventory must be recorded before the CLI ADR cites it.
 
 ---
 
@@ -203,74 +223,68 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
-The following items are not yet captured in a work item document.
+| Plan                                                                                        | Status     |
+| ------------------------------------------------------------------------------------------- | ---------- |
+| Plan: Scaffold Bin Package `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`     | `PLANNING` |
+| Plan: Implement Bin Commands `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md` | `PLANNING` |
+| Plan: Consolidate Codec Bin `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`   | `PLANNING` |
+| Plan: Update Bin Knowledge `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`     | `PLANNING` |
 
-### Plan: Scaffold Bin Codec
+### Plan: Scaffold Bin Package
 
 **Status:** `PLANNING`
 
-**Purpose:** Scaffold the target CLI package with a working (dummy) entry point.
+**Path:** `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`
 
-**Description:** Create the package (package.json with the three `bin` exports, records, `_guide.md`, README, CHANGELOG) and a dummy `src/index.ts` so the build/CI pipeline has a real module to resolve.
+**Purpose:** Complete the `@art-md/bin` package scaffold so it declares its dependencies, exports the three CLI entry points, and passes the pipeline.
 
-**Changes:**
-
-- Scaffold the package and add a dummy `src/index.ts`.
+**Description:** Turn the template-derived scaffold into a real package: add `commander`, `@art-md/codec`, and `@art-md/primitives`; declare the `art-codec`, `art-parse`, and `art-serialize` exports against the built `dist/esm/bin/*.mjs` entries; add the missing `.eslintrc.cjs`; realign the records and docs; land three stub entry points.
 
 **Dependencies:**
 
 - None.
 
-### Plan: Implement Bin Parse
+### Plan: Implement Bin Commands
 
 **Status:** `PLANNING`
 
-**Purpose:** Implement the `bin/parse` entry point.
+**Path:** `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md`
 
-**Description:** Implement the `parse` command using the shared commander builder utilities and the shared `doParse` operation, following the Art Work CLI patterns.
+**Purpose:** Implement the `parse` and `serialize` operations and wire them into the three entry points, sharing one set of commander builders, one set of operations, and one logger.
 
-**Changes:**
-
-- Implement `bin/parse` entry point.
-- Add unit tests, mocks, and test helpers.
+**Description:** Six iterations: the operation log and logger, the codec context and file I/O, the `parse` command, the `serialize` command, the shared command builders and three entry points, and a closing coverage and integration-test iteration.
 
 **Dependencies:**
 
 - Phase 1 — Scaffold: the package must be scaffolded first.
 
-### Plan: Implement Bin Serialize
+### Plan: Consolidate Codec Bin
 
 **Status:** `PLANNING`
 
-**Purpose:** Implement the `bin/serialize` entry point.
+**Path:** `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`
 
-**Description:** Implement the `serialize` command using the shared commander builder utilities and the shared `doSerialize` operation, following the Art Work CLI patterns.
+**Purpose:** Audit the implemented CLI against the TypeScript conventions, refactor what the audit finds, and identify the precise extraction units for `@art-lib`.
 
-**Changes:**
-
-- Implement `bin/serialize` entry point.
-- Add unit tests, mocks, and test helpers.
+**Description:** Two iterations: apply the conventions and collapse the internal duplication behaviour-preservingly, then produce the side-by-side duplication inventory and the recommended `@art-lib` boundary in the bin's CLI ADR.
 
 **Dependencies:**
 
-- Phase 1 — Scaffold: the package must be scaffolded first.
+- Phase 2 — Commands: the commands must be implemented before consolidation.
 
-### Plan: Implement Bin Codec
+### Plan: Update Bin Knowledge
 
 **Status:** `PLANNING`
 
-**Purpose:** Implement the `bin/codec` entry point with `parse`/`serialize` commands.
+**Path:** `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`
 
-**Description:** Implement the `codec` bin registering `parse`/`serialize` commands, reusing the shared commander builder utilities and the shared `doParse`/`doSerialize` implementations without reimplementing anything.
+**Purpose:** Capture everything known about the codec bin in `bin/architecture/` and register the package across the project's records, guides, and architecture.
 
-**Changes:**
-
-- Implement `bin/codec` entry point with `parse`/`serialize` commands.
-- Add unit tests, mocks, and test helpers.
+**Description:** Three iterations: create the bin's architecture reference set and link it from its `_guide.md`; register and describe the package in the project README, `_guide.md`, `_records/project.art`, and the repository `architecture/` documents, correcting the duplicate and stale bin entries; then record the milestone's evidence, decisions, and follow-ups.
 
 **Dependencies:**
 
-- Phase 1 — Scaffold: the package must be scaffolded first.
+- Phase 3 — Consolidate: the `@art-lib` inventory must be recorded before the CLI ADR cites it.
 
 ---
 
@@ -280,13 +294,13 @@ The following items are not yet captured in a work item document.
 
 This section states the immediate action needed to advance the Milestone.
 
-Confirm the bin contracts, package record, purpose, description, canonical name, and paths with the user, then lock down the design in `./milestone__design.md` and plan Phase 1.
+Write instructions for the first iteration of Plan: Scaffold Bin Package, then delegate it.
 
 ### Blockers
 
 This section lists the impediments to progress and the work items they involve.
 
-- **Bin contracts and package identity** — the canonical package name, the exact `bin` export names, and the package record path are not yet confirmed; blocks planning of Phase 1.
+- None.
 
 ---
 
@@ -329,8 +343,8 @@ npm run test # runs vitest against the CLI unit tests
 ### Not In Scope
 
 - **`@art-lib` package creation** — abstracting repeated code between the codec and artwork bins into `@art-lib` is a follow-up identified in Phase 3, not part of this milestone's delivery.
-- **Concrete content sources** — `FSContentSource`, `MemoryContentSource` remain future work.
-- **Validator** — `@art-md/validator` remains PLANNED.
+- **Concrete content sources** — `FSContentSource`, `MemoryContentSource` remain future work; the bin owns its own thin file I/O.
+- **Validator** — `@art-md/validator` remains PLANNED; no `validate` command is registered.
 
 ### Evidence
 
@@ -338,21 +352,34 @@ npm run test # runs vitest against the CLI unit tests
 
 ### Findings
 
-- None.
+- **The scaffold is template-derived** — `cli/bin/` was scaffolded with a bundler/validator/compiler/watcher description and no dependencies, so the manifest contract had to be established rather than adjusted.
+- **`esbuild-cli` globs every `src/**/_.ts`** — the build emits one bundle per source file under `dist/esm/`, so the three entry points live at `src/bin/{codec,parse,serialize}.ts`and the`bin`exports resolve to`dist/esm/bin/_.mjs`, not to `bin/\*` sources.
+- **`__BUILD_VERSION__` is undefined by the build** — the Art Work CLI declares the ambient global but `@noodlestan/esbuild` never defines it, so the bin reads its version from `package.json`.
+- **The CLI has no checkout concept** — the Art Work operation log lines carry repo and checkout columns; the codec CLI has neither, so `makeOperationLogLine` drops those columns rather than emitting placeholders.
+- **Coverage is enforced, not advisory** — `cli/bin/vitest.config.ts` already sets 90/90/90/75 thresholds, so the closing iteration closes gaps rather than raising a target.
+- **The bin is described twice, and one description is wrong** — `architecture/components.md` lists Bin under both "CLI Surface" and "Planned Packages", and the planned-packages text names `art-md-parser`, `art-md-serializer`, `art-md-validator`, and an `art-md` consolidated entry with `--write` — none of which were built.
 
 ### Decisions
 
 - **Three entry points** — `bin/codec` (with `parse`/`serialize` commands), `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`.
 - **Shared implementations** — all three bins share the same commander builder utilities and the same `doParse`/`doSerialize` implementations; the `codec` bin reimplements nothing.
 - **Follow the Art Work patterns** — entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs; unit tests, mocks, and test helpers follow the Art Work CLI patterns.
+- **Bin exports point at build output** — the exports resolve to `./dist/esm/bin/*.mjs`, matching the Art Work CLI's `bin` shape and the `esbuild-cli` output layout.
+- **The bin owns its I/O** — `readInput`/`writeOutput` use `node:fs/promises` directly; the codec stays I/O-free and `FSContentSource` stays future work.
+- **No ambient build-version global** — the version is read from `package.json` at runtime.
+- **Four plans, phases one to one** — each phase maps to exactly one plan, and the last plan captures all knowledge about the bin.
 
 ### Knowledge to Update
 
-- **`architecture/components.md`** — update the Bin package description.
-- **`architecture/overview.md`** — describe the CLI entry points.
-- **`_records/project.art`** — add the Bin package resource.
-- **`README.md`** — add the CLI package to the packages table.
-- **`_guide.md`** — add the CLI project.
+Captured by Plan: Update Bin Knowledge.
+
+- **`cli/bin/architecture/`** — the bin's reference set: index, entry points, commands, operations, dependencies, and the CLI ADR.
+- **`architecture/components.md`** — collapse the duplicate bin entries into one `IMPLEMENTED` entry.
+- **`architecture/overview.md`** — place the bin in the ecosystem.
+- **`architecture/index.md`** — add the Bin package architecture reference.
+- **`_records/project.art`** — verify the Bin package resource.
+- **`README.md`** — describe the bin and add a CLI usage section.
+- **`_guide.md`** — describe the Bin project and link its architecture reference.
 
 ### Follow Ups
 

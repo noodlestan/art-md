@@ -17,7 +17,7 @@ Locked down by the user during milestone drafting. The design lifts the Art Work
 
 **Refinements:**
 
-- None yet — pending user confirmation of bin contracts and package identity.
+- Resolved during milestone planning; the locked decisions are recorded in the Milestone's `Coordination / Decisions` and detailed per plan under `$PROJECT/_backlog/6-plan/`. The design's `bin` export paths were corrected to point at build output (`dist/esm/bin/*.mjs`) rather than `bin/*` sources, to match the `esbuild-cli` output layout.
 
 ## Art Work CLI Patterns (Reference)
 
