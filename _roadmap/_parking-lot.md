@@ -4,7 +4,6 @@ WIP tracker for the roadmap, structured like the session parking lot: **ACTIONAB
 
 ## ACTIONABLE
 
-- Create Milestone for `bin/parse` and `bin/serialize`.
 - **TagReference** — WIP in `expressions/tag.art`: backticked `#<identifier>` reference for use in instructions.
 
 ## PENDING
