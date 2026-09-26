@@ -43,9 +43,5 @@
   - `@art-md/constructs`
   - `mdast-util-from-markdown` @ `^2.0.0` — Generates mdast from MD.
   - `unist-util-visit` @ `^5.0.0` — mdast traversing.
-- Dev:
-  - Package Dependency Set: Solid Lib Development
-  - `tsx`: `^4.8.1` - WIP REMOVE when pipeline-tests exist
-  - `@art-md/serializer` — WIP REMOVE same reason
 
 **License:** License: Noodlestan 2026 MIT

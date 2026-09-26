@@ -1,7 +1,7 @@
 {
   "name": "@art-md/bin",
   "version": "0.0.1",
-  "description": "CLI that exposes all core pipeline commands.",
+  "description": "CLI that exposes parser and serializer as commands.",
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

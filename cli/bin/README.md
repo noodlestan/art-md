@@ -2,7 +2,7 @@
 
 > Static entry point to parser, validator, compiler, bundler, watcher.
 
-CLI that exposes all core pipeline commands.
+CLI that exposes parser and serializer as commands.
 
 This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 

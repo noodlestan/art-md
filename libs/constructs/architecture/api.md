@@ -1,6 +1,6 @@
 # Constructs API
 
-The `@art-md/constructs` package defines the **contract** that binds the parser and serializer. It owns three things: the factory functions each construct exposes, the parser/serializer interfaces each side depends on, and the data shapes that flow through the pipeline. Neither the parser nor the serializer knows about concrete constructs — they only know these types.
+The `@art-md/constructs` package defines the **contract** that binds the parser and serializer. It owns three things: the factory functions each construct exposes, the parser/serializer interfaces each side depends on, and the data shapes that flow through the operations. Neither the parser nor the serializer knows about concrete constructs — they only know these types.
 
 ## Construct Factories API
 

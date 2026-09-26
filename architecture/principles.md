@@ -22,4 +22,4 @@ Unrecognised markdown is preserved as `NaturalBlock` records rather than dropped
 
 ### Runtime Config and Context Injection
 
-The pipeline is configured via factories: `ConstructParserFactory` for the parse direction, `ConstructSerializerFactory` for the serialise direction. Each factory is called once during setup. Context is injected into hooks — the parser passes a `ParserVisitContext` to each `ConstructProcessor` and `ConstructIntegrator` hook. Config injection (supplying a custom config at the entry point) is a future direction.
+The parser and the serializer map between Markdown and the Art AST in both directions, and each direction is configured via factories: `ConstructParserFactory` for the parse direction, `ConstructSerializerFactory` for the serialise direction. Each factory is called once during setup. Context is injected into hooks — the parser passes a `ParserVisitContext` to each `ConstructProcessor` and `ConstructIntegrator` hook. Config injection (supplying a custom config at the entry point) is a future direction.

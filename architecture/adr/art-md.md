@@ -1,6 +1,6 @@
 # Art MD
 
-**Purpose:** Decisions about the art-md pipeline — the parser, serializer, and constructs packages that turn markdown into structured records and back.
+**Purpose:** Decisions about the art-md round-trip between markdown and the Art AST — the parser, serializer, and constructs packages that turn markdown into structured records and back.
 
 ## Decision: MD Substrate MDAST
 
@@ -42,7 +42,7 @@
 
 **Context:** Parsers and serializers must not hardcode constructs.
 
-**Decision:** The parser and serializer pipelines are construct-agnostic. They drive detection through the `@art-md/constructs` contract types; wiring happens through config factories. Neither names a concrete construct.
+**Decision:** The parser and the serializer are construct-agnostic. They drive detection through the `@art-md/constructs` contract types; wiring happens through config factories. Neither names a concrete construct.
 
 ## Decision: Natural Block Fallback
 

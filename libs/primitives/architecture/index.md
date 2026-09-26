@@ -1,6 +1,6 @@
 # Primitives Architecture
 
-The `@art-md/primitives` package provides the base types and utilities the Art pipeline is built on.
+The `@art-md/primitives` package provides the base types and utilities the parser and serializer are built on.
 
 ## Documents
 
