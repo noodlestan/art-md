@@ -284,17 +284,17 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
-| Phase | Resource / Record                                                                                                            | Status |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------- | ------ |
-| 1     | Plan: Create Codec Spec `$PROJECT/_backlog/1-done/plan-create-codec-spec/plan.md`                                            | `DONE` |
-| -     |                                                                                                                              |        |
-| 2     | Plan: Implement Primitives Contracts `$PROJECT/_backlog/3-now/plan-implement-primitives-contracts/plan.md`                   | `DONE` |
-| -     |                                                                                                                              |        |
-| 3     | Plan: Update Parser and Serializer Entry Points `$PROJECT/_backlog/3-now/plan-update-parser-serializer-entry-points/plan.md` | `DONE` |
-| -     |                                                                                                                              |        |
-| 4     | Plan: Implement Codec Package `$PROJECT/_backlog/3-now/plan-implement-codec-package/plan.md`                                 | `DONE` |
-| -     |                                                                                                                              |        |
-| 5     | Plan: Update Codec Knowledge `$PROJECT/_backlog/3-now/plan-update-codec-knowledge/plan.md`                                   | `DONE` |
+| Phase | Resource / Record                                                                                                             | Status |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------- | ------ |
+| 1     | Plan: Create Codec Spec `$PROJECT/_backlog/1-done/plan-create-codec-spec/plan.md`                                             | `DONE` |
+| -     |                                                                                                                               |        |
+| 2     | Plan: Implement Primitives Contracts `$PROJECT/_backlog/1-done/plan-implement-primitives-contracts/plan.md`                   | `DONE` |
+| -     |                                                                                                                               |        |
+| 3     | Plan: Update Parser and Serializer Entry Points `$PROJECT/_backlog/1-done/plan-update-parser-serializer-entry-points/plan.md` | `DONE` |
+| -     |                                                                                                                               |        |
+| 4     | Plan: Implement Codec Package `$PROJECT/_backlog/1-done/plan-implement-codec-package/plan.md`                                 | `DONE` |
+| -     |                                                                                                                               |        |
+| 5     | Plan: Update Codec Knowledge `$PROJECT/_backlog/1-done/plan-update-codec-knowledge/plan.md`                                   | `DONE` |
 
 ---
 
@@ -383,8 +383,7 @@ npm run test # runs test-parser and test-serializer against stable fixtures
 
 ### Follow Ups
 
-- Decide whether concrete content sources (`FSContentSource`, `MemoryContentSource`) are implemented in a follow-up milestone.
-- Move the plan drafts from `_roadmap/6-plan/` to `_backlog/3-now/` when actionable.
+- None.
 
 ### Feedback
 
