@@ -2,9 +2,9 @@
 
 ## Package: Bin
 
-**Purpose:** CLI for developing and building Art modules.
+**Purpose:** CLI that exposes parser and serializer as commands.
 
-**Description:** Provides an entry point to bundler, program, validator, parser, and watcher.
+**Description:** Owns the `art-codec`, `art-parse`, and `art-serialize` entry points.
 
 **Owner:** Project: Art MD
 
@@ -22,6 +22,9 @@
 
 **Files:**
 
+- `src/bin/codec.ts`
+- `src/bin/parse.ts`
+- `src/bin/serialize.ts`
 - `dist`
 - `LICENSE-MIT`
 - `README.md`
@@ -40,6 +43,10 @@
 
 **Dependencies:**
 
+- Runtime:
+  - `@art-md/codec`
+  - `@art-md/primitives`
+  - `commander`
 - Dev:
   - Package Dependency Set: Cli Development
 

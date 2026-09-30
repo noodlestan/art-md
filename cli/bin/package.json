@@ -5,6 +5,9 @@
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/noodlestan/art-md",
@@ -13,6 +16,11 @@
   "type": "module",
   "module": "dist/esm/index.mjs",
   "main": "dist/cjs/index.js",
+  "bin": {
+    "art-codec": "./dist/esm/bin/codec.mjs",
+    "art-parse": "./dist/esm/bin/parse.mjs",
+    "art-serialize": "./dist/esm/bin/serialize.mjs"
+  },
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
@@ -37,6 +45,11 @@
     "test:ci": "vitest run --coverage",
     "test:watch": "vitest",
     "ci": "npm run lint && npm run build && npm run test:ci"
+  },
+  "dependencies": {
+    "@art-md/codec": "*",
+    "@art-md/primitives": "*",
+    "commander": "^12.0.0"
   },
   "devDependencies": {}
 }
