@@ -72,7 +72,7 @@ This section describes the context knowledge required for the different phases o
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
 ::READ `$ART_WORK/cli/work/package.json` (Reference) — Art Work CLI manifest: the `bin` export shape and the `esbuild-cli` build wiring to mirror. Relevant for Implementing.
-::READ `$BUILD/node_modules/@noodlestan/esbuild/src/config/esm.mjs` (Reference) — Build config: globs every `src/**/*.ts` into a separate bundle under `dist/esm/`, preserving the shebang. Determines where the three entry points must live. Relevant for Implementing.
+::READ `$BUILD/node_modules/@noodlestan/esbuild/src/config/esm.mjs` (Reference) — Build config: globs every `src/**/*.ts`, including test files, into a separate bundle under `dist/esm/`. Determines where the three entry points must live. Relevant for Implementing.
 
 ## Scope
 
@@ -94,16 +94,18 @@ Complete the package scaffold in `$BUILD/cli/bin/`. The package directory, its b
 
 **Changes:**
 
-- Add runtime dependencies to `package.json`: `commander` (CLI parsing), `@art-md/codec` (`createArtCodec`), `@art-md/primitives` (the `ArtCodec`, `ParseResult`, and `SerializeResult` types).
+- Add runtime dependencies to `package.json`: `commander` (CLI parsing), `@art-md/codec` (`createArtCodec`), `@art-md/primitives` (the `ArtCodec`, `ParseResult`, and `SerializeResult` types). Pin the two workspace packages as `"*"` per the sibling `libs/*/package.json` convention, and `commander` as `"^12.0.0"` to match the Art Work CLI.
+- Run `npm install` at the repository root so `package-lock.json` records the new dependencies; without it `npm ci` fails on a lockfile-manifest mismatch. Commit the lockfile alongside the manifest.
 - Declare the `bin` exports, resolving to the bundles the `esbuild-cli` build emits for `src/bin/*.ts`:
   - `art-codec` — `./dist/esm/bin/codec.mjs`
   - `art-parse` — `./dist/esm/bin/parse.mjs`
   - `art-serialize` — `./dist/esm/bin/serialize.mjs`
-- Add `src/globals.d.ts` — `declare const __BUILD_VERSION__: string;` is **not** adopted; the version is read from `package.json` at runtime instead, so no ambient global is declared.
-- Create `.eslintrc.cjs` re-exporting the repository root config, matching the sibling `libs/*/.eslintrc.cjs` pattern, so `npm run lint` resolves a config for the package.
-- Create `src/bin/codec.ts`, `src/bin/parse.ts`, `src/bin/serialize.ts` as shebang stubs that resolve and print a not-yet-implemented notice, so `npm run build` and the `bin` exports have real modules to resolve.
-- Replace the `// placeholder` `src/index.ts` with the package's public export surface (types and the shared builders exported for testing and reuse), still without command behaviour.
-- Add `src/bin/binEntryPoints.test.ts` asserting the three entry point modules exist, carry a `#!/usr/bin/env node` shebang, and export the expected program name — the regression guard for the `bin` manifest mapping.
+- Complete the rest of the manifest contract, which is currently half-declared: add `publishConfig.access: "public"` (absent here, present on `@art-md/codec`); drop the dangling `exports["."].types` → `./dist/esm/index.d.ts`, which `esbuild-cli` never emits; and confirm `files` still ships the built bins.
+- Create `.eslintrc.cjs` re-exporting the repository root config, matching the sibling `libs/*/.eslintrc.cjs` pattern (spread the required root config into a new object), so `npm run lint` resolves a config for the package.
+- Create `src/bin/codec.ts`, `src/bin/parse.ts`, `src/bin/serialize.ts` as shebang stubs that print a not-yet-implemented notice and exit non-zero, so `npm run build` and the `bin` exports have real modules to resolve. The stubs export nothing and self-execute on import, so no test may import them.
+- Replace the `// placeholder` `src/index.ts` with the package's public export surface: re-export the `@art-md/primitives` types this package consumes (`ArtCodec`, `ParseResult`, `SerializeResult`). Types only — no placeholder runtime export is introduced, because there is no real runtime surface to export until Plan: Implement Bin Commands and a fabricated constant would have to be deleted there.
+- Add `src/bin/binManifest.test.ts` asserting the `bin` contract rather than module internals: for each entry, the source file exists at the matching `src/bin/*.ts` path, carries a `#!/usr/bin/env node` shebang, and its manifest target is the `./dist/esm/bin/*.mjs` path the build emits. The test reads the manifest and the source files as text and imports nothing, which is the regression guard for the mapping this iteration actually establishes.
+- Extend the `vitest.config.ts` coverage `exclude` from `['src/index.ts']` to also exclude `src/bin/*` — the stubs are self-executing and are not covered by this iteration's tests, so leaving them in scope fails the 90% thresholds. Plan: Implement Bin Commands removes the `src/bin/*` exclusion once the entry points hold real, testable logic.
 - Update `_records/package.art` — replace the bundler/validator/compiler/watcher purpose and description with the parse/serialise CLI role; record the three entry points in `Files:`; add the `Dependencies:` entries.
 - Update `_guide.md` — package layout including `src/bin/`, `src/commands/`, `src/private/`, and `src/test/`; add the `npm run test` and `npm run ci` operating instructions.
 - Update `README.md` — package description, the three commands, and the bin exports.
@@ -142,12 +144,13 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Changes:**
 
-- Add `commander`, `@art-md/codec`, and `@art-md/primitives` to `package.json` `dependencies`.
-- Add the `bin` block to `package.json` mapping `art-codec`, `art-parse`, and `art-serialize` to `./dist/esm/bin/{codec,parse,serialize}.mjs`.
+- Add `commander` (`^12.0.0`), `@art-md/codec`, and `@art-md/primitives` (`"*"` each) to `package.json` `dependencies`, and update `package-lock.json` with `npm install`.
+- Add the `bin` block to `package.json` mapping `art-codec`, `art-parse`, and `art-serialize` to `./dist/esm/bin/{codec,parse,serialize}.mjs`; add `publishConfig.access` and drop the dangling `exports["."].types`.
 - Create `.eslintrc.cjs` re-exporting the repository root ESLint config.
-- Create `src/bin/codec.ts`, `src/bin/parse.ts`, `src/bin/serialize.ts` as shebang stubs.
-- Replace the `// placeholder` `src/index.ts` with the public export surface.
-- Add `src/bin/binEntryPoints.test.ts` covering shebang presence, module resolution, and program names for all three entry points.
+- Create `src/bin/codec.ts`, `src/bin/parse.ts`, `src/bin/serialize.ts` as self-executing shebang stubs that export nothing.
+- Replace the `// placeholder` `src/index.ts` with a type-only public export surface re-exporting the `@art-md/primitives` types.
+- Extend the `vitest.config.ts` coverage `exclude` to cover `src/bin/*`.
+- Add `src/bin/binManifest.test.ts` asserting the `bin` → source → build-path mapping by reading the manifest and sources, importing nothing.
 - Update `_records/package.art` with the CLI role, the three entry points, and the dependencies.
 
 **Dependencies:**
@@ -178,7 +181,7 @@ build(bin): declare package contract and entry point exports
 
 **Purpose:** Align the package's own records and docs with its real role, so the next iteration starts from accurate package knowledge.
 
-**Description:** Realign `_records/package.art`, `_guide.md`, and `README.md` with the parse/serialise CLI role and the three entry points, and add the initial `CHANGELOG.md`.
+**Description:** Realign `_records/package.art`, `_guide.md`, and `README.md` with the parse/serialise CLI role and the three entry points, and add the initial `CHANGELOG.md`. Executes after Iteration: Declare Bin Package Contract and describes the manifest, entry points, and lint config that iteration lands; the dependency is expressed by position in the Items table, since iteration-to-iteration dependencies are not recorded here.
 
 **Instructions:** `./instructions/document-bin-package.md`
 
@@ -289,14 +292,18 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 ### Findings
 
 - **The scaffold is template-derived, not milestone-derived** — `cli/bin/` was scaffolded with a bundler/validator/compiler/watcher description and no dependencies, so the manifest contract has to be established here rather than adjusted.
-- **`esbuild-cli` globs every `src/**/\*.ts`** — the build emits one bundle per source file under `dist/esm/`, so the three entry points must live at `src/bin/{codec,parse,serialize}.ts`for the`bin` exports to resolve to build output rather than TypeScript sources.
+- **`esbuild-cli` globs every `src/**/\*.ts`** — the build emits one bundle per source file under `dist/esm/`, so the three entry points must live at `src/bin/{codec,parse,serialize}.ts`for the`bin`exports to resolve to build output rather than TypeScript sources. Neither`esm.mjs`nor`common.mjs` configures a shebang banner; hashbang preservation is esbuild's own entry-point behaviour, not something the build config guarantees.
 - **`__BUILD_VERSION__` is not defined by the build** — the Art Work CLI declares the ambient global but `@noodlestan/esbuild` never defines it; the bin reads its version from `package.json` instead.
-- **Coverage thresholds are already configured** — `cli/bin/vitest.config.ts` sets 90% lines/functions/statements and 75% branches, with `src/index.ts` excluded; this plan keeps the first tests above that bar.
+- **Coverage thresholds are already configured** — `cli/bin/vitest.config.ts` sets 90% lines/functions/statements and 75% branches, with `src/index.ts` excluded; the `src/bin/*` stubs are added to the exclusion here and must come out of it in Plan: Implement Bin Commands.
+- **The manifest contract is half-declared** — `exports["."].types` points at `./dist/esm/index.d.ts`, which `esbuild-cli` never emits (the copy in `dist` is stale from an earlier `build:types:esm`), and the scoped package lacks the `publishConfig.access: "public"` that `@art-md/codec` carries, so publishing would fail.
+- **The build globs test files too** — `src/**/*.ts` matches `*.test.ts`, so the manifest test this plan adds also emits a bundle; a build-output exclusion is required before publication.
 
 ### Decisions
 
-- **Bin exports point at build output** — `art-codec`, `art-parse`, and `art-serialize` resolve to `./dist/esm/bin/*.mjs`, matching the Art Work CLI's `bin` shape and the `esbuild-cli` output layout, rather than to `bin/*` source stubs.
-- **Entry points live under `src/bin/`** — a directory, not three top-level source files, so the shared commander builders stay one level up in `src/private/commander/`.
+- **Bin exports point at build output** — `art-codec`, `art-parse`, and `art-serialize` resolve to `./dist/esm/bin/*.mjs`, following the `esbuild-cli` output layout, rather than to `bin/*` source stubs. The Art Work CLI's own bin is a single entry from `src/index.ts`; three bins cannot reuse that shape.
+- **Entry points live under `src/bin/`** — a directory, not three top-level source files, so the shared commander builders stay one level up in `src/private/commander/`. This deviates from the Art Work CLI, whose single `art-work-cli` bin points at `dist/esm/index.mjs` from `src/index.ts`; the deviation buys three independent bundles and is not drift to be corrected later.
+- **No placeholder export surface** — the scaffold exports types only. Inventing a runtime constant (a `PROGRAM_NAME` or similar) to satisfy a test would be scaffolding with no consumer, and would have to be deleted by the next plan.
+- **The manifest test asserts the manifest** — `binManifest.test.ts` reads `package.json` and the sources as text instead of importing the entry points, because the stubs self-execute and call `process.exit`, which would kill the test process.
 - **No ambient build-version global** — the version is read from `package.json` at runtime; `src/globals.d.ts` is not introduced.
 - **Stubs, not behaviour** — the three entry points land as stubs so the pipeline has modules to resolve; behaviour lands in Plan: Implement Bin Commands.
 
@@ -310,6 +317,8 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 ### Follow Ups
 
 - **Entry point naming in `architecture/components.md`** — the planned-packages text still names `art-md-parser`, `art-md-serializer`, `art-md`, and `art-md-validator`; Plan: Update Bin Knowledge corrects it to the decided `art-codec`, `art-parse`, and `art-serialize`.
+- **Remove the `src/bin/*` coverage exclusion** — the stub exclusion added in `vitest.config.ts` is temporary scaffolding; Plan: Implement Bin Commands drops it when the entry points hold real, tested logic.
+- **Exclude test bundles from the build output** — the `esbuild-cli` glob emits a bundle per test file; the exclusion must land before `@art-md/bin` is published.
 
 ### Feedback
 

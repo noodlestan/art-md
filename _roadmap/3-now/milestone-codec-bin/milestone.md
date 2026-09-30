@@ -31,7 +31,7 @@ This section lists the path variables used throughout the Milestone file and its
 
 ## Summary
 
-Create the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`) in the target CLI package, following the Art Work CLI patterns (entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs), so that parsing and serialising are exposed as consistent, composable command-line tools; then consolidate repeated code between the codec and artwork bins into `@art-lib`. The work is decomposed into four plans under `$PROJECT/_backlog/6-plan/`.
+Create the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`) in the target CLI package, following the Art Work CLI patterns (entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs), so that parsing and serialising are exposed as consistent, composable command-line tools; then consolidate repeated code between the codec and artwork bins into `@art-lib`. The work is decomposed into four plans under `$PROJECT/_backlog/4-next/`.
 
 ## Attachments
 
@@ -156,10 +156,10 @@ This section describes the ordered phases used to organise downstream work, iden
 
 | Index | Name        | Status     | Plan                                                           |
 | ----- | ----------- | ---------- | -------------------------------------------------------------- |
-| #1    | Scaffold    | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`   |
-| #2    | Commands    | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md` |
-| #3    | Consolidate | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`  |
-| #4    | Knowledge   | `PLANNING` | `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`   |
+| #1    | Scaffold    | `PLANNING` | `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`   |
+| #2    | Commands    | `PLANNING` | `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md` |
+| #3    | Consolidate | `PLANNING` | `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`  |
+| #4    | Knowledge   | `PLANNING` | `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`   |
 
 ### Phase: 1 — Scaffold
 
@@ -169,7 +169,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Status:** `PLANNING`
 
-**Plan:** `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`
+**Plan:** `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`
 
 **Dependencies:**
 
@@ -183,7 +183,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Status:** `PLANNING`
 
-**Plan:** `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md`
+**Plan:** `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`
 
 **Dependencies:**
 
@@ -197,7 +197,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Status:** `PLANNING`
 
-**Plan:** `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`
+**Plan:** `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`
 
 **Dependencies:**
 
@@ -211,7 +211,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Status:** `PLANNING`
 
-**Plan:** `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`
+**Plan:** `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`
 
 **Dependencies:**
 
@@ -225,16 +225,16 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Plan                                                                                        | Status     |
 | ------------------------------------------------------------------------------------------- | ---------- |
-| Plan: Scaffold Bin Package `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`     | `PLANNING` |
-| Plan: Implement Bin Commands `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md` | `PLANNING` |
-| Plan: Consolidate Codec Bin `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`   | `PLANNING` |
-| Plan: Update Bin Knowledge `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`     | `PLANNING` |
+| Plan: Scaffold Bin Package `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`     | `PLANNING` |
+| Plan: Implement Bin Commands `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md` | `PLANNING` |
+| Plan: Consolidate Codec Bin `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`   | `PLANNING` |
+| Plan: Update Bin Knowledge `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`     | `PLANNING` |
 
 ### Plan: Scaffold Bin Package
 
 **Status:** `PLANNING`
 
-**Path:** `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`
+**Path:** `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`
 
 **Purpose:** Complete the `@art-md/bin` package scaffold so it declares its dependencies, exports the three CLI entry points, and passes the pipeline.
 
@@ -248,7 +248,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Status:** `PLANNING`
 
-**Path:** `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md`
+**Path:** `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`
 
 **Purpose:** Implement the `parse` and `serialize` operations and wire them into the three entry points, sharing one set of commander builders, one set of operations, and one logger.
 
@@ -262,7 +262,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Status:** `PLANNING`
 
-**Path:** `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`
+**Path:** `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`
 
 **Purpose:** Audit the implemented CLI against the TypeScript conventions, refactor what the audit finds, and identify the precise extraction units for `@art-lib`.
 
@@ -276,7 +276,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Status:** `PLANNING`
 
-**Path:** `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/plan.md`
+**Path:** `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`
 
 **Purpose:** Capture everything known about the codec bin in `bin/architecture/` and register the package across the project's records, guides, and architecture.
 
@@ -294,7 +294,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 This section states the immediate action needed to advance the Milestone.
 
-Write instructions for the first iteration of Plan: Scaffold Bin Package, then delegate it.
+Delegate Iteration: Declare Bin Package Contract, the first iteration of Plan: Scaffold Bin Package. Both of that plan's instructions are authored and `READY`.
 
 ### Blockers
 
@@ -353,9 +353,10 @@ npm run test # runs vitest against the CLI unit tests
 ### Findings
 
 - **The scaffold is template-derived** — `cli/bin/` was scaffolded with a bundler/validator/compiler/watcher description and no dependencies, so the manifest contract had to be established rather than adjusted.
-- **`esbuild-cli` globs every `src/**/_.ts`** — the build emits one bundle per source file under `dist/esm/`, so the three entry points live at `src/bin/{codec,parse,serialize}.ts`and the`bin`exports resolve to`dist/esm/bin/_.mjs`, not to `bin/\*` sources.
+- **`esbuild-cli` globs every `src/**/_.ts`** — the build emits one bundle per source file under `dist/esm/`, so the three entry points live at `src/bin/{codec,parse,serialize}.ts`and the`bin`exports resolve to`dist/esm/bin/_.mjs`, not to `bin/\*` sources. The same glob also emits a bundle per test file; a build-output exclusion is required before the package is published.
 - **`__BUILD_VERSION__` is undefined by the build** — the Art Work CLI declares the ambient global but `@noodlestan/esbuild` never defines it, so the bin reads its version from `package.json`.
 - **The CLI has no checkout concept** — the Art Work operation log lines carry repo and checkout columns; the codec CLI has neither, so `makeOperationLogLine` drops those columns rather than emitting placeholders.
+- **Workspace dependencies are pinned `*`** — sibling packages declare intra-workspace deps as `"@art-md/primitives": "*"`, and `commander` is not installed in the building checkout, so the first manifest change requires an `npm install` that rewrites `package-lock.json` before `npm ci` will pass.
 - **Coverage is enforced, not advisory** — `cli/bin/vitest.config.ts` already sets 90/90/90/75 thresholds, so the closing iteration closes gaps rather than raising a target.
 - **The bin is described twice, and one description is wrong** — `architecture/components.md` lists Bin under both "CLI Surface" and "Planned Packages", and the planned-packages text names `art-md-parser`, `art-md-serializer`, `art-md-validator`, and an `art-md` consolidated entry with `--write` — none of which were built.
 
@@ -364,7 +365,7 @@ npm run test # runs vitest against the CLI unit tests
 - **Three entry points** — `bin/codec` (with `parse`/`serialize` commands), `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`.
 - **Shared implementations** — all three bins share the same commander builder utilities and the same `doParse`/`doSerialize` implementations; the `codec` bin reimplements nothing.
 - **Follow the Art Work patterns** — entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs; unit tests, mocks, and test helpers follow the Art Work CLI patterns.
-- **Bin exports point at build output** — the exports resolve to `./dist/esm/bin/*.mjs`, matching the Art Work CLI's `bin` shape and the `esbuild-cli` output layout.
+- **Bin exports point at build output** — the exports resolve to `./dist/esm/bin/*.mjs`, following the `esbuild-cli` output layout. This **deviates** from the Art Work CLI, which declares a single `art-work-cli` bin pointing at `dist/esm/index.mjs` from `src/index.ts`; three bins require the `src/bin/` subdirectory. The deviation is recorded so the consolidation phase does not mistake it for drift.
 - **The bin owns its I/O** — `readInput`/`writeOutput` use `node:fs/promises` directly; the codec stays I/O-free and `FSContentSource` stays future work.
 - **No ambient build-version global** — the version is read from `package.json` at runtime.
 - **Four plans, phases one to one** — each phase maps to exactly one plan, and the last plan captures all knowledge about the bin.

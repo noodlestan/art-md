@@ -43,9 +43,9 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | ------------ | ------------------------------------------------------------------ | ---------------------------------------------------- |
 | Milestone    | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md`         | The milestone this plan closes out.                  |
 | Design       | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | The design the delivered CLI implements.             |
-| Plan         | `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`       | Established the manifest contract and entry points.  |
-| Plan         | `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md`     | Implemented the CLI this plan documents.             |
-| Plan         | `$PROJECT/_backlog/6-plan/plan-consolidate-codec-bin/plan.md`      | Produced the `@art-lib` extraction inventory.        |
+| Plan         | `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`       | Established the manifest contract and entry points.  |
+| Plan         | `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`     | Implemented the CLI this plan documents.             |
+| Plan         | `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`      | Produced the `@art-lib` extraction inventory.        |
 | Architecture | `$PROJECT/architecture/components.md`                              | Currently describes the bin twice, with stale names. |
 | Architecture | `$PROJECT/architecture/overview.md`                                | The ecosystem overview the CLI plugs into.           |
 
@@ -463,7 +463,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 - `$PROJECT/architecture/codec.md` — the codec's I/O-free boundary and its consumer.
 - `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md` — evidence, decisions, and follow-ups.
 - `$PROJECT/_backlog/_parking-lot.md` — the `@art-lib` follow-up.
-- `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/comparison__codec-bin-vs-art-work.md` — the side-by-side comparison and abstraction proposals.
+- `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/comparison__codec-bin-vs-art-work.md` — the side-by-side comparison and abstraction proposals.
 - `$ART_LIB/_backlog/_message-from-art-md-project.md` — the structured message to the Art Lib project.
 
 ### Follow Ups

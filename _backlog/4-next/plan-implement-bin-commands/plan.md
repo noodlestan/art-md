@@ -43,7 +43,7 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | ------------ | ------------------------------------------------------------------ | ----------------------------------------------------- |
 | Milestone    | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md`         | Coordinates this plan within the Codec Bin milestone. |
 | Design       | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | The design this plan implements.                      |
-| Plan         | `$PROJECT/_backlog/6-plan/plan-scaffold-bin-package/plan.md`       | Establishes the manifest contract and entry points.   |
+| Plan         | `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`       | Establishes the manifest contract and entry points.   |
 | Milestone    | `$PROJECT/_roadmap/1-done/milestone-art-codec/milestone.md`        | Delivered `@art-md/codec` and `createArtCodec()`.     |
 | Architecture | `$PROJECT/architecture/codec.md`                                   | The codec and source contracts this CLI consumes.     |
 
@@ -326,6 +326,7 @@ build(bin): implement doSerialize operation and runSerialize
 - Replace the three stubs with real entry points: `src/bin/parse.ts` registers `buildParseCommand()`; `src/bin/serialize.ts` registers `buildSerializeCommand()`; `src/bin/codec.ts` registers both and defines no command logic.
 - Update `src/index.ts` — export the operation types, command specs, builders, and `doParse`/`doSerialize`.
 - Add `src/private/commander/buildProgram.test.ts` and `buildParseCommand.test.ts`/`buildSerializeCommand.test.ts` — each program reports the right name and version; `art-codec` exposes `parse` and `serialize` while `art-parse` and `art-serialize` expose exactly one; the codec's `parse` spec is the same object the single-command bin uses.
+- Remove `'src/bin/*'` from the `vitest.config.ts` coverage `exclude` — the stub exclusion the scaffold added is retired here, now that the entry points hold real, testable logic — and delete `src/bin/binManifest.test.ts`, folding its `bin` → source → build-path assertions into the new tests so the guard survives its own retirement.
 
 **Dependencies:**
 

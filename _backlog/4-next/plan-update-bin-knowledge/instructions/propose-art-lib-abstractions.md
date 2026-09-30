@@ -129,7 +129,7 @@ npm run lint # prettier and eslint over all workspaces
 
 ### Step `1 / 4` — Write side-by-side comparison
 
-Write `$PROJECT/_backlog/6-plan/plan-update-bin-knowledge/comparison__codec-bin-vs-art-work.md`:
+Write `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/comparison__codec-bin-vs-art-work.md`:
 
 - Side-by-side comparison covering: operation model, logger, operations log, context factory pattern, command action skeleton, test helpers, log line presentation, config loading, reports, and entry point strategy
 - For each unit classify as: **extractable** (identical implementation), **pattern-only** (same shape, different types), or **project-specific** (stays put)

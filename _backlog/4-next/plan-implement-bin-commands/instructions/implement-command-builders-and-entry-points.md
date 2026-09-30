@@ -119,16 +119,17 @@ npm run test # runs vitest against the CLI unit tests
 
 ## Changes
 
-- Step 1 / 6 — Add `buildProgram`
-- Step 2 / 6 — Add command builders
-- Step 3 / 6 — Wire entry points
-- Step 4 / 6 — Update `src/index.ts` exports
-- Step 5 / 6 — Add tests
-- Step 6 / 6 — Commit `implement-command-builders-and-entry-points`
+- Step 1 / 7 — Add `buildProgram`
+- Step 2 / 7 — Add command builders
+- Step 3 / 7 — Wire entry points
+- Step 4 / 7 — Update `src/index.ts` exports
+- Step 5 / 7 — Lift the scaffold's coverage exclusion and retire `binManifest.test.ts`
+- Step 6 / 7 — Add tests
+- Step 7 / 7 — Commit `implement-command-builders-and-entry-points`
 
 ## Steps
 
-### Step `1 / 6` — Add `buildProgram`
+### Step `1 / 7` — Add `buildProgram`
 
 Create `$BUILD/cli/bin/src/private/commander/buildProgram.ts`:
 
@@ -137,7 +138,7 @@ Create `$BUILD/cli/bin/src/private/commander/buildProgram.ts`:
 - Register the given commands
 - Shared by all three bins
 
-### Step `2 / 6` — Add command builders
+### Step `2 / 7` — Add command builders
 
 Create `$BUILD/cli/bin/src/private/commander/buildParseCommand.ts`:
 
@@ -150,7 +151,7 @@ Create `$BUILD/cli/bin/src/private/commander/buildSerializeCommand.ts`:
 
 - Same shape for serialise (`[file]`, `-o`, `-w, --write <file>`)
 
-### Step `3 / 6` — Wire entry points
+### Step `3 / 7` — Wire entry points
 
 Replace the three stubs in `$BUILD/cli/bin/src/bin/`:
 
@@ -158,13 +159,23 @@ Replace the three stubs in `$BUILD/cli/bin/src/bin/`:
 - `serialize.ts` — `buildProgram` with single `buildSerializeCommand()`
 - `codec.ts` — `buildProgram` with both commands; defines no command logic
 
-### Step `4 / 6` — Update `src/index.ts` exports
+### Step `4 / 7` — Update `src/index.ts` exports
 
 Update `$BUILD/cli/bin/src/index.ts`:
 
 - Export operation types, command specs, builders, and `doParse`/`doSerialize`
 
-### Step `5 / 6` — Add tests
+### Step `5 / 7` — Lift the scaffold's coverage exclusion and retire `binManifest.test.ts`
+
+The scaffold iteration left two pieces of temporary scaffolding behind. Both must be resolved here, in the iteration that creates the real code.
+
+In `$BUILD/cli/bin/vitest.config.ts`, drop `'src/bin/*'` from the coverage `exclude` list, leaving `['src/index.ts']`. The entry points now hold real logic and must be measured against the 90% thresholds.
+
+RULE: Do not leave `'src/bin/*'` in the exclusion. It was added only because the stubs self-executed and could not be tested; that is no longer true.
+
+Delete `$BUILD/cli/bin/src/bin/binManifest.test.ts`. Its job was to guard the `bin` manifest mapping before the entry points had any behaviour to assert. That guard is kept, not lost: fold its assertions into the tests added in Step 6, so the `bin` → `src/bin/*.ts` → `dist/esm/bin/*.mjs` mapping stays under test.
+
+### Step `6 / 7` — Add tests
 
 Create `$BUILD/cli/bin/src/private/commander/buildProgram.test.ts` and `buildParseCommand.test.ts`/`buildSerializeCommand.test.ts`:
 
@@ -173,7 +184,11 @@ Create `$BUILD/cli/bin/src/private/commander/buildProgram.test.ts` and `buildPar
 - `art-parse` and `art-serialize` expose exactly one command
 - The codec's `parse` spec is the same object the single-command bin uses
 
-### Step `6 / 6` — Commit `implement-command-builders-and-entry-points`
+Also re-assert the manifest mapping retired in Step 5, so the guard survives: each `bin` entry in `package.json` resolves to an existing `src/bin/*.ts` source carrying a `#!/usr/bin/env node` shebang.
+
+RULE: Assert program names through commander's own reporting (`program.name()`, `--help` output), not through a constant exported from an entry point. The entry points register commands and parse arguments; they do not export a program name, and no such constant exists in this codebase.
+
+### Step `7 / 7` — Commit `implement-command-builders-and-entry-points`
 
 #### Commit: `implement-command-builders-and-entry-points`
 
@@ -194,4 +209,5 @@ build(bin): add shared command builders and three entry points
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
 - Verify that `npm run test` from `$BUILD/cli/bin/` passes.
+- Verify that `'src/bin/*'` no longer appears in the `vitest.config.ts` coverage `exclude`, and that `src/bin/binManifest.test.ts` no longer exists.
 - Report according to the "How to Report Back to the Delegator" instructions.

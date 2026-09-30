@@ -17,7 +17,7 @@ Locked down by the user during milestone drafting. The design lifts the Art Work
 
 **Refinements:**
 
-- Resolved during milestone planning; the locked decisions are recorded in the Milestone's `Coordination / Decisions` and detailed per plan under `$PROJECT/_backlog/6-plan/`. The design's `bin` export paths were corrected to point at build output (`dist/esm/bin/*.mjs`) rather than `bin/*` sources, to match the `esbuild-cli` output layout.
+- Resolved during milestone planning; the locked decisions are recorded in the Milestone's `Coordination / Decisions` and detailed per plan under `$PROJECT/_backlog/4-next/`. The design's `bin` export paths were corrected to point at build output (`dist/esm/bin/*.mjs`) rather than `bin/*` sources, to match the `esbuild-cli` output layout.
 
 ## Art Work CLI Patterns (Reference)
 

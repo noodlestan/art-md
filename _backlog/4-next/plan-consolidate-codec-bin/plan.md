@@ -43,7 +43,7 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | --------- | ------------------------------------------------------------------ | ----------------------------------------------------- |
 | Milestone | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md`         | Coordinates this plan within the Codec Bin milestone. |
 | Design    | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | Names the `@art-lib` consolidation follow-up.         |
-| Plan      | `$PROJECT/_backlog/6-plan/plan-implement-bin-commands/plan.md`     | Implemented the CLI this plan consolidates.           |
+| Plan      | `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`     | Implemented the CLI this plan consolidates.           |
 
 ### Required Skills
 
