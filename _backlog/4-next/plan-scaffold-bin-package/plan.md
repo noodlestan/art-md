@@ -2,7 +2,7 @@
 
 **ID:** `scaffold-bin-package`
 
-**Status:** `READY`
+**Status:** `DELIVERED`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -100,7 +100,7 @@ Complete the package scaffold in `$BUILD/cli/bin/`. The package directory, its b
   - `art-codec` — `./dist/esm/bin/codec.mjs`
   - `art-parse` — `./dist/esm/bin/parse.mjs`
   - `art-serialize` — `./dist/esm/bin/serialize.mjs`
-- Complete the rest of the manifest contract, which is currently half-declared: add `publishConfig.access: "public"` (absent here, present on `@art-md/codec`); drop the dangling `exports["."].types` → `./dist/esm/index.d.ts`, which `esbuild-cli` never emits; and confirm `files` still ships the built bins.
+- Complete the rest of the manifest contract, which is currently half-declared: add `publishConfig.access: "public"` (absent here, present on `@art-md/codec`), and confirm `files` still ships the built bins. The `exports["."].types` condition is left as-is: `esbuild-cli` does emit the declaration it points at.
 - Create `.eslintrc.cjs` re-exporting the repository root config, matching the sibling `libs/*/.eslintrc.cjs` pattern (spread the required root config into a new object), so `npm run lint` resolves a config for the package.
 - Create `src/bin/codec.ts`, `src/bin/parse.ts`, `src/bin/serialize.ts` as shebang stubs that print a not-yet-implemented notice and exit non-zero, so `npm run build` and the `bin` exports have real modules to resolve. The stubs export nothing and self-execute on import, so no test may import them.
 - Replace the `// placeholder` `src/index.ts` with the package's public export surface: re-export the `@art-md/primitives` types this package consumes (`ArtCodec`, `ParseResult`, `SerializeResult`). Types only — no placeholder runtime export is introduced, because there is no real runtime surface to export until Plan: Implement Bin Commands and a fabricated constant would have to be deleted there.
@@ -125,10 +125,10 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                 | Status  |
-| ---------------------------------------------------------------------------------------- | ------- |
-| Iteration: Declare Bin Package Contract `./instructions/declare-bin-package-contract.md` | `READY` |
-| Iteration: Document Bin Package `./instructions/document-bin-package.md`                 | `READY` |
+| Iteration / Instructions                                                                 | Status |
+| ---------------------------------------------------------------------------------------- | ------ |
+| Iteration: Declare Bin Package Contract `./instructions/declare-bin-package-contract.md` | `DONE` |
+| Iteration: Document Bin Package `./instructions/document-bin-package.md`                 | `DONE` |
 
 ### Iteration: Declare Bin Package Contract
 
@@ -159,9 +159,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                             | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ------------------------------ | ------------------------------ | -------- | ----- | ---------- |
-| `declare-bin-package-contract` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                             | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ------------------------------ | ------------------------------ | -------- | --------- | ----------- |
+| `declare-bin-package-contract` | Art MD / `$BUILD` / `building` | `NOPUSH` | `0f7c86b` | `COMMITTED` |
 
 ##### Commit: `declare-bin-package-contract`
 
@@ -197,9 +197,9 @@ build(bin): declare package contract and entry point exports
 
 #### Commits:
 
-| ID                     | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ---------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `document-bin-package` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                     | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ---------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `document-bin-package` | Art MD / `$BUILD` / `building` | `NOPUSH` | `72b62bb` | `COMMITTED` |
 
 ##### Commit: `document-bin-package`
 
@@ -217,7 +217,7 @@ docs(bin): document package role, entry points, and operations
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Declare Bin Package Contract.
+Both iterations are `DONE` and the plan is `DELIVERED`, awaiting review. The reports are at `./instructions/declare-bin-package-contract__report.md` and `./instructions/document-bin-package__report.md`. On acceptance, move this plan to `_backlog/1-done/` and mark Phase 1 of Milestone: Codec Bin `DONE`; the milestone's next move is Plan: Implement Bin Commands.
 
 ### Blockers
 
@@ -287,7 +287,10 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
-- None yet.
+- **Iteration: Declare Bin Package Contract** — committed `0f7c86b` (`build(bin): declare package contract and entry point exports`), 10 files, +116/-4, not pushed. `npm run ci` passes repo-wide (7/7 turbo tasks); `npm run test` and `npm run test:ci` pass in `$BUILD/cli/bin/`; `npm ci` resolves 604 packages, proving `package-lock.json` was updated and committed. All three bins build to `dist/esm/bin/{codec,parse,serialize}.mjs` with shebangs preserved, and each prints its notice and exits 1. The three entry-point stubs were later amended to function declarations to satisfy the `Functions over Arrows` convention; the commit's file and line counts are unchanged by that fix.
+- **Iteration: Document Bin Package** — committed `72b62bb` (`docs(bin): document package role, entry points, and operations`), 3 files, +64/-4, not pushed. `npm run ci` passes repo-wide with 43 fixtures round-tripped; `npm run test` passes in `$BUILD/cli/bin/`.
+- **The `exports["."].types` removal was reverted** — the first iteration removed that condition on the incorrect premise that `esbuild-cli` never emits declarations. `@noodlestan/esbuild` appends `emitTypesPlugin` to the esm build, which shells out to `npm run build:types:esm` on completion, so `dist/esm/index.d.ts` is regenerated on every build. The condition was restored and the commit amended from `efde40b` to `0f7c86b`; `dist/esm/index.d.ts` now emits the three exported types and resolves for consumers.
+- **Entry points export nothing** — the stubs self-execute and `binManifest.test.ts` reads the manifest and sources as text, so no placeholder constant exists to be deleted downstream.
 
 ### Findings
 
@@ -295,7 +298,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 - **`esbuild-cli` globs every `src/**/\*.ts`** — the build emits one bundle per source file under `dist/esm/`, so the three entry points must live at `src/bin/{codec,parse,serialize}.ts`for the`bin`exports to resolve to build output rather than TypeScript sources. Neither`esm.mjs`nor`common.mjs` configures a shebang banner; hashbang preservation is esbuild's own entry-point behaviour, not something the build config guarantees.
 - **`__BUILD_VERSION__` is not defined by the build** — the Art Work CLI declares the ambient global but `@noodlestan/esbuild` never defines it; the bin reads its version from `package.json` instead.
 - **Coverage thresholds are already configured** — `cli/bin/vitest.config.ts` sets 90% lines/functions/statements and 75% branches, with `src/index.ts` excluded; the `src/bin/*` stubs are added to the exclusion here and must come out of it in Plan: Implement Bin Commands.
-- **The manifest contract is half-declared** — `exports["."].types` points at `./dist/esm/index.d.ts`, which `esbuild-cli` never emits (the copy in `dist` is stale from an earlier `build:types:esm`), and the scoped package lacks the `publishConfig.access: "public"` that `@art-md/codec` carries, so publishing would fail.
+- **The manifest contract is half-declared** — the scoped package lacks the `publishConfig.access: "public"` that `@art-md/codec` carries, so publishing would fail. The `exports["."].types` condition is already correct: `esbuild-cli` appends `emitTypesPlugin` to the esm build, which shells out to `npm run build:types:esm` on completion and regenerates `dist/esm/index.d.ts` on every build.
 - **The build globs test files too** — `src/**/*.ts` matches `*.test.ts`, so the manifest test this plan adds also emits a bundle; a build-output exclusion is required before publication.
 
 ### Decisions
@@ -322,4 +325,6 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Feedback
 
-- None.
+- **Report files must be prettier-formatted** — Iteration 1 left its report unformatted, which made `prettier . -c` exit 1 repo-wide and silently aborted the next commit via the lefthook `pre-commit` hook. Iteration 2 was instructed to format its own report; both reports are now clean. Worth folding into the worker skill or the report template so it does not depend on the delegator remembering.
+- **The guide documents directories that do not exist yet** — `_guide.md` lists `src/commands/`, `src/private/`, and `src/test/`, none of which exist at delivery. All three are created by Plan: Implement Bin Commands, so the description is accurate as a target, and the guide marks them explicitly as not yet populated. Flagged by the worker, confirmed by the delegator.
+- **Instructions over-specified the layout** — the instruction asked for all four directories, which pushes the next plan's structure into this plan's documentation. It happens to be correct, but it couples the two plans more tightly than the dependency graph admits.

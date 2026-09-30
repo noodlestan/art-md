@@ -171,7 +171,7 @@ In `$BUILD/cli/bin/package.json`:
 ```
 
 - Add `"publishConfig": { "access": "public" }`. The package is `private: false` and scoped, so publishing fails without it. `@art-md/codec` carries the same field.
-- Remove the `types` condition from `exports["."]`. It points at `./dist/esm/index.d.ts`, which `esbuild-cli` never emits; the file currently in `dist` is stale output from an earlier `build:types:esm` run. Leave the `import` and `require` conditions alone.
+- Leave the `types` condition in `exports["."]` pointing at `./dist/esm/index.d.ts` as it already does. `esbuild-cli` does emit it: the wrapper appends `emitTypesPlugin` to the esm build, which shells out to `npm run build:types:esm` on completion, so the declaration is regenerated on every build. Leave the `import` and `require` conditions alone too.
 - Leave `files` as `["dist", "LICENSE-MIT", "README.md"]` — the built bins are published through it.
 
 Expected outcome: the manifest declares the three CLI entry points against the build output, and no export condition points at a build artefact that does not exist.
