@@ -2,7 +2,7 @@
 
 **ID:** `implement-bin-commands`
 
-**Status:** `READY`
+**Status:** `WORKING`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -141,7 +141,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                                                               | Status  |
 | ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `READY` |
+| Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `DONE`  |
 | Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `READY` |
 | Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `READY` |
 | Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `READY` |
@@ -152,13 +152,15 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Id:** `implement-operation-log`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Give the CLI the operation vocabulary and the logger the commands report through, so every later iteration has a way to record progress.
 
 **Description:** Port the Art Work operation model to the codec CLI's two operations, drop the checkout-specific presentation, and implement the buffering logger.
 
 **Instructions:** `./instructions/implement-operation-log.md`
+
+**Report:** `./instructions/implement-operation-log__report.md`
 
 **Changes:**
 
@@ -174,13 +176,17 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                        | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `implement-operation-log` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                        | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `implement-operation-log` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `f008c71` | `COMMITTED` |
 
 ##### Commit: `implement-operation-log`
 
 **Repository:** Art MD
+
+**Status:** `COMMITTED`
+
+**Hash:** `f008c71`
 
 **Message:**
 
@@ -392,7 +398,7 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Implement Operation Log.
+Delegate Iteration: Implement Codec Context and IO.
 
 ### Blockers
 
@@ -471,7 +477,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
-- None yet.
+- **Implement Operation Log DONE** — report `./instructions/implement-operation-log__report.md`, commit `f008c71` (not pushed, `NOPUSH`). Added the operation types (including an `Operation` union), the five operation factories, `makeOperationLogLine` (Art Work's repo/checkout columns dropped), and the buffering `createLogger`, with 26 new tests. `npm run ci` green at the repository root; package coverage 100/100/100 lines-statements-functions, 87.17% branches.
 
 ### Findings
 
@@ -500,4 +506,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Feedback
 
-- None.
+- **Implement Operation Log** — the `Operation` union added to `types.ts` was unplanned but needed by `LoggerAPI.log`; the parse/serialise instructions should rely on it.
+- The `createOperationFailure` message convention (parenthetical reason) is a git-error convention; codec errors throw plain messages.
+- `makeOperationLogLine` does not truncate long messages; the reference pipes through `truncateMiddle(…, 50)`.
+- `cli/bin/_guide.md` describes tests under `src/test/`, but the packages co-locate them; the guide's layout paragraph is stale.
