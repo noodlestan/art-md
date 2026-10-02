@@ -144,7 +144,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `DONE`  |
 | Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `DONE`  |
 | Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `DONE`  |
-| Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `READY` |
+| Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `DONE`  |
 | Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `READY` |
 | Iteration: Verify Bin Coverage `./instructions/verify-bin-coverage.md`                                                 | `READY` |
 
@@ -290,13 +290,15 @@ build(bin): implement doParse operation and runParse
 
 **Id:** `implement-serialize-command`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Implement the `serialize` operation end to end, mirroring `parse` so the two share every layer but the codec call.
 
 **Description:** Add `doSerialize` and `runSerialize` with the same logging and presentation shape as `parse`, plus the unit tests covering both outcomes and the document roundtrip.
 
 **Instructions:** `./instructions/implement-serialize-command.md`
+
+**Report:** `./instructions/implement-serialize-command__report.md`
 
 **Changes:**
 
@@ -310,13 +312,17 @@ build(bin): implement doParse operation and runParse
 
 #### Commits:
 
-| ID                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `implement-serialize-command` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                            | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ----------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `implement-serialize-command` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `7519863` | `COMMITTED` |
 
 ##### Commit: `implement-serialize-command`
 
 **Repository:** Art MD
+
+**Status:** `COMMITTED`
+
+**Hash:** `7519863`
 
 **Message:**
 
@@ -410,7 +416,7 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Implement Serialize Command.
+Delegate Iteration: Implement Command Builders and Entry Points.
 
 ### Blockers
 
@@ -489,6 +495,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
+- **Implement Serialize Command DONE** — report `./instructions/implement-serialize-command__report.md`, commit `7519863` (not pushed, `NOPUSH`). Added `doSerialize` (with a `readDocument` helper), `runSerialize` and 14 tests; `npm run ci` green; package coverage 98.85/98.83/100/89.18.
 - **Implement Parse Command DONE** — report `./instructions/implement-parse-command__report.md`, commit `ff7b02a` (not pushed, `NOPUSH`). Added `doParse`, `runParse`, `makeParseFixture` and 12 tests; `npm run ci` green; package coverage 98.7/98.69/100/88.88.
 - **Implement Codec Context and IO DONE** — report `./instructions/implement-codec-context-and-io__report.md`, commit `3272dd0` (not pushed, `NOPUSH`). Added `BinConfig`/`loadBinConfig`, `createCodecContext`, an unplanned `createOperationsLog`, stdin/stdout-aware `readInput`/`writeOutput`, `presentDocument`/`presentContent`, and three test helpers; 27 new tests. `npm run ci` green; package coverage 98.55/98.52/100/88.57.
 - **Implement Operation Log DONE** — report `./instructions/implement-operation-log__report.md`, commit `f008c71` (not pushed, `NOPUSH`). Added the operation types (including an `Operation` union), the five operation factories, `makeOperationLogLine` (Art Work's repo/checkout columns dropped), and the buffering `createLogger`, with 26 new tests. `npm run ci` green at the repository root; package coverage 100/100/100 lines-statements-functions, 87.17% branches.
@@ -520,6 +527,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Feedback
 
+- **Implement Serialize Command** — `SerializeOptions` duplicates `ParseOptions` by copy; the plan never says how `serialize` gets its document (inferred: read then decode with `readDocument`); the serialise command spec is planned without `--json` while `doSerialize` honours it; `parse | serialize` is not byte-exact (the serialiser appends a trailing newline); both commands log the pending `uri` but never pass a `createParseContext`/`createSerializeContext`, so failures cannot name the offending file; `-` is logged as `-` rather than `stdin`.
 - **Implement Parse Command** — `ParseOptions { file?, json?, write? }` (no `-o`, which is the logger's); `doParse` returns the named `ParseOutcome` alias because conventions forbid unions in signatures; `runParse` returns the outcome so the entry points can pick an exit code; the pending operation's `uri` never reaches the parser (`ParseResult.context.uri` is the parser default); a failed `writeOutput` leaves both a `success` and a `failure` in the log.
 - **Implement Codec Context and IO** — `import … from '../../../package.json'` cannot work: `@noodlestan/esbuild`'s `esbuild-plugin-file-path-extensions` externalises non-JS-like imports, so the JSON path resolves to a non-existent `dist/package.json`; `readPackageVersion` walks up to the `@art-md/bin` manifest at runtime instead. A build-side fix would benefit every package.
 - `src/private/log/createOperationsLog.ts` and presentation tests were unplanned additions, required by Step 2's operations log and by the enforced coverage thresholds.
