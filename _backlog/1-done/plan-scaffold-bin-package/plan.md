@@ -2,7 +2,7 @@
 
 **ID:** `scaffold-bin-package`
 
-**Status:** `DELIVERED`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -134,7 +134,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Id:** `declare-bin-package-contract`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Make the package installable, buildable, and lintable with the three CLI entry points declared in its manifest.
 
@@ -177,7 +177,7 @@ build(bin): declare package contract and entry point exports
 
 **Id:** `document-bin-package`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Align the package's own records and docs with its real role, so the next iteration starts from accurate package knowledge.
 
@@ -217,7 +217,7 @@ docs(bin): document package role, entry points, and operations
 
 This section states the immediate action needed to advance the Plan.
 
-Both iterations are `DONE` and the plan is `DELIVERED`, awaiting review. The reports are at `./instructions/declare-bin-package-contract__report.md` and `./instructions/document-bin-package__report.md`. On acceptance, move this plan to `_backlog/1-done/` and mark Phase 1 of Milestone: Codec Bin `DONE`; the milestone's next move is Plan: Implement Bin Commands.
+Accepted and integrated. The plan and both iterations are `DONE`, and the plan has moved to `_backlog/1-done/`. Review found the delivered code matched the plan's scope; the only defect was the three entry-point stubs using arrow functions against the `Functions over Arrows` convention, corrected by amending `0f7c86b`. Phase 1 of Milestone: Codec Bin is `DONE`, and the milestone's next move is Plan: Implement Bin Commands, now in `_backlog/3-now/`.
 
 ### Blockers
 

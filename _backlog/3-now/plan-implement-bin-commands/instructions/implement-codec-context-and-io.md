@@ -1,8 +1,8 @@
-# Instructions: `implement-command-builders-and-entry-points`
+# Instructions: `implement-codec-context-and-io`
 
 **Plan:** `implement-bin-commands`
 
-**Iteration Id:** `implement-command-builders-and-entry-points`
+**Iteration Id:** `implement-codec-context-and-io`
 
 ## Before you Start
 
@@ -18,18 +18,17 @@ This section describes how to report back to the delegator after completing the 
 
 1. Summarise the current context, asking: are you reporting completion or a BLOCKER?
 2. Gather the evidence of changes made and outcomes achieved, or the blocker error details.
-3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-command-builders-and-entry-points__report.md`. No separate delegation record is created.
+3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-codec-context-and-io__report.md`. No separate delegation record is created.
 4. If your prompt included a `DIRECTIVE FEEDBACK:` include the feedback sections in the rendered report.
 5. Generate the response and send it back to the delegator.
-6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-command-builders-and-entry-points`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
+6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-codec-context-and-io`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
 
 ## Path Variables
 
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
@@ -38,11 +37,11 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 1. **This instructions file is self-contained.** Everything you need is in this file plus its mandatory reading — never rely on session memory, chat context, or details relayed by the user.
 2. **Your report is mandatory.** The rendered report file carries the full trail: evidence, changes, verification results, blockers, feedback. Your chat response is only a pointer to it.
-3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-command-builders-and-entry-points`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
+3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-codec-context-and-io`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
 
 ## Goals
 
-Replace the three stubs with real entry points that share one program builder and one set of command specs.
+Give the operations a context to run in — a configured codec, a config, and file/stdin I/O.
 
 ## Mandatory Reading
 
@@ -50,7 +49,9 @@ Replace the three stubs with real entry points that share one program builder an
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$ART_WORK/cli/work/src/index.ts` (Reference) — Art Work CLI entry point pattern. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — Art Work operation types. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/test/helpers/context/makeConfigMock.ts` (Reference) — Art Work config mock helper. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/test/helpers/context/makeCommandContextMock.ts` (Reference) — Art Work command context mock helper. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -109,7 +110,7 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-When making changes to the CLI package, execute from `$BUILD/cli/bin/`:
+When making changes to the CLI package, execute from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
@@ -119,85 +120,73 @@ npm run test # runs vitest against the CLI unit tests
 
 ## Changes
 
-- Step 1 / 7 — Add `buildProgram`
-- Step 2 / 7 — Add command builders
-- Step 3 / 7 — Wire entry points
-- Step 4 / 7 — Update `src/index.ts` exports
-- Step 5 / 7 — Lift the scaffold's coverage exclusion and retire `binManifest.test.ts`
+- Step 1 / 7 — Add config types and loader
+- Step 2 / 7 — Add codec context factory
+- Step 3 / 7 — Add file I/O helpers
+- Step 4 / 7 — Add presentation helpers
+- Step 5 / 7 — Add test helpers
 - Step 6 / 7 — Add tests
-- Step 7 / 7 — Commit `implement-command-builders-and-entry-points`
+- Step 7 / 7 — Commit `implement-codec-context-and-io`
 
 ## Steps
 
-### Step `1 / 7` — Add `buildProgram`
+### Step `1 / 7` — Add config types and loader
 
-Create `$BUILD/cli/bin/src/private/commander/buildProgram.ts`:
+Create `$PROJECT/cli/bin/src/private/config/types.ts` with `BinConfig` containing `output.mode` and `codec` overrides.
 
-- `buildProgram({ name, description, commands })`
-- Apply `name`, `description`, and package version
-- Register the given commands
-- Shared by all three bins
+Create `$PROJECT/cli/bin/src/private/config/loadBinConfig.ts` reading version and defaults from `package.json`, with optional user overrides. The bin does not own a config file format.
 
-### Step `2 / 7` — Add command builders
+### Step `2 / 7` — Add codec context factory
 
-Create `$BUILD/cli/bin/src/private/commander/buildParseCommand.ts`:
+Create `$PROJECT/cli/bin/src/private/context/createCodecContext.ts`:
 
-- `buildParseCommand(): Command`
-- Name, description, arguments (`[file]`, `-` for stdin)
-- Options (`-o, --output <mode>`, `--json`, `-w, --write <file>`)
-- Action that builds context and calls `runParse`
+- `CodecContext { config, codec, log, io }`
+- Compose `ArtCodec` from `createArtCodec(config.codec)`
+- Attach operations log over the logger
+- Attach I/O helpers
 
-Create `$BUILD/cli/bin/src/private/commander/buildSerializeCommand.ts`:
+### Step `3 / 7` — Add file I/O helpers
 
-- Same shape for serialise (`[file]`, `-o`, `-w, --write <file>`)
+Create `$PROJECT/cli/bin/src/private/io/readInput.ts` and `$PROJECT/cli/bin/src/private/io/writeOutput.ts`:
 
-### Step `3 / 7` — Wire entry points
+- `readInput` — read a file path, or `-`/absent for stdin
+- `writeOutput` — write to stdout, or to a `--write` target file
+- Use `node:fs/promises` and `node:process` directly
 
-Replace the three stubs in `$BUILD/cli/bin/src/bin/`:
+### Step `4 / 7` — Add presentation helpers
 
-- `parse.ts` — `buildProgram` with single `buildParseCommand()`
-- `serialize.ts` — `buildProgram` with single `buildSerializeCommand()`
-- `codec.ts` — `buildProgram` with both commands; defines no command logic
+Create `$PROJECT/cli/bin/src/private/present/presentDocument.ts` and `$PROJECT/cli/bin/src/private/present/presentContent.ts`:
 
-### Step `4 / 7` — Update `src/index.ts` exports
+- Render `ArtDocument` and serialised content
+- Choose JSON via a `--json` option
+- Human-readable form otherwise
 
-Update `$BUILD/cli/bin/src/index.ts`:
+### Step `5 / 7` — Add test helpers
 
-- Export operation types, command specs, builders, and `doParse`/`doSerialize`
+Create `$PROJECT/cli/bin/src/test/helpers/`:
 
-### Step `5 / 7` — Lift the scaffold's coverage exclusion and retire `binManifest.test.ts`
-
-The scaffold iteration left two pieces of temporary scaffolding behind. Both must be resolved here, in the iteration that creates the real code.
-
-In `$BUILD/cli/bin/vitest.config.ts`, drop `'src/bin/*'` from the coverage `exclude` list, leaving `['src/index.ts']`. The entry points now hold real logic and must be measured against the 90% thresholds.
-
-RULE: Do not leave `'src/bin/*'` in the exclusion. It was added only because the stubs self-executed and could not be tested; that is no longer true.
-
-Delete `$BUILD/cli/bin/src/bin/binManifest.test.ts`. Its job was to guard the `bin` manifest mapping before the entry points had any behaviour to assert. That guard is kept, not lost: fold its assertions into the tests added in Step 6, so the `bin` → `src/bin/*.ts` → `dist/esm/bin/*.mjs` mapping stays under test.
+- `makeConfigMock.ts` — equivalent of Art Work helper
+- `makeCodecContextMock.ts` — equivalent of Art Work helper
+- `makeTempDir.ts` — for I/O tests
 
 ### Step `6 / 7` — Add tests
 
-Create `$BUILD/cli/bin/src/private/commander/buildProgram.test.ts` and `buildParseCommand.test.ts`/`buildSerializeCommand.test.ts`:
+Create tests:
 
-- Each program reports the right name and version
-- `art-codec` exposes `parse` and `serialize`
-- `art-parse` and `art-serialize` expose exactly one command
-- The codec's `parse` spec is the same object the single-command bin uses
+- `src/private/config/loadBinConfig.test.ts`
+- `src/private/context/createCodecContext.test.ts`
+- `src/private/io/readInput.test.ts` and `writeOutput.test.ts` using the temp-dir helper
 
-Also re-assert the manifest mapping retired in Step 5, so the guard survives: each `bin` entry in `package.json` resolves to an existing `src/bin/*.ts` source carrying a `#!/usr/bin/env node` shebang.
+### Step `7 / 7` — Commit `implement-codec-context-and-io`
 
-RULE: Assert program names through commander's own reporting (`program.name()`, `--help` output), not through a constant exported from an entry point. The entry points register commands and parse arguments; they do not export a program name, and no such constant exists in this codebase.
-
-### Step `7 / 7` — Commit `implement-command-builders-and-entry-points`
-
-#### Commit: `implement-command-builders-and-entry-points`
+#### Commit: `implement-codec-context-and-io`
 
 **Policy:** NOPUSH — Agent should commit but not push, then proceed to the next step.
 
 **Message:**
 
 ```text
-build(bin): add shared command builders and three entry points
+build(bin): add codec context, config, and file IO
 ```
 
 ---
@@ -208,6 +197,5 @@ build(bin): add shared command builders and three entry points
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify that `npm run test` from `$BUILD/cli/bin/` passes.
-- Verify that `'src/bin/*'` no longer appears in the `vitest.config.ts` coverage `exclude`, and that `src/bin/binManifest.test.ts` no longer exists.
+- Verify that `npm run test` from `$PROJECT/cli/bin/` passes.
 - Report according to the "How to Report Back to the Delegator" instructions.

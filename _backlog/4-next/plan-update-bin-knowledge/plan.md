@@ -43,8 +43,8 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | ------------ | ------------------------------------------------------------------ | ---------------------------------------------------- |
 | Milestone    | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md`         | The milestone this plan closes out.                  |
 | Design       | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | The design the delivered CLI implements.             |
-| Plan         | `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`       | Established the manifest contract and entry points.  |
-| Plan         | `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`     | Implemented the CLI this plan documents.             |
+| Plan         | `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`       | Established the manifest contract and entry points.  |
+| Plan         | `$PROJECT/_backlog/3-now/plan-implement-bin-commands/plan.md`      | Implemented the CLI this plan documents.             |
 | Plan         | `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`      | Produced the `@art-lib` extraction inventory.        |
 | Architecture | `$PROJECT/architecture/components.md`                              | Currently describes the bin twice, with stale names. |
 | Architecture | `$PROJECT/architecture/overview.md`                                | The ecosystem overview the CLI plugs into.           |

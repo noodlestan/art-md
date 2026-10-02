@@ -1,8 +1,8 @@
-# Instructions: `implement-operation-log`
+# Instructions: `verify-bin-coverage`
 
 **Plan:** `implement-bin-commands`
 
-**Iteration Id:** `implement-operation-log`
+**Iteration Id:** `verify-bin-coverage`
 
 ## Before you Start
 
@@ -18,19 +18,17 @@ This section describes how to report back to the delegator after completing the 
 
 1. Summarise the current context, asking: are you reporting completion or a BLOCKER?
 2. Gather the evidence of changes made and outcomes achieved, or the blocker error details.
-3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-operation-log__report.md`. No separate delegation record is created.
+3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/verify-bin-coverage__report.md`. No separate delegation record is created.
 4. If your prompt included a `DIRECTIVE FEEDBACK:` include the feedback sections in the rendered report.
 5. Generate the response and send it back to the delegator.
-6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-operation-log`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
+6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `verify-bin-coverage`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
 
 ## Path Variables
 
-| Variable     | Resolved Path                 | Purpose                                                     |
-| ------------ | ----------------------------- | ----------------------------------------------------------- |
-| `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| Variable     | Resolved Path             | Purpose                             |
+| ------------ | ------------------------- | ----------------------------------- |
+| `$WORKSPACE` | Current working directory | Workspace root directory.           |
+| `$PROJECT`   | PROVIDED WITH PROMPT      | Checkout for Art MD implementation. |
 
 ## Working Agreements
 
@@ -38,11 +36,11 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 1. **This instructions file is self-contained.** Everything you need is in this file plus its mandatory reading — never rely on session memory, chat context, or details relayed by the user.
 2. **Your report is mandatory.** The rendered report file carries the full trail: evidence, changes, verification results, blockers, feedback. Your chat response is only a pointer to it.
-3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-operation-log`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
+3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `verify-bin-coverage`, created `{artefacts}`, thumbs up). If something goes horribly wrong, report the blocker instead of a summary.
 
 ## Goals
 
-Give the CLI the operation vocabulary and the logger the commands report through, so every later iteration has a way to record progress.
+Prove the CLI works as an installed binary and that the package meets its configured coverage thresholds.
 
 ## Mandatory Reading
 
@@ -50,9 +48,6 @@ Give the CLI the operation vocabulary and the logger the commands report through
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — Art Work operation model. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/private/logger/createLogger.ts` (Reference) — Art Work logger pattern. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/private/present/makeOperationLogLine.ts` (Reference) — Art Work operation log line presentation. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -111,7 +106,13 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-When making changes to the CLI package, execute from `$BUILD/cli/bin/`:
+Before the coverage iteration, build the bundles the integration tests spawn:
+
+```bash
+npm run build # emits dist/esm/bin/{codec,parse,serialize}.mjs
+```
+
+When making changes to the CLI package, execute from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
@@ -121,71 +122,48 @@ npm run test # runs vitest against the CLI unit tests
 
 ## Changes
 
-- Step 1 / 6 — Add operation types
-- Step 2 / 6 — Add operation factories
-- Step 3 / 6 — Add operation log line presenter
-- Step 4 / 6 — Add logger
-- Step 5 / 6 — Add tests
-- Step 6 / 6 — Commit `implement-operation-log`
+- Step 1 / 4 — Extend CLI integration tests
+- Step 2 / 4 — Add output mode and presentation tests
+- Step 3 / 4 — Close coverage gaps
+- Step 4 / 4 — Commit `verify-bin-coverage`
 
 ## Steps
 
-### Step `1 / 6` — Add operation types
+### Step `1 / 4` — Extend CLI integration tests
 
-Create `$BUILD/cli/bin/src/private/operations/types.ts` with:
+Extend `$PROJECT/cli/bin/src/bin/cliIntegration.test.ts`:
 
-- `OperationOutcome` — `'pending' | 'success' | 'failure'`
-- `OperationBase` — `{ operation, ts, finishedTs?, outcome, message(), timing() }`
-- `OperationPending` — extends `OperationBase`
-- `OperationSuccess` — extends `OperationBase`
-- `OperationFailure` — extends `OperationBase` with `error` and `errorSerialized()`
-- `ParsePending` — extends `OperationPending` with `uri`
-- `SerializePending` — extends `OperationPending` with `uri`
+- Spawn `dist/esm/bin/parse.mjs` and `dist/esm/bin/serialize.mjs` against a fixture file
+- Spawn `dist/esm/bin/codec.mjs` with each subcommand
+- Assert `--version`, `--help`, stdout, `--json`, `--write`, stdin via `-`
+- Assert non-zero exit with failure log line on parse error
 
-### Step `2 / 6` — Add operation factories
+### Step `2 / 4` — Add output mode and presentation tests
 
-Create the following files under `$BUILD/cli/bin/src/private/operations/`:
+Add tests for:
 
-- `createGenericOperation.ts` — `createGenericOperation(operation, data?)` for boot and command log lines
-- `createParseOperation.ts` — `createParseOperation(data)` factory
-- `createSerializeOperation.ts` — `createSerializeOperation(data)` factory
-- `createOperationSuccess.ts` — `createOperationSuccess(pending, message?)` stamping `finishedTs`
-- `createOperationFailure.ts` — `createOperationFailure(pending, error)` deriving failure label and serialised error; label map covers `parse` and `serialize`
+- `quiet` and `verbose` output modes
+- Presentation helpers' JSON and human-readable branches
 
-### Step `3 / 6` — Add operation log line presenter
+### Step `3 / 4` — Close coverage gaps
 
-Create `$BUILD/cli/bin/src/private/present/makeOperationLogLine.ts`:
+Run `npm run test:ci` from `$PROJECT/cli/bin/` and close any remaining gap until:
 
-- `makeOperationLogLine(op, { standalone })` rendering outcome glyph, operation, message, and timing
-- No checkout columns: the codec CLI has no checkout concept, so drop the Art Work repo/checkout columns rather than faking them
+- Lines, functions, statements reach 90%
+- Branches reach 75%
 
-### Step `4 / 6` — Add logger
+Run `npm run ci` from the repository root to confirm the whole pipeline passes.
 
-Create `$BUILD/cli/bin/src/private/logger/createLogger.ts`:
+### Step `4 / 4` — Commit `verify-bin-coverage`
 
-- `LoggerAPI { log(op), setOutputMode(mode) }`
-- Buffer pending operations until `setOutputMode` is called
-- `quiet` discards the buffer
-- `verbose` flushes the buffer
-
-### Step `5 / 6` — Add tests
-
-Create `$BUILD/cli/bin/src/private/operations/operations.test.ts` and `$BUILD/cli/bin/src/private/logger/createLogger.test.ts`:
-
-- Success/failure stamping and timing
-- Error labels and serialisation
-- Buffer-then-flush and buffer-then-discard behaviour
-
-### Step `6 / 6` — Commit `implement-operation-log`
-
-#### Commit: `implement-operation-log`
+#### Commit: `verify-bin-coverage`
 
 **Policy:** NOPUSH — Agent should commit but not push, then proceed to the next step.
 
 **Message:**
 
 ```text
-build(bin): add operation log types and logger
+test(bin): add cli integration tests and meet coverage thresholds
 ```
 
 ---
@@ -196,5 +174,5 @@ build(bin): add operation log types and logger
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify that `npm run test` from `$BUILD/cli/bin/` passes.
+- Verify that `npm run test:ci` from `$PROJECT/cli/bin/` clears the configured thresholds.
 - Report according to the "How to Report Back to the Delegator" instructions.

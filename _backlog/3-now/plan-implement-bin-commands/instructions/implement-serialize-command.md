@@ -1,8 +1,8 @@
-# Instructions: `verify-bin-coverage`
+# Instructions: `implement-serialize-command`
 
 **Plan:** `implement-bin-commands`
 
-**Iteration Id:** `verify-bin-coverage`
+**Iteration Id:** `implement-serialize-command`
 
 ## Before you Start
 
@@ -18,18 +18,18 @@ This section describes how to report back to the delegator after completing the 
 
 1. Summarise the current context, asking: are you reporting completion or a BLOCKER?
 2. Gather the evidence of changes made and outcomes achieved, or the blocker error details.
-3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/verify-bin-coverage__report.md`. No separate delegation record is created.
+3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-serialize-command__report.md`. No separate delegation record is created.
 4. If your prompt included a `DIRECTIVE FEEDBACK:` include the feedback sections in the rendered report.
 5. Generate the response and send it back to the delegator.
-6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `verify-bin-coverage`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
+6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-serialize-command`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
 
 ## Path Variables
 
-| Variable     | Resolved Path               | Purpose                                        |
-| ------------ | --------------------------- | ---------------------------------------------- |
-| `$WORKSPACE` | Current working directory   | Workspace root directory.                      |
-| `$PROJECT`   | `checkouts/art-md-planning` | Planning checkout for Art MD.                  |
-| `$BUILD`     | `checkouts/art-md-building` | Building checkout for Art MD (implementation). |
+| Variable     | Resolved Path                 | Purpose                                                     |
+| ------------ | ----------------------------- | ----------------------------------------------------------- |
+| `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
+| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
 
@@ -37,11 +37,11 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 1. **This instructions file is self-contained.** Everything you need is in this file plus its mandatory reading — never rely on session memory, chat context, or details relayed by the user.
 2. **Your report is mandatory.** The rendered report file carries the full trail: evidence, changes, verification results, blockers, feedback. Your chat response is only a pointer to it.
-3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `verify-bin-coverage`, created `{artefacts}`, thumbs up). If something goes horribly wrong, report the blocker instead of a summary.
+3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-serialize-command`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
 
 ## Goals
 
-Prove the CLI works as an installed binary and that the package meets its configured coverage thresholds.
+Implement the `serialize` operation end to end, mirroring `parse` so the two share every layer but the codec call.
 
 ## Mandatory Reading
 
@@ -49,6 +49,8 @@ Prove the CLI works as an installed binary and that the package meets its config
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
+::READ `$ART_WORK/cli/work/src/commands/clone/runClone.ts` (Reference) — Art Work `run{CommandName}` pattern. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/private/commands/doClone.ts` (Reference) — Art Work `do{OperationName}` pattern. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -107,13 +109,7 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-Before the coverage iteration, build the bundles the integration tests spawn:
-
-```bash
-npm run build # emits dist/esm/bin/{codec,parse,serialize}.mjs
-```
-
-When making changes to the CLI package, execute from `$BUILD/cli/bin/`:
+When making changes to the CLI package, execute from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
@@ -123,48 +119,48 @@ npm run test # runs vitest against the CLI unit tests
 
 ## Changes
 
-- Step 1 / 4 — Extend CLI integration tests
-- Step 2 / 4 — Add output mode and presentation tests
-- Step 3 / 4 — Close coverage gaps
-- Step 4 / 4 — Commit `verify-bin-coverage`
+- Step 1 / 4 — Add `doSerialize` operation
+- Step 2 / 4 — Add `runSerialize` command runner
+- Step 3 / 4 — Add tests
+- Step 4 / 4 — Commit `implement-serialize-command`
 
 ## Steps
 
-### Step `1 / 4` — Extend CLI integration tests
+### Step `1 / 4` — Add `doSerialize` operation
 
-Extend `$BUILD/cli/bin/src/bin/cliIntegration.test.ts`:
+Create `$PROJECT/cli/bin/src/private/commands/doSerialize.ts`:
 
-- Spawn `dist/esm/bin/parse.mjs` and `dist/esm/bin/serialize.mjs` against a fixture file
-- Spawn `dist/esm/bin/codec.mjs` with each subcommand
-- Assert `--version`, `--help`, stdout, `--json`, `--write`, stdin via `-`
-- Assert non-zero exit with failure log line on parse error
+- `doSerialize(ctx, options): Promise<SerializeResult | null>`
+- Create and log the pending serialise operation
+- Call `ctx.codec.serialize(...)`
+- Log success, present the content
+- On error log failure and return `null`
 
-### Step `2 / 4` — Add output mode and presentation tests
+### Step `2 / 4` — Add `runSerialize` command runner
 
-Add tests for:
+Create `$PROJECT/cli/bin/src/commands/serialize/runSerialize.ts`:
 
-- `quiet` and `verbose` output modes
-- Presentation helpers' JSON and human-readable branches
+- `runSerialize(ctx, options)` logging the generic `command` operation
+- Dispatch to `doSerialize`
 
-### Step `3 / 4` — Close coverage gaps
+### Step `3 / 4` — Add tests
 
-Run `npm run test:ci` from `$BUILD/cli/bin/` and close any remaining gap until:
+Create `$PROJECT/cli/bin/src/private/commands/doSerialize.test.ts` and `$PROJECT/cli/bin/src/commands/serialize/runSerialize.test.ts`:
 
-- Lines, functions, statements reach 90%
-- Branches reach 75%
+- Success presents serialised content
+- Failure logs and returns `null`
+- A `doSerialize` after `doParse` roundtrips the fixture back to the same markdown
 
-Run `npm run ci` from the repository root to confirm the whole pipeline passes.
+### Step `4 / 4` — Commit `implement-serialize-command`
 
-### Step `4 / 4` — Commit `verify-bin-coverage`
-
-#### Commit: `verify-bin-coverage`
+#### Commit: `implement-serialize-command`
 
 **Policy:** NOPUSH — Agent should commit but not push, then proceed to the next step.
 
 **Message:**
 
 ```text
-test(bin): add cli integration tests and meet coverage thresholds
+build(bin): implement doSerialize operation and runSerialize
 ```
 
 ---
@@ -175,5 +171,5 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify that `npm run test:ci` from `$BUILD/cli/bin/` clears the configured thresholds.
+- Verify that `npm run test` from `$PROJECT/cli/bin/` passes.
 - Report according to the "How to Report Back to the Delegator" instructions.

@@ -1,8 +1,8 @@
-# Instructions: `implement-serialize-command`
+# Instructions: `implement-parse-command`
 
 **Plan:** `implement-bin-commands`
 
-**Iteration Id:** `implement-serialize-command`
+**Iteration Id:** `implement-parse-command`
 
 ## Before you Start
 
@@ -18,18 +18,17 @@ This section describes how to report back to the delegator after completing the 
 
 1. Summarise the current context, asking: are you reporting completion or a BLOCKER?
 2. Gather the evidence of changes made and outcomes achieved, or the blocker error details.
-3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-serialize-command__report.md`. No separate delegation record is created.
+3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-parse-command__report.md`. No separate delegation record is created.
 4. If your prompt included a `DIRECTIVE FEEDBACK:` include the feedback sections in the rendered report.
 5. Generate the response and send it back to the delegator.
-6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-serialize-command`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
+6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-parse-command`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
 
 ## Path Variables
 
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
@@ -38,11 +37,11 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 1. **This instructions file is self-contained.** Everything you need is in this file plus its mandatory reading — never rely on session memory, chat context, or details relayed by the user.
 2. **Your report is mandatory.** The rendered report file carries the full trail: evidence, changes, verification results, blockers, feedback. Your chat response is only a pointer to it.
-3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-serialize-command`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
+3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-parse-command`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
 
 ## Goals
 
-Implement the `serialize` operation end to end, mirroring `parse` so the two share every layer but the codec call.
+Implement the `parse` operation end to end, from the `run{CommandName}` layer down to `codec.parse()`.
 
 ## Mandatory Reading
 
@@ -110,7 +109,7 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-When making changes to the CLI package, execute from `$BUILD/cli/bin/`:
+When making changes to the CLI package, execute from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
@@ -120,48 +119,55 @@ npm run test # runs vitest against the CLI unit tests
 
 ## Changes
 
-- Step 1 / 4 — Add `doSerialize` operation
-- Step 2 / 4 — Add `runSerialize` command runner
-- Step 3 / 4 — Add tests
-- Step 4 / 4 — Commit `implement-serialize-command`
+- Step 1 / 5 — Add `doParse` operation
+- Step 2 / 5 — Add `runParse` command runner
+- Step 3 / 5 — Add parse fixture helper
+- Step 4 / 5 — Add tests
+- Step 5 / 5 — Commit `implement-parse-command`
 
 ## Steps
 
-### Step `1 / 4` — Add `doSerialize` operation
+### Step `1 / 5` — Add `doParse` operation
 
-Create `$BUILD/cli/bin/src/private/commands/doSerialize.ts`:
+Create `$PROJECT/cli/bin/src/private/commands/doParse.ts`:
 
-- `doSerialize(ctx, options): Promise<SerializeResult | null>`
-- Create and log the pending serialise operation
-- Call `ctx.codec.serialize(...)`
-- Log success, present the content
+- `doParse(ctx, options): Promise<ParseResult | null>`
+- Create and log the pending parse operation
+- Call `ctx.codec.parse(...)`
+- Log success, present the document
 - On error log failure and return `null`
 
-### Step `2 / 4` — Add `runSerialize` command runner
+### Step `2 / 5` — Add `runParse` command runner
 
-Create `$BUILD/cli/bin/src/commands/serialize/runSerialize.ts`:
+Create `$PROJECT/cli/bin/src/commands/parse/runParse.ts`:
 
-- `runSerialize(ctx, options)` logging the generic `command` operation
-- Dispatch to `doSerialize`
+- `runParse(ctx, options)` logging the generic `command` operation
+- Dispatch to `doParse`
 
-### Step `3 / 4` — Add tests
+### Step `3 / 5` — Add parse fixture helper
 
-Create `$BUILD/cli/bin/src/private/commands/doSerialize.test.ts` and `$BUILD/cli/bin/src/commands/serialize/runSerialize.test.ts`:
+Create `$PROJECT/cli/bin/src/test/helpers/makeParseFixture.ts`:
 
-- Success presents serialised content
+- A small Art MD fixture string for parse tests
+
+### Step `4 / 5` — Add tests
+
+Create `$PROJECT/cli/bin/src/private/commands/doParse.test.ts` and `$PROJECT/cli/bin/src/commands/parse/runParse.test.ts`:
+
+- Success presents a document
 - Failure logs and returns `null`
-- A `doSerialize` after `doParse` roundtrips the fixture back to the same markdown
+- Generic command operation is logged with options
 
-### Step `4 / 4` — Commit `implement-serialize-command`
+### Step `5 / 5` — Commit `implement-parse-command`
 
-#### Commit: `implement-serialize-command`
+#### Commit: `implement-parse-command`
 
 **Policy:** NOPUSH — Agent should commit but not push, then proceed to the next step.
 
 **Message:**
 
 ```text
-build(bin): implement doSerialize operation and runSerialize
+build(bin): implement doParse operation and runParse
 ```
 
 ---
@@ -172,5 +178,5 @@ build(bin): implement doSerialize operation and runSerialize
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify that `npm run test` from `$BUILD/cli/bin/` passes.
+- Verify that `npm run test` from `$PROJECT/cli/bin/` passes.
 - Report according to the "How to Report Back to the Delegator" instructions.

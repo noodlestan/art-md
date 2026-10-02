@@ -25,8 +25,7 @@ This section lists the path variables used throughout the Plan file and its down
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Summary
@@ -43,7 +42,7 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | ------------ | ------------------------------------------------------------------ | ----------------------------------------------------- |
 | Milestone    | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md`         | Coordinates this plan within the Codec Bin milestone. |
 | Design       | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | The design this plan implements.                      |
-| Plan         | `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`       | Establishes the manifest contract and entry points.   |
+| Plan         | `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`       | Establishes the manifest contract and entry points.   |
 | Milestone    | `$PROJECT/_roadmap/1-done/milestone-art-codec/milestone.md`        | Delivered `@art-md/codec` and `createArtCodec()`.     |
 | Architecture | `$PROJECT/architecture/codec.md`                                   | The codec and source contracts this CLI consumes.     |
 
@@ -84,18 +83,18 @@ This section describes the context knowledge required for the different phases o
 
 This section describes the working scope coordinated by the Plan.
 
-Implement the command layer in `$BUILD/cli/bin/src/`, in the order entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs. The package contract, the three stub entry points, and the lint config are established by Plan: Scaffold Bin Package.
+Implement the command layer in `$PROJECT/cli/bin/src/`, in the order entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs. The package contract, the three stub entry points, and the lint config are established by Plan: Scaffold Bin Package.
 
 ### (Scope) Package: Bin
 
-**Record:** `$BUILD/cli/bin/_records/package.art`
+**Record:** `$PROJECT/cli/bin/_records/package.art`
 
 **Role:** Owns the three CLI entry points and the shared commander builder utilities and `doParse`/`doSerialize` implementations.
 
 **Partial:**
 
 - `owner` — Project: Art MD
-- `path` — `$BUILD/cli/bin/`
+- `path` — `$PROJECT/cli/bin/`
 - `canonicalName` — `@art-md/bin`
 
 **Changes:**
@@ -132,7 +131,7 @@ Implement the command layer in `$BUILD/cli/bin/src/`, in the order entry point �
 
 ## Execution Context
 
-Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD building checkout `$BUILD` (checkout `checkouts/art-md-building`) on branch `building`, under `$BUILD/cli/bin/`. The reference CLI implementation lives in `$ART_WORK` (`checkouts/art-work-building/cli/work`).
+Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD building checkout `$PROJECT` (checkout `checkouts/art-md-building`) on branch `building`, under `$PROJECT/cli/bin/`. The reference CLI implementation lives in `$ART_WORK` (`checkouts/art-work-building/cli/work`).
 
 ---
 
@@ -175,9 +174,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                        | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `implement-operation-log` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                        | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `implement-operation-log` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `implement-operation-log`
 
@@ -216,9 +215,9 @@ build(bin): add operation log types and logger
 
 #### Commits:
 
-| ID                               | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| -------------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `implement-codec-context-and-io` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                               | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| -------------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `implement-codec-context-and-io` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `implement-codec-context-and-io`
 
@@ -255,9 +254,9 @@ build(bin): add codec context, config, and file IO
 
 #### Commits:
 
-| ID                        | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `implement-parse-command` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                        | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `implement-parse-command` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `implement-parse-command`
 
@@ -293,9 +292,9 @@ build(bin): implement doParse operation and runParse
 
 #### Commits:
 
-| ID                            | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ----------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `implement-serialize-command` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ----------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `implement-serialize-command` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `implement-serialize-command`
 
@@ -334,9 +333,9 @@ build(bin): implement doSerialize operation and runSerialize
 
 #### Commits:
 
-| ID                                            | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| --------------------------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `implement-command-builders-and-entry-points` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| --------------------------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `implement-command-builders-and-entry-points` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `implement-command-builders-and-entry-points`
 
@@ -364,7 +363,7 @@ build(bin): add shared command builders and three entry points
 
 - Extend `src/bin/cliIntegration.test.ts` — spawn `dist/esm/bin/parse.mjs` and `dist/esm/bin/serialize.mjs` against a fixture file, and `dist/esm/bin/codec.mjs` with each subcommand; assert `--version`, `--help`, stdout, `--json`, `--write`, stdin via `-`, and a non-zero exit with a failure log line on a parse error.
 - Add tests for the `quiet` and `verbose` output modes and the presentation helpers' JSON and human-readable branches.
-- Run `npm run test:ci` from `$BUILD/cli/bin/` and close any remaining gap until lines, functions, and statements reach 90% and branches reach 75%.
+- Run `npm run test:ci` from `$PROJECT/cli/bin/` and close any remaining gap until lines, functions, and statements reach 90% and branches reach 75%.
 - Run `npm run ci` from the repository root to confirm the whole pipeline passes with the new tests included.
 
 **Dependencies:**
@@ -373,9 +372,9 @@ build(bin): add shared command builders and three entry points
 
 #### Commits:
 
-| ID                    | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| --------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `verify-bin-coverage` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                    | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| --------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `verify-bin-coverage` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `verify-bin-coverage`
 
@@ -443,7 +442,7 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-When making changes to the CLI package, execute from `$BUILD/cli/bin/`:
+When making changes to the CLI package, execute from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
@@ -491,9 +490,9 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Knowledge to Update
 
-- `$BUILD/cli/bin/_records/package.art` — the entry points and the command surface.
-- `$BUILD/cli/bin/_guide.md` — the `src/` layout and the operating instructions for the new commands.
-- `$BUILD/cli/bin/README.md` — the command reference.
+- `$PROJECT/cli/bin/_records/package.art` — the entry points and the command surface.
+- `$PROJECT/cli/bin/_guide.md` — the `src/` layout and the operating instructions for the new commands.
+- `$PROJECT/cli/bin/README.md` — the command reference.
 
 ### Follow Ups
 

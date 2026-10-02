@@ -1,8 +1,8 @@
-# Instructions: `implement-parse-command`
+# Instructions: `implement-operation-log`
 
 **Plan:** `implement-bin-commands`
 
-**Iteration Id:** `implement-parse-command`
+**Iteration Id:** `implement-operation-log`
 
 ## Before you Start
 
@@ -18,18 +18,17 @@ This section describes how to report back to the delegator after completing the 
 
 1. Summarise the current context, asking: are you reporting completion or a BLOCKER?
 2. Gather the evidence of changes made and outcomes achieved, or the blocker error details.
-3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-parse-command__report.md`. No separate delegation record is created.
+3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-implement-bin-commands/instructions/implement-operation-log__report.md`. No separate delegation record is created.
 4. If your prompt included a `DIRECTIVE FEEDBACK:` include the feedback sections in the rendered report.
 5. Generate the response and send it back to the delegator.
-6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-parse-command`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
+6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `implement-operation-log`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
 
 ## Path Variables
 
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
@@ -38,11 +37,11 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 1. **This instructions file is self-contained.** Everything you need is in this file plus its mandatory reading — never rely on session memory, chat context, or details relayed by the user.
 2. **Your report is mandatory.** The rendered report file carries the full trail: evidence, changes, verification results, blockers, feedback. Your chat response is only a pointer to it.
-3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-parse-command`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
+3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `implement-operation-log`, created `{artefacts}`, thumbs up. If something goes horribly wrong, report the blocker instead of a summary.
 
 ## Goals
 
-Implement the `parse` operation end to end, from the `run{CommandName}` layer down to `codec.parse()`.
+Give the CLI the operation vocabulary and the logger the commands report through, so every later iteration has a way to record progress.
 
 ## Mandatory Reading
 
@@ -50,8 +49,9 @@ Implement the `parse` operation end to end, from the `run{CommandName}` layer do
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$ART_WORK/cli/work/src/commands/clone/runClone.ts` (Reference) — Art Work `run{CommandName}` pattern. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/private/commands/doClone.ts` (Reference) — Art Work `do{OperationName}` pattern. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — Art Work operation model. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/private/logger/createLogger.ts` (Reference) — Art Work logger pattern. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/src/private/present/makeOperationLogLine.ts` (Reference) — Art Work operation log line presentation. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -110,7 +110,7 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-When making changes to the CLI package, execute from `$BUILD/cli/bin/`:
+When making changes to the CLI package, execute from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
@@ -120,55 +120,71 @@ npm run test # runs vitest against the CLI unit tests
 
 ## Changes
 
-- Step 1 / 5 — Add `doParse` operation
-- Step 2 / 5 — Add `runParse` command runner
-- Step 3 / 5 — Add parse fixture helper
-- Step 4 / 5 — Add tests
-- Step 5 / 5 — Commit `implement-parse-command`
+- Step 1 / 6 — Add operation types
+- Step 2 / 6 — Add operation factories
+- Step 3 / 6 — Add operation log line presenter
+- Step 4 / 6 — Add logger
+- Step 5 / 6 — Add tests
+- Step 6 / 6 — Commit `implement-operation-log`
 
 ## Steps
 
-### Step `1 / 5` — Add `doParse` operation
+### Step `1 / 6` — Add operation types
 
-Create `$BUILD/cli/bin/src/private/commands/doParse.ts`:
+Create `$PROJECT/cli/bin/src/private/operations/types.ts` with:
 
-- `doParse(ctx, options): Promise<ParseResult | null>`
-- Create and log the pending parse operation
-- Call `ctx.codec.parse(...)`
-- Log success, present the document
-- On error log failure and return `null`
+- `OperationOutcome` — `'pending' | 'success' | 'failure'`
+- `OperationBase` — `{ operation, ts, finishedTs?, outcome, message(), timing() }`
+- `OperationPending` — extends `OperationBase`
+- `OperationSuccess` — extends `OperationBase`
+- `OperationFailure` — extends `OperationBase` with `error` and `errorSerialized()`
+- `ParsePending` — extends `OperationPending` with `uri`
+- `SerializePending` — extends `OperationPending` with `uri`
 
-### Step `2 / 5` — Add `runParse` command runner
+### Step `2 / 6` — Add operation factories
 
-Create `$BUILD/cli/bin/src/commands/parse/runParse.ts`:
+Create the following files under `$PROJECT/cli/bin/src/private/operations/`:
 
-- `runParse(ctx, options)` logging the generic `command` operation
-- Dispatch to `doParse`
+- `createGenericOperation.ts` — `createGenericOperation(operation, data?)` for boot and command log lines
+- `createParseOperation.ts` — `createParseOperation(data)` factory
+- `createSerializeOperation.ts` — `createSerializeOperation(data)` factory
+- `createOperationSuccess.ts` — `createOperationSuccess(pending, message?)` stamping `finishedTs`
+- `createOperationFailure.ts` — `createOperationFailure(pending, error)` deriving failure label and serialised error; label map covers `parse` and `serialize`
 
-### Step `3 / 5` — Add parse fixture helper
+### Step `3 / 6` — Add operation log line presenter
 
-Create `$BUILD/cli/bin/src/test/helpers/makeParseFixture.ts`:
+Create `$PROJECT/cli/bin/src/private/present/makeOperationLogLine.ts`:
 
-- A small Art MD fixture string for parse tests
+- `makeOperationLogLine(op, { standalone })` rendering outcome glyph, operation, message, and timing
+- No checkout columns: the codec CLI has no checkout concept, so drop the Art Work repo/checkout columns rather than faking them
 
-### Step `4 / 5` — Add tests
+### Step `4 / 6` — Add logger
 
-Create `$BUILD/cli/bin/src/private/commands/doParse.test.ts` and `$BUILD/cli/bin/src/commands/parse/runParse.test.ts`:
+Create `$PROJECT/cli/bin/src/private/logger/createLogger.ts`:
 
-- Success presents a document
-- Failure logs and returns `null`
-- Generic command operation is logged with options
+- `LoggerAPI { log(op), setOutputMode(mode) }`
+- Buffer pending operations until `setOutputMode` is called
+- `quiet` discards the buffer
+- `verbose` flushes the buffer
 
-### Step `5 / 5` — Commit `implement-parse-command`
+### Step `5 / 6` — Add tests
 
-#### Commit: `implement-parse-command`
+Create `$PROJECT/cli/bin/src/private/operations/operations.test.ts` and `$PROJECT/cli/bin/src/private/logger/createLogger.test.ts`:
+
+- Success/failure stamping and timing
+- Error labels and serialisation
+- Buffer-then-flush and buffer-then-discard behaviour
+
+### Step `6 / 6` — Commit `implement-operation-log`
+
+#### Commit: `implement-operation-log`
 
 **Policy:** NOPUSH — Agent should commit but not push, then proceed to the next step.
 
 **Message:**
 
 ```text
-build(bin): implement doParse operation and runParse
+build(bin): add operation log types and logger
 ```
 
 ---
@@ -179,5 +195,5 @@ build(bin): implement doParse operation and runParse
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify that `npm run test` from `$BUILD/cli/bin/` passes.
+- Verify that `npm run test` from `$PROJECT/cli/bin/` passes.
 - Report according to the "How to Report Back to the Delegator" instructions.
