@@ -25,8 +25,7 @@ This section lists the path variables used throughout the Plan file and its down
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Summary
@@ -85,18 +84,18 @@ This section describes the context knowledge required for the different phases o
 
 This section describes the working scope coordinated by the Plan.
 
-Write the bin's architecture reference set in `$BUILD/cli/bin/architecture/` and register the package across the project's records, guides, and architecture documents. The code is delivered; only knowledge changes here.
+Write the bin's architecture reference set in `$PROJECT/cli/bin/architecture/` and register the package across the project's records, guides, and architecture documents. The code is delivered; only knowledge changes here.
 
 ### (Scope) Architecture: Bin Reference Set
 
-**Record:** `$BUILD/cli/bin/architecture/`
+**Record:** `$PROJECT/cli/bin/architecture/`
 
 **Role:** The package's own architecture documentation — everything known about the bin.
 
 **Partial:**
 
 - `owner` — Project: Art MD
-- `path` — `$BUILD/cli/bin/architecture/`
+- `path` — `$PROJECT/cli/bin/architecture/`
 
 **Changes:**
 
@@ -106,7 +105,7 @@ Write the bin's architecture reference set in `$BUILD/cli/bin/architecture/` and
 - Create `architecture/operations.md` — the operation model: `OperationOutcome`, the pending/success/failure types, the operation factories, the logger's buffering and output modes, and the log line format, including why the checkout columns of the Art Work log line are absent.
 - Create `architecture/dependencies.md` — the package's dependency direction: the bin depends on `@art-md/codec` and `@art-md/primitives` and on `commander`; the codec depends on nothing in the bin; the bin owns its own file I/O and never becomes a `ContentSource`.
 - Create `architecture/records/adr/cli.art` — the CLI ADR: the entry-point decision, the shared-builder decision, the `dist/esm/bin/*.mjs` export decision, the `package.json`-sourced version decision, and the `@art-lib` extraction inventory recorded by Plan: Consolidate Codec Bin.
-- Update `$BUILD/cli/bin/_guide.md` — replace "This package does not maintain a dedicated architecture reference" with links to the new `architecture/` set, and add the layout and the operating instructions for the commands.
+- Update `$PROJECT/cli/bin/_guide.md` — replace "This package does not maintain a dedicated architecture reference" with links to the new `architecture/` set, and add the layout and the operating instructions for the commands.
 
 **Dependencies:**
 
@@ -176,7 +175,7 @@ Write the bin's architecture reference set in `$BUILD/cli/bin/architecture/` and
 
 ## Execution Context
 
-Execution occurs from `$WORKSPACE/`; the package knowledge is written in the Art MD building checkout `$BUILD` (checkout `checkouts/art-md-building`) on branch `building` under `$BUILD/cli/bin/architecture/`, and the project-level knowledge is updated in the planning checkout `$PROJECT` (checkout `checkouts/art-md-planning`).
+Execution occurs from `$WORKSPACE/`; the work is performed in the Art MD checkout `$PROJECT` on branch `building`. The package knowledge is written under `$PROJECT/cli/bin/architecture/`, and the project-level records, README, guide, and repository architecture are updated under `$PROJECT`.
 
 ---
 
@@ -219,9 +218,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                        | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `create-bin-architecture` | Art MD / `$BUILD` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                        | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ------------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `create-bin-architecture` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `create-bin-architecture`
 
@@ -442,18 +441,18 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 - **A dedicated `cli/bin/architecture/` set** — the bin has enough distinct surface (three executables, two commands, an operation model, an I/O boundary) to warrant its own reference set, mirroring the Art Work CLI's.
 - **One bin entry in `components.md`** — the duplicate CLI-Surface and Planned-Packages entries are collapsed into a single `IMPLEMENTED` entry; only the `Validator` stays planned.
-- **Knowledge is split by checkout** — the package's own architecture goes in `$BUILD/cli/bin/architecture/`; the project-level records, README, guide, and repository architecture are updated in `$PROJECT`, matching where each kind of knowledge is curated.
+- **Knowledge is split by scope, not by checkout** — the package's own architecture goes in `$PROJECT/cli/bin/architecture/`; the project-level records, README, guide, and repository architecture are updated at the project root, matching where each kind of knowledge is curated.
 - **The naming decision is recorded explicitly** — the milestone records that `art-codec`, `art-parse`, and `art-serialize` supersede the `art-md-*` names, so the correction is traceable rather than looking like drift.
 
 ### Knowledge to Update
 
-- `$BUILD/cli/bin/architecture/index.md` — the bin reference index.
-- `$BUILD/cli/bin/architecture/entry-points.md` — the three executables and their build mapping.
-- `$BUILD/cli/bin/architecture/commands.md` — the command reference.
-- `$BUILD/cli/bin/architecture/operations.md` — the operation model and logger.
-- `$BUILD/cli/bin/architecture/dependencies.md` — the dependency direction and I/O boundary.
-- `$BUILD/cli/bin/architecture/records/adr/cli.art` — the CLI decisions and the `@art-lib` inventory.
-- `$BUILD/cli/bin/_guide.md` — link the reference set.
+- `$PROJECT/cli/bin/architecture/index.md` — the bin reference index.
+- `$PROJECT/cli/bin/architecture/entry-points.md` — the three executables and their build mapping.
+- `$PROJECT/cli/bin/architecture/commands.md` — the command reference.
+- `$PROJECT/cli/bin/architecture/operations.md` — the operation model and logger.
+- `$PROJECT/cli/bin/architecture/dependencies.md` — the dependency direction and I/O boundary.
+- `$PROJECT/cli/bin/architecture/records/adr/cli.art` — the CLI decisions and the `@art-lib` inventory.
+- `$PROJECT/cli/bin/_guide.md` — link the reference set.
 - `$PROJECT/README.md` — the bin row and a CLI usage section.
 - `$PROJECT/_guide.md` — the Bin project row and the Knowledge References list.
 - `$PROJECT/_records/project.art` — verify the `Package: Bin` entry.
@@ -468,7 +467,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Follow Ups
 
-- **`@art-lib`** — create the shared CLI library package from the inventory recorded in `$BUILD/cli/bin/architecture/records/adr/cli.art` and the comparison in `comparison__codec-bin-vs-art-work.md`.
+- **`@art-lib`** — create the shared CLI library package from the inventory recorded in `$PROJECT/cli/bin/architecture/records/adr/cli.art` and the comparison in `comparison__codec-bin-vs-art-work.md`.
 
 ### Feedback
 

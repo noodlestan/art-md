@@ -28,8 +28,7 @@ This section describes how to report back to the delegator after completing the 
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
@@ -134,7 +133,7 @@ npm run lint # prettier and eslint over all workspaces
 
 ### Step `1 / 8` — Create `architecture/index.md`
 
-Create `$BUILD/cli/bin/architecture/index.md`:
+Create `$PROJECT/cli/bin/architecture/index.md`:
 
 - Reference index: what the bin is, the layering, the `src/` layout
 - Links to every document below
@@ -142,7 +141,7 @@ Create `$BUILD/cli/bin/architecture/index.md`:
 
 ### Step `2 / 8` — Create `architecture/entry-points.md`
 
-Create `$BUILD/cli/bin/architecture/entry-points.md`:
+Create `$PROJECT/cli/bin/architecture/entry-points.md`:
 
 - The three executables: `art-codec`, `art-parse`, `art-serialize`
 - The `src/bin/*.ts` → `dist/esm/bin/*.mjs` build mapping
@@ -151,7 +150,7 @@ Create `$BUILD/cli/bin/architecture/entry-points.md`:
 
 ### Step `3 / 8` — Create `architecture/commands.md`
 
-Create `$BUILD/cli/bin/architecture/commands.md`:
+Create `$PROJECT/cli/bin/architecture/commands.md`:
 
 - Command reference: each command's name, arguments, options (`-o, --output <mode>`, `--json`, `-w, --write <file>`)
 - Stdin handling via `-`
@@ -159,7 +158,7 @@ Create `$BUILD/cli/bin/architecture/commands.md`:
 
 ### Step `4 / 8` — Create `architecture/operations.md`
 
-Create `$BUILD/cli/bin/architecture/operations.md`:
+Create `$PROJECT/cli/bin/architecture/operations.md`:
 
 - Operation model: `OperationOutcome`, pending/success/failure types, operation factories
 - Logger's buffering and output modes
@@ -167,7 +166,7 @@ Create `$BUILD/cli/bin/architecture/operations.md`:
 
 ### Step `5 / 8` — Create `architecture/dependencies.md`
 
-Create `$BUILD/cli/bin/architecture/dependencies.md`:
+Create `$PROJECT/cli/bin/architecture/dependencies.md`:
 
 - Dependency direction: bin depends on `@art-md/codec` and `@art-md/primitives` and on `commander`
 - Codec depends on nothing in the bin
@@ -175,7 +174,7 @@ Create `$BUILD/cli/bin/architecture/dependencies.md`:
 
 ### Step `6 / 8` — Create `architecture/records/adr/cli.art`
 
-Create `$BUILD/cli/bin/architecture/records/adr/cli.art`:
+Create `$PROJECT/cli/bin/architecture/records/adr/cli.art`:
 
 - Entry-point decision
 - Shared-builder decision
@@ -186,7 +185,7 @@ Create `$BUILD/cli/bin/architecture/records/adr/cli.art`:
 
 ### Step `7 / 8` — Update `_guide.md`
 
-Update `$BUILD/cli/bin/_guide.md`:
+Update `$PROJECT/cli/bin/_guide.md`:
 
 - Replace "This package does not maintain a dedicated architecture reference" with links to the new `architecture/` set
 - Add the layout and the operating instructions for the commands

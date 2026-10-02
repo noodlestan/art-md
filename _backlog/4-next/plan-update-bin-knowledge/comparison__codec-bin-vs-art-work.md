@@ -1,7 +1,7 @@
 # Comparison: Codec Bin vs Art Work CLI
 
-**From:** Art MD Project (`checkouts/art-md-planning`)
-**To:** Art Lib Project (`checkouts/art-lib-planning`)
+**From:** Art MD Project (`$PROJECT`)
+**To:** Art Lib Project (`$ART_LIB`)
 **Date:** 2026-09-26
 **Purpose:** Side-by-side comparison of the `@art-md/bin` CLI (codec bin, planned) against the `@art-work/cli` CLI (Art Work, implemented) to identify deviations and propose `@art-lib` abstractions.
 
@@ -40,17 +40,17 @@ The pattern is identical. The deviations are in what each layer owns, how generi
 
 ### 1.1 Operation Model
 
-| Aspect                   | Art Work (`$ART_WORK/cli/work/src/private/operations/`)        | Codec Bin (planned in `$BUILD/cli/bin/src/private/operations/`) | Deviation                     |
-| ------------------------ | -------------------------------------------------------------- | --------------------------------------------------------------- | ----------------------------- |
-| `OperationOutcome`       | `'pending' \| 'success' \| 'failure'`                          | Same                                                            | None                          |
-| `OperationBase`          | `{ operation, ts, finishedTs?, outcome, message(), timing() }` | Same                                                            | None                          |
-| `OperationPending`       | extends `OperationBase`, adds `data?: unknown`                 | Same                                                            | None                          |
-| `OperationSuccess`       | extends `OperationBase`, outcome `'success'`                   | Same                                                            | None                          |
-| `OperationFailure`       | extends `OperationBase`, adds `error`, `errorSerialized()`     | Same                                                            | None                          |
-| `createGenericOperation` | `createGenericOperation(operation, data?)`                     | Same                                                            | None                          |
-| `createOperationSuccess` | `createOperationSuccess(pending, message?)`                    | Same                                                            | None                          |
-| `createOperationFailure` | `createOperationFailure(pending, error)` with label map        | Same shape, different labels                                    | Label map is project-specific |
-| Per-op pending types     | `ClonePending`, `PushPending`, etc.                            | `ParsePending`, `SerializePending`                              | Different names, same shape   |
+| Aspect                   | Art Work (`$ART_WORK/cli/work/src/private/operations/`)        | Codec Bin (planned in `$PROJECT/cli/bin/src/private/operations/`) | Deviation                     |
+| ------------------------ | -------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------- |
+| `OperationOutcome`       | `'pending' \| 'success' \| 'failure'`                          | Same                                                              | None                          |
+| `OperationBase`          | `{ operation, ts, finishedTs?, outcome, message(), timing() }` | Same                                                              | None                          |
+| `OperationPending`       | extends `OperationBase`, adds `data?: unknown`                 | Same                                                              | None                          |
+| `OperationSuccess`       | extends `OperationBase`, outcome `'success'`                   | Same                                                              | None                          |
+| `OperationFailure`       | extends `OperationBase`, adds `error`, `errorSerialized()`     | Same                                                              | None                          |
+| `createGenericOperation` | `createGenericOperation(operation, data?)`                     | Same                                                              | None                          |
+| `createOperationSuccess` | `createOperationSuccess(pending, message?)`                    | Same                                                              | None                          |
+| `createOperationFailure` | `createOperationFailure(pending, error)` with label map        | Same shape, different labels                                      | Label map is project-specific |
+| Per-op pending types     | `ClonePending`, `PushPending`, etc.                            | `ParsePending`, `SerializePending`                                | Different names, same shape   |
 
 **Verdict:** The operation model is 95% identical. The only deviation is the per-operation label map in `createOperationFailure` and the per-operation pending type names. **Strong candidate for `@art-lib/cli-operations`.**
 

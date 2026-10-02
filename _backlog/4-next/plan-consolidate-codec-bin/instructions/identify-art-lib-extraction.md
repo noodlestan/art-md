@@ -28,8 +28,7 @@ This section describes how to report back to the delegator after completing the 
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
@@ -120,7 +119,7 @@ npm run ci # lint, test and build
 
 ### Step `1 / 4` — Build side-by-side duplication inventory
 
-Compare `$BUILD/cli/bin/src/private/` against `$ART_WORK/cli/work/src/private/` and build an inventory covering at minimum:
+Compare `$PROJECT/cli/bin/src/private/` against `$ART_WORK/cli/work/src/private/` and build an inventory covering at minimum:
 
 - Operation model (`types.ts`, `createGenericOperation`, `createOperationSuccess`, `createOperationFailure`)
 - Logger
@@ -136,7 +135,7 @@ Recommend which units are genuinely shared, which stay project-specific, and the
 
 ### Step `3 / 4` — Record inventory in CLI ADR
 
-Create `$BUILD/cli/bin/architecture/records/adr/cli.art`:
+Create `$PROJECT/cli/bin/architecture/records/adr/cli.art`:
 
 - Record the `@art-lib` extraction inventory
 - Use the same terse, purposeful style as `$PROJECT/architecture/adr/art-md.md`
@@ -164,5 +163,5 @@ docs(bin): record art-lib extraction inventory and follow-up
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify the CLI ADR exists at `$BUILD/cli/bin/architecture/records/adr/cli.art` and cites the inventory.
+- Verify the CLI ADR exists at `$PROJECT/cli/bin/architecture/records/adr/cli.art` and cites the inventory.
 - Report according to the "How to Report Back to the Delegator" instructions.

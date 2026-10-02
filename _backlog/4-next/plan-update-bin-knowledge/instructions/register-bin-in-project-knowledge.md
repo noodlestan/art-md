@@ -25,11 +25,10 @@ This section describes how to report back to the delegator after completing the 
 
 ## Path Variables
 
-| Variable     | Resolved Path               | Purpose                                        |
-| ------------ | --------------------------- | ---------------------------------------------- |
-| `$WORKSPACE` | Current working directory   | Workspace root directory.                      |
-| `$PROJECT`   | `checkouts/art-md-planning` | Planning checkout for Art MD.                  |
-| `$BUILD`     | `checkouts/art-md-building` | Building checkout for Art MD (implementation). |
+| Variable     | Resolved Path             | Purpose                             |
+| ------------ | ------------------------- | ----------------------------------- |
+| `$WORKSPACE` | Current working directory | Workspace root directory.           |
+| `$PROJECT`   | PROVIDED WITH PROMPT      | Checkout for Art MD implementation. |
 
 ## Working Agreements
 

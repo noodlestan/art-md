@@ -28,8 +28,7 @@ This section describes how to report back to the delegator after completing the 
 | Variable     | Resolved Path                 | Purpose                                                     |
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
-| `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
-| `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
+| `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
@@ -111,7 +110,7 @@ npm run ci # lint, test and build
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-Because the refactoring must not change behaviour, run both the tests and the coverage gate from `$BUILD/cli/bin/`:
+Because the refactoring must not change behaviour, run both the tests and the coverage gate from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test:ci # runs vitest with the configured coverage thresholds
@@ -121,7 +120,7 @@ npm run test:ci # runs vitest with the configured coverage thresholds
 
 ## Changes
 
-- Step 1 / 5 — Audit `$BUILD/cli/bin/src/` against TypeScript conventions
+- Step 1 / 5 — Audit `$PROJECT/cli/bin/src/` against TypeScript conventions
 - Step 2 / 5 — Refactor audited deviations
 - Step 3 / 5 — Collapse internal duplication
 - Step 4 / 5 — Verify behaviour is unchanged
@@ -129,9 +128,9 @@ npm run test:ci # runs vitest with the configured coverage thresholds
 
 ## Steps
 
-### Step `1 / 5` — Audit `$BUILD/cli/bin/src/` against TypeScript conventions
+### Step `1 / 5` — Audit `$PROJECT/cli/bin/src/` against TypeScript conventions
 
-Audit `$BUILD/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and record deviations in the iteration report.
+Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and record deviations in the iteration report.
 
 Focus areas: module boundaries (`private/` vs public), file and directory naming, export style, type-only imports, error handling, test placement.
 
@@ -157,7 +156,7 @@ Keep behaviour identical.
 
 ### Step `4 / 5` — Verify behaviour is unchanged
 
-Run from `$BUILD/cli/bin/`:
+Run from `$PROJECT/cli/bin/`:
 
 ```bash
 npm run test
@@ -185,5 +184,5 @@ refactor(bin): apply typescript conventions and collapse duplication
 **Instructions:**
 
 - Verify that the commit has been executed with the correct message and not pushed.
-- Verify that `npm run test:ci` from `$BUILD/cli/bin/` passes with unchanged coverage.
+- Verify that `npm run test:ci` from `$PROJECT/cli/bin/` passes with unchanged coverage.
 - Report according to the "How to Report Back to the Delegator" instructions.
