@@ -1,0 +1,160 @@
+import { describe, expect, it } from 'vitest';
+
+import { createGenericOperation } from './createGenericOperation';
+import { createOperationFailure } from './createOperationFailure';
+import { createOperationSuccess } from './createOperationSuccess';
+import { createParseOperation } from './createParseOperation';
+import { createSerializeOperation } from './createSerializeOperation';
+
+const URI = 'file:///tmp/document.art';
+
+describe('createGenericOperation', () => {
+	it('GIVEN no data', () => {
+		const pending = createGenericOperation('boot');
+
+		expect(pending.operation).toBe('boot');
+		expect(pending.outcome).toBe('pending');
+		expect(pending.message()).toBe('');
+	});
+
+	it('GIVEN data', () => {
+		const pending = createGenericOperation('command', ['parse', URI]);
+
+		expect(pending.data).toEqual(['parse', URI]);
+		expect(pending.message()).toBe(JSON.stringify(['parse', URI]));
+	});
+
+	it('GIVEN the operation is pending', () => {
+		const pending = createGenericOperation('boot');
+
+		expect(pending.finishedTs).toBeUndefined();
+		expect(pending.timing()).toBeNaN();
+	});
+});
+
+describe('createParseOperation', () => {
+	it('GIVEN a uri', () => {
+		const pending = createParseOperation({ uri: URI });
+
+		expect(pending.operation).toBe('parse');
+		expect(pending.outcome).toBe('pending');
+		expect(pending.uri).toBe(URI);
+		expect(pending.message()).toBe(URI);
+		expect(pending.timing()).toBeNaN();
+	});
+});
+
+describe('createSerializeOperation', () => {
+	it('GIVEN a uri', () => {
+		const pending = createSerializeOperation({ uri: URI });
+
+		expect(pending.operation).toBe('serialize');
+		expect(pending.outcome).toBe('pending');
+		expect(pending.uri).toBe(URI);
+		expect(pending.message()).toBe(URI);
+		expect(pending.timing()).toBeNaN();
+	});
+});
+
+describe('createOperationSuccess', () => {
+	it('GIVEN a pending parse operation', () => {
+		const pending = createParseOperation({ uri: URI });
+
+		const success = createOperationSuccess(pending);
+
+		expect(success.outcome).toBe('success');
+		expect(success.operation).toBe('parse');
+		expect(success.message()).toBe(URI);
+		expect(success.finishedTs).toBeInstanceOf(Date);
+	});
+
+	it('GIVEN the pending operation and a message', () => {
+		const pending = createSerializeOperation({ uri: URI });
+
+		const success = createOperationSuccess(pending, 'serialized 1 construct');
+
+		expect(success.message()).toBe('serialized 1 construct');
+	});
+
+	it('GIVEN a stamped success', () => {
+		const success = createOperationSuccess(createParseOperation({ uri: URI }));
+
+		expect(success.timing()).toBeGreaterThanOrEqual(0);
+	});
+});
+
+describe('createOperationFailure', () => {
+	it('GIVEN a pending parse operation and an Error', () => {
+		const pending = createParseOperation({ uri: URI });
+
+		const failure = createOperationFailure(pending, new Error('unexpected construct'));
+
+		expect(failure.outcome).toBe('failure');
+		expect(failure.operation).toBe('parse');
+		expect(failure.error).toBe('unexpected construct');
+		expect(failure.finishedTs).toBeInstanceOf(Date);
+		expect(failure.timing()).toBeGreaterThanOrEqual(0);
+	});
+
+	it('GIVEN an error carrying a parenthetical reason', () => {
+		const pending = createParseOperation({ uri: URI });
+
+		const failure = createOperationFailure(pending, new Error('parse failed (unexpected EOF)'));
+
+		expect(failure.message()).toBe('unexpected EOF');
+	});
+
+	it('GIVEN a multi-line error without a reason', () => {
+		const pending = createSerializeOperation({ uri: URI });
+
+		const failure = createOperationFailure(pending, new Error('serialize failed\n  at serialize'));
+
+		expect(failure.message()).toBe('serialize failed');
+	});
+
+	it('GIVEN a non-Error failure', () => {
+		const pending = createParseOperation({ uri: URI });
+
+		const failure = createOperationFailure(pending, 'plain string failure');
+
+		expect(failure.error).toBe('plain string failure');
+	});
+
+	it('GIVEN a parse failure', () => {
+		const failure = createOperationFailure(createParseOperation({ uri: URI }), new Error('boom'));
+
+		expect(failure.errorSerialized()).toContain('ParseError');
+	});
+
+	it('GIVEN a serialize failure', () => {
+		const failure = createOperationFailure(
+			createSerializeOperation({ uri: URI }),
+			new Error('boom'),
+		);
+
+		expect(failure.errorSerialized()).toContain('SerializeError');
+	});
+
+	it('GIVEN a generic operation failure', () => {
+		const failure = createOperationFailure(createGenericOperation('command'), new Error('boom'));
+
+		expect(failure.errorSerialized()).toContain('OperationError');
+	});
+
+	it('GIVEN a serialised failure', () => {
+		const failure = createOperationFailure(
+			createParseOperation({ uri: URI }),
+			new Error('parse failed (unexpected EOF)\n  at parse'),
+		);
+
+		expect(failure.errorSerialized()).toBe(
+			'ParseError: unexpected EOF\n\n  parse failed (unexpected EOF)\n  at parse',
+		);
+	});
+
+	it('GIVEN an error without a message line', () => {
+		const failure = createOperationFailure(createParseOperation({ uri: URI }), '');
+
+		expect(failure.message()).toBe('unknown error');
+	});
+});
