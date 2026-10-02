@@ -142,7 +142,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | Iteration / Instructions                                                                                               | Status  |
 | ---------------------------------------------------------------------------------------------------------------------- | ------- |
 | Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `DONE`  |
-| Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `READY` |
+| Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `DONE`  |
 | Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `READY` |
 | Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `READY` |
 | Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `READY` |
@@ -198,13 +198,15 @@ build(bin): add operation log types and logger
 
 **Id:** `implement-codec-context-and-io`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Give the operations a context to run in — a configured codec, a config, and file/stdin I/O.
 
 **Description:** Implement the bin's config loading, the `CodecContext` that composes the `ArtCodec` from `createArtCodec()`, the thin file I/O helpers, and the mock test helpers the later iterations use.
 
 **Instructions:** `./instructions/implement-codec-context-and-io.md`
+
+**Report:** `./instructions/implement-codec-context-and-io__report.md`
 
 **Changes:**
 
@@ -221,13 +223,17 @@ build(bin): add operation log types and logger
 
 #### Commits:
 
-| ID                               | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| -------------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `implement-codec-context-and-io` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                               | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| -------------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `implement-codec-context-and-io` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `3272dd0` | `COMMITTED` |
 
 ##### Commit: `implement-codec-context-and-io`
 
 **Repository:** Art MD
+
+**Status:** `COMMITTED`
+
+**Hash:** `3272dd0`
 
 **Message:**
 
@@ -398,7 +404,7 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Implement Codec Context and IO.
+Delegate Iteration: Implement Parse Command.
 
 ### Blockers
 
@@ -477,6 +483,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
+- **Implement Codec Context and IO DONE** — report `./instructions/implement-codec-context-and-io__report.md`, commit `3272dd0` (not pushed, `NOPUSH`). Added `BinConfig`/`loadBinConfig`, `createCodecContext`, an unplanned `createOperationsLog`, stdin/stdout-aware `readInput`/`writeOutput`, `presentDocument`/`presentContent`, and three test helpers; 27 new tests. `npm run ci` green; package coverage 98.55/98.52/100/88.57.
 - **Implement Operation Log DONE** — report `./instructions/implement-operation-log__report.md`, commit `f008c71` (not pushed, `NOPUSH`). Added the operation types (including an `Operation` union), the five operation factories, `makeOperationLogLine` (Art Work's repo/checkout columns dropped), and the buffering `createLogger`, with 26 new tests. `npm run ci` green at the repository root; package coverage 100/100/100 lines-statements-functions, 87.17% branches.
 
 ### Findings
@@ -506,6 +513,8 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Feedback
 
+- **Implement Codec Context and IO** — `import … from '../../../package.json'` cannot work: `@noodlestan/esbuild`'s `esbuild-plugin-file-path-extensions` externalises non-JS-like imports, so the JSON path resolves to a non-existent `dist/package.json`; `readPackageVersion` walks up to the `@art-md/bin` manifest at runtime instead. A build-side fix would benefit every package.
+- `src/private/log/createOperationsLog.ts` and presentation tests were unplanned additions, required by Step 2's operations log and by the enforced coverage thresholds.
 - **Implement Operation Log** — the `Operation` union added to `types.ts` was unplanned but needed by `LoggerAPI.log`; the parse/serialise instructions should rely on it.
 - The `createOperationFailure` message convention (parenthetical reason) is a git-error convention; codec errors throw plain messages.
 - `makeOperationLogLine` does not truncate long messages; the reference pipes through `truncateMiddle(…, 50)`.
