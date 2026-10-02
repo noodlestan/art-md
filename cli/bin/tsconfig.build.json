@@ -1,0 +1,7 @@
+{
+  "extends": "@noodlestan/tsconfig/cli/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src/"
+  },
+  "include": ["src/"]
+}

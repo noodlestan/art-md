@@ -14,19 +14,10 @@
     "directory": "cli/bin"
   },
   "type": "module",
-  "module": "dist/esm/index.mjs",
-  "main": "dist/cjs/index.js",
   "bin": {
-    "art-codec": "./dist/esm/bin/codec.mjs",
-    "art-parse": "./dist/esm/bin/parse.mjs",
-    "art-serialize": "./dist/esm/bin/serialize.mjs"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.mjs",
-      "types": "./dist/esm/index.d.ts",
-      "require": "./dist/cjs/index.js"
-    }
+    "art-codec": "./dist/codec.mjs",
+    "art-parse": "./dist/parse.mjs",
+    "art-serialize": "./dist/serialize.mjs"
   },
   "files": [
     "dist",
@@ -39,8 +30,6 @@
     "lint:fix": "prettier . -c --write && eslint . --fix",
     "build": "esbuild-cli",
     "build:clean": "rm -rf dist",
-    "build:types:esm": "tsc --project tsconfig.esm.json",
-    "build:types:cjs": "tsc --project tsconfig.cjs.json",
     "test": "vitest run",
     "test:ci": "vitest run --coverage",
     "test:watch": "vitest",

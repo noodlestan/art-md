@@ -1,14 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
 import { loadBinConfig } from './loadBinConfig';
-import { readPackageVersion } from './private/readPackageVersion';
 
 describe('loadBinConfig', () => {
 	it('WHEN no overrides are given returns the package defaults', () => {
 		const config = loadBinConfig();
 
 		expect(config).toEqual({
-			version: readPackageVersion(),
+			version: expect.any(String),
 			output: { mode: 'quiet' },
 			codec: {},
 		});

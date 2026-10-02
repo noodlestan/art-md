@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 
-function runParse() {
-	console.error('art-parse: not yet implemented');
-	process.exit(1);
-}
+import { buildParseCommand } from '../private/commander/buildParseCommand';
+import { buildProgram } from '../private/commander/buildProgram';
 
-runParse();
+const PROGRAM_NAME = 'art-parse';
+const PROGRAM_DESCRIPTION = 'Parse Art MD markdown into a document.';
+
+const commands = [buildParseCommand()];
+const spec = { name: PROGRAM_NAME, description: PROGRAM_DESCRIPTION, commands };
+const program = buildProgram(spec);
+
+program.parse();
