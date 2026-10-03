@@ -2,7 +2,7 @@
 
 **ID:** `implement-bin-commands`
 
-**Status:** `WORKING`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -139,14 +139,14 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                                               | Status  |
-| ---------------------------------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `DONE`  |
-| Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `DONE`  |
-| Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `DONE`  |
-| Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `DONE`  |
-| Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `DONE`  |
-| Iteration: Verify Bin Coverage `./instructions/verify-bin-coverage.md`                                                 | `READY` |
+| Iteration / Instructions                                                                                               | Status |
+| ---------------------------------------------------------------------------------------------------------------------- | ------ |
+| Iteration: Implement Operation Log `./instructions/implement-operation-log.md`                                         | `DONE` |
+| Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `DONE` |
+| Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `DONE` |
+| Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `DONE` |
+| Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `DONE` |
+| Iteration: Verify Bin Coverage `./instructions/verify-bin-coverage.md`                                                 | `DONE` |
 
 ### Iteration: Implement Operation Log
 
@@ -381,13 +381,15 @@ build(bin): add shared command builders and three entry points
 
 **Id:** `verify-bin-coverage`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Prove the CLI works as an installed binary and that the package meets its configured coverage thresholds.
 
 **Description:** Add end-to-end tests that spawn the built bundles for all three bin names, then close the remaining coverage gaps — output modes, the `--write` and stdin paths, and the error branches — until `npm run test:ci` clears the thresholds in `vitest.config.ts`.
 
 **Instructions:** `./instructions/verify-bin-coverage.md`
+
+**Report:** `./instructions/verify-bin-coverage__report.md`
 
 **Changes:**
 
@@ -402,13 +404,17 @@ build(bin): add shared command builders and three entry points
 
 #### Commits:
 
-| ID                    | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| --------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `verify-bin-coverage` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                    | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| --------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `verify-bin-coverage` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `cf4a136` | `COMMITTED` |
 
 ##### Commit: `verify-bin-coverage`
 
 **Repository:** Art MD
+
+**Status:** `COMMITTED`
+
+**Hash:** `cf4a136`
 
 **Message:**
 
@@ -422,7 +428,7 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Verify Bin Coverage.
+None — every iteration is `DONE`. Process the plan: write the changelog and archive it.
 
 ### Blockers
 
@@ -501,6 +507,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
+- **Verify Bin Coverage DONE** — report `./instructions/verify-bin-coverage__report.md`, commit `cf4a136` (not pushed, `NOPUSH`). Added the CLI integration tests (146 tests total) and closed the three raised gaps: `setExitCodeOnFailure` in both command actions, `createLogger` moved from `console.info` to `console.error`, and a test-local `module.registerHooks` shim (`registerWorkspaceLibraries`, `spawnCli`) making the built bundles loadable. Coverage 99.22/99.22/100/94.18 over the 90/90/90/75 thresholds; `npm run ci` green.
 - **Implement Command Builders and Entry Points DONE** — report `./instructions/implement-command-builders-and-entry-points__report.md`, commit `150446a` (not pushed, `NOPUSH`). Added `buildProgram`, the two command specs, `createCommandContext`, three real entry points and the public exports; `binManifest.test.ts` retired with its assertions folded into `src/bin/binEntryPoints.test.ts` and `src/bin/*` dropped from the coverage `exclude`. 31 new tests (110 green), entry points at 100%.
 - **Implement Serialize Command DONE** — report `./instructions/implement-serialize-command__report.md`, commit `7519863` (not pushed, `NOPUSH`). Added `doSerialize` (with a `readDocument` helper), `runSerialize` and 14 tests; `npm run ci` green; package coverage 98.85/98.83/100/89.18.
 - **Implement Parse Command DONE** — report `./instructions/implement-parse-command__report.md`, commit `ff7b02a` (not pushed, `NOPUSH`). Added `doParse`, `runParse`, `makeParseFixture` and 12 tests; `npm run ci` green; package coverage 98.7/98.69/100/88.88.
@@ -530,15 +537,16 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Follow Ups
 
-- **Non-zero exit on failure** — the integration test expects it, no iteration sets `process.exitCode`; raised here from Iteration: Implement Command Builders and Entry Points.
-- **Operation log on stdout** — `console.info` corrupts piped `--json` output; the logger should write to stderr.
-- **Built bundles are not loadable by plain `node`** — the libs need published `exports`, or the build must stop externalising workspace packages.
-- **Undecided: shared `CodecCommandOptions`** — `ParseOptions` and `SerializeOptions` are copies; and `--json` is still missing from the serialise spec.
+- **Docs are stale** — `cli/bin/README.md` and `cli/bin/_guide.md` still describe the bin as unimplemented; both were in Knowledge to Update and remain open.
+- **`npm run test` on a clean checkout** — `spawnCli` throws a "run npm run build" hint rather than skipping, so the test requires a prior build.
+- **Built bundles are not loadable by plain `node`** — worked around with a test-local `module.registerHooks` resolver in Iteration: Verify Bin Coverage; the packaging fix (published `exports` for the libs, or a workspace-aware bundling rule) is unowned and needs its own task.
+- **Undecided: shared `CodecCommandOptions`** — `ParseOptions` and `SerializeOptions` are copies; and `--json` is still missing from the serialise spec. Raised in three consecutive reports.
 
 - **Repeated CLI plumbing** — the operation log, logger, program builder, and context factory duplicate the Art Work CLI; Plan: Consolidate Codec Bin identifies the exact extraction units for `@art-lib`.
 
 ### Feedback
 
+- **Verify Bin Coverage** — the plain-`node` bundle defect is **not** fixed, only worked around in the test; it needs its own task (published `exports` for the libs, or a workspace-aware bundling rule). `--json` is still absent from `serialize`. `cli/bin/README.md` and `cli/bin/_guide.md` are contradicted by the code. `npm run test` fails on a clean checkout until `npm run build` has run once.
 - **Implement Command Builders and Entry Points** — commander forbids instance identity between the codec bin's and `art-parse`'s specs (one `parent` per `Command`), so the tests assert identical help output instead. Three known gaps for Verify Bin Coverage: no non-zero `process.exitCode` on failure though the integration test expects one; operation log lines go to `console.info` (stdout) and corrupt `art-parse --json | …`; and `node dist/esm/bin/*.mjs` cannot load because `@art-md/codec` exposes `"main": "./src/index.ts"` and workspace symlinks resolve to sources.
 - **Implement Serialize Command** — `SerializeOptions` duplicates `ParseOptions` by copy; the plan never says how `serialize` gets its document (inferred: read then decode with `readDocument`); the serialise command spec is planned without `--json` while `doSerialize` honours it; `parse | serialize` is not byte-exact (the serialiser appends a trailing newline); both commands log the pending `uri` but never pass a `createParseContext`/`createSerializeContext`, so failures cannot name the offending file; `-` is logged as `-` rather than `stdin`.
 - **Implement Parse Command** — `ParseOptions { file?, json?, write? }` (no `-o`, which is the logger's); `doParse` returns the named `ParseOutcome` alias because conventions forbid unions in signatures; `runParse` returns the outcome so the entry points can pick an exit code; the pending operation's `uri` never reaches the parser (`ParseResult.context.uri` is the parser default); a failed `writeOutput` leaves both a `success` and a `failure` in the log.
