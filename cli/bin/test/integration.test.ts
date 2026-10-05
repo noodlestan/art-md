@@ -20,6 +20,7 @@ const PENDING_GLYPH = '⏳';
 const SUCCESS_GLYPH = '🟢';
 const FAILURE_GLYPH = '🔴';
 const COMMANDS_HEADING = 'Commands:';
+const LINE_ENDING = '\n';
 
 describe('cli integration', () => {
 	const tempDirs: string[] = [];
@@ -159,7 +160,17 @@ describe('cli integration', () => {
 
 			expect(result.code).toBe(0);
 			expect(result.stdout).toBe('');
+			expect(written.endsWith(LINE_ENDING)).toBe(true);
 			expect(JSON.parse(written)).toMatchObject({ construct: 'Document' });
+		});
+
+		it('WHEN redirected to a file, terminates it with a single line ending', async () => {
+			const result = await spawnCli('parse', { args: [markdownPath] });
+
+			expect(result.code).toBe(0);
+			expect(result.stdout.endsWith(LINE_ENDING)).toBe(true);
+			expect(result.stdout.endsWith(`${LINE_ENDING}${LINE_ENDING}`)).toBe(false);
+			expect(JSON.parse(result.stdout)).toMatchObject({ construct: 'Document' });
 		});
 
 		it('WHEN the file cannot be read, exits non-zero with a failure log line', async () => {
