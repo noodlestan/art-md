@@ -1,6 +1,6 @@
 # @art-md/bin
 
-> Parse and serialise Art MD from the command line.
+> Parse and serialize Art MD from the command line.
 
 CLI that exposes the Art MD codec, parser, and serializer as commands.
 
@@ -8,15 +8,122 @@ This package is part of the [Art MD](https://art-md.noodlestan.org) project.
 
 ## Commands
 
-| command         | bin entry                      | role                                           |
-| --------------- | ------------------------------ | ---------------------------------------------- |
-| `art-codec`     | `./dist/esm/bin/codec.mjs`     | Run the configured codec over Art MD content.  |
-| `art-parse`     | `./dist/esm/bin/parse.mjs`     | Parse Art MD source into an Art MD document.   |
-| `art-serialize` | `./dist/esm/bin/serialize.mjs` | Serialize an Art MD document back into source. |
+| command         | bin entry              | role                                           |
+| --------------- | ---------------------- | ---------------------------------------------- |
+| `art-parse`     | `./dist/parse.mjs`     | Parse Art MD markdown into a document.         |
+| `art-serialize` | `./dist/serialize.mjs` | Serialize an Art MD document back to markdown. |
+| `art-codec`     | `./dist/codec.mjs`     | Run either operation through one command.      |
 
-Each command is a self-executing entry point under `src/bin/`, built into its own bundle. The command behaviour is not implemented yet: each command reports that it is not yet implemented and exits non-zero.
+Every command reads from a file or from stdin, writes its result to stdout, and logs
+progress to stderr. Each is a self-executing entry point under `src/bin/`, built into its
+own bundle.
 
-The package's public export surface is types only — `src/index.ts` re-exports `ArtCodec`, `ParseResult`, and `SerializeResult` from `@art-md/primitives`. Import the codec itself from `@art-md/codec`.
+## art-parse
+
+Parses Art MD markdown into an Art MD document and writes the document as JSON.
+
+```bash
+art-parse [options] [file]
+```
+
+Reading a file:
+
+```bash
+$ art-parse release-notes.art
+{
+  "construct": "Document",
+  "children": [
+    {
+      "construct": "SectionBlock",
+      "name": "Release Notes",
+      "children": [ ... ],
+      "depth": 1,
+      "position": { ... }
+    }
+  ],
+  "position": { ... }
+}
+```
+
+Reading stdin, either by piping or with the `-` marker:
+
+```bash
+$ cat release-notes.art | art-parse
+$ art-parse - < release-notes.art
+```
+
+Writing stdout to a file — the progress line stays on stderr, so a plain redirect
+captures the JSON and nothing else:
+
+```bash
+$ art-parse release-notes.art > release-notes.json
+```
+
+Use `-w` instead to write the file without printing anything at all:
+
+```bash
+$ art-parse release-notes.art --write release-notes.json
+```
+
+| option                | description                                   |
+| --------------------- | --------------------------------------------- |
+| `-V, --version`       | Output the version number.                    |
+| `-o, --output <mode>` | One of `quiet\|verbose`.                      |
+| `-w, --write <file>`  | Write the result to a file instead of stdout. |
+| `-h, --help`          | Display help for the command.                 |
+
+## art-serialize
+
+Serializes an Art MD document back into markdown and writes the markdown to stdout. The
+input is a document as produced by `art-parse`.
+
+```bash
+art-serialize [options] [file]
+```
+
+Reading a file:
+
+```bash
+$ art-serialize release-notes.json
+# Release Notes
+
+Ship the codec.
+```
+
+Reading stdin, either by piping or with the `-` marker:
+
+```bash
+$ cat release-notes.json | art-serialize
+$ art-serialize - < release-notes.json
+```
+
+Writing stdout to a file — the progress line stays on stderr, so a plain redirect
+captures the markdown and nothing else:
+
+```bash
+$ art-serialize release-notes.json > release-notes.art
+```
+
+Use `-w` instead to write the file without printing anything at all:
+
+```bash
+$ art-serialize release-notes.json --write release-notes.art
+```
+
+It takes the same options as `art-parse`.
+
+## art-codec
+
+Runs either operation through one command, as `parse` and `serialize` subcommands.
+
+```bash
+art-codec parse [options] [file]
+art-codec serialize [options] [file]
+```
+
+Both take the same options as `art-parse`. Reach for `art-codec` when a script should not
+depend on which of the two binaries is installed; otherwise prefer `art-parse` and
+`art-serialize`.
 
 ## Development
 
@@ -24,7 +131,15 @@ Make sure you read the [Art MD README](../../README.md) first.
 
 ### Build
 
-This package is meant for use in Node.js environments. The entry points are built using `esbuild` pre-configured by [Workspace Tooling](https://github.com/noodlestan/workspace-tooling), which emits one bundle per `src/**/*.ts` under `dist/esm/` and `dist/cjs/`. The published bins are the `dist/esm/bin/*.mjs` bundles.
+This package is meant for use in Node.js environments. The entry points are built with
+`esbuild`, pre-configured by [Workspace Tooling](https://github.com/noodlestan/workspace-tooling).
+`build.config.mjs` bundles one self-executing entry point per command into `dist/`, and
+inlines the package version so `--version` works from the bundle alone.
+
+### Tests
+
+Unit tests cover the private modules; the integration tests spawn the built bundles in
+`dist/`, so run `npm run build` before them. `npm run ci` does both.
 
 ### Scripts
 
@@ -32,10 +147,14 @@ Run from this package directory:
 
 - `npm run dev` — rebuild on change
 - `npm run build` — produce the full build
+- `npm run build:clean` — remove `dist/`
 - `npm run lint` — report prettier, eslint, and `tsc --noEmit` issues
 - `npm run lint:fix` — fix formatting and lint issues
-- `npm run test` — run the vitest suite
-- `npm run ci` — lint, build, and test with coverage
+- `npm run test` — run the unit tests
+- `npm run test:watch` — run the unit tests in watch mode
+- `npm run test:ci` — run the unit tests with coverage
+- `npm run test:integration` — run the integration tests against `dist/`
+- `npm run ci` — lint, build, and run both test suites
 
 ## License
 
