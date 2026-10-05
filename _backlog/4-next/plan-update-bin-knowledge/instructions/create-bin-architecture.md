@@ -144,15 +144,16 @@ Create `$PROJECT/cli/bin/architecture/index.md`:
 Create `$PROJECT/cli/bin/architecture/entry-points.md`:
 
 - The three executables: `art-codec`, `art-parse`, `art-serialize`
-- The `src/bin/*.ts` → `dist/esm/bin/*.mjs` build mapping
-- What each executable registers
+- The `src/bin/*.ts` → `dist/*.mjs` build mapping
+- What each executable registers: `art-parse` and `art-serialize` wire their operation onto the program itself, `art-codec` registers `parse` and `serialize`
 - The fact that the codec bin reuses the same command specs and defines no command logic of its own
 
 ### Step `3 / 8` — Create `architecture/commands.md`
 
 Create `$PROJECT/cli/bin/architecture/commands.md`:
 
-- Command reference: each command's name, arguments, options (`-o, --output <mode>`, `--json`, `-w, --write <file>`)
+- Command reference: each command's name, arguments, options (`-o, --output <mode>`, `-w, --write <file>`)
+- Parse emits JSON on every run, every command writes its result to stdout and logs to stderr, and output is newline-terminated
 - Stdin handling via `-`
 - Worked invocations
 
@@ -178,7 +179,8 @@ Create `$PROJECT/cli/bin/architecture/records/adr/cli.art`:
 
 - Entry-point decision
 - Shared-builder decision
-- `dist/esm/bin/*.mjs` export decision
+- Flat-program decision for `art-parse` and `art-serialize`
+- `dist/*.mjs` export decision
 - `package.json`-sourced version decision
 - `@art-lib` extraction inventory recorded by Plan: Consolidate Codec Bin
 - Use the same terse, purposeful style as `$PROJECT/architecture/adr/art-md.md`

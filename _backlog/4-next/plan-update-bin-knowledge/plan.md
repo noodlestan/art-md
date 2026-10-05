@@ -100,11 +100,11 @@ Write the bin's architecture reference set in `$PROJECT/cli/bin/architecture/` a
 **Changes:**
 
 - Create `architecture/index.md` — the reference index: what the bin is, the layering, the `src/` layout, and links to every document below, following the shape of `$ART_WORK/cli/work/architecture/index.md` and `$PROJECT/libs/parser/architecture/index.md`.
-- Create `architecture/entry-points.md` — the three executables: the `art-codec`, `art-parse`, and `art-serialize` `bin` exports, the `src/bin/*.ts` → `dist/esm/bin/*.mjs` build mapping, what each executable registers, and the fact that the codec bin reuses the same command specs and defines no command logic of its own.
-- Create `architecture/commands.md` — the command reference: each command's name, arguments, options (`-o, --output <mode>`, `--json`, `-w, --write <file>`), stdin handling via `-`, and worked invocations.
+- Create `architecture/entry-points.md` — the three executables: the `art-codec`, `art-parse`, and `art-serialize` `bin` exports, the `src/bin/*.ts` → `dist/*.mjs` build mapping, and what each executable registers: `art-parse` and `art-serialize` wire their operation onto the program itself, while `art-codec` registers `parse` and `serialize` and defines no command logic of its own.
+- Create `architecture/commands.md` — the command reference: each command's name, arguments, options (`-o, --output <mode>`, `-w, --write <file>`), stdin handling via `-`, and worked invocations. Record that parse always emits JSON, that every command writes its result to stdout and logs to stderr, and that output is newline-terminated.
 - Create `architecture/operations.md` — the operation model: `OperationOutcome`, the pending/success/failure types, the operation factories, the logger's buffering and output modes, and the log line format, including why the checkout columns of the Art Work log line are absent.
 - Create `architecture/dependencies.md` — the package's dependency direction: the bin depends on `@art-md/codec` and `@art-md/primitives` and on `commander`; the codec depends on nothing in the bin; the bin owns its own file I/O and never becomes a `ContentSource`.
-- Create `architecture/records/adr/cli.art` — the CLI ADR: the entry-point decision, the shared-builder decision, the `dist/esm/bin/*.mjs` export decision, the `package.json`-sourced version decision, and the `@art-lib` extraction inventory recorded by Plan: Consolidate Codec Bin.
+- Create `architecture/records/adr/cli.art` — the CLI ADR: the entry-point decision, the shared-builder decision, the flat-program decision for `art-parse` and `art-serialize`, the `dist/*.mjs` export decision, the `package.json`-sourced version decision, and the `@art-lib` extraction inventory recorded by Plan: Consolidate Codec Bin.
 - Update `$PROJECT/cli/bin/_guide.md` — replace "This package does not maintain a dedicated architecture reference" with links to the new `architecture/` set, and add the layout and the operating instructions for the commands.
 
 **Dependencies:**
@@ -205,7 +205,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 **Changes:**
 
 - Create `architecture/index.md` — the reference index, the layering, and the `src/` layout.
-- Create `architecture/entry-points.md` — the three `bin` exports, the `src/bin/*.ts` → `dist/esm/bin/*.mjs` mapping, and the shared-command-spec guarantee.
+- Create `architecture/entry-points.md` — the three `bin` exports, the `src/bin/*.ts` → `dist/*.mjs` mapping, and the shared-command-spec guarantee.
 - Create `architecture/commands.md` — the command reference with arguments, options, stdin, and worked invocations.
 - Create `architecture/operations.md` — the operation model, factories, logger, and log line format.
 - Create `architecture/dependencies.md` — the dependency direction and the bin's I/O boundary.

@@ -361,7 +361,7 @@ build(bin): implement doSerialize operation and runSerialize
 
 | ID                                            | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
 | --------------------------------------------- | -------------------------------- | -------- | --------- | ----------- |
-| `implement-command-builders-and-entry-points` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `150446a` | `COMMITTED` |
+| `implement-command-builders-and-entry-points` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `aae0dba` | `COMMITTED` |
 
 ##### Commit: `implement-command-builders-and-entry-points`
 
@@ -369,7 +369,7 @@ build(bin): implement doSerialize operation and runSerialize
 
 **Status:** `COMMITTED`
 
-**Hash:** `150446a`
+**Hash:** `aae0dba`
 
 **Message:**
 
@@ -406,7 +406,7 @@ build(bin): add shared command builders and three entry points
 
 | ID                    | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
 | --------------------- | -------------------------------- | -------- | --------- | ----------- |
-| `verify-bin-coverage` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `cf4a136` | `COMMITTED` |
+| `verify-bin-coverage` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `c9e1a8d` | `COMMITTED` |
 
 ##### Commit: `verify-bin-coverage`
 
@@ -414,7 +414,7 @@ build(bin): add shared command builders and three entry points
 
 **Status:** `COMMITTED`
 
-**Hash:** `cf4a136`
+**Hash:** `c9e1a8d`
 
 **Message:**
 
@@ -507,8 +507,9 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
-- **Verify Bin Coverage DONE** — report `./instructions/verify-bin-coverage__report.md`, commit `cf4a136` (not pushed, `NOPUSH`). Added the CLI integration tests (146 tests total) and closed the three raised gaps: `setExitCodeOnFailure` in both command actions, `createLogger` moved from `console.info` to `console.error`, and a test-local `module.registerHooks` shim (`registerWorkspaceLibraries`, `spawnCli`) making the built bundles loadable. Coverage 99.22/99.22/100/94.18 over the 90/90/90/75 thresholds; `npm run ci` green.
-- **Implement Command Builders and Entry Points DONE** — report `./instructions/implement-command-builders-and-entry-points__report.md`, commit `150446a` (not pushed, `NOPUSH`). Added `buildProgram`, the two command specs, `createCommandContext`, three real entry points and the public exports; `binManifest.test.ts` retired with its assertions folded into `src/bin/binEntryPoints.test.ts` and `src/bin/*` dropped from the coverage `exclude`. 31 new tests (110 green), entry points at 100%.
+- **CLI Shape DONE** — commits `ddac87f`, `28329e5`, `bf18401`, `02f16a0` (not pushed, `NOPUSH`). `art-parse` and `art-serialize` are flat programs that take the input file as their only argument; `art-codec` keeps `parse` and `serialize` as subcommands. Parse emits JSON on every run and `--json` is gone from every command. Output is newline-terminated on both stdout and `--write`. The README documents each bin with file, stdin, and redirection usage.
+- **Verify Bin Coverage DONE** — report `./instructions/verify-bin-coverage__report.md`, commit `c9e1a8d` (not pushed, `NOPUSH`). Added the CLI integration tests and closed the three raised gaps: `setExitCodeOnFailure` in both command actions, `createLogger` moved from `console.info` to `console.error`, and `spawnCli` making the built bundles loadable. Coverage 100/96.92/100/100 over the 90/90/90/75 thresholds; `npm run ci` green.
+- **Implement Command Builders and Entry Points DONE** — report `./instructions/implement-command-builders-and-entry-points__report.md`, commit `aae0dba` (not pushed, `NOPUSH`). Added `buildProgram`, the two command specs, `createCommandContext` and three real entry points; `binManifest.test.ts` retired with its assertions folded into `src/bin/binEntryPoints.test.ts` and `src/bin/*` dropped from the coverage `exclude`. 31 new tests (110 green), entry points at 100%.
 - **Implement Serialize Command DONE** — report `./instructions/implement-serialize-command__report.md`, commit `7519863` (not pushed, `NOPUSH`). Added `doSerialize` (with a `readDocument` helper), `runSerialize` and 14 tests; `npm run ci` green; package coverage 98.85/98.83/100/89.18.
 - **Implement Parse Command DONE** — report `./instructions/implement-parse-command__report.md`, commit `ff7b02a` (not pushed, `NOPUSH`). Added `doParse`, `runParse`, `makeParseFixture` and 12 tests; `npm run ci` green; package coverage 98.7/98.69/100/88.88.
 - **Implement Codec Context and IO DONE** — report `./instructions/implement-codec-context-and-io__report.md`, commit `3272dd0` (not pushed, `NOPUSH`). Added `BinConfig`/`loadBinConfig`, `createCodecContext`, an unplanned `createOperationsLog`, stdin/stdout-aware `readInput`/`writeOutput`, `presentDocument`/`presentContent`, and three test helpers; 27 new tests. `npm run ci` green; package coverage 98.55/98.52/100/88.57.
