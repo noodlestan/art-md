@@ -14,17 +14,26 @@ Agents SHOULD scan these files for definitions and resource locations when faced
 
 ```
 _records/           — package records
+build.config.mjs    — esbuild entry point configuration
 src/                — source code
-  index.ts          — public export surface
   bin/              — one entry point per command: `codec.ts`, `parse.ts`, `serialize.ts`
   commands/         — the command wiring behind each entry point
   private/          — functions private to this package, never exported
+    commander/      — command and program builders over `commander`
+    commands/       — the `doParse` and `doSerialize` operations
+    config/         — bin configuration loading
+    context/        — codec context construction
+    io/             — file and stdin readers, file and stdout writers
+    log/            — log helpers
+    logger/         — operation logging to stderr
+    operations/     — operation records and their log lines
+    present/        — document and content presentation
   test/             — test modules for this package
 ```
 
 Every directory is a module and every file is a function; functions that are not part of a module's public surface are extracted to `private/`. Follow the repository-wide TypeScript conventions.
 
-`src/bin/` holds the three entry points today. The command behaviour behind them is still to land, so `src/commands/`, `src/private/`, and `src/test/` are filled as that work arrives.
+`src/bin/` holds the three entry points, each wiring its operation onto a program. `art-parse` and `art-serialize` are flat programs that take the input file as their only argument; `art-codec` exposes `parse` and `serialize` as subcommands.
 
 ## Records Management
 
@@ -59,6 +68,8 @@ Run from this package directory:
 
 ```bash
 npm run test # runs vitest against the CLI unit tests
+npm run build # required before the integration tests, which spawn dist/
+npm run test:integration # runs vitest against the built bundles
 ```
 
 ### Operating Instructions: Verifying Completion
