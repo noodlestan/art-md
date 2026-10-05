@@ -145,7 +145,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | Iteration: Implement Codec Context and IO `./instructions/implement-codec-context-and-io.md`                           | `DONE`  |
 | Iteration: Implement Parse Command `./instructions/implement-parse-command.md`                                         | `DONE`  |
 | Iteration: Implement Serialize Command `./instructions/implement-serialize-command.md`                                 | `DONE`  |
-| Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `READY` |
+| Iteration: Implement Command Builders and Entry Points `./instructions/implement-command-builders-and-entry-points.md` | `DONE`  |
 | Iteration: Verify Bin Coverage `./instructions/verify-bin-coverage.md`                                                 | `READY` |
 
 ### Iteration: Implement Operation Log
@@ -334,13 +334,15 @@ build(bin): implement doSerialize operation and runSerialize
 
 **Id:** `implement-command-builders-and-entry-points`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Replace the three stubs with real entry points that share one program builder and one set of command specs.
 
 **Description:** Implement `buildProgram`, `buildParseCommand`, and `buildSerializeCommand`, then wire `src/bin/{codec,parse,serialize}.ts` to them and export the public surface — proving the codec bin registers the same specs the single-command bins use and reimplements nothing.
 
 **Instructions:** `./instructions/implement-command-builders-and-entry-points.md`
+
+**Report:** `./instructions/implement-command-builders-and-entry-points__report.md`
 
 **Changes:**
 
@@ -357,13 +359,17 @@ build(bin): implement doSerialize operation and runSerialize
 
 #### Commits:
 
-| ID                                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| --------------------------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `implement-command-builders-and-entry-points` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                                            | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| --------------------------------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `implement-command-builders-and-entry-points` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `150446a` | `COMMITTED` |
 
 ##### Commit: `implement-command-builders-and-entry-points`
 
 **Repository:** Art MD
+
+**Status:** `COMMITTED`
+
+**Hash:** `150446a`
 
 **Message:**
 
@@ -416,7 +422,7 @@ test(bin): add cli integration tests and meet coverage thresholds
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Implement Command Builders and Entry Points.
+Delegate Iteration: Verify Bin Coverage.
 
 ### Blockers
 
@@ -495,6 +501,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
+- **Implement Command Builders and Entry Points DONE** — report `./instructions/implement-command-builders-and-entry-points__report.md`, commit `150446a` (not pushed, `NOPUSH`). Added `buildProgram`, the two command specs, `createCommandContext`, three real entry points and the public exports; `binManifest.test.ts` retired with its assertions folded into `src/bin/binEntryPoints.test.ts` and `src/bin/*` dropped from the coverage `exclude`. 31 new tests (110 green), entry points at 100%.
 - **Implement Serialize Command DONE** — report `./instructions/implement-serialize-command__report.md`, commit `7519863` (not pushed, `NOPUSH`). Added `doSerialize` (with a `readDocument` helper), `runSerialize` and 14 tests; `npm run ci` green; package coverage 98.85/98.83/100/89.18.
 - **Implement Parse Command DONE** — report `./instructions/implement-parse-command__report.md`, commit `ff7b02a` (not pushed, `NOPUSH`). Added `doParse`, `runParse`, `makeParseFixture` and 12 tests; `npm run ci` green; package coverage 98.7/98.69/100/88.88.
 - **Implement Codec Context and IO DONE** — report `./instructions/implement-codec-context-and-io__report.md`, commit `3272dd0` (not pushed, `NOPUSH`). Added `BinConfig`/`loadBinConfig`, `createCodecContext`, an unplanned `createOperationsLog`, stdin/stdout-aware `readInput`/`writeOutput`, `presentDocument`/`presentContent`, and three test helpers; 27 new tests. `npm run ci` green; package coverage 98.55/98.52/100/88.57.
@@ -523,10 +530,16 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Follow Ups
 
+- **Non-zero exit on failure** — the integration test expects it, no iteration sets `process.exitCode`; raised here from Iteration: Implement Command Builders and Entry Points.
+- **Operation log on stdout** — `console.info` corrupts piped `--json` output; the logger should write to stderr.
+- **Built bundles are not loadable by plain `node`** — the libs need published `exports`, or the build must stop externalising workspace packages.
+- **Undecided: shared `CodecCommandOptions`** — `ParseOptions` and `SerializeOptions` are copies; and `--json` is still missing from the serialise spec.
+
 - **Repeated CLI plumbing** — the operation log, logger, program builder, and context factory duplicate the Art Work CLI; Plan: Consolidate Codec Bin identifies the exact extraction units for `@art-lib`.
 
 ### Feedback
 
+- **Implement Command Builders and Entry Points** — commander forbids instance identity between the codec bin's and `art-parse`'s specs (one `parent` per `Command`), so the tests assert identical help output instead. Three known gaps for Verify Bin Coverage: no non-zero `process.exitCode` on failure though the integration test expects one; operation log lines go to `console.info` (stdout) and corrupt `art-parse --json | …`; and `node dist/esm/bin/*.mjs` cannot load because `@art-md/codec` exposes `"main": "./src/index.ts"` and workspace symlinks resolve to sources.
 - **Implement Serialize Command** — `SerializeOptions` duplicates `ParseOptions` by copy; the plan never says how `serialize` gets its document (inferred: read then decode with `readDocument`); the serialise command spec is planned without `--json` while `doSerialize` honours it; `parse | serialize` is not byte-exact (the serialiser appends a trailing newline); both commands log the pending `uri` but never pass a `createParseContext`/`createSerializeContext`, so failures cannot name the offending file; `-` is logged as `-` rather than `stdin`.
 - **Implement Parse Command** — `ParseOptions { file?, json?, write? }` (no `-o`, which is the logger's); `doParse` returns the named `ParseOutcome` alias because conventions forbid unions in signatures; `runParse` returns the outcome so the entry points can pick an exit code; the pending operation's `uri` never reaches the parser (`ParseResult.context.uri` is the parser default); a failed `writeOutput` leaves both a `success` and a `failure` in the log.
 - **Implement Codec Context and IO** — `import … from '../../../package.json'` cannot work: `@noodlestan/esbuild`'s `esbuild-plugin-file-path-extensions` externalises non-JS-like imports, so the JSON path resolves to a non-existent `dist/package.json`; `readPackageVersion` walks up to the `@art-md/bin` manifest at runtime instead. A build-side fix would benefit every package.
