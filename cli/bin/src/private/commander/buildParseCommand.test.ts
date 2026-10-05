@@ -8,7 +8,7 @@ import { buildParseCommand } from './buildParseCommand';
 
 const COMMAND_NAME = 'parse';
 const COMMAND_DESCRIPTION = 'Parse an Art MD document from markdown.';
-const OPTION_FLAGS = ['-o, --output <mode>', '--json', '-w, --write <file>'];
+const OPTION_FLAGS = ['-o, --output <mode>', '-w, --write <file>'];
 const FAILURE_EXIT_CODE = 1;
 const UNSET_EXIT_CODE = 0;
 
@@ -48,7 +48,7 @@ describe('buildParseCommand', () => {
 		expect(argument?.description).toContain('- to read stdin');
 	});
 
-	it('WHEN built, declares the output, json and write options', () => {
+	it('WHEN built, declares the output and write options only', () => {
 		const command = buildParseCommand();
 
 		const flags = command.options.map(option => option.flags);
@@ -61,14 +61,11 @@ describe('buildParseCommand', () => {
 		mocks.createCommandContext.mockReturnValue(ctx);
 		const command = buildParseCommand();
 
-		await command.parseAsync(['input.md', '-o', 'verbose', '--json', '-w', 'out.json'], {
-			from: 'user',
-		});
+		await command.parseAsync(['input.md', '-o', 'verbose', '-w', 'out.json'], { from: 'user' });
 
 		expect(mocks.createCommandContext).toHaveBeenCalledWith('verbose');
 		expect(mocks.runParse).toHaveBeenCalledWith(ctx, {
 			file: 'input.md',
-			json: true,
 			write: 'out.json',
 		});
 	});
@@ -83,7 +80,6 @@ describe('buildParseCommand', () => {
 		expect(mocks.createCommandContext).toHaveBeenCalledWith(undefined);
 		expect(mocks.runParse).toHaveBeenCalledWith(ctx, {
 			file: undefined,
-			json: undefined,
 			write: undefined,
 		});
 	});
@@ -97,7 +93,6 @@ describe('buildParseCommand', () => {
 
 		expect(mocks.runParse).toHaveBeenCalledWith(ctx, {
 			file: '-',
-			json: undefined,
 			write: undefined,
 		});
 	});

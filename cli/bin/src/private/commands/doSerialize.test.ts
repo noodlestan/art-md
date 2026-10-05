@@ -74,15 +74,6 @@ describe('doSerialize', () => {
 		expect(io.writeOutput).toHaveBeenCalledWith(CONTENT, WRITE_TARGET);
 	});
 
-	it('GIVEN json, presents the indented JSON content payload', async () => {
-		const { ctx, io } = mockContext(makeDocumentSourceFixture());
-
-		const result = await doSerialize(ctx, { file: FILE, json: true });
-
-		const written = io.writeOutput.mock.calls[0]?.[0] ?? '';
-		expect(JSON.parse(written)).toEqual({ content: result?.content });
-	});
-
 	it('GIVEN no file, reads stdin and reports the stdin uri', async () => {
 		const { ctx, io } = mockContext(makeDocumentSourceFixture());
 
@@ -135,7 +126,7 @@ describe('doSerialize', () => {
 
 	it('GIVEN a document from doParse, roundtrips the fixture back to the same markdown', async () => {
 		const parseContext = mockContext(makeParseFixture());
-		await doParse(parseContext.ctx, { file: FILE, json: true });
+		await doParse(parseContext.ctx, { file: FILE });
 		const documentSource = parseContext.io.writeOutput.mock.calls[0]?.[0] ?? '';
 		const { ctx, io } = mockContext(documentSource);
 

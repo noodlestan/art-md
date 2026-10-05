@@ -16,15 +16,10 @@ const DOCUMENT_NAME = 'document.json';
 const OUTPUT_NAME = 'output.json';
 const MISSING_NAME = 'missing.art';
 const SERIALIZED_MARKDOWN = `${makeParseFixture()}\n`;
-const OUTLINE = [
-	'Document',
-	'  SectionBlock: Title',
-	'    NaturalBlock',
-	'      NaturalExpression',
-].join('\n');
 const PENDING_GLYPH = '⏳';
 const SUCCESS_GLYPH = '🟢';
 const FAILURE_GLYPH = '🔴';
+const COMMANDS_HEADING = 'Commands:';
 
 describe('cli integration', () => {
 	const tempDirs: string[] = [];
@@ -60,19 +55,13 @@ describe('cli integration', () => {
 			const result = await spawnCli('codec', { args: ['--help'] });
 
 			expect(result.code).toBe(0);
+			expect(result.stdout).toContain(COMMANDS_HEADING);
 			expect(result.stdout).toContain('parse [options] [file]');
 			expect(result.stdout).toContain('serialize [options] [file]');
 		});
 
-		it('WHEN parsing a file, writes the document outline to stdout', async () => {
+		it('WHEN parsing a file, writes the document json to stdout', async () => {
 			const result = await spawnCli('codec', { args: ['parse', markdownPath] });
-
-			expect(result.code).toBe(0);
-			expect(result.stdout).toBe(OUTLINE);
-		});
-
-		it('WHEN parsing a file as json, writes only the document to stdout', async () => {
-			const result = await spawnCli('codec', { args: ['parse', markdownPath, '--json'] });
 
 			expect(result.code).toBe(0);
 			expect(JSON.parse(result.stdout)).toMatchObject({ construct: 'Document' });
@@ -85,6 +74,13 @@ describe('cli integration', () => {
 			expect(result.code).toBe(0);
 			expect(result.stdout).toBe(SERIALIZED_MARKDOWN);
 		});
+
+		it('WHEN parsing a file, rejects a json flag', async () => {
+			const result = await spawnCli('codec', { args: ['parse', markdownPath, '--json'] });
+
+			expect(result.code).not.toBe(0);
+			expect(result.stderr).toContain('--json');
+		});
 	});
 
 	describe('art-parse', () => {
@@ -95,42 +91,54 @@ describe('cli integration', () => {
 			expect(result.stdout.trim()).toBe(loadBinConfig().version);
 		});
 
-		it('WHEN asked for help, lists the parse command only', async () => {
+		it('WHEN asked for help, reports a flat usage with no subcommands', async () => {
 			const result = await spawnCli('parse', { args: ['--help'] });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout).toContain('parse [options] [file]');
-			expect(result.stdout).not.toContain('serialize [options] [file]');
+			expect(result.stdout).toContain('Usage: art-parse [options] [file]');
+			expect(result.stdout).not.toContain(COMMANDS_HEADING);
+		});
+
+		it('WHEN parsing a file, writes the document json to stdout', async () => {
+			const result = await spawnCli('parse', { args: [markdownPath] });
+
+			expect(result.code).toBe(0);
+			expect(JSON.parse(result.stdout)).toMatchObject({ construct: 'Document' });
+		});
+
+		it('GIVEN a leading subcommand word, treats it as the file path and fails', async () => {
+			const result = await spawnCli('parse', { args: ['parse', markdownPath] });
+
+			expect(result.code).toBe(1);
+			expect(result.stderr).toContain(FAILURE_GLYPH);
+			expect(result.stderr).toContain('parse');
 		});
 
 		it('WHEN given the stdin marker, reads the document from stdin', async () => {
-			const result = await spawnCli('parse', {
-				args: ['parse', '-'],
-				stdin: makeParseFixture(),
-			});
+			const result = await spawnCli('parse', { args: ['-'], stdin: makeParseFixture() });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout).toBe(OUTLINE);
+			expect(JSON.parse(result.stdout)).toMatchObject({ construct: 'Document' });
 		});
 
 		it('WHEN given no file, reads the document from stdin', async () => {
-			const result = await spawnCli('parse', { args: ['parse'], stdin: makeParseFixture() });
+			const result = await spawnCli('parse', { args: [], stdin: makeParseFixture() });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout).toBe(OUTLINE);
+			expect(JSON.parse(result.stdout)).toMatchObject({ construct: 'Document' });
 		});
 
 		it('GIVEN a verbose output mode, logs the pending and success lines on stderr', async () => {
-			const result = await spawnCli('parse', { args: ['parse', markdownPath, '-o', 'verbose'] });
+			const result = await spawnCli('parse', { args: [markdownPath, '-o', 'verbose'] });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout).toBe(OUTLINE);
+			expect(JSON.parse(result.stdout)).toMatchObject({ construct: 'Document' });
 			expect(result.stderr).toContain(PENDING_GLYPH);
 			expect(result.stderr).toContain(SUCCESS_GLYPH);
 		});
 
 		it('GIVEN a quiet output mode, logs the success line only on stderr', async () => {
-			const result = await spawnCli('parse', { args: ['parse', markdownPath, '-o', 'quiet'] });
+			const result = await spawnCli('parse', { args: [markdownPath, '-o', 'quiet'] });
 
 			expect(result.code).toBe(0);
 			expect(result.stderr).not.toContain(PENDING_GLYPH);
@@ -138,7 +146,7 @@ describe('cli integration', () => {
 		});
 
 		it('GIVEN no output mode, logs the success line only on stderr', async () => {
-			const result = await spawnCli('parse', { args: ['parse', markdownPath] });
+			const result = await spawnCli('parse', { args: [markdownPath] });
 
 			expect(result.code).toBe(0);
 			expect(result.stderr).not.toContain(PENDING_GLYPH);
@@ -146,9 +154,7 @@ describe('cli integration', () => {
 		});
 
 		it('GIVEN a write target, writes the document to that file and keeps stdout empty', async () => {
-			const result = await spawnCli('parse', {
-				args: ['parse', markdownPath, '--json', '--write', outputPath],
-			});
+			const result = await spawnCli('parse', { args: [markdownPath, '--write', outputPath] });
 			const written = await readFile(outputPath, ENCODING);
 
 			expect(result.code).toBe(0);
@@ -157,7 +163,7 @@ describe('cli integration', () => {
 		});
 
 		it('WHEN the file cannot be read, exits non-zero with a failure log line', async () => {
-			const result = await spawnCli('parse', { args: ['parse', missingPath] });
+			const result = await spawnCli('parse', { args: [missingPath] });
 
 			expect(result.code).toBe(1);
 			expect(result.stderr).toContain(FAILURE_GLYPH);
@@ -173,17 +179,32 @@ describe('cli integration', () => {
 			expect(result.stdout.trim()).toBe(loadBinConfig().version);
 		});
 
-		it('WHEN asked for help, lists the serialize command only', async () => {
+		it('WHEN asked for help, reports a flat usage with no subcommands', async () => {
 			const result = await spawnCli('serialize', { args: ['--help'] });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout).toContain('serialize [options] [file]');
-			expect(result.stdout).not.toContain('parse [options] [file]');
+			expect(result.stdout).toContain('Usage: art-serialize [options] [file]');
+			expect(result.stdout).not.toContain(COMMANDS_HEADING);
+		});
+
+		it('WHEN serializing a document, writes the markdown to stdout', async () => {
+			const result = await spawnCli('serialize', { args: [documentPath] });
+
+			expect(result.code).toBe(0);
+			expect(result.stdout).toBe(SERIALIZED_MARKDOWN);
+		});
+
+		it('GIVEN a leading subcommand word, treats it as the file path and fails', async () => {
+			const result = await spawnCli('serialize', { args: ['serialize', documentPath] });
+
+			expect(result.code).toBe(1);
+			expect(result.stderr).toContain(FAILURE_GLYPH);
+			expect(result.stderr).toContain('serialize');
 		});
 
 		it('WHEN given the stdin marker, reads the document from stdin', async () => {
 			const result = await spawnCli('serialize', {
-				args: ['serialize', '-'],
+				args: ['-'],
 				stdin: makeDocumentSourceFixture(),
 			});
 
@@ -192,9 +213,7 @@ describe('cli integration', () => {
 		});
 
 		it('WHEN the document cannot be read, exits non-zero with a failure log line', async () => {
-			const result = await spawnCli('serialize', {
-				args: ['serialize', missingPath],
-			});
+			const result = await spawnCli('serialize', { args: [missingPath] });
 
 			expect(result.code).toBe(1);
 			expect(result.stderr).toContain(FAILURE_GLYPH);
@@ -204,12 +223,9 @@ describe('cli integration', () => {
 
 	describe('round trip', () => {
 		it('WHEN the parsed json is piped back, returns the original markdown', async () => {
-			const parsed = await spawnCli('parse', { args: ['parse', markdownPath, '--json'] });
+			const parsed = await spawnCli('parse', { args: [markdownPath] });
 
-			const serialized = await spawnCli('serialize', {
-				args: ['serialize', '-'],
-				stdin: parsed.stdout,
-			});
+			const serialized = await spawnCli('serialize', { args: ['-'], stdin: parsed.stdout });
 
 			expect(serialized.code).toBe(0);
 			expect(serialized.stdout).toBe(SERIALIZED_MARKDOWN);

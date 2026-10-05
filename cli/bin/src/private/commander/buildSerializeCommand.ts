@@ -14,20 +14,28 @@ import {
 const COMMAND_NAME = 'serialize';
 const COMMAND_DESCRIPTION = 'Serialize an Art MD document into markdown.';
 
+export function configureSerializeCommand(command: Command): void {
+	command
+		.argument('[file]', FILE_ARGUMENT_DESCRIPTION)
+		.option('-o, --output <mode>', OUTPUT_OPTION_DESCRIPTION)
+		.option('-w, --write <file>', WRITE_OPTION_DESCRIPTION);
+}
+
+export async function runSerializeCommand(
+	file: string | undefined,
+	options: CommandOutputOptions,
+): Promise<void> {
+	const ctx = createCommandContext(options.output);
+	const outcome = await runSerialize(ctx, { file, write: options.write });
+	setExitCodeOnFailure(outcome);
+}
+
 export function buildSerializeCommand(): Command {
 	const command = new Command(COMMAND_NAME);
 
-	command
-		.description(COMMAND_DESCRIPTION)
-		.argument('[file]', FILE_ARGUMENT_DESCRIPTION)
-		.option('-o, --output <mode>', OUTPUT_OPTION_DESCRIPTION)
-		.option('-w, --write <file>', WRITE_OPTION_DESCRIPTION)
-		.action(async (file: string | undefined, options: CommandOutputOptions) => {
-			const ctx = createCommandContext(options.output);
-			const serializeOptions = { file, write: options.write };
-			const outcome = await runSerialize(ctx, serializeOptions);
-			setExitCodeOnFailure(outcome);
-		});
+	command.description(COMMAND_DESCRIPTION);
+	configureSerializeCommand(command);
+	command.action(runSerializeCommand);
 
 	return command;
 }

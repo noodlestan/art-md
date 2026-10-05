@@ -10,7 +10,6 @@ const STDIN_URI = 'stdin';
 
 export type ParseOptions = {
 	file?: string;
-	json?: boolean;
 	write?: string;
 };
 
@@ -25,8 +24,7 @@ export async function doParse(ctx: CodecContext, options: ParseOptions): Promise
 		const content = await ctx.io.readInput(options.file);
 		const result = ctx.codec.parse(content);
 		ctx.log.log(createOperationSuccess(pending));
-		const presented = presentDocument(result.document, options);
-		await ctx.io.writeOutput(presented, options.write);
+		await ctx.io.writeOutput(presentDocument(result.document), options.write);
 		return result;
 	} catch (error) {
 		ctx.log.log(createOperationFailure(pending, error));

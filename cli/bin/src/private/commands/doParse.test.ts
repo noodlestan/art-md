@@ -10,12 +10,6 @@ import { doParse } from './doParse';
 const FILE = 'document.art';
 const WRITE_TARGET = 'out/document.art';
 const STDIN_URI = 'stdin';
-const OUTLINE = [
-	'Document',
-	'  SectionBlock: Title',
-	'    NaturalBlock',
-	'      NaturalExpression',
-].join('\n');
 
 type IoMocks = {
 	readInput: Mock<CodecIo['readInput']>;
@@ -61,29 +55,24 @@ describe('doParse', () => {
 		expect(operations[0]?.message()).toBe(FILE);
 	});
 
-	it('WHEN the input parses, presents the construct outline', async () => {
+	it('WHEN the input parses, presents the indented JSON document', async () => {
 		const { ctx, io } = mockContext(makeParseFixture());
 
-		await doParse(ctx, { file: FILE });
+		const result = await doParse(ctx, { file: FILE });
 
-		expect(io.writeOutput).toHaveBeenCalledWith(OUTLINE, undefined);
+		const written = io.writeOutput.mock.calls[0]?.[0] ?? '';
+		expect(written).toBe(JSON.stringify(result?.document, null, 2));
+		expect(JSON.parse(written)).toEqual(result?.document);
 	});
 
 	it('GIVEN a write target, writes the presented document to it', async () => {
 		const { ctx, io } = mockContext(makeParseFixture());
 
-		await doParse(ctx, { file: FILE, write: WRITE_TARGET });
-
-		expect(io.writeOutput).toHaveBeenCalledWith(OUTLINE, WRITE_TARGET);
-	});
-
-	it('GIVEN json, presents the indented JSON document', async () => {
-		const { ctx, io } = mockContext(makeParseFixture());
-
-		const result = await doParse(ctx, { file: FILE, json: true });
+		const result = await doParse(ctx, { file: FILE, write: WRITE_TARGET });
 
 		const written = io.writeOutput.mock.calls[0]?.[0] ?? '';
 		expect(JSON.parse(written)).toEqual(result?.document);
+		expect(io.writeOutput.mock.calls[0]?.[1]).toBe(WRITE_TARGET);
 	});
 
 	it('GIVEN no file, reads stdin and reports the stdin uri', async () => {

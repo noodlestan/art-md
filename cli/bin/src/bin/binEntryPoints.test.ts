@@ -53,9 +53,16 @@ function getRegisteredCommand(program: Command, name: string): Command {
 	return command;
 }
 
-function getSpecHelp(command: Command): string {
-	const lines = command.helpInformation().split('\n');
-	return lines.slice(1).join('\n');
+const VERSION_OPTION_FLAGS = '-V, --version';
+
+function getOptionFlags(command: Command): string[] {
+	return command.options
+		.map(option => option.flags)
+		.filter(flags => flags !== VERSION_OPTION_FLAGS);
+}
+
+function getArgumentNames(command: Command): string[] {
+	return command.registeredArguments.map(argument => argument.name());
 }
 
 beforeAll(async () => {
@@ -101,43 +108,44 @@ describe('bin entry points', () => {
 		expect(getRegisteredNames(program)).toEqual(['parse', 'serialize']);
 	});
 
-	it('WHEN art-parse is loaded, parses a program exposing exactly one command', () => {
+	it('WHEN art-parse is loaded, parses a program exposing no subcommands', () => {
 		const program = getParsedProgram(1);
 
 		expect(program.name()).toBe('art-parse');
 		expect(program.version()).toBe(loadBinConfig().version);
-		expect(getRegisteredNames(program)).toEqual(['parse']);
+		expect(getRegisteredNames(program)).toEqual([]);
+		expect(getArgumentNames(program)).toEqual(['file']);
 	});
 
-	it('WHEN art-serialize is loaded, parses a program exposing exactly one command', () => {
+	it('WHEN art-serialize is loaded, parses a program exposing no subcommands', () => {
 		const program = getParsedProgram(2);
 
 		expect(program.name()).toBe('art-serialize');
 		expect(program.version()).toBe(loadBinConfig().version);
-		expect(getRegisteredNames(program)).toEqual(['serialize']);
+		expect(getRegisteredNames(program)).toEqual([]);
+		expect(getArgumentNames(program)).toEqual(['file']);
 	});
 
-	it('GIVEN the codec bin, its parse command is the spec the parse bin registers', () => {
-		const codecProgram = getParsedProgram(0);
+	it('GIVEN the codec bin, its parse command declares what the art-parse program declares', () => {
+		const codecParse = getRegisteredCommand(getParsedProgram(0), 'parse');
 		const parseProgram = getParsedProgram(1);
 
-		const codecParse = getRegisteredCommand(codecProgram, 'parse');
-		const parseOnly = getRegisteredCommand(parseProgram, 'parse');
-
-		expect(getSpecHelp(codecParse)).toBe(getSpecHelp(parseOnly));
-		expect(codecParse.parent?.name()).toBe('art-codec');
-		expect(parseOnly.parent?.name()).toBe('art-parse');
+		expect(getOptionFlags(parseProgram)).toEqual(getOptionFlags(codecParse));
+		expect(getArgumentNames(parseProgram)).toEqual(getArgumentNames(codecParse));
 	});
 
-	it('GIVEN the codec bin, its serialize command is the spec the serialize bin registers', () => {
-		const codecProgram = getParsedProgram(0);
+	it('GIVEN the codec bin, its serialize command declares what the art-serialize program declares', () => {
+		const codecSerialize = getRegisteredCommand(getParsedProgram(0), 'serialize');
 		const serializeProgram = getParsedProgram(2);
 
-		const codecSerialize = getRegisteredCommand(codecProgram, 'serialize');
-		const serializeOnly = getRegisteredCommand(serializeProgram, 'serialize');
+		expect(getOptionFlags(serializeProgram)).toEqual(getOptionFlags(codecSerialize));
+		expect(getArgumentNames(serializeProgram)).toEqual(getArgumentNames(codecSerialize));
+	});
 
-		expect(getSpecHelp(codecSerialize)).toBe(getSpecHelp(serializeOnly));
-		expect(codecSerialize.parent?.name()).toBe('art-codec');
-		expect(serializeOnly.parent?.name()).toBe('art-serialize');
+	it('GIVEN the codec bin, its commands are parented to the program', () => {
+		const codecProgram = getParsedProgram(0);
+
+		expect(getRegisteredCommand(codecProgram, 'parse').parent?.name()).toBe('art-codec');
+		expect(getRegisteredCommand(codecProgram, 'serialize').parent?.name()).toBe('art-codec');
 	});
 });

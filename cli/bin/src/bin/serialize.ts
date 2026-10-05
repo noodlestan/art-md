@@ -1,13 +1,20 @@
 #!/usr/bin/env node
 
-import { buildProgram } from '../private/commander/buildProgram';
-import { buildSerializeCommand } from '../private/commander/buildSerializeCommand';
+import {
+	configureSerializeCommand,
+	runSerializeCommand,
+} from '../private/commander/buildSerializeCommand';
+import { buildSingleOperationProgram } from '../private/commander/buildSingleOperationProgram';
 
 const PROGRAM_NAME = 'art-serialize';
 const PROGRAM_DESCRIPTION = 'Serialize an Art MD document into markdown.';
 
-const commands = [buildSerializeCommand()];
-const spec = { name: PROGRAM_NAME, description: PROGRAM_DESCRIPTION, commands };
-const program = buildProgram(spec);
+const spec = {
+	name: PROGRAM_NAME,
+	description: PROGRAM_DESCRIPTION,
+	configure: configureSerializeCommand,
+	run: runSerializeCommand,
+};
+const program = buildSingleOperationProgram(spec);
 
 program.parse();

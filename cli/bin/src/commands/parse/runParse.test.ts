@@ -11,12 +11,6 @@ import { makeParseFixture } from '../../test/helpers/makeParseFixture';
 import { runParse } from './runParse';
 
 const FILE = 'document.art';
-const OUTLINE = [
-	'Document',
-	'  SectionBlock: Title',
-	'    NaturalBlock',
-	'      NaturalExpression',
-].join('\n');
 
 type IoMocks = {
 	readInput: Mock<CodecIo['readInput']>;
@@ -60,8 +54,10 @@ describe('runParse', () => {
 
 		const result = await runParse(ctx, { file: FILE });
 
+		const written = io.writeOutput.mock.calls[0]?.[0] ?? '';
+
 		expect(result?.document.construct).toBe('Document');
-		expect(io.writeOutput).toHaveBeenCalledWith(OUTLINE, undefined);
+		expect(JSON.parse(written)).toEqual(result?.document);
 	});
 
 	it('WHEN the input parses, logs a success through the operations log', async () => {

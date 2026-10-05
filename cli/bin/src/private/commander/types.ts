@@ -9,8 +9,11 @@ export type CommandOutputOptions = {
 	write?: string;
 };
 
-export type ParseCommandOptions = CommandOutputOptions & {
-	json?: boolean;
+export type SingleOperationSpec = {
+	name: string;
+	description: string;
+	configure: (command: Command) => void;
+	run: (file: string | undefined, options: CommandOutputOptions) => Promise<void>;
 };
 
 export type ProgramSpec = {
