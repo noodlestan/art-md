@@ -22,7 +22,7 @@ export function createLogger(): LoggerAPI {
 
 	function write(op: Operation): void {
 		const line = makeOperationLogLine(op, { standalone: true });
-		console.info(line.join(' | '));
+		console.error(line.join(' | '));
 	}
 
 	function flush(): void {

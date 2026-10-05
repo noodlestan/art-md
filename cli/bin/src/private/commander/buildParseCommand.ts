@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { runParse } from '../../commands/parse/runParse';
 
 import { createCommandContext } from './private/createCommandContext';
+import { setExitCodeOnFailure } from './private/setExitCodeOnFailure';
 import {
 	FILE_ARGUMENT_DESCRIPTION,
 	OUTPUT_OPTION_DESCRIPTION,
@@ -26,7 +27,8 @@ export function buildParseCommand(): Command {
 		.action(async (file: string | undefined, options: ParseCommandOptions) => {
 			const ctx = createCommandContext(options.output);
 			const parseOptions = { file, json: options.json, write: options.write };
-			await runParse(ctx, parseOptions);
+			const outcome = await runParse(ctx, parseOptions);
+			setExitCodeOnFailure(outcome);
 		});
 
 	return command;

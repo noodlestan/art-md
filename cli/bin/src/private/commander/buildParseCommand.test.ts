@@ -1,4 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import process from 'node:process';
+
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { makeCodecContextMock } from '../../test/helpers/makeCodecContextMock';
 
@@ -7,6 +9,8 @@ import { buildParseCommand } from './buildParseCommand';
 const COMMAND_NAME = 'parse';
 const COMMAND_DESCRIPTION = 'Parse an Art MD document from markdown.';
 const OPTION_FLAGS = ['-o, --output <mode>', '--json', '-w, --write <file>'];
+const FAILURE_EXIT_CODE = 1;
+const UNSET_EXIT_CODE = 0;
 
 const mocks = vi.hoisted(() => ({
 	createCommandContext: vi.fn(),
@@ -20,6 +24,10 @@ vi.mock('./private/createCommandContext', () => ({
 vi.mock('../../commands/parse/runParse', () => ({
 	runParse: mocks.runParse,
 }));
+
+afterEach(() => {
+	process.exitCode = UNSET_EXIT_CODE;
+});
 
 describe('buildParseCommand', () => {
 	it('WHEN built, is the parse command', () => {
@@ -92,5 +100,16 @@ describe('buildParseCommand', () => {
 			json: undefined,
 			write: undefined,
 		});
+	});
+
+	it('GIVEN a failed operation, exits with a non-zero code', async () => {
+		const ctx = makeCodecContextMock();
+		mocks.createCommandContext.mockReturnValue(ctx);
+		mocks.runParse.mockResolvedValue(null);
+		const command = buildParseCommand();
+
+		await command.parseAsync(['input.md'], { from: 'user' });
+
+		expect(process.exitCode).toBe(FAILURE_EXIT_CODE);
 	});
 });

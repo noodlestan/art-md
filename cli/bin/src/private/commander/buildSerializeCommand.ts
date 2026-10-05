@@ -3,6 +3,7 @@ import { Command } from 'commander';
 import { runSerialize } from '../../commands/serialize/runSerialize';
 
 import { createCommandContext } from './private/createCommandContext';
+import { setExitCodeOnFailure } from './private/setExitCodeOnFailure';
 import {
 	type CommandOutputOptions,
 	FILE_ARGUMENT_DESCRIPTION,
@@ -24,7 +25,8 @@ export function buildSerializeCommand(): Command {
 		.action(async (file: string | undefined, options: CommandOutputOptions) => {
 			const ctx = createCommandContext(options.output);
 			const serializeOptions = { file, write: options.write };
-			await runSerialize(ctx, serializeOptions);
+			const outcome = await runSerialize(ctx, serializeOptions);
+			setExitCodeOnFailure(outcome);
 		});
 
 	return command;

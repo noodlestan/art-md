@@ -30,6 +30,12 @@ describe('createGenericOperation', () => {
 		expect(pending.finishedTs).toBeUndefined();
 		expect(pending.timing()).toBeNaN();
 	});
+
+	it('GIVEN a stamped generic operation', () => {
+		const success = createOperationSuccess(createGenericOperation('boot'));
+
+		expect(success.timing()).toBeGreaterThanOrEqual(0);
+	});
 });
 
 describe('createParseOperation', () => {
@@ -42,6 +48,12 @@ describe('createParseOperation', () => {
 		expect(pending.message()).toBe(URI);
 		expect(pending.timing()).toBeNaN();
 	});
+
+	it('GIVEN a stamped parse operation', () => {
+		const success = createOperationSuccess(createParseOperation({ uri: URI }));
+
+		expect(success.timing()).toBeGreaterThanOrEqual(0);
+	});
 });
 
 describe('createSerializeOperation', () => {
@@ -53,6 +65,12 @@ describe('createSerializeOperation', () => {
 		expect(pending.uri).toBe(URI);
 		expect(pending.message()).toBe(URI);
 		expect(pending.timing()).toBeNaN();
+	});
+
+	it('GIVEN a stamped serialize operation', () => {
+		const success = createOperationSuccess(createSerializeOperation({ uri: URI }));
+
+		expect(success.timing()).toBeGreaterThanOrEqual(0);
 	});
 });
 

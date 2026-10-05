@@ -1,4 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import process from 'node:process';
+
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { makeCodecContextMock } from '../../test/helpers/makeCodecContextMock';
 
@@ -7,6 +9,8 @@ import { buildSerializeCommand } from './buildSerializeCommand';
 const COMMAND_NAME = 'serialize';
 const COMMAND_DESCRIPTION = 'Serialize an Art MD document into markdown.';
 const OPTION_FLAGS = ['-o, --output <mode>', '-w, --write <file>'];
+const FAILURE_EXIT_CODE = 1;
+const UNSET_EXIT_CODE = 0;
 
 const mocks = vi.hoisted(() => ({
 	createCommandContext: vi.fn(),
@@ -20,6 +24,10 @@ vi.mock('./private/createCommandContext', () => ({
 vi.mock('../../commands/serialize/runSerialize', () => ({
 	runSerialize: mocks.runSerialize,
 }));
+
+afterEach(() => {
+	process.exitCode = UNSET_EXIT_CODE;
+});
 
 describe('buildSerializeCommand', () => {
 	it('WHEN built, is the serialize command', () => {
@@ -87,5 +95,16 @@ describe('buildSerializeCommand', () => {
 			file: '-',
 			write: undefined,
 		});
+	});
+
+	it('GIVEN a failed operation, exits with a non-zero code', async () => {
+		const ctx = makeCodecContextMock();
+		mocks.createCommandContext.mockReturnValue(ctx);
+		mocks.runSerialize.mockResolvedValue(null);
+		const command = buildSerializeCommand();
+
+		await command.parseAsync(['input.json'], { from: 'user' });
+
+		expect(process.exitCode).toBe(FAILURE_EXIT_CODE);
 	});
 });

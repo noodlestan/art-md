@@ -26,30 +26,30 @@ describe('createCommandContext', () => {
 	});
 
 	it('GIVEN a verbose output mode, logs the operations of the command', () => {
-		const infoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
+		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 		const ctx = createCommandContext('verbose');
 
 		ctx.log.log(createParseOperation({ uri: URI }));
 
-		expect(infoSpy).toHaveBeenCalledTimes(1);
-		expect(infoSpy.mock.calls[0]?.[0]).toContain('parse');
+		expect(errorSpy).toHaveBeenCalledTimes(1);
+		expect(errorSpy.mock.calls[0]?.[0]).toContain('parse');
 	});
 
 	it('GIVEN a quiet output mode, discards the pending operations of the command', () => {
-		const infoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
+		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 		const ctx = createCommandContext('quiet');
 
 		ctx.log.log(createParseOperation({ uri: URI }));
 
-		expect(infoSpy).not.toHaveBeenCalled();
+		expect(errorSpy).not.toHaveBeenCalled();
 	});
 
 	it('GIVEN an unknown output mode, discards the pending operations of the command', () => {
-		const infoSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
+		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 		const ctx = createCommandContext('loud');
 
 		ctx.log.log(createParseOperation({ uri: URI }));
 
-		expect(infoSpy).not.toHaveBeenCalled();
+		expect(errorSpy).not.toHaveBeenCalled();
 	});
 });
