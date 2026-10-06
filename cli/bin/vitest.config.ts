@@ -1,11 +1,11 @@
 import { defineConfig } from 'vitest/config';
 
-import { define } from './vitest.shared';
-
 export default defineConfig({
-	define,
+	define: {
+		__BUILD_VERSION__: '"0.0.0"',
+	},
 	test: {
-		include: ['src/**/*.test.ts'],
+		include: ['**/*.test.ts'],
 		passWithNoTests: true,
 		coverage: {
 			provider: 'v8',

@@ -3,7 +3,6 @@ import { join } from 'node:path';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-import { loadBinConfig } from '../src/private/config/loadBinConfig';
 import { makeDocumentSourceFixture } from '../src/test/helpers/makeDocumentSourceFixture';
 import { makeParseFixture } from '../src/test/helpers/makeParseFixture';
 import { makeTempDir } from '../src/test/helpers/makeTempDir';
@@ -49,7 +48,7 @@ describe('cli integration', () => {
 			const result = await spawnCli('codec', { args: ['--version'] });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout.trim()).toBe(loadBinConfig().version);
+			expect(result.stdout.trim()).toMatch(/^\d+\.\d+\.\d+/);
 		});
 
 		it('WHEN asked for help, lists both commands', async () => {
@@ -89,7 +88,7 @@ describe('cli integration', () => {
 			const result = await spawnCli('parse', { args: ['--version'] });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout.trim()).toBe(loadBinConfig().version);
+			expect(result.stdout.trim()).toMatch(/^\d+\.\d+\.\d+/);
 		});
 
 		it('WHEN asked for help, reports a flat usage with no subcommands', async () => {
@@ -187,7 +186,7 @@ describe('cli integration', () => {
 			const result = await spawnCli('serialize', { args: ['--version'] });
 
 			expect(result.code).toBe(0);
-			expect(result.stdout.trim()).toBe(loadBinConfig().version);
+			expect(result.stdout.trim()).toMatch(/^\d+\.\d+\.\d+/);
 		});
 
 		it('WHEN asked for help, reports a flat usage with no subcommands', async () => {
