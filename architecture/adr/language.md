@@ -1,4 +1,4 @@
-# Module: Language
+# Language
 
 **Purpose:** Decisions about the art language itself — what it is for, its scope, and its syntax/semantics model.
 

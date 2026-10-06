@@ -1,4 +1,6 @@
-# Art MD Principles
+# Principles: Art MD
+
+**Purpose:** State the design principles the Art MD libraries and documents follow.
 
 ### Construct Agnostic
 

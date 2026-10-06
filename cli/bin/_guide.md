@@ -17,7 +17,7 @@ _records/           — package records
 build.config.mjs    — esbuild entry point configuration
 test/               — integration tests that spawn the built bundles in dist/
 src/                — source code
-  bin/              — one entry point per command: `codec.ts`, `parse.ts`, `serialize.ts`
+  bin/              — entry points: `codec.ts`, `parse.ts`, `serialize.ts`
   commands/         — the command wiring behind each entry point
   private/          — functions private to this package, never exported
     commander/      — command and program builders over `commander`
@@ -47,7 +47,10 @@ Update `_records/package.art` whenever the package's role, entry points, depende
 
 ## Knowledge References
 
-This package does not maintain a dedicated architecture reference.
+This package maintains:
+
+- An architecture reference at `architecture/index.md`.
+- Decision records at `architecture/adr`.
 
 ## Operating Instructions
 
@@ -68,6 +71,8 @@ npm ci # to install dependencies.
 Run from this package directory:
 
 ```bash
+npm run lint:fix # to fix formatting issues automatically
+npm run lint # to report other issues (prettier, eslint, tsc --noEmit)
 npm run test:unit # runs the unit tests under src/
 npm run build # required before the integration tests, which spawn dist/
 npm run test:integration # runs the tests under test/ against the built bundles

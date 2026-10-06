@@ -54,10 +54,8 @@ Records are co-located with the resources they describe in `_records/` directori
 
 This repository maintains architecture references at:
 
-- `architecture/index.md` — repository-level architecture index.
-- `architecture/principles.md` — design principles.
-- `architecture/components.md` — components and relationships.
-- `architecture/art-md-fixture-tests.md` — fixture test suite.
+- `architecture/index.md` — Repository-level architecture index.
+- `cli/bin/architecture/index.md` — Art Work Cli architecture index.
 
 ## Conventions
 
@@ -120,4 +118,4 @@ When making changes to parser, serializer, or constructs packages, execute from 
 npm run test # runs test-parser and test-serializer against stable fixtures
 ```
 
-To learn how to debug failed tests, read `./architecture/art-md-fixture-tests.md`.
+To learn how to debug failed tests, read `./architecture/design/art-md-fixture-tests.md`.

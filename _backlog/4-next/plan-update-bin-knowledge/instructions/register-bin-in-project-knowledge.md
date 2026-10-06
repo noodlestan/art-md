@@ -123,7 +123,7 @@ npm run lint # prettier and eslint over all workspaces
 - Step 1 / 7 — Update `architecture/components.md`
 - Step 2 / 7 — Update `architecture/overview.md`
 - Step 3 / 7 — Update `architecture/index.md`
-- Step 4 / 7 — Update `architecture/codec.md`
+- Step 4 / 7 — Update `architecture/design/codec.md`
 - Step 5 / 7 — Update `README.md`
 - Step 6 / 7 — Update `_guide.md`
 - Step 7 / 7 — Commit `register-bin-in-project-knowledge`
@@ -151,9 +151,9 @@ Update `$PROJECT/architecture/index.md`:
 - Add the `Bin` row to the Package Architecture References table, linking `../cli/bin/architecture/index.md`
 - Correct the `overview.md` description
 
-### Step `4 / 7` — Update `architecture/codec.md`
+### Step `4 / 7` — Update `architecture/design/codec.md`
 
-Ensure `$PROJECT/architecture/codec.md`:
+Ensure `$PROJECT/architecture/design/codec.md`:
 
 - States the codec's I/O-free boundary
 - Points at the bin as its consumer

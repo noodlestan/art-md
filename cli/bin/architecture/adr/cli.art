@@ -1,0 +1,43 @@
+# Art Md Bin — Cli
+
+**Purpose:** Decisions about the shape of the command surface.
+
+## Decision: Three Bins in One Package
+
+**Status:** Adopted
+
+**Context:** The package exposes parse and serialize, reachable either as two short commands or as one command with subcommands.
+
+**Decision:** One package, `@art-md/bin`, with three executables: `art-parse`, `art-serialize`, `art-codec`. `art-parse` and `art-serialize` are single-operation programs: the file argument sits on the program itself and there are no subcommands. `art-codec` has `parse` and `serialize` subcommands. All four paths share one implementation through `configureParseCommand` and `configureSerializeCommand`.
+
+**Consequences:** One install, one version, one build for the three commands. The first position is never a subcommand on the flat programs, so `art-parse parse notes.art` reads `parse` as a file path and fails with exit 1.
+
+## Decision: CLI Framework — Commander
+
+**Status:** Adopted
+
+**Context:** The commands take an optional file argument and two options (`--output`, `--write`), need version and help output, and `art-codec` needs subcommand routing.
+
+**Decision:** Use `commander` as the CLI framework.
+
+**Consequences:** Argument parsing, help, version, and subcommand routing come from commander. Nothing outside the action functions reads `process.argv`.
+
+## Decision: Stdio Input — Optional File Argument
+
+**Status:** Adopted
+
+**Context:** The commands work on files and inside shell pipelines.
+
+**Decision:** Accept one optional `[file]` argument. Read the file when it is given; read stdin when it is missing or set to `-`.
+
+**Consequences:** `cat notes.art | art-parse` and `art-parse notes.art` behave the same way for the caller. `-` must be handled explicitly, since otherwise it is just a file name.
+
+## Decision: Formatted Output — Results on stdout
+
+**Status:** Adopted
+
+**Context:** Results go to other programs, logs go to the person running the command.
+
+**Decision:** `art-parse` writes JSON and `art-serialize` writes markdown to stdout; operation logs go to stderr. Output is newline-terminated, appended only when it is missing. No option changes the format.
+
+**Consequences:** stdout can be redirected or piped as it is. The trailing newline gives tools that read line by line a complete last line.

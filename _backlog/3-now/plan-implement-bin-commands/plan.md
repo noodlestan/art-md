@@ -44,7 +44,7 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | Design       | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | The design this plan implements.                      |
 | Plan         | `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`       | Establishes the manifest contract and entry points.   |
 | Milestone    | `$PROJECT/_roadmap/1-done/milestone-art-codec/milestone.md`        | Delivered `@art-md/codec` and `createArtCodec()`.     |
-| Architecture | `$PROJECT/architecture/codec.md`                                   | The codec and source contracts this CLI consumes.     |
+| Architecture | `$PROJECT/architecture/design/codec.md`                            | The codec and source contracts this CLI consumes.     |
 
 ### Required Skills
 

@@ -147,7 +147,7 @@ Write the bin's architecture reference set in `$PROJECT/cli/bin/architecture/` a
 - Update `$PROJECT/architecture/components.md` — the bin appears twice, once under "CLI Surface" and again under "Planned Packages". Collapse them into one entry under "CLI Surface" marked `IMPLEMENTED`, describing the three entry points, and delete the stale "Planned Packages" text naming `art-md-parser`, `art-md-serializer`, `art-md-validator`, and the `art-md` consolidated entry with `--write`. Keep the `Validator` entry, which is genuinely still planned.
 - Update `$PROJECT/architecture/overview.md` — describe where the CLI sits in the ecosystem: the bin is a thin consumer of `@art-md/codec`, performs its own file I/O, and is not a `ContentSource`.
 - Update `$PROJECT/architecture/index.md` — add the `Bin` row to the Package Architecture References table, linking `../cli/bin/architecture/index.md`, and correct the `overview.md` description.
-- Ensure `$PROJECT/architecture/codec.md` states the codec's I/O-free boundary and points at the bin as its consumer, so the codec and CLI contracts are not described inconsistently.
+- Ensure `$PROJECT/architecture/design/codec.md` states the codec's I/O-free boundary and points at the bin as its consumer, so the codec and CLI contracts are not described inconsistently.
 
 **Dependencies:**
 
@@ -289,7 +289,7 @@ docs(bin): propose cli abstractions for art-lib
 - Update `$PROJECT/architecture/components.md` — collapse the duplicate bin entries into one `IMPLEMENTED` entry under "CLI Surface" describing the three entry points; delete the stale planned-package naming; keep the `Validator` entry.
 - Update `$PROJECT/architecture/overview.md` — place the bin in the ecosystem as a thin consumer of `@art-md/codec` that owns its own file I/O.
 - Update `$PROJECT/architecture/index.md` — add the `Bin` row to the Package Architecture References table and correct the `overview.md` description.
-- Ensure `$PROJECT/architecture/codec.md` states the codec's I/O-free boundary and points at the bin as its consumer.
+- Ensure `$PROJECT/architecture/design/codec.md` states the codec's I/O-free boundary and points at the bin as its consumer.
 - Update `$PROJECT/README.md` — rewrite the `@art-md/bin` packages-table row and add a CLI usage section with the three commands and a worked example.
 - Update `$PROJECT/_guide.md` — describe the `Bin` project row and add the bin's architecture reference to the Knowledge References list.
 - Verify `$PROJECT/_records/project.art` — confirm the `Package: Bin` entry is accurate.
@@ -459,7 +459,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 - `$PROJECT/architecture/components.md` — collapse the duplicate bin entries.
 - `$PROJECT/architecture/overview.md` — place the bin in the ecosystem.
 - `$PROJECT/architecture/index.md` — add the Bin package architecture reference.
-- `$PROJECT/architecture/codec.md` — the codec's I/O-free boundary and its consumer.
+- `$PROJECT/architecture/design/codec.md` — the codec's I/O-free boundary and its consumer.
 - `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md` — evidence, decisions, and follow-ups.
 - `$PROJECT/_backlog/_parking-lot.md` — the `@art-lib` follow-up.
 - `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/comparison__codec-bin-vs-art-work.md` — the side-by-side comparison and abstraction proposals.

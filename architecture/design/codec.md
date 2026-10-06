@@ -1,4 +1,4 @@
-# Codec and Source Contracts
+# Art MD - Codec and Source Contracts
 
 **Purpose:** Explain how the codec and source contracts work together. It is anchored on the symbols and contracts declared in `@art-md/primitives` and the `@art-md/codec` package, and explains how a parse, a serialise, and a document-source read/write flow through them.
 

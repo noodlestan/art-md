@@ -1,4 +1,8 @@
-# Art MD Components
+# Components: Art MD
+
+**Purpose:** Identify the components of Art MD — packages, their contracts, and how they relate.
+
+## Summary
 
 The Art MD implementation consists of a parser, a serialiser, and a set of constructs that implement Art MD as a Markdown dialect. The parser and serialiser operate on those constructs to translate between Markdown and Art MD's structured representation.
 
@@ -53,7 +57,7 @@ Document-level parsing and serialisation only. No source I/O, no record knowledg
 
 Primary types: ArtCodecConfig, PartialArtCodecConfig, createArtCodec(). Responsibility: parse and serialise ArtDocument using configured constructs.
 
-**Read more:** [Serializer Architecture](./codec.md)
+**Read more:** [Serializer Architecture](design/codec.md)
 
 ## CLI Surface
 
@@ -63,7 +67,7 @@ Primary CLI entry point. Exposes parse, serialize, validate.
 
 ### Codec Tests (`@art-md/codec-tests`)
 
-Fixture-based test suite for the parser and serializer roundtrip through the codec. See [art-md-fixture-tests.md](art-md-fixture-tests.md) for fixture anatomy.
+Fixture-based test suite for the parser and serializer roundtrip through the codec. See [art-md-fixture-tests.md](design/art-md-fixture-tests.md) for fixture anatomy.
 
 ## Spec (`@art-md/spec`)
 

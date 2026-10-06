@@ -1,14 +1,28 @@
-# Art MD Architecture
+# Architecture: Art MD
 
 ## Documents
 
-| Document                                           | Description                                              |
-| -------------------------------------------------- | -------------------------------------------------------- |
-| [principles.md](principles.md)                     | Design principles for the Art MD libraries               |
-| [overview.md](overview.md)                         | Art MD, Constructs, Parser, Serializer, Planned Packages |
-| [components.md](components.md)                     | Components, relationships, and package links             |
-| [codec.md](codec.md)                               | Codec and source contracts implementation spec           |
-| [art-md-fixture-tests.md](art-md-fixture-tests.md) | Fixture test suite for parser and serializer             |
+| Document                       | Purpose                                                  |
+| ------------------------------ | -------------------------------------------------------- |
+| [overview.md](overview.md)     | Art MD, Constructs, Parser, Serializer, Planned Packages |
+| [principles.md](principles.md) | Design principles for the Art MD libraries               |
+| [components.md](components.md) | Components, relationships, and package links             |
+
+## Design Documents
+
+| Document                                                         | Purpose                                        |
+| ---------------------------------------------------------------- | ---------------------------------------------- |
+| [design/codec.md](design/codec.md)                               | Codec and source contracts implementation spec |
+| [design/art-md-fixture-tests.md](design/art-md-fixture-tests.md) | Fixture test suite for parser and serializer   |
+
+## Decision Records
+
+| Record                                | Purpose                                                                                              |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [adr/art-md.md](adr/art-md.md)        | Art MD round-trip between markdown and the Art AST: parser, serializer, and constructs packages      |
+| [adr/codec.md](adr/codec.md)          | Codec and source contracts: the `@art-md/codec` package and contracts in `@art-md/primitives`        |
+| [adr/language.md](adr/language.md)    | The art language: its purpose, scope, and syntax/semantics model                                     |
+| [adr/\_research.md](adr/_research.md) | Research behind the parse POC: surveyed projects, extracted best practices, and open spike questions |
 
 ## Package Architecture References
 

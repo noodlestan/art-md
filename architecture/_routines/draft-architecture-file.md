@@ -1,4 +1,6 @@
-# Module
+# Draft Architecture File
+
+**Purpose:** Define the routine used to draft an architecture document before writing it.
 
 ## Routine: Create Architecture Document
 

@@ -131,17 +131,11 @@ Make sure you read the [Art MD README](../../README.md) first.
 
 ### Build
 
-This package is meant for use in Node.js environments. The entry points are built with
-`esbuild`, pre-configured by [Workspace Tooling](https://github.com/noodlestan/workspace-tooling).
-`build.config.mjs` bundles one self-executing entry point per command into `dist/`, and
-inlines the package version so `--version` works from the bundle alone.
+This package is meant for use in Node.js environments. The entry points are built with `esbuild`, pre-configured by [Workspace Tooling](https://github.com/noodlestan/workspace-tooling). `build.config.mjs` bundles one self-executing entry point per command into `dist/`, and inlines the package version so `--version` works from the bundle alone.
 
 ### Tests
 
-Unit tests under `src/` cover the private modules; the integration tests under `test/`
-spawn the built bundles in `dist/`, so run `npm run build` before them. `npm run ci` runs
-both. Coverage thresholds are declared in `vitest.config.ts`; run
-`npx vitest run --coverage` to check them.
+Unit tests under `src/` cover the private modules; the integration tests under `test/` spawn the built bundles in `dist/`, so run `npm run build` before them. `npm run ci` runs both. Coverage thresholds are declared in `vitest.config.ts`; run `npx vitest run --coverage` to check them.
 
 ### Scripts
 
@@ -153,7 +147,6 @@ Run from this package directory:
 - `npm run lint` — report prettier, eslint, and `tsc --noEmit` issues
 - `npm run lint:fix` — fix formatting and lint issues
 - `npm run test` — start vitest over every test in watch mode
-- `npm run test:watch` — same as `npm run test`
 - `npm run test:unit` — run the unit tests under `src/` once
 - `npm run test:integration` — run the tests under `test/` against `dist/`
 - `npm run ci` — lint, build, and run both test suites

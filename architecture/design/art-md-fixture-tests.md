@@ -1,4 +1,6 @@
-# Fixture Tests
+# Art MD - Fixture Tests
+
+**Purpose:** Describe the fixture suite that exercises the parser and serializer roundtrip.
 
 ## Overview
 

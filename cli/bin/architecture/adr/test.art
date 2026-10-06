@@ -1,0 +1,13 @@
+# Art Md Bin — Testing
+
+**Purpose:** Decisions about how the package is tested.
+
+## Decision: Testing — Integration Tests Against the Bundles
+
+**Status:** Adopted
+
+**Context:** The package ships three executables. Unit tests next to the source cover the functions, but not the bundled executables, the `bin` manifest, or the CLI wiring.
+
+**Decision:** Integration tests under `test/` spawn the built `dist/*.mjs` through `spawnCli` and assert stdout, stderr, and exit code. Unit tests stay under `src/`. The `ci` script builds before running the integration suite.
+
+**Consequences:** The suite checks what a user actually runs, so `test:integration` on a clean checkout needs a build first.

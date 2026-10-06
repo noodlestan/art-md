@@ -1,4 +1,8 @@
-# Art MD
+# Overview: Art MD
+
+**Purpose:** Introduce Art MD and its libraries: what the language is, the packages that implement it, and the direction documents travel through them.
+
+## Art MD
 
 **Art MD** is a **Markdown** dialect for expressing structured data and declarations in a human-readable form, implemented in an extensible set of [constructs](../libs/constructs/README.md) and a [parser](../libs/parser/README.md) and [serializer](../libs/serializer/README.md) pair that map Markdown nodes to constructs and preserve the structure and semantics of the source. The construct registry is open, allowing the language to grow through new constructs without requiring a redesign of the parser architecture.
 
