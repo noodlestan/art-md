@@ -15,6 +15,7 @@ Agents SHOULD scan these files for definitions and resource locations when faced
 ```
 _records/           — package records
 build.config.mjs    — esbuild entry point configuration
+test/               — integration tests that spawn the built bundles in dist/
 src/                — source code
   bin/              — one entry point per command: `codec.ts`, `parse.ts`, `serialize.ts`
   commands/         — the command wiring behind each entry point
@@ -28,7 +29,7 @@ src/                — source code
     logger/         — operation logging to stderr
     operations/     — operation records and their log lines
     present/        — document and content presentation
-  test/             — test modules for this package
+  test/             — test helpers for this package
 ```
 
 Every directory is a module and every file is a function; functions that are not part of a module's public surface are extracted to `private/`. Follow the repository-wide TypeScript conventions.
@@ -67,9 +68,9 @@ npm ci # to install dependencies.
 Run from this package directory:
 
 ```bash
-npm run test # runs vitest against the CLI unit tests
+npm run test:unit # runs the unit tests under src/
 npm run build # required before the integration tests, which spawn dist/
-npm run test:integration # runs vitest against the built bundles
+npm run test:integration # runs the tests under test/ against the built bundles
 ```
 
 ### Operating Instructions: Verifying Completion
@@ -79,5 +80,5 @@ npm run test:integration # runs vitest against the built bundles
 Runs automatically on pre-commit hook (from the repository root):
 
 ```bash
-npm run ci # lint, test and build
+npm run ci # lint, build, and run both test suites
 ```

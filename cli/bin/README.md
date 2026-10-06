@@ -138,8 +138,10 @@ inlines the package version so `--version` works from the bundle alone.
 
 ### Tests
 
-Unit tests cover the private modules; the integration tests spawn the built bundles in
-`dist/`, so run `npm run build` before them. `npm run ci` does both.
+Unit tests under `src/` cover the private modules; the integration tests under `test/`
+spawn the built bundles in `dist/`, so run `npm run build` before them. `npm run ci` runs
+both. Coverage thresholds are declared in `vitest.config.ts`; run
+`npx vitest run --coverage` to check them.
 
 ### Scripts
 
@@ -150,10 +152,10 @@ Run from this package directory:
 - `npm run build:clean` — remove `dist/`
 - `npm run lint` — report prettier, eslint, and `tsc --noEmit` issues
 - `npm run lint:fix` — fix formatting and lint issues
-- `npm run test` — run the unit tests
-- `npm run test:watch` — run the unit tests in watch mode
-- `npm run test:ci` — run the unit tests with coverage
-- `npm run test:integration` — run the integration tests against `dist/`
+- `npm run test` — start vitest over every test in watch mode
+- `npm run test:watch` — same as `npm run test`
+- `npm run test:unit` — run the unit tests under `src/` once
+- `npm run test:integration` — run the tests under `test/` against `dist/`
 - `npm run ci` — lint, build, and run both test suites
 
 ## License
