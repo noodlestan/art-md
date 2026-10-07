@@ -1,58 +1,63 @@
-import type { Operation } from '../operations/types';
-import { makeOperationLogLine } from '../present/makeOperationLogLine';
+import type { LogMessage, LogVerbosity, LogWriter, LoggerAPI } from './types';
 
-export type LoggerAPI = {
-	log: (op: Operation) => void;
-	setOutputMode: (mode: string | undefined) => void;
-};
+export function createLogger(write: LogWriter): LoggerAPI {
+	let mode: LogVerbosity | undefined;
+	const buffer: LogMessage[] = [];
 
-type OutputMode = 'quiet' | 'verbose';
-
-function isOutputMode(mode: string | undefined): mode is OutputMode {
-	return mode === 'quiet' || mode === 'verbose';
-}
-
-export function createLogger(): LoggerAPI {
-	let mode: OutputMode | undefined;
-	const buffer: Operation[] = [];
-
-	function isLogged(op: Operation): boolean {
-		return op.outcome !== 'pending' || mode === 'verbose';
-	}
-
-	function write(op: Operation): void {
-		const line = makeOperationLogLine(op, { standalone: true });
-		console.error(line.join(' | '));
+	function shouldWrite(message: LogMessage): boolean {
+		if (mode === 'quiet') {
+			return false;
+		}
+		if (mode === 'verbose') {
+			return true;
+		}
+		return message.level === 'log';
 	}
 
 	function flush(): void {
-		for (const op of buffer) {
-			if (isLogged(op)) {
-				write(op);
+		for (const message of buffer) {
+			if (shouldWrite(message)) {
+				write(message);
 			}
 		}
 		buffer.length = 0;
 	}
 
 	return {
-		log(op: Operation): void {
+		log(...args: unknown[]): void {
+			const message = { level: 'log' as const, args };
+
 			if (mode === undefined) {
-				buffer.push(op);
+				buffer.push(message);
 				return;
 			}
-			if (isLogged(op)) {
-				write(op);
+
+			if (shouldWrite(message)) {
+				write(message);
 			}
 		},
 
-		setOutputMode(newMode: string | undefined): void {
-			mode = isOutputMode(newMode) ? newMode : 'quiet';
+		debug(...args: unknown[]): void {
+			const message = { level: 'debug' as const, args };
+
+			if (mode === undefined) {
+				buffer.push(message);
+				return;
+			}
+
+			if (shouldWrite(message)) {
+				write(message);
+			}
+		},
+
+		setVerbosity(newMode: LogVerbosity): void {
+			mode = newMode;
 
 			if (mode === 'verbose') {
 				flush();
 				return;
 			}
-			// quiet discards the buffered operations, pending ones included
+
 			buffer.length = 0;
 		},
 	};

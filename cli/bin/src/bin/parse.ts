@@ -1,17 +1,8 @@
 #!/usr/bin/env node
 
-import { configureParseCommand, runParseCommand } from '../private/commander/buildParseCommand';
-import { buildSingleOperationProgram } from '../private/commander/buildSingleOperationProgram';
+import { buildParseProgram } from '../private/bin/programs/parse/buildParseProgram';
+import { loadBinConfig } from '../private/config/loadBinConfig';
 
-const PROGRAM_NAME = 'art-parse';
-const PROGRAM_DESCRIPTION = 'Parse Art MD markdown into a document.';
-
-const spec = {
-	name: PROGRAM_NAME,
-	description: PROGRAM_DESCRIPTION,
-	configure: configureParseCommand,
-	run: runParseCommand,
-};
-const program = buildSingleOperationProgram(spec);
-
+const config = loadBinConfig();
+const program = buildParseProgram(config);
 program.parse();

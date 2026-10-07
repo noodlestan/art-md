@@ -14,27 +14,22 @@ Agents SHOULD scan these files for definitions and resource locations when faced
 
 ```
 _records/           — package records
+architecture/       — architecture reference and decision records
 build.config.mjs    — esbuild entry point configuration
 test/               — integration tests that spawn the built bundles in dist/
 src/                — source code
   bin/              — entry points: `codec.ts`, `parse.ts`, `serialize.ts`
-  commands/         — the command wiring behind each entry point
   private/          — functions private to this package, never exported
-    commander/      — command and program builders over `commander`
-    commands/       — the `doParse` and `doSerialize` operations
+    bin/            — program builders, command handlers, and option helpers
+    commands/       — the `doParse` and `doSerialize` operation factories
     config/         — bin configuration loading
-    context/        — codec context construction
+    context/        — command context construction
     io/             — file and stdin readers, file and stdout writers
-    log/            — log helpers
-    logger/         — operation logging to stderr
-    operations/     — operation records and their log lines
-    present/        — document and content presentation
+    logger/         — writer-based logging (stdout/stderr) and verbosity
+    operations/     — operations log and primitives
+    presentation/   — document and log-line presentation
   test/             — test helpers for this package
 ```
-
-Every directory is a module and every file is a function; functions that are not part of a module's public surface are extracted to `private/`. Follow the repository-wide TypeScript conventions.
-
-`src/bin/` holds the three entry points, each wiring its operation onto a program. `art-parse` and `art-serialize` are flat programs that take the input file as their only argument; `art-codec` exposes `parse` and `serialize` as subcommands.
 
 ## Records Management
 

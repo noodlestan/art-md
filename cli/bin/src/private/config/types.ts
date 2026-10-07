@@ -1,10 +1,12 @@
 import type { PartialArtCodecConfig } from '@art-md/codec';
 
-export type OutputMode = 'quiet' | 'verbose';
+import type { LogVerbosity } from '../logger/types';
 
 export type BinConfig = {
 	version: string;
-	output: { mode: OutputMode };
+	output: {
+		mode: LogVerbosity;
+	};
 	codec: PartialArtCodecConfig;
 };
 

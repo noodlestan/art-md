@@ -39,5 +39,7 @@
     "@art-md/primitives": "*",
     "commander": "^12.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vitest": "4.1.8"
+  }
 }

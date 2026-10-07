@@ -1,20 +1,8 @@
 #!/usr/bin/env node
 
-import {
-	configureSerializeCommand,
-	runSerializeCommand,
-} from '../private/commander/buildSerializeCommand';
-import { buildSingleOperationProgram } from '../private/commander/buildSingleOperationProgram';
+import { buildSerializeProgram } from '../private/bin/programs/serialize/buildSerializeProgram';
+import { loadBinConfig } from '../private/config/loadBinConfig';
 
-const PROGRAM_NAME = 'art-serialize';
-const PROGRAM_DESCRIPTION = 'Serialize an Art MD document into markdown.';
-
-const spec = {
-	name: PROGRAM_NAME,
-	description: PROGRAM_DESCRIPTION,
-	configure: configureSerializeCommand,
-	run: runSerializeCommand,
-};
-const program = buildSingleOperationProgram(spec);
-
+const config = loadBinConfig();
+const program = buildSerializeProgram(config);
 program.parse();

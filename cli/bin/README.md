@@ -29,18 +29,15 @@ art-parse [options] [file]
 Reading a file:
 
 ```bash
-$ art-parse release-notes.art
+$ art-parse release-notes.md
+```
+
+Outputs
+
+```
 {
   "construct": "Document",
-  "children": [
-    {
-      "construct": "SectionBlock",
-      "name": "Release Notes",
-      "children": [ ... ],
-      "depth": 1,
-      "position": { ... }
-    }
-  ],
+  "children": [ ... ],
   "position": { ... }
 }
 ```
@@ -59,7 +56,7 @@ captures the JSON and nothing else:
 $ art-parse release-notes.art > release-notes.json
 ```
 
-Use `-w` instead to write the file without printing anything at all:
+Use `-w` instead to write the file.
 
 ```bash
 $ art-parse release-notes.art --write release-notes.json

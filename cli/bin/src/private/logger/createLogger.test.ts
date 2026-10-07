@@ -1,113 +1,86 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
-
-import { createGenericOperation } from '../operations/createGenericOperation';
-import { createOperationSuccess } from '../operations/createOperationSuccess';
-import { createParseOperation } from '../operations/createParseOperation';
+import { describe, expect, it, vi } from 'vitest';
 
 import { createLogger } from './createLogger';
-
-const URI = 'file:///tmp/document.art';
-
-afterEach(() => {
-	vi.restoreAllMocks();
-});
+import type { LogWriter } from './types';
 
 describe('createLogger', () => {
-	it('GIVEN pending operations logged before the output mode', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
+	it('GIVEN messages logged before the output mode, buffers them', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.log(createParseOperation({ uri: URI }));
+		logger.log('boot');
+		logger.debug('parse', 'document.art');
 
-		expect(errorSpy).not.toHaveBeenCalled();
+		expect(write).not.toHaveBeenCalled();
 	});
 
-	it('GIVEN a verbose output mode set after logging pending operations', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
+	it('GIVEN a verbose output mode set after logging, flushes the buffer', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.log(createParseOperation({ uri: URI }));
-		logger.setOutputMode('verbose');
+		logger.log('boot');
+		logger.debug('parse', 'document.art');
+		logger.setVerbosity('verbose');
 
-		expect(errorSpy).toHaveBeenCalledTimes(1);
-		expect(errorSpy.mock.calls[0]?.[0]).toContain('parse');
-		expect(errorSpy.mock.calls[0]?.[0]).toContain(URI);
+		expect(write).toHaveBeenCalledTimes(2);
+		expect(write).toHaveBeenCalledWith({ level: 'log', args: ['boot'] });
+		expect(write).toHaveBeenCalledWith({ level: 'debug', args: ['parse', 'document.art'] });
 	});
 
-	it('GIVEN a quiet output mode set after logging pending operations', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
+	it('GIVEN a quiet output mode set after logging, drops the buffer', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.log(createParseOperation({ uri: URI }));
-		logger.setOutputMode('quiet');
+		logger.log('boot');
+		logger.setVerbosity('quiet');
 
-		expect(errorSpy).not.toHaveBeenCalled();
+		expect(write).not.toHaveBeenCalled();
 	});
 
-	it('GIVEN an unknown output mode', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
+	it('GIVEN a quiet output mode, writes nothing', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.log(createParseOperation({ uri: URI }));
-		logger.setOutputMode('loud');
-		logger.log(createGenericOperation('boot'));
+		logger.setVerbosity('quiet');
+		logger.log('boot');
+		logger.debug('parse', 'document.art');
 
-		expect(errorSpy).not.toHaveBeenCalled();
+		expect(write).not.toHaveBeenCalled();
 	});
 
-	it('GIVEN no output mode', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
+	it('GIVEN a default output mode, writes log messages but not debug messages', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.setOutputMode(undefined);
-		logger.log(createParseOperation({ uri: URI }));
+		logger.setVerbosity('default');
+		logger.log('boot');
+		logger.debug('parse', 'document.art');
 
-		expect(errorSpy).not.toHaveBeenCalled();
+		expect(write).toHaveBeenCalledTimes(1);
+		expect(write).toHaveBeenCalledWith({ level: 'log', args: ['boot'] });
 	});
 
-	it('GIVEN a quiet output mode and pending operations logged after it', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
+	it('GIVEN a verbose output mode, writes log and debug messages', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.setOutputMode('quiet');
-		logger.log(createParseOperation({ uri: URI }));
+		logger.setVerbosity('verbose');
+		logger.log('boot');
+		logger.debug('parse', 'document.art');
 
-		expect(errorSpy).not.toHaveBeenCalled();
+		expect(write).toHaveBeenCalledTimes(2);
+		expect(write).toHaveBeenCalledWith({ level: 'log', args: ['boot'] });
+		expect(write).toHaveBeenCalledWith({ level: 'debug', args: ['parse', 'document.art'] });
 	});
 
-	it('GIVEN a quiet output mode and a resolved operation', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
-		const pending = createParseOperation({ uri: URI });
+	it('GIVEN a verbose output mode set twice, flushes the buffer once', () => {
+		const write = vi.fn<LogWriter>();
+		const logger = createLogger(write);
 
-		logger.setOutputMode('quiet');
-		logger.log(pending);
-		logger.log(createOperationSuccess(pending));
+		logger.log('boot');
+		logger.setVerbosity('verbose');
+		logger.setVerbosity('verbose');
 
-		expect(errorSpy).toHaveBeenCalledTimes(1);
-		expect(errorSpy.mock.calls[0]?.[0]).toContain('🟢');
-		expect(errorSpy.mock.calls[0]?.[0]).toContain('ms)');
-	});
-
-	it('GIVEN a verbose output mode and a pending operation logged after it', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
-
-		logger.setOutputMode('verbose');
-		logger.log(createParseOperation({ uri: URI }));
-
-		expect(errorSpy).toHaveBeenCalledTimes(1);
-		expect(errorSpy.mock.calls[0]?.[0]).toContain('⏳');
-	});
-
-	it('GIVEN a verbose output mode set twice', () => {
-		const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-		const logger = createLogger();
-
-		logger.log(createParseOperation({ uri: URI }));
-		logger.setOutputMode('verbose');
-		logger.setOutputMode('verbose');
-
-		expect(errorSpy).toHaveBeenCalledTimes(1);
+		expect(write).toHaveBeenCalledTimes(1);
 	});
 });

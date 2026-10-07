@@ -42,3 +42,8 @@ export type Operation =
 	| OperationPending
 	| OperationSuccess
 	| OperationFailure;
+
+export type OperationsLog = {
+	log: (operation: Operation) => void;
+	all: () => Operation[];
+};

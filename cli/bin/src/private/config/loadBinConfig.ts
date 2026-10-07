@@ -1,6 +1,8 @@
-import type { BinConfig, OutputMode, PartialBinConfig } from './types';
+import type { LogVerbosity } from '../logger/types';
 
-const DEFAULT_OUTPUT_MODE: OutputMode = 'quiet';
+import type { BinConfig, PartialBinConfig } from './types';
+
+const DEFAULT_OUTPUT_MODE: LogVerbosity = 'quiet';
 
 export function loadBinConfig(overrides: PartialBinConfig = {}): BinConfig {
 	return {
