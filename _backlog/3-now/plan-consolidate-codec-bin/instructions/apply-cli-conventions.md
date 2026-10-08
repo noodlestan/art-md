@@ -46,12 +46,9 @@ Bring the implemented CLI in line with the TypeScript conventions and remove the
 ## Mandatory Reading
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
-::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — The Art Work operation model the bin duplicated. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/logger/createLogger.ts` (Reference) — The Art Work logger the bin duplicated. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/present/makeOperationLogLine.ts` (Reference) — The Art Work log line the bin adapted. Relevant for Refactoring.
+::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
+::READ `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan__audit.md` (Audit) — The audit report of the CLI against the conventions; the source of the deviations to refactor. Relevant for Refactoring.
+::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; a reference for the refactoring. Relevant for Refactoring.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -60,29 +57,9 @@ Bring the implemented CLI in line with the TypeScript conventions and remove the
 
 ## Operating Instructions
 
-### Writing Commit Message
-
-**Purpose:** Write standardized message according to context conventions. Operation of Workflow: Planning Work, defined in `$DOMAINS/work/workflows/planning-work/ops/writing-commit-message.art`.
-
-**Instructions:** (From `$WORKSPACE/knowledge/conventions/writing-commit-message.art`)
-
-Commit message pattern: `{Type}({Scope}): {Description}.` max 120 chars, optionally followed by up 3 bullet points, max 100 chars each.
-
-Allowed values for commit Type, Scope, and valid Type–Scope associations are defined in `$WORKSPACE/knowledge/conventions/writing-commit-message.art`, along with examples, and rules.
-
-RULE: Do not invent commit types or scopes or assume a combination is valid. Always read the "Writing Commit Message" guide first.
-
 ### Setting Up
 
 **Purpose:** Prepare the execution environment. Operation of Workflow: Executing Work, defined in `$DOMAINS/work/workflows/executing-work/ops/setting-up.art`.
-
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
-Run from the `$WORKSPACE` root:
-
-```bash
-npm ci # to install workspace dependencies.
-```
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
@@ -90,6 +67,17 @@ Run from the repository root (monorepo):
 
 ```bash
 npm ci # to install dependencies.
+```
+
+### Operating Instructions: Verifying Step
+
+**Instructions:** (From `$PROJECT/_guide.md`)
+
+Run from the repository root (monorepo):
+
+```bash
+npm run lint:fix # to fix formatting issues automatically
+npm run lint # to report other issues (prettier, eslint, tsc --noEmit)
 ```
 
 ### Verifying Completion
@@ -120,7 +108,7 @@ npm run test:ci # runs vitest with the configured coverage thresholds
 
 ## Changes
 
-- Step 1 / 5 — Audit `$PROJECT/cli/bin/src/` against TypeScript conventions
+- Step 1 / 5 — Read the audit report
 - Step 2 / 5 — Refactor audited deviations
 - Step 3 / 5 — Collapse internal duplication
 - Step 4 / 5 — Verify behaviour is unchanged
@@ -128,21 +116,15 @@ npm run test:ci # runs vitest with the configured coverage thresholds
 
 ## Steps
 
-### Step `1 / 5` — Audit `$PROJECT/cli/bin/src/` against TypeScript conventions
+### Step `1 / 5` — Read the audit report
 
-Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and record deviations in the iteration report.
-
-Focus areas: module boundaries (`private/` vs public), file and directory naming, export style, type-only imports, error handling, test placement.
+Read the audit report at `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan__audit.md` and use it as the source of the deviations to refactor.
 
 ### Step `2 / 5` — Refactor audited deviations
 
-Apply the audited deviations:
+Apply the deviations recorded in the audit report.
 
-- Fix module boundaries
-- Rename files/directories if needed
-- Fix export style and type-only imports
-- Improve error handling
-- Move tests if misplaced
+Read ALL conventions mentioned in `$PROJECT/_guide.md` and follow each one relevant to this step.
 
 ### Step `3 / 5` — Collapse internal duplication
 
@@ -153,6 +135,8 @@ Collapse duplication internal to the package:
 - Shared option-parsing logic repeated across command specs
 
 Keep behaviour identical.
+
+Read ALL conventions mentioned in `$PROJECT/_guide.md` and follow each one relevant to this step.
 
 ### Step `4 / 5` — Verify behaviour is unchanged
 

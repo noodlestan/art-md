@@ -46,13 +46,8 @@ Produce the evidence-backed inventory that makes `@art-lib` a creatable follow-u
 ## Mandatory Reading
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
-::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — The Art Work operation model the bin duplicated. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/logger/createLogger.ts` (Reference) — The Art Work logger the bin duplicated. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/present/makeOperationLogLine.ts` (Reference) — The Art Work log line the bin adapted. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/architecture/commands.md` (Reference) — How Art Work documents its CLI surface. Relevant for Identifying Follow Ups.
+::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
+::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source you compare against. Relevant for Refactoring.
 ::READ `$PROJECT/architecture/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
@@ -62,29 +57,9 @@ Produce the evidence-backed inventory that makes `@art-lib` a creatable follow-u
 
 ## Operating Instructions
 
-### Writing Commit Message
-
-**Purpose:** Write standardized message according to context conventions. Operation of Workflow: Planning Work, defined in `$DOMAINS/work/workflows/planning-work/ops/writing-commit-message.art`.
-
-**Instructions:** (From `$WORKSPACE/knowledge/conventions/writing-commit-message.art`)
-
-Commit message pattern: `{Type}({Scope}): {Description}.` max 120 chars, optionally followed by up 3 bullet points, max 100 chars each.
-
-Allowed values for commit Type, Scope, and valid Type–Scope associations are defined in `$WORKSPACE/knowledge/conventions/writing-commit-message.art`, along with examples, and rules.
-
-RULE: Do not invent commit types or scopes or assume a combination is valid. Always read the "Writing Commit Message" guide first.
-
 ### Setting Up
 
 **Purpose:** Prepare the execution environment. Operation of Workflow: Executing Work, defined in `$DOMAINS/work/workflows/executing-work/ops/setting-up.art`.
-
-**Instructions:** (From `$WORKSPACE/_guide.md`)
-
-Run from the `$WORKSPACE` root:
-
-```bash
-npm ci # to install workspace dependencies.
-```
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
@@ -92,6 +67,17 @@ Run from the repository root (monorepo):
 
 ```bash
 npm ci # to install dependencies.
+```
+
+### Operating Instructions: Verifying Step
+
+**Instructions:** (From `$PROJECT/_guide.md`)
+
+Run from the repository root (monorepo):
+
+```bash
+npm run lint:fix # to fix formatting issues automatically
+npm run lint # to report other issues (prettier, eslint, tsc --noEmit)
 ```
 
 ### Verifying Completion
@@ -110,24 +96,18 @@ npm run ci # lint, test and build
 
 ## Changes
 
-- Step 1 / 4 — Build side-by-side duplication inventory
+- Step 1 / 4 — Build the extraction inventory
 - Step 2 / 4 — Recommend `@art-lib` package boundary
 - Step 3 / 4 — Record inventory in CLI ADR
 - Step 4 / 4 — Commit `identify-art-lib-extraction`
 
 ## Steps
 
-### Step `1 / 4` — Build side-by-side duplication inventory
+### Step `1 / 4` — Build the extraction inventory
 
-Compare `$PROJECT/cli/bin/src/private/` against `$ART_WORK/cli/work/src/private/` and build an inventory covering at minimum:
+Compare `$PROJECT/cli/bin/src/private/` against `$ART_WORK/cli/work/src/private/` and build an inventory of the similar modules, units, files, and functions — even if not verbatim the same shape — and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies. For example the operations log and the logger.
 
-- Operation model (`types.ts`, `createGenericOperation`, `createOperationSuccess`, `createOperationFailure`)
-- Logger
-- Operation log line presentation
-- Program builder
-- Context factory
-
-Per unit record: file pair, what is identical, what diverges, and the shape a shared API would take.
+Per unit record: what is shared, what diverges, and the shape a shared API would take.
 
 ### Step `2 / 4` — Recommend `@art-lib` package boundary
 

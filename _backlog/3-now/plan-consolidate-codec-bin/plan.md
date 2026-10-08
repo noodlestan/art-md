@@ -8,9 +8,9 @@
 
 **Skill:** `write-plan`
 
-**Purpose:** Audit the implemented codec CLI against the TypeScript conventions, refactor what the audit finds, and identify the precise extraction units for the `@art-lib` shared CLI library.
+**Purpose:** Audit the implemented codec CLI against the TypeScript conventions, refactor what the audit finds, and identify the precise extraction units for the `@art-lib` shared CLI libraries.
 
-**Description:** With the three entry points and both operations implemented, this plan brings the package in line with the repository's TypeScript conventions, removes duplication the implementation introduced, and produces a concrete, evidence-backed inventory of the CLI plumbing duplicated between `cli/bin` and `$ART_WORK/cli/work` — the operation model, the logger, the operation log line presentation, the program builder, and the context factory — so that `@art-lib` can be created as a follow-up rather than guessed at. It deliberately does **not** create `@art-lib`.
+**Description:** With the three entry points and both operations implemented, this plan brings the package in line with the repository's TypeScript conventions, removes duplication the implementation introduced, and produces a concrete, evidence-backed inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `cli/bin` and `$ART_WORK/cli/work` so that the shared `@art-lib` libraries can be created as a follow-up rather than guessed at. It deliberately does **not** create the shared `@art-lib` libraries.
 
 ## Mandatory Reading
 
@@ -27,10 +27,11 @@ This section lists the path variables used throughout the Plan file and its down
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
 | `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_LIB`   | `checkouts/art-lib-planning`  | Art Lib checkout.                                           |
 
 ## Summary
 
-Audit the implemented `@art-md/bin` against the TypeScript conventions, refactor the deviations and internal duplication, and produce an evidence-backed inventory of the CLI plumbing shared with the Art Work CLI so `@art-lib` can be extracted as a follow-up.
+Audit the implemented `@art-md/bin` against the TypeScript conventions, refactor the deviations and internal duplication, and produce an evidence-backed inventory of the similar modules, units, and equivalent infrastructure patterns and use cases shared with the Art Work CLI so that new `@art-lib` package(s) can be extracted as a follow-up.
 
 ## Context
 
@@ -42,7 +43,7 @@ This section describes the upstream sources, guides, knowledge, required skills,
 | --------- | ------------------------------------------------------------------ | ----------------------------------------------------- |
 | Milestone | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md`         | Coordinates this plan within the Codec Bin milestone. |
 | Design    | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone__design.md` | Names the `@art-lib` consolidation follow-up.         |
-| Plan      | `$PROJECT/_backlog/3-now/plan-implement-bin-commands/plan.md`      | Implemented the CLI this plan consolidates.           |
+| Plan      | `$PROJECT/_backlog/1-done/plan-implement-bin-commands/plan.md`     | Implemented the CLI this plan consolidates.           |
 
 ### Required Skills
 
@@ -68,17 +69,14 @@ This section describes the context knowledge required for the different phases o
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Auditing, Refactoring, Verifying Step.
-::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — The Art Work operation model the bin duplicated. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/logger/createLogger.ts` (Reference) — The Art Work logger the bin duplicated. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/present/makeOperationLogLine.ts` (Reference) — The Art Work log line the bin adapted. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/architecture/commands.md` (Reference) — How Art Work documents its CLI surface; the shape the follow-up inventory reuses. Relevant for Identifying Follow Ups.
+::READ `$PROJECT/conventions/unit-tests/index.md` (Conventions) — Unit Test conventions. Relevant for Auditing, Refactoring, Verifying Step.
+::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source the worker compares against. Relevant for Refactoring.
 
 ## Scope
 
 This section describes the working scope coordinated by the Plan.
 
-Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript conventions, and record the `@art-lib` extraction inventory. No new command behaviour and no new package.
+Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test conventions, and record the `@art-lib` extraction inventory. No new command behaviour and no new package.
 
 ### (Scope) Package: Bin
 
@@ -94,7 +92,7 @@ Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript conventions, a
 
 **Changes:**
 
-- Audit `$PROJECT/cli/bin/src/` against the TypeScript conventions and record the deviations found in the iteration's report.
+- Audit `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test conventions and record the deviations found in the audit report.
 - Refactor the audited deviations: module boundaries (`private/` vs public), file and directory naming, export style, type-only imports, error handling, and test placement.
 - Collapse duplication internal to the package — the parallel `parse`/`serialize` factories, the parallel `do{Operation}` bodies, and any shared option-parsing logic repeated across the two command specs.
 - Keep the behaviour identical: the refactoring must not change the CLI's commands, options, output, or exit codes, and the existing test suite must pass unchanged.
@@ -107,7 +105,7 @@ Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript conventions, a
 
 **Record:** `$PROJECT/cli/bin/architecture/records/adr/cli.art`
 
-**Role:** Records the duplicated units and the proposed `@art-lib` boundary, so the follow-up package can be created without re-deriving the analysis.
+**Role:** Records the similar modules, units, and equivalent infrastructure patterns and the proposed `@art-lib` boundary, so the follow-up libraries can be created without re-deriving the analysis.
 
 **Partial:**
 
@@ -115,14 +113,13 @@ Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript conventions, a
 
 **Changes:**
 
-- Produce a side-by-side inventory of the units duplicated between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, per unit: the file pair, what is identical, what diverges, and the shape a shared API would take.
-- Cover at minimum: the operation model (`types.ts`, `createGenericOperation`, `createOperationSuccess`, `createOperationFailure`), the logger, the operation log line presentation, the program builder, and the context factory.
-- Recommend the `@art-lib` package boundary — which units are genuinely shared, which stay project-specific, and the naming the shared API would use.
+- Produce an inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, recording the shape a shared API would take.
+- Recommend the `@art-lib` packages boundary — which units are genuinely shared, which stay project-specific, and the naming the shared API would use.
 - Record the inventory in `$PROJECT/cli/bin/architecture/records/adr/cli.art` and raise the `@art-lib` creation as a Follow Up on this plan and on the milestone; the package itself is not created here.
 
 **Dependencies:**
 
-- **`@art-lib`** — the shared CLI library package does not exist; the extraction itself is out of scope, so this iteration only identifies and records the follow-up.
+- **`@art-lib`** — the shared CLI libraries are owned by Project: Art Lib; the extraction itself is out of scope, so this iteration only identifies and records the follow-up.
 
 ## Execution Context
 
@@ -136,8 +133,46 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                               | Status  |
 | -------------------------------------------------------------------------------------- | ------- |
+| Iteration: Audit CLI Conventions `./instructions/audit-cli-conventions.md`             | `READY` |
 | Iteration: Apply CLI Conventions `./instructions/apply-cli-conventions.md`             | `READY` |
 | Iteration: Identify Art Lib Extraction `./instructions/identify-art-lib-extraction.md` | `READY` |
+
+### Iteration: Audit CLI Conventions
+
+**Id:** `audit-cli-conventions`
+
+**Status:** `READY`
+
+**Purpose:** Audit the implemented CLI against the TypeScript and Unit Test conventions and record the deviations for the refactoring iteration to consume.
+
+**Description:** Audit `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test conventions and record the deviations as a plan attachment.
+
+**Instructions:** `./instructions/audit-cli-conventions.md`
+
+**Changes:**
+
+- Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and `$PROJECT/conventions/unit-tests/index.md` and record the deviations.
+- Save the audit report as a plan attachment at `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan__audit.md`.
+
+**Dependencies:**
+
+- None.
+
+#### Commits:
+
+| ID                      | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
+| ----------------------- | -------------------------------- | -------- | ----- | ---------- |
+| `audit-cli-conventions` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+
+##### Commit: `audit-cli-conventions`
+
+**Repository:** Art MD
+
+**Message:**
+
+```text
+conventions(bin): Audit Typescript and Unit Test conventions
+```
 
 ### Iteration: Apply CLI Conventions
 
@@ -145,22 +180,21 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Status:** `READY`
 
-**Purpose:** Bring the implemented CLI in line with the TypeScript conventions and remove the duplication the implementation introduced, without changing behaviour.
+**Purpose:** Refactor the audited deviations and collapse the duplication the implementation introduced, without changing behaviour.
 
-**Description:** Audit `$PROJECT/cli/bin/src/` against the TypeScript conventions, refactor the deviations, and collapse the internal duplication between the parallel `parse` and `serialize` paths.
+**Description:** Read the audit report, refactor the deviations it records, and collapse the internal duplication between the parallel `parse` and `serialize` paths.
 
 **Instructions:** `./instructions/apply-cli-conventions.md`
 
 **Changes:**
 
-- Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and record the deviations in the iteration report.
-- Refactor the audited deviations — module boundaries, naming, export style, type-only imports, error handling, test placement.
-- Collapse the internal duplication between the `parse` and `serialize` factories, the `do{Operation}` bodies, and the option handling repeated across the two command specs.
+- Read the audit report at `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan__audit.md` and refactor the deviations it records.
+- Collapse duplication internal to the package — the parallel `parse`/`serialize` factories, the parallel `do{Operation}` bodies, and any shared option-parsing logic repeated across the two command specs.
 - Re-run `npm run test` and `npm run test:ci` from `$PROJECT/cli/bin/` to confirm behaviour is unchanged and coverage still clears the thresholds.
 
 **Dependencies:**
 
-- None.
+- Iteration: Audit CLI Conventions — the audit report must exist before the deviations can be refactored.
 
 #### Commits:
 
@@ -186,20 +220,20 @@ refactor(bin): apply typescript conventions and collapse duplication
 
 **Purpose:** Produce the evidence-backed inventory that makes `@art-lib` a creatable follow-up instead of a guess.
 
-**Description:** Compare the bin's private modules against the Art Work CLI's, classify each duplicated unit as shared or project-specific, and record the recommended `@art-lib` boundary in the package's CLI ADR.
+**Description:** Compare the bin's private modules against the Art Work CLI's, classify each similar module, unit, or equivalent infrastructure pattern as shared or project-specific, and record the recommended `@art-lib` boundary in the package's CLI ADR.
 
 **Instructions:** `./instructions/identify-art-lib-extraction.md`
 
 **Changes:**
 
-- Build the side-by-side inventory of the units duplicated between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/` — the operation model, the logger, the operation log line presentation, the program builder, and the context factory.
-- Per unit, record the file pair, what is identical, what diverges, and the shape a shared API would take.
-- Recommend the `@art-lib` boundary: the units that are genuinely shared, the units that stay project-specific, and the naming the shared API would use.
-- Record the inventory in `$PROJECT/cli/bin/architecture/records/adr/cli.art` and raise `@art-lib` creation as a Follow Up.
+- Build the inventory of the similar modules, units, files, and functions between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, even if not verbatim the same shape, and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies — for example the operations log and the logger.
+- Per unit, record what is shared, what diverges, and the shape a shared API would take.
+- Recommend the new `@art-lib` package boundaries: the units that are genuinely shared, the units that stay project-specific, and the naming the shared API would use.
+- Record the inventory in `$PROJECT/cli/bin/architecture/records/adr/cli.art` and raise creation of the new `@art-lib` packages as a Follow Up.
 
 **Dependencies:**
 
-- **`@art-lib`** — the shared CLI library package does not exist; the extraction is out of scope, so only the follow-up is identified.
+- **`@art-lib`** — the shared CLI libraries are owned by Project: Art Lib; the extraction is out of scope, so only the follow-up is identified.
 
 #### Commits:
 
@@ -223,7 +257,7 @@ docs(bin): record art-lib extraction inventory and follow-up
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Apply CLI Conventions.
+Delegate Iteration: Audit CLI Conventions.
 
 ### Blockers
 
@@ -287,7 +321,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Not In Scope
 
-- **Creating `@art-lib`** — the shared CLI library package is a follow-up; this plan only identifies and records its extraction units.
+- **Creating `@art-lib` packages** — the shared CLI libraries are a follow-up; this plan only identifies and records their extraction units.
 - **New command behaviour** — no commands, options, or outputs are added or changed.
 - **Validator command** — `@art-md/validator` remains `PLANNED`.
 
@@ -302,8 +336,8 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 ### Decisions
 
 - **Refactoring must be behaviour-preserving** — the refactoring iteration is not allowed to change commands, options, output, or exit codes; the existing suite is the guard.
-- **Duplication is inventoried, not extracted** — `@art-lib` is a separate package and a separate work item; pulling the units across now would couple the codec CLI's delivery to a new package's design.
-- **The inventory lands in the package's CLI ADR** — the analysis belongs next to the code it describes, and Plan: Update Bin Knowledge links it from the architecture index.
+- **Duplication is inventoried, not extracted** — `@art-lib` is a separate project and a separate work item.
+- **Conventions are read through the project guide** — instructions do not duplicate convention `::READ` entries; each relevant step reads ALL conventions mentioned in `$PROJECT/_guide.md`.
 
 ### Knowledge to Update
 
@@ -311,7 +345,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Follow Ups
 
-- **`@art-lib`** — create the shared CLI library package from the recorded inventory: the operation model, logger, operation log line presentation, program builder, and context factory, with the naming the inventory recommends.
+- **Create `@art-lib` packages** — create the shared CLI libraries from the recorded inventory.
 
 ### Feedback
 

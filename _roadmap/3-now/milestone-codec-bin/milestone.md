@@ -155,7 +155,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Complete the package (runtime dependencies, the three `bin` exports, the lint config, the records, `_guide.md`, README, CHANGELOG) and replace the placeholder `src/index.ts` with three stub entry points.
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -167,7 +167,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Implement the operation log and logger, the codec context and file I/O, `doParse`/`doSerialize` with their `run{CommandName}` layer, the shared commander builders, and the three entry points, with unit tests throughout and a closing coverage iteration.
 
-**Status:** `PLANNING`
+**Status:** `DONE`
 
 **Dependencies:**
 
@@ -179,7 +179,7 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Description:** Audit the implemented CLI against the TypeScript conventions, refactor the deviations and the internal duplication, and record an evidence-backed `@art-lib` extraction inventory in the bin's CLI ADR.
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Dependencies:**
 
@@ -207,7 +207,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | ------------------------------------------------------------------------------------------- | ---------- |
 | Plan: Scaffold Bin Package `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`     | `DONE`     |
 | Plan: Implement Bin Commands `$PROJECT/_backlog/1-done/plan-implement-bin-commands/plan.md` | `DONE`     |
-| Plan: Consolidate Codec Bin `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`   | `PLANNING` |
+| Plan: Consolidate Codec Bin `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan.md`    | `READY`    |
 | Plan: Update Bin Knowledge `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`     | `PLANNING` |
 
 ---
