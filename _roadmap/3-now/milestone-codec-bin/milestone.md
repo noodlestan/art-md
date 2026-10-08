@@ -2,7 +2,7 @@
 
 **ID:** `codec-bin`
 
-**Status:** `PLANNING`
+**Status:** `WORKING`
 
 **Template:** `.agents/domains/roadmaps/templates/milestone.tart`
 
@@ -107,13 +107,8 @@ This section lists all workflow operations involved in the Milestone.
 This section describes the context knowledge required for the different phases of work so that it can be included in downstream artefacts.
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
-::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Setting Up, Verifying Step.
+::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
 ::READ `$ART_WORK/cli/work/src/index.ts` (Reference) — Art Work CLI entry point pattern. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/commands/clone/runClone.ts` (Reference) — Art Work `run{CommandName}` pattern. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/private/commands/doClone.ts` (Reference) — Art Work `do{OperationName}` pattern. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/private/operations/types.ts` (Reference) — Art Work operation types. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/src/private/logger/createLogger.ts` (Reference) — Art Work logger pattern. Relevant for Implementing.
 
 ## Scope
 
@@ -154,13 +149,6 @@ Execution occurs from `$WORKSPACE/`; package work is performed in the Art MD bui
 
 This section describes the ordered phases used to organise downstream work, identifying blocking dependencies across resources of different owners.
 
-| Index | Name        | Status     | Plan                                                           |
-| ----- | ----------- | ---------- | -------------------------------------------------------------- |
-| #1    | Scaffold    | `PLANNING` | `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`   |
-| #2    | Commands    | `PLANNING` | `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md` |
-| #3    | Consolidate | `PLANNING` | `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`  |
-| #4    | Knowledge   | `PLANNING` | `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`   |
-
 ### Phase: 1 — Scaffold
 
 **Goal:** Scaffold the target CLI package with a working (dummy) entry point so the build/CI pipeline has a real module to resolve.
@@ -168,8 +156,6 @@ This section describes the ordered phases used to organise downstream work, iden
 **Description:** Complete the package (runtime dependencies, the three `bin` exports, the lint config, the records, `_guide.md`, README, CHANGELOG) and replace the placeholder `src/index.ts` with three stub entry points.
 
 **Status:** `PLANNING`
-
-**Plan:** `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`
 
 **Dependencies:**
 
@@ -183,8 +169,6 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Status:** `PLANNING`
 
-**Plan:** `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`
-
 **Dependencies:**
 
 - Phase 1 — Scaffold: the package must be scaffolded before commands are implemented.
@@ -196,8 +180,6 @@ This section describes the ordered phases used to organise downstream work, iden
 **Description:** Audit the implemented CLI against the TypeScript conventions, refactor the deviations and the internal duplication, and record an evidence-backed `@art-lib` extraction inventory in the bin's CLI ADR.
 
 **Status:** `PLANNING`
-
-**Plan:** `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`
 
 **Dependencies:**
 
@@ -211,8 +193,6 @@ This section describes the ordered phases used to organise downstream work, iden
 
 **Status:** `PLANNING`
 
-**Plan:** `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`
-
 **Dependencies:**
 
 - Phase 3 — Consolidate: the `@art-lib` inventory must be recorded before the CLI ADR cites it.
@@ -225,66 +205,10 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Plan                                                                                        | Status     |
 | ------------------------------------------------------------------------------------------- | ---------- |
-| Plan: Scaffold Bin Package `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`     | `PLANNING` |
-| Plan: Implement Bin Commands `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md` | `PLANNING` |
+| Plan: Scaffold Bin Package `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`     | `DONE`     |
+| Plan: Implement Bin Commands `$PROJECT/_backlog/1-done/plan-implement-bin-commands/plan.md` | `DONE`     |
 | Plan: Consolidate Codec Bin `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`   | `PLANNING` |
 | Plan: Update Bin Knowledge `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`     | `PLANNING` |
-
-### Plan: Scaffold Bin Package
-
-**Status:** `PLANNING`
-
-**Path:** `$PROJECT/_backlog/4-next/plan-scaffold-bin-package/plan.md`
-
-**Purpose:** Complete the `@art-md/bin` package scaffold so it declares its dependencies, exports the three CLI entry points, and passes the pipeline.
-
-**Description:** Turn the template-derived scaffold into a real package: add `commander`, `@art-md/codec`, and `@art-md/primitives`; declare the `art-codec`, `art-parse`, and `art-serialize` exports against the built `dist/esm/bin/*.mjs` entries; add the missing `.eslintrc.cjs`; realign the records and docs; land three stub entry points.
-
-**Dependencies:**
-
-- None.
-
-### Plan: Implement Bin Commands
-
-**Status:** `PLANNING`
-
-**Path:** `$PROJECT/_backlog/4-next/plan-implement-bin-commands/plan.md`
-
-**Purpose:** Implement the `parse` and `serialize` operations and wire them into the three entry points, sharing one set of commander builders, one set of operations, and one logger.
-
-**Description:** Six iterations: the operation log and logger, the codec context and file I/O, the `parse` command, the `serialize` command, the shared command builders and three entry points, and a closing coverage and integration-test iteration.
-
-**Dependencies:**
-
-- Phase 1 — Scaffold: the package must be scaffolded first.
-
-### Plan: Consolidate Codec Bin
-
-**Status:** `PLANNING`
-
-**Path:** `$PROJECT/_backlog/4-next/plan-consolidate-codec-bin/plan.md`
-
-**Purpose:** Audit the implemented CLI against the TypeScript conventions, refactor what the audit finds, and identify the precise extraction units for `@art-lib`.
-
-**Description:** Two iterations: apply the conventions and collapse the internal duplication behaviour-preservingly, then produce the side-by-side duplication inventory and the recommended `@art-lib` boundary in the bin's CLI ADR.
-
-**Dependencies:**
-
-- Phase 2 — Commands: the commands must be implemented before consolidation.
-
-### Plan: Update Bin Knowledge
-
-**Status:** `PLANNING`
-
-**Path:** `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`
-
-**Purpose:** Capture everything known about the codec bin in `bin/architecture/` and register the package across the project's records, guides, and architecture.
-
-**Description:** Three iterations: create the bin's architecture reference set and link it from its `_guide.md`; register and describe the package in the project README, `_guide.md`, `_records/project.art`, and the repository `architecture/` documents, correcting the duplicate and stale bin entries; then record the milestone's evidence, decisions, and follow-ups.
-
-**Dependencies:**
-
-- Phase 3 — Consolidate: the `@art-lib` inventory must be recorded before the CLI ADR cites it.
 
 ---
 
