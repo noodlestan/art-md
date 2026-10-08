@@ -2,7 +2,7 @@
 
 **ID:** `consolidate-codec-bin`
 
-**Status:** `READY`
+**Status:** `WORKING`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -133,7 +133,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                               | Status  |
 | -------------------------------------------------------------------------------------- | ------- |
-| Iteration: Audit CLI Conventions `./instructions/audit-cli-conventions.md`             | `READY` |
+| Iteration: Audit CLI Conventions `./instructions/audit-cli-conventions.md`             | `DONE`  |
 | Iteration: Apply CLI Conventions `./instructions/apply-cli-conventions.md`             | `READY` |
 | Iteration: Identify Art Lib Extraction `./instructions/identify-art-lib-extraction.md` | `READY` |
 
@@ -141,13 +141,15 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Id:** `audit-cli-conventions`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Audit the implemented CLI against the TypeScript and Unit Test conventions and record the deviations for the refactoring iteration to consume.
 
 **Description:** Audit `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test conventions and record the deviations as a plan attachment.
 
 **Instructions:** `./instructions/audit-cli-conventions.md`
+
+**Report:** `./instructions/audit-cli-conventions__report.md`
 
 **Changes:**
 
@@ -160,9 +162,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `audit-cli-conventions` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                      | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
+| ----------------------- | -------------------------------- | -------- | --------- | ----------- |
+| `audit-cli-conventions` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `4dd7979` | `COMMITTED` |
 
 ##### Commit: `audit-cli-conventions`
 
@@ -257,7 +259,7 @@ docs(bin): record art-lib extraction inventory and follow-up
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Audit CLI Conventions.
+Delegate Iteration: Apply CLI Conventions.
 
 ### Blockers
 
@@ -327,7 +329,8 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
-- None yet.
+- Audit attachment `./plan__audit.md`: 79 files audited against 40 rules; ~215 deviation sites across 25 rules; 7 ambiguities flagged for decisions.
+- Commit `4dd7979` (NOPUSH) with `npm run ci` green on pre-commit hook.
 
 ### Findings
 
