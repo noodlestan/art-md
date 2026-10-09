@@ -46,7 +46,7 @@ Audit the implemented CLI against the TypeScript and Unit Test conventions and r
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
-::READ `$PROJECT/conventions/unit-tests/index.md` (Conventions) — Unit Test conventions. Relevant for Auditing.
+::READ `$PROJECT/node_modules/@noodlestan/conventions-unit-tests/art/index.md` (Conventions) — Unit Test conventions. Relevant for Auditing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -101,7 +101,7 @@ npm run ci # lint, test and build
 
 ### Step `1 / 2` — Audit `$PROJECT/cli/bin/src/` against the conventions
 
-Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and `$PROJECT/conventions/unit-tests/index.md` and record the deviations.
+Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and `$PROJECT/node_modules/@noodlestan/conventions-unit-tests/art/index.md` and record the deviations.
 
 Read ALL conventions mentioned in `$PROJECT/_guide.md` and audit against each one relevant to this step.
 

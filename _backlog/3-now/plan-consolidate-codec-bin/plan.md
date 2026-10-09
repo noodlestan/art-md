@@ -69,7 +69,7 @@ This section describes the context knowledge required for the different phases o
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Auditing, Refactoring, Verifying Step.
-::READ `$PROJECT/conventions/unit-tests/index.md` (Conventions) — Unit Test conventions. Relevant for Auditing, Refactoring, Verifying Step.
+::READ | `$PROJECT/node_modules/@noodlestan/conventions-unit-tests/art/index.md` (Conventions) — Unit Test conventions. Relevant for Auditing, Refactoring, Verifying Step.
 ::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source the worker compares against. Relevant for Refactoring.
 
 ## Scope
@@ -153,7 +153,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 **Changes:**
 
-- Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and `$PROJECT/conventions/unit-tests/index.md` and record the deviations.
+- Audit `$PROJECT/cli/bin/src/` against `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` and `$PROJECT/node_modules/@noodlestan/conventions-unit-tests/art/index.md` and record the deviations.
 - Save the audit report as a plan attachment at `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan__audit.md`.
 
 **Dependencies:**

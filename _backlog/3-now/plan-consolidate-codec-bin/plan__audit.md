@@ -12,10 +12,10 @@
 
 ## Convention Sources
 
-| Source                                                                  | Files read                                                                                                                      |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` | index plus all expanded modules: `filesystem`, `strict-code`, `explicit-code`, `types`, `flat-code`, `literals`, `control-flow` |
-| `$PROJECT/conventions/unit-tests/index.md`                              | terse conventions and verbose conventions (block spacing, helper header comments)                                               |
+| Source                                                                  | Files read                                                                                                                                                |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` | index plus all expanded modules: `filesystem`, `strict-code`, `explicit-code`, `types`, `flat-code`, `literals`, `control-flow`                           |
+| `$PROJECT/node_modules/@noodlestan/conventions-unit-tests/art/index.md` | Unit-test conventions split by category, including conventions to relax base TypeScript conventions where test code would otherwise fight its own idioms. |
 
 Discovered through the `## Conventions` section of `$PROJECT/_guide.md` (both `::READ` directives). `$PROJECT/cli/bin/_guide.md` declares no additional conventions.
 
