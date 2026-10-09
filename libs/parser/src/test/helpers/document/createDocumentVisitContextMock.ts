@@ -1,4 +1,4 @@
-import { makeDocumentMock } from '@art-md/primitives/src/test/helpers';
+import { makeDocumentMock } from '@art-md/primitives/src/test/helpers/index.js';
 import { vi } from 'vitest';
 
 import type { DocumentVisitContext } from '../../../private/index.js';

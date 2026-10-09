@@ -1,5 +1,5 @@
 import type { MdastNode } from '@art-md/primitives';
-import { nodePositionMock } from '@art-md/primitives/src/test/helpers';
+import { nodePositionMock } from '@art-md/primitives/src/test/helpers/index.js';
 import { describe, expect, it, vi } from 'vitest';
 
 import { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode.js';

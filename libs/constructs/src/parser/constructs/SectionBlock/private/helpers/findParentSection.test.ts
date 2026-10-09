@@ -1,5 +1,8 @@
 import type { ParserVisitContext } from '@art-md/primitives';
-import { makeDocumentMock, makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
+import {
+	makeDocumentMock,
+	makeParserVisitContextMock,
+} from '@art-md/primitives/src/test/helpers/index.js';
 import { describe, expect, it } from 'vitest';
 
 import {
