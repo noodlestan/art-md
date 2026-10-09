@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createTag } from './createTag';
+import { createTag } from './createTag.js';
 
 describe('createTag', () => {
 	it('WHEN creating a Tag from data', () => {

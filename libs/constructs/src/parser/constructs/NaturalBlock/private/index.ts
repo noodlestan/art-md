@@ -1,1 +1,1 @@
-export * from './processor/createNaturalBlockProcessor';
+export * from './processor/createNaturalBlockProcessor.js';

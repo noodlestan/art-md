@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { makeArtDocumentJSONFixture } from '../../../test/fixtures/makeArtDocumentJSONFixture';
-import { makeMarkdownStringFixture } from '../../../test/fixtures/makeMarkdownStringFixture';
-import { createCommandContextMock } from '../../../test/helpers/codec/createCommandContextMock';
-import { makeOperationPendingFixture } from '../../../test/helpers/operations/makeOperationPendingFixture';
-import { makeSerializeResultFixture } from '../../../test/helpers/serialize/makeSerializeResultFixture';
+import { makeArtDocumentJSONFixture } from '../../../test/fixtures/makeArtDocumentJSONFixture.js';
+import { makeMarkdownStringFixture } from '../../../test/fixtures/makeMarkdownStringFixture.js';
+import { createCommandContextMock } from '../../../test/helpers/codec/createCommandContextMock.js';
+import { makeOperationPendingFixture } from '../../../test/helpers/operations/makeOperationPendingFixture.js';
+import { makeSerializeResultFixture } from '../../../test/helpers/serialize/makeSerializeResultFixture.js';
 
-import { doSerialize } from './doSerialize';
+import { doSerialize } from './doSerialize.js';
 
 const FILE = 'document.art';
 const WRITE_TARGET = 'out/document.art';

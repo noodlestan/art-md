@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { makeConfigFixture } from '../../test/helpers/config/makeConfigFixture';
-import { createCommandIoMock } from '../../test/helpers/io/createCommandIoMock';
-import { createLoggerMock } from '../../test/helpers/logger/createLoggerMock';
+import { makeConfigFixture } from '../../test/helpers/config/makeConfigFixture.js';
+import { createCommandIoMock } from '../../test/helpers/io/createCommandIoMock.js';
+import { createLoggerMock } from '../../test/helpers/logger/createLoggerMock.js';
 
-import { createCommandContext } from './createCommandContext';
+import { createCommandContext } from './createCommandContext.js';
 
 const mocks = vi.hoisted(() => ({
 	createArtCodec: vi.fn(),

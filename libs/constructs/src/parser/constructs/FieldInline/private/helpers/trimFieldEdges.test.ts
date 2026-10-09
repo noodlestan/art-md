@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeNaturalExpressionFixture } from '../../../../../test/helpers';
+import { makeNaturalExpressionFixture } from '../../../../../test/helpers/index.js';
 
-import { trimFieldEdges } from './trimFieldEdges';
+import { trimFieldEdges } from './trimFieldEdges.js';
 
 describe('trimFieldEdges', () => {
 	it('WHEN the edge texts have surrounding whitespace trims them', () => {

@@ -1,6 +1,6 @@
-import type { ConstructParserFactory } from '../../types';
+import type { ConstructParserFactory } from '../../types.js';
 
-import { createSectionBlockIntegrator, createSectionBlockProcessor } from './private';
+import { createSectionBlockIntegrator, createSectionBlockProcessor } from './private/index.js';
 
 export const createSectionBlockParser: ConstructParserFactory = () => ({
 	name: 'SectionBlock',

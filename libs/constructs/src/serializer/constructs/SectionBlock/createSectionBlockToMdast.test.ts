@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeSectionBlockFixture, makeTagFixture } from '../../../test/helpers';
+import { makeSectionBlockFixture, makeTagFixture } from '../../../test/helpers/index.js';
 
-import { createSectionBlockToMdast } from './createSectionBlockToMdast';
+import { createSectionBlockToMdast } from './createSectionBlockToMdast.js';
 
 function stripPositions(node: unknown): unknown {
 	if (node === null || typeof node !== 'object') return node;

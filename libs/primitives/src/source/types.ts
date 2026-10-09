@@ -1,4 +1,4 @@
-import type { ArtDocument } from '../document';
+import type { ArtDocument } from '../document/index.js';
 
 export interface ArtContentSource {
 	readonly type: string;

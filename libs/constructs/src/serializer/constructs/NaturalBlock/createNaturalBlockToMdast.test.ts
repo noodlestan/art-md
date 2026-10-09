@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeNaturalBlockFixture, makeTagFixture } from '../../../test/helpers';
+import { makeNaturalBlockFixture, makeTagFixture } from '../../../test/helpers/index.js';
 
-import { createNaturalBlockToMdast } from './createNaturalBlockToMdast';
+import { createNaturalBlockToMdast } from './createNaturalBlockToMdast.js';
 
 describe('createNaturalBlockToMdast', () => {
 	it('WHEN parsing a text value into a root with paragraph', () => {

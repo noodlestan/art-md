@@ -1,7 +1,7 @@
 import type { Node } from 'mdast';
 
-import type { NaturalExpression } from '../../../factories';
-import type { ConstructSerializer } from '../../types';
+import type { NaturalExpression } from '../../../factories/index.js';
+import type { ConstructSerializer } from '../../types.js';
 
 export function createNaturalExpressionToMdast(): ConstructSerializer {
 	return {

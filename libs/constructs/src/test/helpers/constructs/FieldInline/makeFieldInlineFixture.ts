@@ -2,7 +2,7 @@
  * @fixture FieldInline of factory`libs/constructs/src/constructs/FieldInline/factory/createFieldInline.ts`
  */
 
-import type { FieldInline, Tag } from '../../../../factories';
+import type { FieldInline, Tag } from '../../../../factories/index.js';
 
 export const makeFieldInlineFixture = (options?: {
 	name?: string;

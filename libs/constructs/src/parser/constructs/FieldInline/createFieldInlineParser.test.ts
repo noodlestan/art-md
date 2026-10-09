@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createFieldInlineParser } from './createFieldInlineParser';
+import { createFieldInlineParser } from './createFieldInlineParser.js';
 
 describe('createFieldInlineParser', () => {
 	it('WHEN called returns a parser with FieldInline name, processor and factory', () => {

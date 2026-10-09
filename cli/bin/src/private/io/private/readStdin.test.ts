@@ -2,7 +2,7 @@ import { Readable } from 'node:stream';
 
 import { describe, expect, it } from 'vitest';
 
-import { readStdin } from './readStdin';
+import { readStdin } from './readStdin.js';
 
 describe('readStdin', () => {
 	it('GIVEN a readable stream, resolves its text content', async () => {

@@ -1,2 +1,2 @@
-export { BLOCK_TYPES } from './constants';
-export { isBlockType } from './isBlockType';
+export { BLOCK_TYPES } from './constants.js';
+export { isBlockType } from './isBlockType.js';

@@ -1,7 +1,7 @@
 import { nodePositionMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createArtDocument } from './createArtDocument';
+import { createArtDocument } from './createArtDocument.js';
 
 vi.mock('@art-md/primitives', () => {
 	return nodePositionMock();

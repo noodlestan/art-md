@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { createDefaultSerializerConfig } from './createDefaultSerializerConfig';
+import { createDefaultSerializerConfig } from './createDefaultSerializerConfig.js';
 
 vi.mock('@art-md/constructs', () => ({
 	CONSTRUCT_SERIALIZERS: [

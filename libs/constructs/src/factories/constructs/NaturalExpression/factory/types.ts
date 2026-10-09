@@ -1,4 +1,4 @@
-import type { NaturalExpression } from '../types';
+import type { NaturalExpression } from '../types.js';
 
 export type NaturalExpressionFactoryData = {
 	type: string;

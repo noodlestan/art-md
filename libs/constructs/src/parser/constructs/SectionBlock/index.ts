@@ -1,1 +1,1 @@
-export { createSectionBlockParser } from './createSectionBlockParser';
+export { createSectionBlockParser } from './createSectionBlockParser.js';

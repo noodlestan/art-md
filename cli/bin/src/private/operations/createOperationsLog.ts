@@ -1,9 +1,9 @@
-import type { LoggerAPI } from '../logger/types';
-import { makeOperationLogLine } from '../presentation/makeOperationLogLine';
+import type { LoggerAPI } from '../logger/types.js';
+import { makeOperationLogLine } from '../presentation/makeOperationLogLine.js';
 
-import type { Operation, OperationsLog } from './types';
+import type { Operation, OperationsLog } from './types.js';
 
-export type { Operation, OperationsLog } from './types';
+export type { Operation, OperationsLog } from './types.js';
 
 export function createOperationsLog(logger: LoggerAPI): OperationsLog {
 	const operations: Operation[] = [];

@@ -1,4 +1,4 @@
-import type { ArtDocument, ArtDocumentFactoryData } from './types';
+import type { ArtDocument, ArtDocumentFactoryData } from './types.js';
 
 export function createArtDocument(data?: ArtDocumentFactoryData): ArtDocument {
 	return {

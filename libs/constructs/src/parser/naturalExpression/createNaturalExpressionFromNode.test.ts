@@ -2,7 +2,7 @@ import type { MdastNode } from '@art-md/primitives';
 import { nodePositionMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode';
+import { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode.js';
 
 vi.mock('@art-md/primitives/src/parser/helpers', () => {
 	return nodePositionMock();

@@ -1,4 +1,4 @@
-export { createFieldBlock } from './factory/createFieldBlock';
+export { createFieldBlock } from './factory/createFieldBlock.js';
 
-export type { FieldBlock } from './types';
-export type { FieldBlockFactoryData } from './factory/types';
+export type { FieldBlock } from './types.js';
+export type { FieldBlockFactoryData } from './factory/types.js';

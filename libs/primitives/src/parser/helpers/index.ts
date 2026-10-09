@@ -1,2 +1,2 @@
-export { nodePosition } from './nodePosition';
-export { sectionDepth } from './sectionDepth';
+export { nodePosition } from './nodePosition.js';
+export { sectionDepth } from './sectionDepth.js';

@@ -14,7 +14,7 @@ import type {
 } from '@art-md/primitives';
 import { serialize } from '@art-md/serializer';
 
-import type { PartialArtCodecConfig } from './types';
+import type { PartialArtCodecConfig } from './types.js';
 
 export function createArtCodec(config: PartialArtCodecConfig = {}): ArtCodec {
 	const parserConfig = {

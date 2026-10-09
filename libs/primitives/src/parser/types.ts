@@ -9,9 +9,9 @@ import type {
 	TableContent,
 } from 'mdast';
 
-import type { ArtDocument } from '../document';
+import type { ArtDocument } from '../document/index.js';
 
-import type { ParseContext } from './context';
+import type { ParseContext } from './context/index.js';
 
 type ChildNode =
 	| RootContent

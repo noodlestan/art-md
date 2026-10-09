@@ -1,12 +1,12 @@
 import { Command } from 'commander';
 
-import type { BinConfig } from '../../../config/types';
-import { createParseCommand } from '../../commands/parse/createParseCommand';
-import { addFileArgument } from '../../options/file/addFileArgument';
-import { addOutputOption } from '../../options/output/addOutputOption';
-import { addWriteOption } from '../../options/write/addWriteOption';
+import type { BinConfig } from '../../../config/types.js';
+import { createParseCommand } from '../../commands/parse/createParseCommand.js';
+import { addFileArgument } from '../../options/file/addFileArgument.js';
+import { addOutputOption } from '../../options/output/addOutputOption.js';
+import { addWriteOption } from '../../options/write/addWriteOption.js';
 
-import { PROGRAM_DESCRIPTION, PROGRAM_NAME } from './constants';
+import { PROGRAM_DESCRIPTION, PROGRAM_NAME } from './constants.js';
 
 export function buildParseProgram(config: BinConfig): Command {
 	const program = new Command();

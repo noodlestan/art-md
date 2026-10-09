@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 
 // eslint-disable-next-line import/order
-import { rawSliceMock } from '../../test/helpers';
+import { rawSliceMock } from '../../test/helpers/index.js';
 // eslint-disable-next-line import/order
-import { rawSlice } from '../mdast';
+import { rawSlice } from '../mdast/index.js';
 
-import { stripStrong } from './stripStrong';
+import { stripStrong } from './stripStrong.js';
 
 vi.mock('../mdast', () => {
 	return rawSliceMock();

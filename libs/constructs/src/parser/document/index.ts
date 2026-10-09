@@ -1,1 +1,1 @@
-export * from './createArtDocumentFromNode';
+export * from './createArtDocumentFromNode.js';

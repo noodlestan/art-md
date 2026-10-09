@@ -4,9 +4,9 @@ import type { Heading } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { describe, expect, it, vi } from 'vitest';
 
-import { makeSectionBlockFixture } from '../../../../../test/helpers';
+import { makeSectionBlockFixture } from '../../../../../test/helpers/index.js';
 
-import { createSectionBlockIntegrator } from './createSectionBlockIntegrator';
+import { createSectionBlockIntegrator } from './createSectionBlockIntegrator.js';
 
 function makeHeading(markdown: string): Heading {
 	return fromMarkdown(markdown).children[0] as Heading;

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { createDefaultParserConfig } from './createDefaultParserConfig';
+import { createDefaultParserConfig } from './createDefaultParserConfig.js';
 
 vi.mock('@art-md/constructs', () => ({
 	CONSTRUCT_PARSERS: [

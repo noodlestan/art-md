@@ -2,10 +2,10 @@ import { nodePosition } from '@art-md/primitives';
 import type { ParserVisitContext } from '@art-md/primitives';
 import type { Heading } from 'mdast';
 
-import { type SectionBlock, createSectionBlock } from '../../../../../factories';
-import { rawSlice } from '../../../../mdast';
-import { extractTags } from '../../../../tags';
-import { KIND_PATTERN } from '../constants';
+import { type SectionBlock, createSectionBlock } from '../../../../../factories/index.js';
+import { rawSlice } from '../../../../mdast/index.js';
+import { extractTags } from '../../../../tags/index.js';
+import { KIND_PATTERN } from '../constants.js';
 
 export function createSectionBlockFromNode(
 	node: Heading,

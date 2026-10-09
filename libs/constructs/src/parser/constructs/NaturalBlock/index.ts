@@ -1,1 +1,1 @@
-export { createNaturalBlockParser } from './createNaturalBlockParser';
+export { createNaturalBlockParser } from './createNaturalBlockParser.js';

@@ -1,8 +1,8 @@
 import type { Node } from 'mdast';
 
-import type { FieldBlock } from '../../../factories';
-import { tagsToMdast } from '../../tags';
-import type { ConstructSerializer } from '../../types';
+import type { FieldBlock } from '../../../factories/index.js';
+import { tagsToMdast } from '../../tags/index.js';
+import type { ConstructSerializer } from '../../types.js';
 
 export function createFieldBlockToMdast(): ConstructSerializer {
 	return {

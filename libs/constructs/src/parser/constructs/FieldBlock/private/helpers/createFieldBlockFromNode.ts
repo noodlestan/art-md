@@ -2,10 +2,10 @@ import type { ParserVisitContext } from '@art-md/primitives';
 import { nodePosition } from '@art-md/primitives';
 import type { Paragraph, Strong } from 'mdast';
 
-import { type FieldBlock, createFieldBlock } from '../../../../../factories';
-import { stripStrong } from '../../../../fields';
-import { rawSlice } from '../../../../mdast';
-import { extractTags } from '../../../../tags';
+import { type FieldBlock, createFieldBlock } from '../../../../../factories/index.js';
+import { stripStrong } from '../../../../fields/index.js';
+import { rawSlice } from '../../../../mdast/index.js';
+import { extractTags } from '../../../../tags/index.js';
 
 export function createFieldBlockFromNode(
 	paragraph: Paragraph,

@@ -1,7 +1,7 @@
-import type { ArtCodec } from '../codec/types';
-import type { ArtDocument } from '../document';
+import type { ArtCodec } from '../codec/types.js';
+import type { ArtDocument } from '../document/index.js';
 
-import type { ArtContentSource, ArtDocumentSource } from './types';
+import type { ArtContentSource, ArtDocumentSource } from './types.js';
 
 export function createArtDocumentSource(
 	codec: ArtCodec,

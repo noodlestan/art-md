@@ -1,3 +1,3 @@
-export { createDocument } from './factory/createDocument';
+export { createDocument } from './factory/createDocument.js';
 
-export type { DocumentFactoryData } from './factory/types';
+export type { DocumentFactoryData } from './factory/types.js';

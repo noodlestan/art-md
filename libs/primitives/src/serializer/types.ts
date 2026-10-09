@@ -1,4 +1,4 @@
-import type { SerializeContext } from './context';
+import type { SerializeContext } from './context/index.js';
 
 export interface SerializeResult {
 	content: string;

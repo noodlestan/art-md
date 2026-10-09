@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { createGenericOperation } from './createGenericOperation';
-import { createOperationSuccess } from './createOperationSuccess';
+import { createGenericOperation } from './createGenericOperation.js';
+import { createOperationSuccess } from './createOperationSuccess.js';
 
 const URI = 'file:///tmp/document.art';
 

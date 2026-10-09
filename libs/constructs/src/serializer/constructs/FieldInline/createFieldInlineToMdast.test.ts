@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeFieldInlineFixture, makeTagFixture } from '../../../test/helpers';
+import { makeFieldInlineFixture, makeTagFixture } from '../../../test/helpers/index.js';
 
-import { createFieldInlineToMdast } from './createFieldInlineToMdast';
+import { createFieldInlineToMdast } from './createFieldInlineToMdast.js';
 
 describe('createFieldInlineToMdast', () => {
 	it('WHEN converting a FieldInline to a paragraph with strong label', () => {

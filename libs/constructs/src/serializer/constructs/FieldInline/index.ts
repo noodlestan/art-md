@@ -1,1 +1,1 @@
-export { createFieldInlineToMdast } from './createFieldInlineToMdast';
+export { createFieldInlineToMdast } from './createFieldInlineToMdast.js';

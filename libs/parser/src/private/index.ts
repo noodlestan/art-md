@@ -1,3 +1,3 @@
-export { createDocumentVisitContext } from './createDocumentVisitContext';
+export { createDocumentVisitContext } from './createDocumentVisitContext.js';
 
-export type * from './types';
+export type * from './types.js';

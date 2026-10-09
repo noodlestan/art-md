@@ -7,8 +7,8 @@ import {
 import type { Root } from 'mdast';
 import { toMarkdown } from 'mdast-util-to-markdown';
 
-import { artAstToMdast } from '../artAstToMdast/artAstToMdast';
-import type { SerializerConfig } from '../config/types';
+import { artAstToMdast } from '../artAstToMdast/artAstToMdast.js';
+import type { SerializerConfig } from '../config/types.js';
 
 export function serialize(document: ArtDocument, config: SerializerConfig): SerializeResult;
 export function serialize(

@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { tagToMdastMock } from '../../test/helpers';
+import { tagToMdastMock } from '../../test/helpers/index.js';
 
-import { tagsToMdast } from './tagsToMdast';
+import { tagsToMdast } from './tagsToMdast.js';
 
 vi.mock('./tagToMdast', () => {
 	return tagToMdastMock();

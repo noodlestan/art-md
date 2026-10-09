@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeNaturalExpressionFixture } from '../../../../test/helpers';
+import { makeNaturalExpressionFixture } from '../../../../test/helpers/index.js';
 
-import { createNaturalExpression } from './createNaturalExpression';
+import { createNaturalExpression } from './createNaturalExpression.js';
 
 describe('createNaturalExpression', () => {
 	it('WHEN creating a NaturalExpression from data', () => {

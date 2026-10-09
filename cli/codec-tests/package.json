@@ -17,10 +17,10 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "echo no dev configured",
+    "dev": "esbuild-cli-watch",
     "lint": "prettier . -c && eslint . && tsc --noEmit",
     "lint:fix": "prettier . -c --write && eslint . --fix",
-    "build": "echo no build configured",
+    "build": "esbuild-cli",
     "build:clean": "rm -rf dist",
     "test-parser": "npx tsx scripts/test-parser.ts",
     "test-serializer": "npx tsx scripts/test-serializer.ts",

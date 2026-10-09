@@ -1,4 +1,4 @@
-import type { NaturalExpression } from '../../../../../factories';
+import type { NaturalExpression } from '../../../../../factories/index.js';
 
 export function trimFieldEdges(value: NaturalExpression[]): typeof value {
 	const trimmed = [...value];

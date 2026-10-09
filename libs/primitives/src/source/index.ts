@@ -1,3 +1,3 @@
-export { createArtDocumentSource } from './createArtDocumentSource';
+export { createArtDocumentSource } from './createArtDocumentSource.js';
 
-export type { ArtContentSource, ArtDocumentSource } from './types';
+export type { ArtContentSource, ArtDocumentSource } from './types.js';

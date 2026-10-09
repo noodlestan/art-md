@@ -4,9 +4,9 @@ import {
 	makeFieldBlockFixture,
 	makeNaturalBlockFixture,
 	makeTagFixture,
-} from '../../../../test/helpers';
+} from '../../../../test/helpers/index.js';
 
-import { createFieldBlock } from './createFieldBlock';
+import { createFieldBlock } from './createFieldBlock.js';
 
 describe('createFieldBlock', () => {
 	it('WHEN creating a FieldBlock from minimal data', () => {

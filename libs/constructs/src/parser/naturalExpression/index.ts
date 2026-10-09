@@ -1,1 +1,1 @@
-export { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode';
+export { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode.js';

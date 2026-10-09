@@ -1,6 +1,6 @@
-import type { FieldBlock } from '../../../../../factories';
-import type { ConstructIntegrator } from '../../../../types';
-import { onBeforeConstruct } from '../helpers/onBeforeConstruct';
+import type { FieldBlock } from '../../../../../factories/index.js';
+import type { ConstructIntegrator } from '../../../../types.js';
+import { onBeforeConstruct } from '../helpers/onBeforeConstruct.js';
 
 export function createFieldBlockIntegrator(): ConstructIntegrator {
 	return {

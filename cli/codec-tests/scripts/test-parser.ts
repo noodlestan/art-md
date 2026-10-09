@@ -1,12 +1,12 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import { parseFixture } from './test/parser/parseFixture';
-import { parseParserArgs } from './test/parser/parseParserArgs';
-import type { ParseResult } from './test/parser/types';
-import { getFixturePairs } from './test/shared/get-fixture-pairs';
-import { printSummary } from './test/shared/printSummary';
-import { stableStringify } from './test/shared/stableStringify';
+import { parseFixture } from './test/parser/parseFixture.js';
+import { parseParserArgs } from './test/parser/parseParserArgs.js';
+import type { ParseResult } from './test/parser/types.js';
+import { getFixturePairs } from './test/shared/get-fixture-pairs.js';
+import { printSummary } from './test/shared/printSummary.js';
+import { stableStringify } from './test/shared/stableStringify.js';
 
 const { doWrite, doWriteDebug, filterFixture, fixturesDir } = parseParserArgs();
 

@@ -1,13 +1,13 @@
-import { doParse } from '../../../commands/parse/doParse';
-import type { BinConfig } from '../../../config/types';
-import { createCommandContext } from '../../../context/createCommandContext';
-import { createConsoleWriter } from '../../../logger/createConsoleWriter';
-import { createLogger } from '../../../logger/createLogger';
-import { validateVerbosity } from '../../../logger/validateVerbosity';
-import { createGenericOperation } from '../../../operations/createGenericOperation';
-import { FAILURE_EXIT_CODE } from '../../constants';
-import type { CommandOutputOptions } from '../../programs/types';
-import type { CommandHandler } from '../types';
+import { doParse } from '../../../commands/parse/doParse.js';
+import type { BinConfig } from '../../../config/types.js';
+import { createCommandContext } from '../../../context/createCommandContext.js';
+import { createConsoleWriter } from '../../../logger/createConsoleWriter.js';
+import { createLogger } from '../../../logger/createLogger.js';
+import { validateVerbosity } from '../../../logger/validateVerbosity.js';
+import { createGenericOperation } from '../../../operations/createGenericOperation.js';
+import { FAILURE_EXIT_CODE } from '../../constants.js';
+import type { CommandOutputOptions } from '../../programs/types.js';
+import type { CommandHandler } from '../types.js';
 
 export function createParseCommand(config: BinConfig): CommandHandler {
 	const action = async (file: string | undefined, options: CommandOutputOptions) => {

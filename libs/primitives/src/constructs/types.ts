@@ -1,4 +1,4 @@
-import type { Position } from '../parser';
+import type { Position } from '../parser/index.js';
 
 /** Base type toMdastemented by every construct. */
 export type ConstructBase = {

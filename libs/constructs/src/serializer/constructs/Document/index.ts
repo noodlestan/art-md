@@ -1,1 +1,1 @@
-export { createDocumentToMdast } from './createDocumentToMdast';
+export { createDocumentToMdast } from './createDocumentToMdast.js';

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isBlockType } from './isBlockType';
+import { isBlockType } from './isBlockType.js';
 
 describe('isBlockType', () => {
 	it('FOR known block types returns true', () => {

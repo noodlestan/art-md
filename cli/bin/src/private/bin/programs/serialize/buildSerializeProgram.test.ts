@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeConfigFixture } from '../../../../test/helpers/config/makeConfigFixture';
+import { makeConfigFixture } from '../../../../test/helpers/config/makeConfigFixture.js';
 
-import { buildSerializeProgram } from './buildSerializeProgram';
+import { buildSerializeProgram } from './buildSerializeProgram.js';
 
 describe('buildSerializeProgram', () => {
 	it('WHEN built from the injected config, reports that config version', () => {

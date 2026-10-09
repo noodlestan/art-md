@@ -1,11 +1,11 @@
 import { createArtCodec } from '@art-md/codec';
 
-import type { BinConfig } from '../config/types';
-import { createCommandIo } from '../io/createCommandIo';
-import { type LoggerAPI } from '../logger/types';
-import { createOperationsLog } from '../operations/createOperationsLog';
+import type { BinConfig } from '../config/types.js';
+import { createCommandIo } from '../io/createCommandIo.js';
+import { type LoggerAPI } from '../logger/types.js';
+import { createOperationsLog } from '../operations/createOperationsLog.js';
 
-import type { CommandContext } from './types';
+import type { CommandContext } from './types.js';
 
 export function createCommandContext(config: BinConfig, logger: LoggerAPI): CommandContext {
 	const codec = createArtCodec(config.codec);

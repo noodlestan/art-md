@@ -1,9 +1,9 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
-import { diffLines } from '../shared/diffLines';
-import { makeCodec } from '../shared/makeCodec';
-import { readFileUtf8 } from '../shared/readFileUtf8';
+import { diffLines } from '../shared/diffLines.js';
+import { makeCodec } from '../shared/makeCodec.js';
+import { readFileUtf8 } from '../shared/readFileUtf8.js';
 
 const codec = makeCodec();
 

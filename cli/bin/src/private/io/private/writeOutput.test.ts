@@ -4,9 +4,9 @@ import process from 'node:process';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { makeTempDir } from '../../../test/helpers/makeTempDir';
+import { makeTempDir } from '../../../test/helpers/makeTempDir.js';
 
-import { writeOutput } from './writeOutput';
+import { writeOutput } from './writeOutput.js';
 
 const ENCODING = 'utf8';
 const CONTENT = '# Title';

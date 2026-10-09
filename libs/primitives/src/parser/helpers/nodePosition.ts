@@ -1,6 +1,6 @@
 import type { Node } from 'unist';
 
-import type { Position } from '../types';
+import type { Position } from '../types.js';
 
 export function nodePosition(node: Node): Position {
 	if (!node.position) {

@@ -1,6 +1,6 @@
-import type { LogVerbosity } from '../logger/types';
+import type { LogVerbosity } from '../logger/types.js';
 
-import type { BinConfig, PartialBinConfig } from './types';
+import type { BinConfig, PartialBinConfig } from './types.js';
 
 const DEFAULT_OUTPUT_MODE: LogVerbosity = 'quiet';
 

@@ -1,7 +1,7 @@
 import type { Heading } from 'mdast';
 
-import type { ConstructProcessor } from '../../../../types';
-import { createSectionBlockFromNode } from '../helpers/createSectionBlockFromNode';
+import type { ConstructProcessor } from '../../../../types.js';
+import { createSectionBlockFromNode } from '../helpers/createSectionBlockFromNode.js';
 
 export function createSectionBlockProcessor(): ConstructProcessor {
 	return {

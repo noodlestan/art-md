@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { rawSlice } from './rawSlice';
+import { rawSlice } from './rawSlice.js';
 
 describe('rawSlice', () => {
 	it('FOR a node with position returns the raw slice', () => {

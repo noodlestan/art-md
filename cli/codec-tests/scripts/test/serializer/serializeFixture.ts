@@ -3,9 +3,9 @@ import * as path from 'node:path';
 
 import type { ArtDocument } from '@art-md/primitives';
 
-import { makeCodec } from '../shared/makeCodec';
+import { makeCodec } from '../shared/makeCodec.js';
 
-import type { SerializeResult } from './types';
+import type { SerializeResult } from './types.js';
 
 const codec = makeCodec();
 

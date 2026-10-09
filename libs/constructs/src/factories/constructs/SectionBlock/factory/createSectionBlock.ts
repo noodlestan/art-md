@@ -1,6 +1,6 @@
-import type { SectionBlock } from '../types';
+import type { SectionBlock } from '../types.js';
 
-import type { SectionBlockFactoryData } from './types';
+import type { SectionBlockFactoryData } from './types.js';
 
 export function createSectionBlock(data: SectionBlockFactoryData): SectionBlock {
 	const section: SectionBlock = {

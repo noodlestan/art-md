@@ -1,4 +1,4 @@
-import type { OperationFailure, OperationPending } from './types';
+import type { OperationFailure, OperationPending } from './types.js';
 
 const FAILURE_LABELS: Record<string, string> = {
 	parse: 'ParseError',

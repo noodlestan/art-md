@@ -3,9 +3,9 @@ import type { ConstructBase } from '@art-md/primitives';
 import { SKIP, visit } from 'unist-util-visit';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createDocumentVisitContextMock } from '../test/helpers';
+import { createDocumentVisitContextMock } from '../test/helpers/index.js';
 
-import { buildDocument } from './buildDocument';
+import { buildDocument } from './buildDocument.js';
 
 vi.mock('unist-util-visit', () => ({
 	SKIP: Symbol('skip'),

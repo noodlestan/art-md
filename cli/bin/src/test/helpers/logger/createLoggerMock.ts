@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import type { LoggerAPI } from '../../../private/logger/types';
+import type { LoggerAPI } from '../../../private/logger/types.js';
 
 export function createLoggerMock(): LoggerAPI {
 	return {

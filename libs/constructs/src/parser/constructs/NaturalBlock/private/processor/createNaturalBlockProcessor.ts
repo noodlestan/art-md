@@ -1,5 +1,5 @@
-import type { ConstructProcessor } from '../../../../types';
-import { createNaturalBlockFromNode } from '../helpers/createNaturalBlockFromNode';
+import type { ConstructProcessor } from '../../../../types.js';
+import { createNaturalBlockFromNode } from '../helpers/createNaturalBlockFromNode.js';
 
 export function createNaturalBlockProcessor(): ConstructProcessor {
 	return {

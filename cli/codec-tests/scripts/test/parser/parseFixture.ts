@@ -1,8 +1,8 @@
 import * as fs from 'node:fs';
 
-import { makeCodec } from '../shared/makeCodec';
+import { makeCodec } from '../shared/makeCodec.js';
 
-import type { ParseResult } from './types';
+import type { ParseResult } from './types.js';
 
 const codec = makeCodec();
 

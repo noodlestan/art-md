@@ -1,4 +1,4 @@
-import type { ParsePending } from '../../../operations/types';
+import type { ParsePending } from '../../../operations/types.js';
 
 export function createParseOperation(data: { uri: string }): ParsePending {
 	return {

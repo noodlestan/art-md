@@ -1,6 +1,6 @@
-import type { FieldInline } from '../types';
+import type { FieldInline } from '../types.js';
 
-import type { FieldInlineFactoryData } from './types';
+import type { FieldInlineFactoryData } from './types.js';
 
 export function createFieldInline(data: FieldInlineFactoryData): FieldInline {
 	const field: FieldInline = {

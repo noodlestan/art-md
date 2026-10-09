@@ -1,4 +1,4 @@
-import type { SerializePending } from '../../../operations/types';
+import type { SerializePending } from '../../../operations/types.js';
 
 export function createSerializeOperation(data: { uri: string }): SerializePending {
 	return {

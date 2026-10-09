@@ -1,9 +1,9 @@
 import type { Node } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 
-import type { NaturalBlock } from '../../../factories';
-import { tagsToMdast } from '../../tags';
-import type { ConstructSerializer } from '../../types';
+import type { NaturalBlock } from '../../../factories/index.js';
+import { tagsToMdast } from '../../tags/index.js';
+import type { ConstructSerializer } from '../../types.js';
 
 export function createNaturalBlockToMdast(): ConstructSerializer {
 	return {

@@ -1,4 +1,4 @@
-import { orderedKeys } from './private/orderedKeys';
+import { orderedKeys } from './private/orderedKeys.js';
 
 export function stableStringify(value: unknown, indent = 0): string {
 	const pad = '  '.repeat(indent);

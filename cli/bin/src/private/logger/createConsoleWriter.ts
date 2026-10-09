@@ -1,4 +1,4 @@
-import type { LogWriter } from './types';
+import type { LogWriter } from './types.js';
 
 type ConsoleStream = 'stdout' | 'stderr';
 

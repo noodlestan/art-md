@@ -1,2 +1,2 @@
-export { tagToMdast } from './tagToMdast';
-export { tagsToMdast } from './tagsToMdast';
+export { tagToMdast } from './tagToMdast.js';
+export { tagsToMdast } from './tagsToMdast.js';

@@ -1,6 +1,6 @@
-import type { NaturalExpression } from '../types';
+import type { NaturalExpression } from '../types.js';
 
-import type { NaturalExpressionFactoryData } from './types';
+import type { NaturalExpressionFactoryData } from './types.js';
 
 export function createNaturalExpression(data: NaturalExpressionFactoryData): NaturalExpression {
 	return {

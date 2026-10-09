@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { createOperationSuccess } from '../../../operations/createOperationSuccess';
+import { createOperationSuccess } from '../../../operations/createOperationSuccess.js';
 
-import { createSerializeOperation } from './createSerializeOperation';
+import { createSerializeOperation } from './createSerializeOperation.js';
 
 const URI = 'file:///tmp/document.art';
 

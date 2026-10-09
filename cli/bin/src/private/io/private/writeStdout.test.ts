@@ -2,7 +2,7 @@ import process from 'node:process';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { writeStdout } from './writeStdout';
+import { writeStdout } from './writeStdout.js';
 
 function spyOnStdoutWrite(): ReturnType<typeof vi.spyOn> {
 	return vi.spyOn(process.stdout, 'write').mockImplementation(((

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { FIELD_TEXT_PATTERN } from './constants';
+import { FIELD_TEXT_PATTERN } from './constants.js';
 
 describe('FIELD_TEXT_PATTERN', () => {
 	it('WHEN matching a field text pattern', () => {

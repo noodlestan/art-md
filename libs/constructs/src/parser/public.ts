@@ -1,10 +1,10 @@
-import { createFieldBlockParser } from './constructs/FieldBlock';
-import { createFieldInlineParser } from './constructs/FieldInline';
-import { createNaturalBlockParser } from './constructs/NaturalBlock';
-import { createSectionBlockParser } from './constructs/SectionBlock';
-import type { ConstructParserFactory } from './types';
+import { createFieldBlockParser } from './constructs/FieldBlock/index.js';
+import { createFieldInlineParser } from './constructs/FieldInline/index.js';
+import { createNaturalBlockParser } from './constructs/NaturalBlock/index.js';
+import { createSectionBlockParser } from './constructs/SectionBlock/index.js';
+import type { ConstructParserFactory } from './types.js';
 
-export { createArtDocumentFromNode } from './document/createArtDocumentFromNode';
+export { createArtDocumentFromNode } from './document/createArtDocumentFromNode.js';
 
 export const CONSTRUCT_PARSERS: ConstructParserFactory[] = [
 	createFieldBlockParser,
@@ -13,4 +13,4 @@ export const CONSTRUCT_PARSERS: ConstructParserFactory[] = [
 ];
 export const DEFAULT_CONSTRUCT_PARSER = createNaturalBlockParser;
 
-export type * from './types';
+export type * from './types.js';

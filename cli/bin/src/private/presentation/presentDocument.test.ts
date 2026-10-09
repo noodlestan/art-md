@@ -2,7 +2,7 @@ import { createArtCodec } from '@art-md/codec';
 import type { ArtDocument } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { presentDocument } from './presentDocument';
+import { presentDocument } from './presentDocument.js';
 
 const codec = createArtCodec();
 

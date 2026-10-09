@@ -1,1 +1,1 @@
-export { createSectionBlockToMdast } from './createSectionBlockToMdast';
+export { createSectionBlockToMdast } from './createSectionBlockToMdast.js';

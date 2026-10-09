@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeNaturalExpressionFixture } from '../../../test/helpers';
+import { makeNaturalExpressionFixture } from '../../../test/helpers/index.js';
 
-import { createNaturalExpressionToMdast } from './createNaturalExpressionToMdast';
+import { createNaturalExpressionToMdast } from './createNaturalExpressionToMdast.js';
 
 describe('createNaturalExpressionToMdast', () => {
 	it('WHEN converting a NaturalExpression to an mdast node', () => {

@@ -1,9 +1,9 @@
 import { createParseContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { createDefaultParserConfig } from '../config';
+import { createDefaultParserConfig } from '../config/index.js';
 
-import { parse } from './parse';
+import { parse } from './parse.js';
 
 describe('parse', () => {
 	it('WHEN called with an empty string returns a Document', () => {

@@ -1,7 +1,7 @@
 import { makeDocumentMock } from '@art-md/primitives/src/test/helpers';
 import { vi } from 'vitest';
 
-import type { DocumentVisitContext } from '../../../private';
+import type { DocumentVisitContext } from '../../../private/index.js';
 
 export const createDocumentVisitContextMock = (options?: {
 	markdown?: string;

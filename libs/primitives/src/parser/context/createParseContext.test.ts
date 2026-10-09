@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createParseContext } from './createParseContext';
+import { createParseContext } from './createParseContext.js';
 
 describe('createParseContext', () => {
 	it('GIVEN uri data, creates a parse context carrying the uri', () => {

@@ -1,10 +1,10 @@
 import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createNaturalBlockFromNodeMock } from '../../../../../test/helpers';
-import { createNaturalBlockFromNode } from '../helpers/createNaturalBlockFromNode';
+import { createNaturalBlockFromNodeMock } from '../../../../../test/helpers/index.js';
+import { createNaturalBlockFromNode } from '../helpers/createNaturalBlockFromNode.js';
 
-import { createNaturalBlockProcessor } from './createNaturalBlockProcessor';
+import { createNaturalBlockProcessor } from './createNaturalBlockProcessor.js';
 
 vi.mock('../helpers/createNaturalBlockFromNode', async () => {
 	return createNaturalBlockFromNodeMock();

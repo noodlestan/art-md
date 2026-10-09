@@ -4,9 +4,9 @@ import {
 	makeFieldInlineFixture,
 	makeNaturalExpressionFixture,
 	makeTagFixture,
-} from '../../../../test/helpers';
+} from '../../../../test/helpers/index.js';
 
-import { createFieldInline } from './createFieldInline';
+import { createFieldInline } from './createFieldInline.js';
 
 describe('createFieldInline', () => {
 	it('WHEN creating a FieldInline from minimal data', () => {

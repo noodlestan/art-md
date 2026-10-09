@@ -1,6 +1,6 @@
 import type { PartialArtCodecConfig } from '@art-md/codec';
 
-import type { LogVerbosity } from '../logger/types';
+import type { LogVerbosity } from '../logger/types.js';
 
 export type BinConfig = {
 	version: string;

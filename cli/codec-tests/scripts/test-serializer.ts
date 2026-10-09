@@ -1,10 +1,10 @@
 import * as path from 'node:path';
 
-import { diffFixtureResults } from './test/serializer/diffFixtureResults';
-import { parseSerializerArgs } from './test/serializer/parseSerializerArgs';
-import { serializeFixture } from './test/serializer/serializeFixture';
-import { getFixturePairs } from './test/shared/get-fixture-pairs';
-import { printSummary } from './test/shared/printSummary';
+import { diffFixtureResults } from './test/serializer/diffFixtureResults.js';
+import { parseSerializerArgs } from './test/serializer/parseSerializerArgs.js';
+import { serializeFixture } from './test/serializer/serializeFixture.js';
+import { getFixturePairs } from './test/shared/get-fixture-pairs.js';
+import { printSummary } from './test/shared/printSummary.js';
 
 const { doWriteDebug, filterFixture, fixturesDir } = parseSerializerArgs();
 

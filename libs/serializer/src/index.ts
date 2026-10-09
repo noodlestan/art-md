@@ -1,4 +1,4 @@
-export { createDefaultSerializerConfig } from './config';
-export { serialize } from './serializer';
+export { createDefaultSerializerConfig } from './config/index.js';
+export { serialize } from './serializer/index.js';
 
-export type { SerializerConfig } from './config';
+export type { SerializerConfig } from './config/index.js';

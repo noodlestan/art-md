@@ -1,4 +1,4 @@
-import type { BinConfig, PartialBinConfig } from '../../../private/config/types';
+import type { BinConfig, PartialBinConfig } from '../../../private/config/types.js';
 
 const DEFAULT_CONFIG: BinConfig = {
 	version: '0.0.0-test',

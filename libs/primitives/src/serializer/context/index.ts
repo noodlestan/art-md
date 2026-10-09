@@ -1,3 +1,3 @@
-export { createSerializeContext } from './createSerializeContext';
+export { createSerializeContext } from './createSerializeContext.js';
 
-export type { SerializeContext, SerializerContextData } from './types';
+export type { SerializeContext, SerializerContextData } from './types.js';

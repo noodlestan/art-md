@@ -2,7 +2,7 @@ import type { SectionBlock } from '@art-md/constructs';
 import { createParseContext, createSerializeContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { createArtCodec } from './createArtCodec';
+import { createArtCodec } from './createArtCodec.js';
 
 describe('createArtCodec', () => {
 	it('WHEN parsing raw markdown returns a ParseResult', () => {

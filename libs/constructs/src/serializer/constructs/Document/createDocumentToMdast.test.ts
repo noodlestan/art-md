@@ -1,7 +1,7 @@
 import type { Heading, Text } from 'mdast';
 import { describe, expect, it } from 'vitest';
 
-import { createDocumentToMdast } from './createDocumentToMdast';
+import { createDocumentToMdast } from './createDocumentToMdast.js';
 
 describe('createDocumentToMdast', () => {
 	it('WHEN wrapping children in a root node', () => {

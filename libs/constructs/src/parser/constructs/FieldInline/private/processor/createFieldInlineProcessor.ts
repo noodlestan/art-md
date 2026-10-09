@@ -1,8 +1,8 @@
 import type { Paragraph } from 'mdast';
 
-import { isFieldStrong } from '../../../../fields';
-import type { ConstructProcessor } from '../../../../types';
-import { createFieldInlineFromNode } from '../helpers/createFieldInlineFromNode';
+import { isFieldStrong } from '../../../../fields/index.js';
+import type { ConstructProcessor } from '../../../../types.js';
+import { createFieldInlineFromNode } from '../helpers/createFieldInlineFromNode.js';
 
 export function createFieldInlineProcessor(): ConstructProcessor {
 	return {

@@ -1,6 +1,6 @@
-import type { FieldBlock } from '../types';
+import type { FieldBlock } from '../types.js';
 
-import type { FieldBlockFactoryData } from './types';
+import type { FieldBlockFactoryData } from './types.js';
 
 export function createFieldBlock(data: FieldBlockFactoryData): FieldBlock {
 	const field: FieldBlock = {

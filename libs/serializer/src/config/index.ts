@@ -1,3 +1,3 @@
-export { createDefaultSerializerConfig } from './createDefaultSerializerConfig';
+export { createDefaultSerializerConfig } from './createDefaultSerializerConfig.js';
 
-export type { SerializerConfig } from './types';
+export type { SerializerConfig } from './types.js';

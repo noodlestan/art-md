@@ -1,1 +1,1 @@
-export { extractTags } from './extractTags';
+export { extractTags } from './extractTags.js';

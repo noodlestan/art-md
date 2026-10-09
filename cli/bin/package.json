@@ -5,6 +5,7 @@
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },

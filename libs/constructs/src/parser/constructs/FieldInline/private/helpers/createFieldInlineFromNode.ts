@@ -2,13 +2,13 @@ import type { ParserVisitContext } from '@art-md/primitives';
 import { nodePosition } from '@art-md/primitives';
 import type { Paragraph, Strong } from 'mdast';
 
-import { type FieldInline, type Tag, createFieldInline } from '../../../../../factories';
-import { stripStrong } from '../../../../fields';
-import { rawSlice } from '../../../../mdast';
-import { createNaturalExpressionFromNode } from '../../../../naturalExpression';
-import { extractTags } from '../../../../tags';
+import { type FieldInline, type Tag, createFieldInline } from '../../../../../factories/index.js';
+import { stripStrong } from '../../../../fields/index.js';
+import { rawSlice } from '../../../../mdast/index.js';
+import { createNaturalExpressionFromNode } from '../../../../naturalExpression/index.js';
+import { extractTags } from '../../../../tags/index.js';
 
-import { trimFieldEdges } from './trimFieldEdges';
+import { trimFieldEdges } from './trimFieldEdges.js';
 
 export function createFieldInlineFromNode(
 	paragraph: Paragraph,

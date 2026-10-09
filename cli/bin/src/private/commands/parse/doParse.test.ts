@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { makeMarkdownStringFixture } from '../../../test/fixtures/makeMarkdownStringFixture';
-import { createCommandContextMock } from '../../../test/helpers/codec/createCommandContextMock';
-import { makeOperationPendingFixture } from '../../../test/helpers/operations/makeOperationPendingFixture';
-import { makeParseResultFixture } from '../../../test/helpers/parse/makeParseResultFixture';
+import { makeMarkdownStringFixture } from '../../../test/fixtures/makeMarkdownStringFixture.js';
+import { createCommandContextMock } from '../../../test/helpers/codec/createCommandContextMock.js';
+import { makeOperationPendingFixture } from '../../../test/helpers/operations/makeOperationPendingFixture.js';
+import { makeParseResultFixture } from '../../../test/helpers/parse/makeParseResultFixture.js';
 
-import { doParse } from './doParse';
+import { doParse } from './doParse.js';
 
 const FILE = 'document.art';
 const WRITE_TARGET = 'out/document.art';

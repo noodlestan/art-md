@@ -1,1 +1,1 @@
-export { createNaturalBlockToMdast } from './createNaturalBlockToMdast';
+export { createNaturalBlockToMdast } from './createNaturalBlockToMdast.js';

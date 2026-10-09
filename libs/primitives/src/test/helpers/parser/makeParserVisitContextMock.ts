@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 
-import { createParseContext } from '../../../parser/context';
-import type { ParserVisitContext } from '../../../parser/context/types';
-import { makeDocumentMock } from '../document/makeDocumentMock';
+import { createParseContext } from '../../../parser/context/index.js';
+import type { ParserVisitContext } from '../../../parser/context/types.js';
+import { makeDocumentMock } from '../document/makeDocumentMock.js';
 
 export const makeParserVisitContextMock = (options?: {
 	markdown?: string;

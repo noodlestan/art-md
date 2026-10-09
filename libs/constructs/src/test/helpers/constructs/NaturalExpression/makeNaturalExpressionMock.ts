@@ -2,7 +2,7 @@
  * @fixture NaturalExpression of factory`libs/constructs/src/constructs/NaturalExpression/private/factory/createNaturalExpression.ts`
  */
 
-import type { NaturalExpression } from '../../../../factories';
+import type { NaturalExpression } from '../../../../factories/index.js';
 
 export const makeNaturalExpressionMock = (options?: {
 	type?: string;

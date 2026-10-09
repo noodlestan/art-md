@@ -1,9 +1,9 @@
 import type { Node, RootContent } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 
-import type { SectionBlock } from '../../../factories';
-import { tagsToMdast } from '../../tags';
-import type { ConstructSerializer } from '../../types';
+import type { SectionBlock } from '../../../factories/index.js';
+import { tagsToMdast } from '../../tags/index.js';
+import type { ConstructSerializer } from '../../types.js';
 
 export function createSectionBlockToMdast(): ConstructSerializer {
 	return {

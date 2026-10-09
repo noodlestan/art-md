@@ -1,7 +1,7 @@
 import { nodePositionMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createArtDocumentFromNode } from './createArtDocumentFromNode';
+import { createArtDocumentFromNode } from './createArtDocumentFromNode.js';
 
 vi.mock('@art-md/primitives', async () => {
 	const actual = await import('@art-md/primitives');

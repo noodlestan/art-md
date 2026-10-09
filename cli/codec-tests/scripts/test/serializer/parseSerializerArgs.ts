@@ -1,7 +1,7 @@
-import { FIXTURES_DIR } from '../constants';
-import { getFilterFixtureArg } from '../shared/getFilterFixtureArg';
+import { FIXTURES_DIR } from '../constants.js';
+import { getFilterFixtureArg } from '../shared/getFilterFixtureArg.js';
 
-import type { SerializerCliArgs } from './types';
+import type { SerializerCliArgs } from './types.js';
 
 export function parseSerializerArgs(): SerializerCliArgs {
 	return {

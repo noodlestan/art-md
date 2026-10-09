@@ -1,6 +1,6 @@
-import type { OperationBase } from '../operations/types';
+import type { OperationBase } from '../operations/types.js';
 
-import { OUTCOME_GLYPHS } from './constants';
+import { OUTCOME_GLYPHS } from './constants.js';
 
 export function makeOperationLogLine(
 	op: OperationBase,

@@ -1,4 +1,4 @@
-import { type Tag, createTag } from '../../factories';
+import { type Tag, createTag } from '../../factories/index.js';
 
 const TRAILING_TAGS = /^(.*?)((?:\(#[\w-]+\)\s*)+)$/;
 const TAG = /\(#([\w-]+)\)/g;

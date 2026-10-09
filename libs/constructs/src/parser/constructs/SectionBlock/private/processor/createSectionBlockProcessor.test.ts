@@ -1,10 +1,10 @@
 import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createSectionBlockFromNodeMock } from '../../../../../test/helpers';
-import { createSectionBlockFromNode } from '../helpers/createSectionBlockFromNode';
+import { createSectionBlockFromNodeMock } from '../../../../../test/helpers/index.js';
+import { createSectionBlockFromNode } from '../helpers/createSectionBlockFromNode.js';
 
-import { createSectionBlockProcessor } from './createSectionBlockProcessor';
+import { createSectionBlockProcessor } from './createSectionBlockProcessor.js';
 
 vi.mock('../helpers/createSectionBlockFromNode', async () => {
 	return createSectionBlockFromNodeMock();

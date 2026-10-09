@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import type { ArtCodec } from '../codec/types';
-import { makeDocumentMock } from '../test/helpers/document/makeDocumentMock';
+import type { ArtCodec } from '../codec/types.js';
+import { makeDocumentMock } from '../test/helpers/document/makeDocumentMock.js';
 
-import { createArtDocumentSource } from './createArtDocumentSource';
-import type { ArtContentSource } from './types';
+import { createArtDocumentSource } from './createArtDocumentSource.js';
+import type { ArtContentSource } from './types.js';
 
 describe('createArtDocumentSource', () => {
 	it('GIVEN a codec and content source, reads and parses content lazily', async () => {

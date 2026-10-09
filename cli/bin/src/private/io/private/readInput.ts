@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 
-import { readStdin } from './readStdin';
+import { readStdin } from './readStdin.js';
 
 const STDIN_TARGET = '-';
 const ENCODING = 'utf8';

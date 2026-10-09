@@ -1,8 +1,8 @@
 import type { Node } from 'mdast';
 
-import type { FieldInline } from '../../../factories';
-import { tagsToMdast } from '../../tags';
-import type { ConstructSerializer } from '../../types';
+import type { FieldInline } from '../../../factories/index.js';
+import { tagsToMdast } from '../../tags/index.js';
+import type { ConstructSerializer } from '../../types.js';
 
 export function createFieldInlineToMdast(): ConstructSerializer {
 	return {

@@ -1,6 +1,6 @@
 import type { ContainerConstructBase } from '@art-md/primitives';
 
-import type { Tag } from '../Tag';
+import type { Tag } from '../Tag/index.js';
 
 export type NaturalBlock = ContainerConstructBase & {
 	construct: 'NaturalBlock';

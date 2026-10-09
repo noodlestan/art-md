@@ -1,1 +1,1 @@
-export { createNaturalExpressionToMdast } from './createNaturalExpressionToMdast';
+export { createNaturalExpressionToMdast } from './createNaturalExpressionToMdast.js';

@@ -1,9 +1,9 @@
 import { sectionDepth } from '@art-md/primitives';
 import type { Heading } from 'mdast';
 
-import type { SectionBlock } from '../../../../../factories';
-import type { ConstructIntegrator } from '../../../../types';
-import { findParentSection } from '../helpers/findParentSection';
+import type { SectionBlock } from '../../../../../factories/index.js';
+import type { ConstructIntegrator } from '../../../../types.js';
+import { findParentSection } from '../helpers/findParentSection.js';
 
 export function createSectionBlockIntegrator(): ConstructIntegrator {
 	return {

@@ -1,6 +1,6 @@
-import type { NaturalBlock } from '../types';
+import type { NaturalBlock } from '../types.js';
 
-import type { NaturalBlockFactoryData } from './types';
+import type { NaturalBlockFactoryData } from './types.js';
 
 export function createNaturalBlock(data: NaturalBlockFactoryData): NaturalBlock {
 	const block: NaturalBlock = {

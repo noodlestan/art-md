@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { nodePosition } from './nodePosition';
+import { nodePosition } from './nodePosition.js';
 
 describe('nodePosition', () => {
 	it('FOR a node with valid position returns the position', () => {

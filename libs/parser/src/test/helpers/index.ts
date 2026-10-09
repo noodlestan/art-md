@@ -1,1 +1,1 @@
-export { createDocumentVisitContextMock } from './document/createDocumentVisitContextMock';
+export { createDocumentVisitContextMock } from './document/createDocumentVisitContextMock.js';

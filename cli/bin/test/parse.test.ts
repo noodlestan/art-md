@@ -3,11 +3,11 @@ import { join } from 'node:path';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-import { makeArtDocumentJSONFixture } from '../src/test/fixtures/makeArtDocumentJSONFixture';
-import { makeMarkdownStringFixture } from '../src/test/fixtures/makeMarkdownStringFixture';
-import { makeTempDir } from '../src/test/helpers/makeTempDir';
+import { makeArtDocumentJSONFixture } from '../src/test/fixtures/makeArtDocumentJSONFixture.js';
+import { makeMarkdownStringFixture } from '../src/test/fixtures/makeMarkdownStringFixture.js';
+import { makeTempDir } from '../src/test/helpers/makeTempDir.js';
 
-import { spawnCli } from './helpers/spawnCli';
+import { spawnCli } from './helpers/spawnCli.js';
 
 const ENCODING = 'utf8';
 const MARKDOWN_NAME = 'document.art';

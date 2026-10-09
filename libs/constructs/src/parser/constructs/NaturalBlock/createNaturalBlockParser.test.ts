@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createNaturalBlockParser } from './createNaturalBlockParser';
+import { createNaturalBlockParser } from './createNaturalBlockParser.js';
 
 describe('createNaturalBlockParser', () => {
 	it('WHEN called returns a parser with NaturalBlock name, processor and factory', () => {

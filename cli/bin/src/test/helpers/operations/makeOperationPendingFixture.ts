@@ -1,4 +1,4 @@
-import type { OperationPending } from '../../../private/operations/types';
+import type { OperationPending } from '../../../private/operations/types.js';
 
 export function makeOperationPendingFixture(
 	overrides: Partial<OperationPending> & { uri?: string } = {},

@@ -1,1 +1,1 @@
-export { buildDocument } from './buildDocument';
+export { buildDocument } from './buildDocument.js';

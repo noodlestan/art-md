@@ -1,3 +1,3 @@
-export * from './context';
+export * from './context/index.js';
 
-export type * from './types';
+export type * from './types.js';

@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { stripStrongMock } from '../../test/helpers';
+import { stripStrongMock } from '../../test/helpers/index.js';
 
-import { isFieldStrong } from './isFieldStrong';
+import { isFieldStrong } from './isFieldStrong.js';
 
 vi.mock('./stripStrong', () => {
 	return stripStrongMock('Purpose:');

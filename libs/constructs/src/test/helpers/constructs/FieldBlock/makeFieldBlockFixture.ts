@@ -2,7 +2,7 @@
  * @fixture FieldBlock of factory`libs/constructs/src/constructs/FieldBlock/factory/createFieldBlock.ts`
  */
 
-import type { FieldBlock, Tag } from '../../../../factories';
+import type { FieldBlock, Tag } from '../../../../factories/index.js';
 
 export const makeFieldBlockFixture = (options?: {
 	name?: string;

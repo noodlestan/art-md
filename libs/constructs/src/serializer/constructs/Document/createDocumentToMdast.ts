@@ -1,6 +1,6 @@
 import type { Node } from 'mdast';
 
-import type { ConstructSerializer } from '../../types';
+import type { ConstructSerializer } from '../../types.js';
 
 export function createDocumentToMdast(): ConstructSerializer {
 	return {

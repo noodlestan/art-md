@@ -1,11 +1,11 @@
 import { Command } from 'commander';
 
-import type { BinConfig } from '../../../config/types';
-import { createParseCommand } from '../../commands/parse/createParseCommand';
-import { createSerializeCommand } from '../../commands/serialize/createSerializeCommand';
-import { addFileArgument } from '../../options/file/addFileArgument';
-import { addOutputOption } from '../../options/output/addOutputOption';
-import { addWriteOption } from '../../options/write/addWriteOption';
+import type { BinConfig } from '../../../config/types.js';
+import { createParseCommand } from '../../commands/parse/createParseCommand.js';
+import { createSerializeCommand } from '../../commands/serialize/createSerializeCommand.js';
+import { addFileArgument } from '../../options/file/addFileArgument.js';
+import { addOutputOption } from '../../options/output/addOutputOption.js';
+import { addWriteOption } from '../../options/write/addWriteOption.js';
 
 import {
 	PARSE_COMMAND_DESCRIPTION,
@@ -14,7 +14,7 @@ import {
 	PROGRAM_NAME,
 	SERIALIZE_COMMAND_DESCRIPTION,
 	SERIALIZE_COMMAND_NAME,
-} from './constants';
+} from './constants.js';
 
 export function buildCodecProgram(config: BinConfig): Command {
 	const program = new Command();

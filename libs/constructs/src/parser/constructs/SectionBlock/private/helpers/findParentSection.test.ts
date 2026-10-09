@@ -2,9 +2,12 @@ import type { ParserVisitContext } from '@art-md/primitives';
 import { makeDocumentMock, makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it } from 'vitest';
 
-import { makeFieldBlockFixture, makeSectionBlockFixture } from '../../../../../test/helpers';
+import {
+	makeFieldBlockFixture,
+	makeSectionBlockFixture,
+} from '../../../../../test/helpers/index.js';
 
-import { findParentSection } from './findParentSection';
+import { findParentSection } from './findParentSection.js';
 
 function makeContext(construct: ParserVisitContext['construct'], parent?: ParserVisitContext) {
 	return {

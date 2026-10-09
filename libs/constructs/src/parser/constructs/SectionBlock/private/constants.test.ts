@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { KIND_PATTERN } from './constants';
+import { KIND_PATTERN } from './constants.js';
 
 describe('KIND_PATTERN', () => {
 	it('WHEN matching a kind pattern', () => {

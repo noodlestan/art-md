@@ -2,10 +2,10 @@ import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers'
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createFieldInlineFromNodeMock } from '../../../../../test/helpers';
-import { createFieldInlineFromNode } from '../helpers/createFieldInlineFromNode';
+import { createFieldInlineFromNodeMock } from '../../../../../test/helpers/index.js';
+import { createFieldInlineFromNode } from '../helpers/createFieldInlineFromNode.js';
 
-import { createFieldInlineProcessor } from './createFieldInlineProcessor';
+import { createFieldInlineProcessor } from './createFieldInlineProcessor.js';
 
 vi.mock('../helpers/createFieldInlineFromNode', async () => {
 	return createFieldInlineFromNodeMock();

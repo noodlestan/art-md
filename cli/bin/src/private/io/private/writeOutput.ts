@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 
-import { writeStdout } from './writeStdout';
+import { writeStdout } from './writeStdout.js';
 
 const ENCODING = 'utf8';
 const LINE_ENDING = '\n';

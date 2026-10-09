@@ -1,2 +1,2 @@
-export * from './integrator/createSectionBlockIntegrator';
-export * from './processor/createSectionBlockProcessor';
+export * from './integrator/createSectionBlockIntegrator.js';
+export * from './processor/createSectionBlockProcessor.js';

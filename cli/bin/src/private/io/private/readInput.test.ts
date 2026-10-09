@@ -4,9 +4,9 @@ import { Readable } from 'node:stream';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { makeTempDir } from '../../../test/helpers/makeTempDir';
+import { makeTempDir } from '../../../test/helpers/makeTempDir.js';
 
-import { readInput } from './readInput';
+import { readInput } from './readInput.js';
 
 const ENCODING = 'utf8';
 const STDIN_TARGET = '-';

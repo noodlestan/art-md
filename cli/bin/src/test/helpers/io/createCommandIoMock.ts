@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import type { CommandIo } from '../../../private/io/types';
+import type { CommandIo } from '../../../private/io/types.js';
 
 export function createCommandIoMock(content = ''): CommandIo {
 	return {

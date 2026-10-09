@@ -1,4 +1,4 @@
-export { createNaturalExpression } from './factory/createNaturalExpression';
+export { createNaturalExpression } from './factory/createNaturalExpression.js';
 
-export type { NaturalExpression } from './types';
-export type { NaturalExpressionFactoryData } from './factory/types';
+export type { NaturalExpression } from './types.js';
+export type { NaturalExpressionFactoryData } from './factory/types.js';

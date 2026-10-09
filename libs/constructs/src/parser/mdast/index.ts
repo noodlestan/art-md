@@ -1,1 +1,1 @@
-export { rawSlice } from './rawSlice';
+export { rawSlice } from './rawSlice.js';

@@ -1,7 +1,7 @@
 import type { ParserVisitContext } from '@art-md/primitives';
 import type { Strong } from 'mdast';
 
-import { rawSlice } from '../mdast';
+import { rawSlice } from '../mdast/index.js';
 
 export function stripStrong(node: Strong, context: ParserVisitContext): string {
 	const raw = rawSlice(node, context);

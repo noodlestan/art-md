@@ -1,4 +1,4 @@
-export { createDefaultParserConfig } from './config';
-export { parse } from './parse/parse';
+export { createDefaultParserConfig } from './config/index.js';
+export { parse } from './parse/parse.js';
 
-export type { ParserConfig } from './config';
+export type { ParserConfig } from './config/index.js';

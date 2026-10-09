@@ -1,2 +1,2 @@
-export * from './integrator/createFieldBlockIntegrator';
-export * from './processor/createFieldBlockProcessor';
+export * from './integrator/createFieldBlockIntegrator.js';
+export * from './processor/createFieldBlockProcessor.js';

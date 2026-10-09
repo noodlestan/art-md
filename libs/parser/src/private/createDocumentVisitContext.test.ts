@@ -1,7 +1,7 @@
 import { createParseContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { createDocumentVisitContext } from './createDocumentVisitContext';
+import { createDocumentVisitContext } from './createDocumentVisitContext.js';
 
 describe('createDocumentVisitContext', () => {
 	it('WHEN creating a document context', async () => {

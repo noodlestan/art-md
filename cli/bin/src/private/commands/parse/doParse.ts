@@ -1,11 +1,11 @@
 import type { ParseResult } from '@art-md/primitives';
 
-import type { CommandContext } from '../../context/types';
-import { createOperationFailure } from '../../operations/createOperationFailure';
-import { createOperationSuccess } from '../../operations/createOperationSuccess';
-import { presentDocument } from '../../presentation/presentDocument';
+import type { CommandContext } from '../../context/types.js';
+import { createOperationFailure } from '../../operations/createOperationFailure.js';
+import { createOperationSuccess } from '../../operations/createOperationSuccess.js';
+import { presentDocument } from '../../presentation/presentDocument.js';
 
-import { createParseOperation } from './private/createParseOperation';
+import { createParseOperation } from './private/createParseOperation.js';
 
 const STDIN_URI = 'stdin';
 

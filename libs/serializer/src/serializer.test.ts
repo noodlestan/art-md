@@ -2,8 +2,8 @@ import type { FieldBlock, NaturalBlock, SectionBlock } from '@art-md/constructs'
 import { type ArtDocument, createSerializeContext } from '@art-md/primitives';
 import { describe, expect, it } from 'vitest';
 
-import { createDefaultSerializerConfig } from './config/createDefaultSerializerConfig';
-import { serialize } from './serializer';
+import { createDefaultSerializerConfig } from './config/createDefaultSerializerConfig.js';
+import { serialize } from './serializer/index.js';
 
 describe('serialize', () => {
 	it('throws on unknown construct', () => {

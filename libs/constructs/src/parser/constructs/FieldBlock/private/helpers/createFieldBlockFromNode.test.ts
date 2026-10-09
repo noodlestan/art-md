@@ -3,12 +3,12 @@ import type { Paragraph } from 'mdast';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createFieldBlock } from '../../../../../factories';
+import { createFieldBlock } from '../../../../../factories/index.js';
 
-import { createFieldBlockFromNode } from './createFieldBlockFromNode';
+import { createFieldBlockFromNode } from './createFieldBlockFromNode.js';
 
 vi.mock('../../../../../factories/constructs/FieldBlock/factory/createFieldBlock', async () => {
-	const { createFieldBlockMock } = await import('../../../../../test/helpers');
+	const { createFieldBlockMock } = await import('../../../../../test/helpers/index.js');
 	return createFieldBlockMock();
 });
 

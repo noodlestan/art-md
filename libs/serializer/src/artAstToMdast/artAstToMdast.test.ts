@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { artAstToMdast } from './artAstToMdast';
+import { artAstToMdast } from './artAstToMdast.js';
 
 describe('artAstToMdast', () => {
 	it('converts a document with a known construct', () => {

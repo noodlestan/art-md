@@ -1,4 +1,4 @@
-import type { OperationOutcome } from '../operations/types';
+import type { OperationOutcome } from '../operations/types.js';
 
 export const JSON_INDENT = 2;
 

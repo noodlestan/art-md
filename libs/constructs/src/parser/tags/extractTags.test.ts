@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { extractTags } from './extractTags';
+import { extractTags } from './extractTags.js';
 
 describe('extractTags', () => {
 	it('WHEN there are no tags returns empty tags and unmodified text', () => {

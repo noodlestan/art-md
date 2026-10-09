@@ -1,6 +1,6 @@
 import type { Root } from 'mdast';
 
-import type { ConstructBase, ContainerConstructBase } from '../../constructs';
+import type { ConstructBase, ContainerConstructBase } from '../../constructs/index.js';
 
 export type OnBeforeConstruct = (
 	construct: ConstructBase,

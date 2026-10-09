@@ -1,1 +1,1 @@
-export { createFieldInlineParser } from './createFieldInlineParser';
+export { createFieldInlineParser } from './createFieldInlineParser.js';

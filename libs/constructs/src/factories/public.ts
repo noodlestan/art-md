@@ -1,19 +1,19 @@
-import { createDocument } from './constructs/Document';
-import { createFieldBlock } from './constructs/FieldBlock';
-import { createFieldInline } from './constructs/FieldInline';
-import { createNaturalBlock } from './constructs/NaturalBlock';
-import { createNaturalExpression } from './constructs/NaturalExpression';
-import { createSectionBlock } from './constructs/SectionBlock';
-import { createTag } from './constructs/Tag';
+import { createDocument } from './constructs/Document/index.js';
+import { createFieldBlock } from './constructs/FieldBlock/index.js';
+import { createFieldInline } from './constructs/FieldInline/index.js';
+import { createNaturalBlock } from './constructs/NaturalBlock/index.js';
+import { createNaturalExpression } from './constructs/NaturalExpression/index.js';
+import { createSectionBlock } from './constructs/SectionBlock/index.js';
+import { createTag } from './constructs/Tag/index.js';
 
-export type { FieldBlock } from './constructs/FieldBlock';
-export type { FieldInline } from './constructs/FieldInline';
-export type { NaturalBlock } from './constructs/NaturalBlock';
-export type { NaturalExpression } from './constructs/NaturalExpression';
-export type { SectionBlock } from './constructs/SectionBlock';
-export type { Tag } from './constructs/Tag';
+export type { FieldBlock } from './constructs/FieldBlock/index.js';
+export type { FieldInline } from './constructs/FieldInline/index.js';
+export type { NaturalBlock } from './constructs/NaturalBlock/index.js';
+export type { NaturalExpression } from './constructs/NaturalExpression/index.js';
+export type { SectionBlock } from './constructs/SectionBlock/index.js';
+export type { Tag } from './constructs/Tag/index.js';
 
-export type * from './types';
+export type * from './types.js';
 
 export const FACTORIES = [
 	{

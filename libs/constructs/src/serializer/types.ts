@@ -1,6 +1,6 @@
 import type { Node } from 'mdast';
 
-import type { Construct } from '../factories';
+import type { Construct } from '../factories/index.js';
 
 export type ConstructSerializer = {
 	readonly name: string;

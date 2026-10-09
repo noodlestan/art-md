@@ -8,10 +8,10 @@ import {
 	type NaturalExpression,
 	type Tag,
 	createNaturalBlock,
-} from '../../../../../factories';
-import { rawSlice } from '../../../../mdast';
-import { createNaturalExpressionFromNode } from '../../../../naturalExpression';
-import { extractTags } from '../../../../tags';
+} from '../../../../../factories/index.js';
+import { rawSlice } from '../../../../mdast/index.js';
+import { createNaturalExpressionFromNode } from '../../../../naturalExpression/index.js';
+import { extractTags } from '../../../../tags/index.js';
 
 export function createNaturalBlockFromNode(node: Node, context: ParserVisitContext): NaturalBlock {
 	let children: (NaturalBlock | NaturalExpression)[] = [];

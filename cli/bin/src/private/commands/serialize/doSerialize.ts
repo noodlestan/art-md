@@ -1,10 +1,10 @@
 import type { ArtDocument, SerializeResult } from '@art-md/primitives';
 
-import type { CommandContext } from '../../context/types';
-import { createOperationFailure } from '../../operations/createOperationFailure';
-import { createOperationSuccess } from '../../operations/createOperationSuccess';
+import type { CommandContext } from '../../context/types.js';
+import { createOperationFailure } from '../../operations/createOperationFailure.js';
+import { createOperationSuccess } from '../../operations/createOperationSuccess.js';
 
-import { createSerializeOperation } from './private/createSerializeOperation';
+import { createSerializeOperation } from './private/createSerializeOperation.js';
 
 const STDIN_URI = 'stdin';
 

@@ -1,1 +1,1 @@
-export * from './processor/createFieldInlineProcessor';
+export * from './processor/createFieldInlineProcessor.js';

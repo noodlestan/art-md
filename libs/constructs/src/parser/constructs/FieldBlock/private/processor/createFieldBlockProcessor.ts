@@ -1,8 +1,8 @@
 import type { Paragraph } from 'mdast';
 
-import { isFieldStrong } from '../../../../fields';
-import type { ConstructProcessor } from '../../../../types';
-import { createFieldBlockFromNode } from '../helpers/createFieldBlockFromNode';
+import { isFieldStrong } from '../../../../fields/index.js';
+import type { ConstructProcessor } from '../../../../types.js';
+import { createFieldBlockFromNode } from '../helpers/createFieldBlockFromNode.js';
 
 export function createFieldBlockProcessor(): ConstructProcessor {
 	return {

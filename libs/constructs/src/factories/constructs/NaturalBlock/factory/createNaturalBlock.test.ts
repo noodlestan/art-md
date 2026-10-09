@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeNaturalBlockFixture, makeTagFixture } from '../../../../test/helpers';
+import { makeNaturalBlockFixture, makeTagFixture } from '../../../../test/helpers/index.js';
 
-import { createNaturalBlock } from './createNaturalBlock';
+import { createNaturalBlock } from './createNaturalBlock.js';
 
 describe('createNaturalBlock', () => {
 	it('WHEN creating a NaturalBlock from minimal data', () => {

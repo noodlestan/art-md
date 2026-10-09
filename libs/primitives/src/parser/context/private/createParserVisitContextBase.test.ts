@@ -1,9 +1,9 @@
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { describe, expect, it, vi } from 'vitest';
 
-import { makeDocumentMock } from '../../../test/helpers/document/makeDocumentMock';
+import { makeDocumentMock } from '../../../test/helpers/document/makeDocumentMock.js';
 
-import { createParserVisitContextBase } from './createParserVisitContextBase';
+import { createParserVisitContextBase } from './createParserVisitContextBase.js';
 
 describe('createParserVisitContext', () => {
 	it('GIVEN construct creates a context with the', () => {

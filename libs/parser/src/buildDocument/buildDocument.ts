@@ -9,8 +9,8 @@ import type { RootContent } from 'mdast';
 import type { Node } from 'unist';
 import { SKIP, visit } from 'unist-util-visit';
 
-import { isBlockType } from '../mdast';
-import type { DocumentVisitContext } from '../private';
+import { isBlockType } from '../mdast/index.js';
+import type { DocumentVisitContext } from '../private/index.js';
 
 type HandleResult = {
 	constructs: Construct[];

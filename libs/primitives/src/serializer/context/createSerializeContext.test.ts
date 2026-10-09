@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createSerializeContext } from './createSerializeContext';
+import { createSerializeContext } from './createSerializeContext.js';
 
 describe('createSerializeContext', () => {
 	it('GIVEN uri data, creates a serialize context carrying the uri', () => {

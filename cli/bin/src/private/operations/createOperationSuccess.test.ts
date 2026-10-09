@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { createParseOperation } from '../commands/parse/private/createParseOperation';
-import { createSerializeOperation } from '../commands/serialize/private/createSerializeOperation';
+import { createParseOperation } from '../commands/parse/private/createParseOperation.js';
+import { createSerializeOperation } from '../commands/serialize/private/createSerializeOperation.js';
 
-import { createOperationSuccess } from './createOperationSuccess';
+import { createOperationSuccess } from './createOperationSuccess.js';
 
 const URI = 'file:///tmp/document.art';
 

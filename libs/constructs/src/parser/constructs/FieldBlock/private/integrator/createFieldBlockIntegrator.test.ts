@@ -1,10 +1,10 @@
 import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers';
 import { describe, expect, it, vi } from 'vitest';
 
-import { makeFieldBlockFixture } from '../../../../../test/helpers';
-import { onBeforeConstruct } from '../helpers/onBeforeConstruct';
+import { makeFieldBlockFixture } from '../../../../../test/helpers/index.js';
+import { onBeforeConstruct } from '../helpers/onBeforeConstruct.js';
 
-import { createFieldBlockIntegrator } from './createFieldBlockIntegrator';
+import { createFieldBlockIntegrator } from './createFieldBlockIntegrator.js';
 
 describe('createFieldBlockIntegrator', () => {
 	it('WHEN integrating captures the construct and returns a child context', () => {

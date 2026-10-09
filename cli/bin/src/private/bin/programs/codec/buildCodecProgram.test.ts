@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { makeConfigFixture } from '../../../../test/helpers/config/makeConfigFixture';
+import { makeConfigFixture } from '../../../../test/helpers/config/makeConfigFixture.js';
 
-import { buildCodecProgram } from './buildCodecProgram';
+import { buildCodecProgram } from './buildCodecProgram.js';
 
 describe('buildCodecProgram', () => {
 	it('WHEN built from the injected config, reports that config version', () => {

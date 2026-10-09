@@ -1,7 +1,7 @@
 import { type ArtDocument, nodePosition } from '@art-md/primitives';
 import type { Node } from 'unist';
 
-import { createDocument } from '../../factories';
+import { createDocument } from '../../factories/index.js';
 
 export function createArtDocumentFromNode(root: Node): ArtDocument {
 	const document = createDocument({});

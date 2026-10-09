@@ -4,9 +4,9 @@ import {
 	makeNaturalBlockFixture,
 	makeSectionBlockFixture,
 	makeTagFixture,
-} from '../../../../test/helpers';
+} from '../../../../test/helpers/index.js';
 
-import { createSectionBlock } from './createSectionBlock';
+import { createSectionBlock } from './createSectionBlock.js';
 
 describe('createSectionBlock', () => {
 	it('WHEN creating a SectionBlock from minimal data', () => {

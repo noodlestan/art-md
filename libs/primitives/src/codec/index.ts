@@ -1,1 +1,1 @@
-export type { ArtCodec } from './types';
+export type { ArtCodec } from './types.js';

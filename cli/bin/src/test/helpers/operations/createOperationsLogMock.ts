@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import type { Operation, OperationsLog } from '../../../private/operations/createOperationsLog';
+import type { Operation, OperationsLog } from '../../../private/operations/createOperationsLog.js';
 
 export function createOperationsLogMock(): OperationsLog {
 	const operations: Operation[] = [];

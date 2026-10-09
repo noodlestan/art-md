@@ -2,7 +2,7 @@ import { createArtDocumentFromNode } from '@art-md/constructs';
 import { type ParseContext, createParserVisitContext } from '@art-md/primitives';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 
-import type { DocumentVisitContext } from './types';
+import type { DocumentVisitContext } from './types.js';
 
 export function createDocumentVisitContext(
 	markdown: string,

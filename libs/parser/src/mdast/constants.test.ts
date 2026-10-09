@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { BLOCK_TYPES } from './constants';
+import { BLOCK_TYPES } from './constants.js';
 
 describe('BLOCK_TYPES', () => {
 	it('WHEN checking expected block types contains', () => {

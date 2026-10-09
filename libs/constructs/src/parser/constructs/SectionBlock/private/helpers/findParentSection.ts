@@ -1,6 +1,6 @@
 import type { ParserVisitContext } from '@art-md/primitives';
 
-import type { SectionBlock } from '../../../../../factories';
+import type { SectionBlock } from '../../../../../factories/index.js';
 
 export function findParentSection(context: ParserVisitContext): SectionBlock | undefined {
 	let current: ParserVisitContext | undefined = context;

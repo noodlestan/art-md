@@ -1,4 +1,4 @@
-import type { LogMessage, LogVerbosity, LogWriter, LoggerAPI } from './types';
+import type { LogMessage, LogVerbosity, LogWriter, LoggerAPI } from './types.js';
 
 export function createLogger(write: LogWriter): LoggerAPI {
 	let mode: LogVerbosity | undefined;

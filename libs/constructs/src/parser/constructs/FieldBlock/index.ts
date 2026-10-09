@@ -1,1 +1,1 @@
-export { createFieldBlockParser } from './createFieldBlockParser';
+export { createFieldBlockParser } from './createFieldBlockParser.js';

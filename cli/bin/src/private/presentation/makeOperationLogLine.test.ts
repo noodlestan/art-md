@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { createParseOperation } from '../commands/parse/private/createParseOperation';
-import { createGenericOperation } from '../operations/createGenericOperation';
-import { createOperationSuccess } from '../operations/createOperationSuccess';
+import { createParseOperation } from '../commands/parse/private/createParseOperation.js';
+import { createGenericOperation } from '../operations/createGenericOperation.js';
+import { createOperationSuccess } from '../operations/createOperationSuccess.js';
 
-import { makeOperationLogLine } from './makeOperationLogLine';
+import { makeOperationLogLine } from './makeOperationLogLine.js';
 
 const URI = 'file:///tmp/document.art';
 

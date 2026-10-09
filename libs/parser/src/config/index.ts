@@ -1,3 +1,3 @@
-export { createDefaultParserConfig } from './createDefaultParserConfig';
+export { createDefaultParserConfig } from './createDefaultParserConfig.js';
 
-export type { ParserConfig } from './types';
+export type { ParserConfig } from './types.js';

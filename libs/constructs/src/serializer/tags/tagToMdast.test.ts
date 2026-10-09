@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { tagToMdast } from './tagToMdast';
+import { tagToMdast } from './tagToMdast.js';
 
 describe('tagToMdast', () => {
 	it('WHEN called returns a text node with the tag name', () => {

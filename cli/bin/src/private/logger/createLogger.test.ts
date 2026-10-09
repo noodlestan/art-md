@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { createLogger } from './createLogger';
-import type { LogWriter } from './types';
+import { createLogger } from './createLogger.js';
+import type { LogWriter } from './types.js';
 
 describe('createLogger', () => {
 	it('GIVEN messages logged before the output mode, buffers them', () => {

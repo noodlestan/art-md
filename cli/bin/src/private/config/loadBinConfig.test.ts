@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { loadBinConfig } from './loadBinConfig';
+import { loadBinConfig } from './loadBinConfig.js';
 
 describe('loadBinConfig', () => {
 	it('WHEN no overrides are given returns the package defaults', () => {

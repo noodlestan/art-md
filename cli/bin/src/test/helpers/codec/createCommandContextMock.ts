@@ -1,9 +1,9 @@
-import type { CommandContext } from '../../../private/context/types';
-import { makeConfigFixture } from '../config/makeConfigFixture';
-import { createCommandIoMock } from '../io/createCommandIoMock';
-import { createOperationsLogMock } from '../operations/createOperationsLogMock';
+import type { CommandContext } from '../../../private/context/types.js';
+import { makeConfigFixture } from '../config/makeConfigFixture.js';
+import { createCommandIoMock } from '../io/createCommandIoMock.js';
+import { createOperationsLogMock } from '../operations/createOperationsLogMock.js';
 
-import { makeCodecMock } from './makeCodecMock';
+import { makeCodecMock } from './makeCodecMock.js';
 
 export function createCommandContextMock(parts: Partial<CommandContext> = {}): CommandContext {
 	const config = parts.config ?? makeConfigFixture();

@@ -1,4 +1,4 @@
-import type { ConstructBase, ContainerConstructBase } from '../constructs';
+import type { ConstructBase, ContainerConstructBase } from '../constructs/index.js';
 
 /** Document — Container construct representing a document root */
 export type ArtDocument = ContainerConstructBase & {

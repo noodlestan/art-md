@@ -1,3 +1,3 @@
-export { createArtCodec } from './createArtCodec';
+export { createArtCodec } from './createArtCodec.js';
 
-export type { ArtCodecConfig, PartialArtCodecConfig } from './types';
+export type { ArtCodecConfig, PartialArtCodecConfig } from './types.js';

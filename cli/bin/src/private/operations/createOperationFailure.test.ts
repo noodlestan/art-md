@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { createParseOperation } from '../commands/parse/private/createParseOperation';
-import { createSerializeOperation } from '../commands/serialize/private/createSerializeOperation';
+import { createParseOperation } from '../commands/parse/private/createParseOperation.js';
+import { createSerializeOperation } from '../commands/serialize/private/createSerializeOperation.js';
 
-import { createGenericOperation } from './createGenericOperation';
-import { createOperationFailure } from './createOperationFailure';
+import { createGenericOperation } from './createGenericOperation.js';
+import { createOperationFailure } from './createOperationFailure.js';
 
 const URI = 'file:///tmp/document.art';
 

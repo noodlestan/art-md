@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { sectionDepth } from './sectionDepth';
+import { sectionDepth } from './sectionDepth.js';
 
 describe('sectionDepth', () => {
 	it('WHEN provided returns the depth', () => {

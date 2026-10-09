@@ -1,3 +1,3 @@
-export * from './factories/public';
-export * from './parser/public';
-export * from './serializer/public';
+export * from './factories/public.js';
+export * from './parser/public.js';
+export * from './serializer/public.js';

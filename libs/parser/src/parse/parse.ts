@@ -1,8 +1,8 @@
 import { type ParseContext, type ParseResult, createParseContext } from '@art-md/primitives';
 
-import { buildDocument } from '../buildDocument/buildDocument';
-import type { ParserConfig } from '../config';
-import { createDocumentVisitContext } from '../private';
+import { buildDocument } from '../buildDocument/buildDocument.js';
+import type { ParserConfig } from '../config/index.js';
+import { createDocumentVisitContext } from '../private/index.js';
 
 export function parse(markdown: string, config: ParserConfig): ParseResult;
 export function parse(context: ParseContext, markdown: string, config: ParserConfig): ParseResult;

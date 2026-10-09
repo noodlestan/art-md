@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { onBeforeConstruct } from './onBeforeConstruct';
+import { onBeforeConstruct } from './onBeforeConstruct.js';
 
 describe('onBeforeConstruct', () => {
 	it('FOR a non-boundary construct returns the same context', () => {

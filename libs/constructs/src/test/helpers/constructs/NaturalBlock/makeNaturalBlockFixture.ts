@@ -2,7 +2,7 @@
  * @fixture NaturalBlock of factory`libs/constructs/src/constructs/NaturalBlock/factory/createNaturalBlock.ts`
  */
 
-import type { NaturalBlock, Tag } from '../../../../factories';
+import type { NaturalBlock, Tag } from '../../../../factories/index.js';
 
 export const makeNaturalBlockFixture = (options?: {
 	value?: string;

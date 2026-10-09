@@ -1,9 +1,9 @@
 import type { Text } from 'mdast';
 import { describe, expect, it } from 'vitest';
 
-import { makeFieldBlockFixture, makeTagFixture } from '../../../test/helpers';
+import { makeFieldBlockFixture, makeTagFixture } from '../../../test/helpers/index.js';
 
-import { createFieldBlockToMdast } from './createFieldBlockToMdast';
+import { createFieldBlockToMdast } from './createFieldBlockToMdast.js';
 
 describe('createFieldBlockToMdast', () => {
 	it('WHEN converting a FieldBlock to a label paragraph', () => {
