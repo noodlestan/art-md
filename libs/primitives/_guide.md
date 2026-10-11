@@ -25,10 +25,10 @@ Records are co-located with the resources they describe in `_records/` directori
 
 ## Knowledge References
 
-This package maintains an architecture reference at `architecture/index.md`:
+This package maintains a knowledge reference at `knowledge/index.md`:
 
-- `architecture/api.md` — primitives API: base construct types, document and parser contracts, entry points.
-- `architecture/implementation.md` — primitives implementation: visit context mechanics, link-heavy.
+- `knowledge/api.md` — primitives API: base construct types, document and parser contracts, entry points.
+- `knowledge/implementation.md` — primitives implementation: visit context mechanics, link-heavy.
 
 ## Conventions
 

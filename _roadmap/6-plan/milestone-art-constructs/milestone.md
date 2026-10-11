@@ -88,7 +88,7 @@ Changes will typically involved:
 
 - `libs/constructs/src/constructs/` — new construct directories
 - `libs/constructs/src/registry.ts` — extend `ConstructMap`
-- `libs/constructs/architecture/*` — capture new examples and variants of construct. Eventually also applicable to `libs/primitives/`, `libs/parser`, and `libs/serializer` when planning uncovers changes required in these libraries as well.
+- `libs/constructs/knowledge/*` — capture new examples and variants of construct. Eventually also applicable to `libs/primitives/`, `libs/parser`, and `libs/serializer` when planning uncovers changes required in these libraries as well.
 
 ## Work
 

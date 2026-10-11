@@ -2,7 +2,7 @@
 
 > Host and manage the Art MD packages and tools, and their knowledge and planning artefacts.
 
-Monorepo containing the Art MD roadmap and backlogs, language spec, architecture knowledge, and library source code.
+Monorepo containing the Art MD roadmap and backlogs, language spec, knowledge, and library source code.
 
 Uses Workflow: Planning Work with one backlog per package, coordinating with Workflow: Roadmapping from one project-wide roadmap.
 
@@ -17,14 +17,14 @@ Agents SHOULD scan these files for relevant clarifications when faced with ambig
 ## Repository Layout
 
 ```
-_guide.md           — this file
-_backlog/           — plans, instructions, reports
-_records/           — project, repository, namespace, and license records
-_roadmap/           — project roadmap and architect briefing
-architecture/       — repository-level architecture documentation
-cli/                — CLI packages
-libs/               — library packages
-spec/               — the artificial language specification
+_guide.md      — this file
+_backlog/      — plans, instructions, reports
+_records/      — project, repository, namespace, and license records
+_roadmap/      — project roadmap and architect briefing
+knowledge/     — repository-level knowledge
+cli/           — CLI packages
+libs/          — library packages
+spec/          — the artificial language specification
 ```
 
 ## Projects
@@ -52,10 +52,10 @@ Records are co-located with the resources they describe in `_records/` directori
 
 ## Knowledge References
 
-This repository maintains architecture references at:
+This repository maintains knowledge references at:
 
-- `architecture/index.md` — Repository-level architecture index.
-- `cli/bin/architecture/index.md` — Art Work Cli architecture index.
+- `knowledge/index.md` — Repository-level knowledge index.
+- `cli/bin/knowledge/index.md` — Art Work Cli knowledge index.
 
 ## Conventions
 
@@ -119,4 +119,4 @@ When making changes to parser, serializer, or constructs packages, execute from 
 npm run test # runs test-parser and test-serializer against stable fixtures
 ```
 
-To learn how to debug failed tests, read `./architecture/design/art-md-fixture-tests.md`.
+To learn how to debug failed tests, read `./knowledge/design/art-md-fixture-tests.md`.

@@ -8,8 +8,8 @@ WIP tracker, structured like the session parking lot: **ACTIONABLE** (in progres
 
 ## PENDING
 
-- **Ops: Package Records Dependencies** — add `dependencies` back to package records, generate a dependencies.md file in architecture with graph of internal packages and list of external runtime deps.
-- **Routine: Architecture Files** — There is a draft for 3 different types os files in `architecture/_routines/draft-architecture-file.md` - abstract, deduplicate, compact and publish to `art-domains`. All useful routines (along with other architect tasks) to expose in a skill. Eventually, an abstract slice of reusable code, belongs in the knowledge domain.
+- **Ops: Package Records Dependencies** — add `dependencies` back to package records, generate a dependencies.md file in knowledge with graph of internal packages and list of external runtime deps.
+- **Routine: Knowledge Files** — There is a draft for 3 different types os files in `knowledge/_routines/draft-architecture-file.md` - abstract, deduplicate, compact and publish to `art-domains`. All useful routines (along with other architect tasks) to expose in a skill. Eventually, an abstract slice of reusable code, belongs in the knowledge domain.
 
 ## BLOCKERS
 

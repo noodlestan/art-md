@@ -14,7 +14,7 @@ Extends `ConstructBase` with a `children` array of `ConstructBase`. It is the sh
 
 ### ArtDocument
 
-The document root record. It is a `ContainerConstructBase` with `construct: 'Document'`. Produced by the parser, consumed by the serializer. Defined in `src/document/types.ts`. See [Constructs API → ArtDocument](../../constructs/architecture/api.md#artdocument).
+The document root record. It is a `ContainerConstructBase` with `construct: 'Document'`. Produced by the parser, consumed by the serializer. Defined in `src/document/types.ts`. See [Constructs API → ArtDocument](../../constructs/knowledge/api.md#artdocument).
 
 ### MdastNode
 
@@ -34,7 +34,7 @@ The read-only source surface passed to every visit: the mdast `tree` and the raw
 
 ### ParserVisitContext
 
-The window a construct parser sees during parsing: the active `construct`, the `source`, and the context mutation methods. Defined in `src/parser/context/types.ts`. See [Constructs Parsers → The ParserVisitContext](../../constructs/architecture/parsers.md#the-parservisitcontext).
+The window a construct parser sees during parsing: the active `construct`, the `source`, and the context mutation methods. Defined in `src/parser/context/types.ts`. See [Constructs Parsers → The ParserVisitContext](../../constructs/knowledge/parsers.md#the-parservisitcontext).
 
 ### OnBeforeConstruct
 
@@ -62,6 +62,6 @@ Returns the heading `depth` of a section, defaulting to `1`. Defined in `src/par
 
 The primitives types are consumed by:
 
-- **Constructs** — `ConstructBase` and `ContainerConstructBase` shape every construct record. See [Constructs API](../../constructs/architecture/api.md).
-- **Parser** — `MdastNode`, `Point`, `Position`, `ParserSource`, and `ParserVisitContext` drive detection and capture. See [Parser API](../../parser/architecture/api.md).
-- **Serializer** — the serializer consumes `ArtDocument` and the base construct types. See [Serializer API](../../serializer/architecture/api.md).
+- **Constructs** — `ConstructBase` and `ContainerConstructBase` shape every construct record. See [Constructs API](../../constructs/knowledge/api.md).
+- **Parser** — `MdastNode`, `Point`, `Position`, `ParserSource`, and `ParserVisitContext` drive detection and capture. See [Parser API](../../parser/knowledge/api.md).
+- **Serializer** — the serializer consumes `ArtDocument` and the base construct types. See [Serializer API](../../serializer/knowledge/api.md).

@@ -14,7 +14,7 @@ Agents SHOULD scan these files for definitions and resource locations when faced
 
 ```
 _records/           — package records
-architecture/       — architecture reference and decision records
+knowledge/          — knowledge reference and decision records
 build.config.mjs    — esbuild entry point configuration
 test/               — integration tests that spawn the built bundles in dist/
 src/                — source code
@@ -44,8 +44,8 @@ Update `_records/package.art` whenever the package's role, entry points, depende
 
 This package maintains:
 
-- An architecture reference at `architecture/index.md`.
-- Decision records at `architecture/adr`.
+- A knowledge reference at `knowledge/index.md`.
+- Decision records at `knowledge/adr`.
 
 ## Operating Instructions
 

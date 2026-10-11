@@ -25,7 +25,7 @@
 
 ### Documented
 
-- `architecture/api.md` updated with the new entry point signatures and the `SerializeResult` return contract.
+- `knowledge/api.md` updated with the new entry point signatures and the `SerializeResult` return contract.
 
 ## 0.0.1
 

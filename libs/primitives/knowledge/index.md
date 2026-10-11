@@ -1,4 +1,4 @@
-# Primitives Architecture
+# Knowledge: Primitives
 
 The `@art-md/primitives` package provides the base types and utilities the parser and serializer are built on.
 
@@ -23,8 +23,8 @@ src/
 
 ## Related Knowledge
 
-The primitives types are consumed by the sibling packages, each maintaining its own architecture reference:
+The primitives types are consumed by the sibling packages, each maintaining its own knowledge reference:
 
-- [Constructs Architecture](../../constructs/architecture/index.md)
-- [Parser Architecture](../../parser/architecture/index.md)
-- [Serializer Architecture](../../serializer/architecture/index.md)
+- [Constructs](../../constructs/knowledge/index.md)
+- [Parser](../../parser/knowledge/index.md)
+- [Serializer](../../serializer/knowledge/index.md)

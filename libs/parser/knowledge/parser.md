@@ -210,6 +210,6 @@ A leaf construct such as `FieldInline` has no integrator, so `integrate` capture
 ## See Also
 
 - [Parser API](api.md) — the parser config, entry point, and constructs overview.
-- [Constructs Architecture](../../constructs/architecture/index.md) — the three construct layers (factories, parsers, serializers) and their layout.
-- [Constructs API](../../constructs/architecture/api.md) — the contract types the parser drives detection through.
-- [Constructs Parsers](../../constructs/architecture/parsers.md) — the parser hooks (`ConstructProcessor`, `ConstructIntegrator`) and the scenarios each construct implements.
+- [Constructs Architecture](../../constructs/knowledge/index.md) — the three construct layers (factories, parsers, serializers) and their layout.
+- [Constructs API](../../constructs/knowledge/api.md) — the contract types the parser drives detection through.
+- [Constructs Parsers](../../constructs/knowledge/parsers.md) — the parser hooks (`ConstructProcessor`, `ConstructIntegrator`) and the scenarios each construct implements.

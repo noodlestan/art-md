@@ -13,5 +13,5 @@ The visit context is the mutable stack the parser drives construct detection and
 
 The mechanics are documented from two perspectives. This document does not reproduce them:
 
-- [Parser Implementation](../../parser/architecture/parser.md) — the builder perspective: how the context stack is mutated during the visit loop and integration.
-- [Constructs Parsers](../../constructs/architecture/parsers.md) — the construct perspective: how the processor and integrator hooks use the context.
+- [Parser Implementation](../../parser/knowledge/parser.md) — the builder perspective: how the context stack is mutated during the visit loop and integration.
+- [Constructs Parsers](../../constructs/knowledge/parsers.md) — the construct perspective: how the processor and integrator hooks use the context.

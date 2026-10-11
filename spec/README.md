@@ -42,7 +42,7 @@ The [constructs](../libs/constructs/README.md) package defines the concrete repr
 
 The implementation uses an open construct registry, allowing new language constructs to be introduced without redesigning the parser or serializer.
 
-See the [Architecture](../architecture/index.md) documentation for implementation principles, package responsibilities, component design, and testing.
+See the [knowledge index](../knowledge/index.md) for implementation principles, package responsibilities, component design, and testing.
 
 ## Work in Progress
 

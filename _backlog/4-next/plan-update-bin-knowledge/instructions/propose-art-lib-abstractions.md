@@ -48,9 +48,9 @@ Turn the duplication inventory into concrete, actionable proposals for the Art L
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$PROJECT/architecture/adr/art-md.md` (ADR) — Existing ADR style reference.
-::READ `$ART_WORK/cli/work/architecture/index.md` (Reference) — How the Art Work CLI organises its architecture reference set. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/architecture/commands.md` (Reference) — The Art Work command reference. Relevant for Implementing.
+::READ `$PROJECT/knowledge/adr/art-md.md` (ADR) — Existing ADR style reference.
+::READ `$ART_WORK/cli/work/knowledge/index.md` (Reference) — How the Art Work CLI organises its knowledge reference set. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/knowledge/commands.md` (Reference) — The Art Work command reference. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.

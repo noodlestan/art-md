@@ -48,7 +48,7 @@ Produce the evidence-backed inventory that makes `@art-lib` a creatable follow-u
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
 ::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source you compare against. Relevant for Refactoring.
-::READ `$PROJECT/architecture/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
+::READ `$PROJECT/knowledge/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -115,10 +115,10 @@ Recommend which units are genuinely shared, which stay project-specific, and the
 
 ### Step `3 / 4` — Record inventory in CLI ADR
 
-Create `$PROJECT/cli/bin/architecture/records/adr/cli.art`:
+Create `$PROJECT/cli/bin/knowledge/records/adr/cli.art`:
 
 - Record the `@art-lib` extraction inventory
-- Use the same terse, purposeful style as `$PROJECT/architecture/adr/art-md.md`
+- Use the same terse, purposeful style as `$PROJECT/knowledge/adr/art-md.md`
 - Include the recommended boundary and follow-up
 
 Raise `@art-lib` creation as a Follow Up on this plan and on the milestone.
@@ -143,5 +143,5 @@ docs(bin): record art-lib extraction inventory and follow-up
 
 - Verify that the commit has been executed with the correct message and not pushed.
 - Verify that `npm run ci` from the repository root passes.
-- Verify the CLI ADR exists at `$PROJECT/cli/bin/architecture/records/adr/cli.art` and cites the inventory.
+- Verify the CLI ADR exists at `$PROJECT/cli/bin/knowledge/records/adr/cli.art` and cites the inventory.
 - Report according to the "How to Report Back to the Delegator" instructions.

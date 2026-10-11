@@ -8,7 +8,7 @@ Art MD parser and serializer are construct-agnostic. They operate on a shared co
 
 ### Open Registry
 
-Constructs are registered via TypeScript declaration merging — no central enum or switch statement. New constructs augment `BlockConstructMap` or `InlineConstructMap` and are automatically discovered by the parser and serializer. See [Constructs API](../libs/constructs/architecture/api.md#registry).
+Constructs are registered via TypeScript declaration merging — no central enum or switch statement. New constructs augment `BlockConstructMap` or `InlineConstructMap` and are automatically discovered by the parser and serializer. See [Constructs API](../libs/constructs/knowledge/api.md#registry).
 
 ### Composition Over Hardcoding
 

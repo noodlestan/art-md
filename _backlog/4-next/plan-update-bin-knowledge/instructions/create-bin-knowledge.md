@@ -1,8 +1,8 @@
-# Instructions: `create-bin-architecture`
+# Instructions: `create-bin-knowledge`
 
 **Plan:** `update-bin-knowledge`
 
-**Iteration Id:** `create-bin-architecture`
+**Iteration Id:** `create-bin-knowledge`
 
 ## Before you Start
 
@@ -18,10 +18,10 @@ This section describes how to report back to the delegator after completing the 
 
 1. Summarise the current context, asking: are you reporting completion or a BLOCKER?
 2. Gather the evidence of changes made and outcomes achieved, or the blocker error details.
-3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-update-bin-knowledge/instructions/create-bin-architecture__report.md`. No separate delegation record is created.
+3. Use the `render-template` skill with the `.agents/domains/plans/templates/instructions-report.tart` to render your report and write it next to this instruction file: `plan-update-bin-knowledge/instructions/create-bin-knowledge__report.md`. No separate delegation record is created.
 4. If your prompt included a `DIRECTIVE FEEDBACK:` include the feedback sections in the rendered report.
 5. Generate the response and send it back to the delegator.
-6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `create-bin-architecture`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
+6. Keep the response terse per the Working Agreements: happy face + up to 3 bullet points (done `create-bin-knowledge`, created `{artefacts}`, thumbs up). The full trail lives in the report file; never repeat it in chat.
 
 ## Path Variables
 
@@ -37,21 +37,21 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 1. **This instructions file is self-contained.** Everything you need is in this file plus its mandatory reading — never rely on session memory, chat context, or details relayed by the user.
 2. **Your report is mandatory.** The rendered report file carries the full trail: evidence, changes, verification results, blockers, feedback. Your chat response is only a pointer to it.
-3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `create-bin-architecture`, created `{artefacts}`, thumbs up). If something goes horribly wrong, report the blocker instead of a summary.
+3. **User interaction is minimal.** The user relays this instructions file to the delegator and expects a light confirmation: a happy face and up to 3 bullet points — done `create-bin-knowledge`, created `{artefacts}`, thumbs up). If something goes horribly wrong, report the blocker instead of a summary.
 
 ## Goals
 
-Give the bin a complete, self-describing architecture reference set so everything known about it lives in one place.
+Give the bin a complete, self-describing knowledge reference set so everything known about it lives in one place.
 
 ## Mandatory Reading
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$PROJECT/architecture/index.md` (Reference) — The repository architecture index the bin reference must be linked from. Relevant for Implementing.
-::READ `$PROJECT/architecture/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
-::READ `$ART_WORK/cli/work/architecture/index.md` (Reference) — How the Art Work CLI organises its architecture reference set. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/architecture/commands.md` (Reference) — The Art Work command reference; the model for the bin's command documentation. Relevant for Implementing.
+::READ `$PROJECT/knowledge/index.md` (Reference) — The repository knowledge index the bin reference must be linked from. Relevant for Implementing.
+::READ `$PROJECT/knowledge/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
+::READ `$ART_WORK/cli/work/knowledge/index.md` (Reference) — How the Art Work CLI organises its knowledge reference set. Relevant for Implementing.
+::READ `$ART_WORK/cli/work/knowledge/commands.md` (Reference) — The Art Work command reference; the model for the bin's command documentation. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -120,62 +120,62 @@ npm run lint # prettier and eslint over all workspaces
 
 ## Changes
 
-- Step 1 / 8 — Create `architecture/index.md`
-- Step 2 / 8 — Create `architecture/entry-points.md`
-- Step 3 / 8 — Create `architecture/commands.md`
-- Step 4 / 8 — Create `architecture/operations.md`
-- Step 5 / 8 — Create `architecture/dependencies.md`
-- Step 6 / 8 — Create `architecture/records/adr/cli.art`
+- Step 1 / 8 — Create `knowledge/index.md`
+- Step 2 / 8 — Create `knowledge/entry-points.md`
+- Step 3 / 8 — Create `knowledge/commands.md`
+- Step 4 / 8 — Create `knowledge/operations.md`
+- Step 5 / 8 — Create `knowledge/dependencies.md`
+- Step 6 / 8 — Create `knowledge/records/adr/cli.art`
 - Step 7 / 8 — Update `_guide.md`
-- Step 8 / 8 — Commit `create-bin-architecture`
+- Step 8 / 8 — Commit `create-bin-knowledge`
 
 ## Steps
 
-### Step `1 / 8` — Create `architecture/index.md`
+### Step `1 / 8` — Create `knowledge/index.md`
 
-Create `$PROJECT/cli/bin/architecture/index.md`:
+Create `$PROJECT/cli/bin/knowledge/index.md`:
 
 - Reference index: what the bin is, the layering, the `src/` layout
 - Links to every document below
-- Follow the shape of `$ART_WORK/cli/work/architecture/index.md` and `$PROJECT/libs/parser/architecture/index.md`
+- Follow the shape of `$ART_WORK/cli/work/knowledge/index.md` and `$PROJECT/libs/parser/knowledge/index.md`
 
-### Step `2 / 8` — Create `architecture/entry-points.md`
+### Step `2 / 8` — Create `knowledge/entry-points.md`
 
-Create `$PROJECT/cli/bin/architecture/entry-points.md`:
+Create `$PROJECT/cli/bin/knowledge/entry-points.md`:
 
 - The three executables: `art-codec`, `art-parse`, `art-serialize`
 - The `src/bin/*.ts` → `dist/*.mjs` build mapping
 - What each executable registers: `art-parse` and `art-serialize` wire their operation onto the program itself, `art-codec` registers `parse` and `serialize`
 - The fact that the codec bin reuses the same command specs and defines no command logic of its own
 
-### Step `3 / 8` — Create `architecture/commands.md`
+### Step `3 / 8` — Create `knowledge/commands.md`
 
-Create `$PROJECT/cli/bin/architecture/commands.md`:
+Create `$PROJECT/cli/bin/knowledge/commands.md`:
 
 - Command reference: each command's name, arguments, options (`-o, --output <mode>`, `-w, --write <file>`)
 - Parse emits JSON on every run, every command writes its result to stdout and logs to stderr, and output is newline-terminated
 - Stdin handling via `-`
 - Worked invocations
 
-### Step `4 / 8` — Create `architecture/operations.md`
+### Step `4 / 8` — Create `knowledge/operations.md`
 
-Create `$PROJECT/cli/bin/architecture/operations.md`:
+Create `$PROJECT/cli/bin/knowledge/operations.md`:
 
 - Operation model: `OperationOutcome`, pending/success/failure types, operation factories
 - Logger's buffering and output modes
 - Log line format, including why the checkout columns of the Art Work log line are absent
 
-### Step `5 / 8` — Create `architecture/dependencies.md`
+### Step `5 / 8` — Create `knowledge/dependencies.md`
 
-Create `$PROJECT/cli/bin/architecture/dependencies.md`:
+Create `$PROJECT/cli/bin/knowledge/dependencies.md`:
 
 - Dependency direction: bin depends on `@art-md/codec` and `@art-md/primitives` and on `commander`
 - Codec depends on nothing in the bin
 - Bin owns its own file I/O and never becomes a `ContentSource`
 
-### Step `6 / 8` — Create `architecture/records/adr/cli.art`
+### Step `6 / 8` — Create `knowledge/records/adr/cli.art`
 
-Create `$PROJECT/cli/bin/architecture/records/adr/cli.art`:
+Create `$PROJECT/cli/bin/knowledge/records/adr/cli.art`:
 
 - Entry-point decision
 - Shared-builder decision
@@ -183,25 +183,25 @@ Create `$PROJECT/cli/bin/architecture/records/adr/cli.art`:
 - `dist/*.mjs` export decision
 - `package.json`-sourced version decision
 - `@art-lib` extraction inventory recorded by Plan: Consolidate Codec Bin
-- Use the same terse, purposeful style as `$PROJECT/architecture/adr/art-md.md`
+- Use the same terse, purposeful style as `$PROJECT/knowledge/adr/art-md.md`
 
 ### Step `7 / 8` — Update `_guide.md`
 
 Update `$PROJECT/cli/bin/_guide.md`:
 
-- Replace "This package does not maintain a dedicated architecture reference" with links to the new `architecture/` set
+- Replace "This package does not maintain a dedicated knowledge reference" with links to the new `knowledge/` set
 - Add the layout and the operating instructions for the commands
 
-### Step `8 / 8` — Commit `create-bin-architecture`
+### Step `8 / 8` — Commit `create-bin-knowledge`
 
-#### Commit: `create-bin-architecture`
+#### Commit: `create-bin-knowledge`
 
 **Policy:** NOPUSH — Agent should commit but not push, then proceed to the next step.
 
 **Message:**
 
 ```text
-arch(bin): add bin architecture reference set
+arch(bin): add bin knowledge reference set
 ```
 
 ---

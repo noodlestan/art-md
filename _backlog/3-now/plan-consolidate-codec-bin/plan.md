@@ -103,19 +103,19 @@ Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test 
 
 ### (Scope) Knowledge: Art Lib Extraction Inventory
 
-**Record:** `$PROJECT/cli/bin/architecture/records/adr/cli.art`
+**Record:** `$PROJECT/cli/bin/knowledge/records/adr/cli.art`
 
 **Role:** Records the similar modules, units, and equivalent infrastructure patterns and the proposed `@art-lib` boundary, so the follow-up libraries can be created without re-deriving the analysis.
 
 **Partial:**
 
-- `path` — `$PROJECT/cli/bin/architecture/`
+- `path` — `$PROJECT/cli/bin/knowledge/`
 
 **Changes:**
 
 - Produce an inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, recording the shape a shared API would take.
 - Recommend the `@art-lib` packages boundary — which units are genuinely shared, which stay project-specific, and the naming the shared API would use.
-- Record the inventory in `$PROJECT/cli/bin/architecture/records/adr/cli.art` and raise the `@art-lib` creation as a Follow Up on this plan and on the milestone; the package itself is not created here.
+- Record the inventory in `$PROJECT/cli/bin/knowledge/records/adr/cli.art` and raise the `@art-lib` creation as a Follow Up on this plan and on the milestone; the package itself is not created here.
 
 **Dependencies:**
 
@@ -231,7 +231,7 @@ refactor(bin): apply typescript conventions and collapse duplication
 - Build the inventory of the similar modules, units, files, and functions between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, even if not verbatim the same shape, and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies — for example the operations log and the logger.
 - Per unit, record what is shared, what diverges, and the shape a shared API would take.
 - Recommend the new `@art-lib` package boundaries: the units that are genuinely shared, the units that stay project-specific, and the naming the shared API would use.
-- Record the inventory in `$PROJECT/cli/bin/architecture/records/adr/cli.art` and raise creation of the new `@art-lib` packages as a Follow Up.
+- Record the inventory in `$PROJECT/cli/bin/knowledge/records/adr/cli.art` and raise creation of the new `@art-lib` packages as a Follow Up.
 
 **Dependencies:**
 
@@ -344,7 +344,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Knowledge to Update
 
-- `$PROJECT/cli/bin/architecture/records/adr/cli.art` — the `@art-lib` extraction inventory and recommended boundary.
+- `$PROJECT/cli/bin/knowledge/records/adr/cli.art` — the `@art-lib` extraction inventory and recommended boundary.
 
 ### Follow Ups
 

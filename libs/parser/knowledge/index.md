@@ -1,4 +1,4 @@
-# Parser Architecture
+# Knowledge: Parser
 
 The `@art-md/parser` package transforms raw markdown into an `ArtDocument`.
 

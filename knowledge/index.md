@@ -1,4 +1,4 @@
-# Architecture: Art MD
+# Knowledge: Art MD
 
 ## Documents
 
@@ -24,11 +24,11 @@
 | [adr/language.md](adr/language.md)    | The art language: its purpose, scope, and syntax/semantics model                                     |
 | [adr/\_research.md](adr/_research.md) | Research behind the parse POC: surveyed projects, extracted best practices, and open spike questions |
 
-## Package Architecture References
+## Package Knowledge References
 
-| Package    | Architecture Index                                                                |
-| ---------- | --------------------------------------------------------------------------------- |
-| Constructs | [libs/constructs/architecture/index.md](../libs/constructs/architecture/index.md) |
-| Parser     | [libs/parser/architecture/index.md](../libs/parser/architecture/index.md)         |
-| Primitives | [libs/primitives/architecture/index.md](../libs/primitives/architecture/index.md) |
-| Serializer | [libs/serializer/architecture/index.md](../libs/serializer/architecture/index.md) |
+| Package    | Knowledge Index                                                             |
+| ---------- | --------------------------------------------------------------------------- |
+| Constructs | [libs/constructs/knowledge/index.md](../libs/constructs/knowledge/index.md) |
+| Parser     | [libs/parser/knowledge/index.md](../libs/parser/knowledge/index.md)         |
+| Primitives | [libs/primitives/knowledge/index.md](../libs/primitives/knowledge/index.md) |
+| Serializer | [libs/serializer/knowledge/index.md](../libs/serializer/knowledge/index.md) |

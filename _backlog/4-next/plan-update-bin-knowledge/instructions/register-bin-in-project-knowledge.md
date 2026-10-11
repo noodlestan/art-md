@@ -40,16 +40,16 @@ The plan workflow (see the entry point guide → Planning Workflow → Working T
 
 ## Goals
 
-List and describe the bin properly in the project's records, README, guide, and architecture documents.
+List and describe the bin properly in the project's records, README, guide, and knowledge documents.
 
 ## Mandatory Reading
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
-::READ `$PROJECT/architecture/components.md` (Reference) — The components document with the duplicate and stale bin entries. Relevant for Implementing.
-::READ `$PROJECT/architecture/overview.md` (Reference) — The ecosystem overview the CLI plugs into. Relevant for Implementing.
-::READ `$PROJECT/architecture/index.md` (Reference) — The repository architecture index. Relevant for Implementing.
+::READ `$PROJECT/knowledge/components.md` (Reference) — The components document with the duplicate and stale bin entries. Relevant for Implementing.
+::READ `$PROJECT/knowledge/overview.md` (Reference) — The ecosystem overview the CLI plugs into. Relevant for Implementing.
+::READ `$PROJECT/knowledge/index.md` (Reference) — The repository knowledge index. Relevant for Implementing.
 ::READ `$PROJECT/README.md` (Reference) — The packages table the bin row must describe. Relevant for Implementing.
 ::READ `$PROJECT/_records/project.art` (Reference) — The project record already listing `Package: Bin`. Relevant for Implementing.
 
@@ -120,40 +120,40 @@ npm run lint # prettier and eslint over all workspaces
 
 ## Changes
 
-- Step 1 / 7 — Update `architecture/components.md`
-- Step 2 / 7 — Update `architecture/overview.md`
-- Step 3 / 7 — Update `architecture/index.md`
-- Step 4 / 7 — Update `architecture/design/codec.md`
+- Step 1 / 7 — Update `knowledge/components.md`
+- Step 2 / 7 — Update `knowledge/overview.md`
+- Step 3 / 7 — Update `knowledge/index.md`
+- Step 4 / 7 — Update `knowledge/design/codec.md`
 - Step 5 / 7 — Update `README.md`
 - Step 6 / 7 — Update `_guide.md`
 - Step 7 / 7 — Commit `register-bin-in-project-knowledge`
 
 ## Steps
 
-### Step `1 / 7` — Update `architecture/components.md`
+### Step `1 / 7` — Update `knowledge/components.md`
 
-Update `$PROJECT/architecture/components.md`:
+Update `$PROJECT/knowledge/components.md`:
 
 - Collapse the duplicate bin entries into one `IMPLEMENTED` entry under "CLI Surface" describing the three entry points
 - Delete the stale planned-package naming (`art-md-parser`, `art-md-serializer`, `art-md-validator`, and the `art-md` consolidated entry with `--write`)
 - Keep the `Validator` entry, which is genuinely still planned
 
-### Step `2 / 7` — Update `architecture/overview.md`
+### Step `2 / 7` — Update `knowledge/overview.md`
 
-Update `$PROJECT/architecture/overview.md`:
+Update `$PROJECT/knowledge/overview.md`:
 
 - Place the bin in the ecosystem as a thin consumer of `@art-md/codec` that owns its own file I/O
 
-### Step `3 / 7` — Update `architecture/index.md`
+### Step `3 / 7` — Update `knowledge/index.md`
 
-Update `$PROJECT/architecture/index.md`:
+Update `$PROJECT/knowledge/index.md`:
 
-- Add the `Bin` row to the Package Architecture References table, linking `../cli/bin/architecture/index.md`
+- Add the `Bin` row to the Package References table, linking `../cli/bin/knowledge/index.md`
 - Correct the `overview.md` description
 
-### Step `4 / 7` — Update `architecture/design/codec.md`
+### Step `4 / 7` — Update `knowledge/design/codec.md`
 
-Ensure `$PROJECT/architecture/design/codec.md`:
+Ensure `$PROJECT/knowledge/design/codec.md`:
 
 - States the codec's I/O-free boundary
 - Points at the bin as its consumer
@@ -170,7 +170,7 @@ Update `$PROJECT/README.md`:
 Update `$PROJECT/_guide.md`:
 
 - Expand the `Bin` row of the Projects table so it is described rather than merely named
-- Add the bin's architecture reference to the Knowledge References list
+- Add the bin's knowledge reference to the Knowledge References list
 
 ### Step `7 / 7` — Commit `register-bin-in-project-knowledge`
 
@@ -181,7 +181,7 @@ Update `$PROJECT/_guide.md`:
 **Message:**
 
 ```text
-docs(bin): register bin in project records, guides, and architecture
+docs(bin): register bin in project records, guides, and knowledge
 ```
 
 ---

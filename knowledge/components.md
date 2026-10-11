@@ -14,7 +14,7 @@ Components are organised into core libraries (libs/) and CLI tools (cli/).
 
 Provides the base types and utilities the ecosystem is built on: the document contract (`ArtDocument`, `ConstructBase`, `ContainerConstructBase`), the mdast and position types (`MdastNode`, `Point`, `Position`), and the parser visit context (`ParserVisitContext`, `ParserSource`) with its helpers (`nodePosition`, `sectionDepth`). No internal dependencies — all other libs consume it.
 
-**Read more:** [Primitives Architecture](../libs/primitives/architecture/index.md)
+**Read more:** [Primitives Architecture](../libs/primitives/knowledge/index.md)
 
 ### Constructs (`@art-md/constructs`)
 
@@ -25,7 +25,7 @@ The contract layer of the ecosystem: it binds the parser and serializer. It owns
 - Open registry: `BlockConstructMap`, `InlineConstructMap` (augmented via declaration merging)
 - Concrete constructs: `FieldBlock`, `FieldInline`, `SectionBlock`, `Tag`, `NaturalBlock`, `NaturalExpression`
 
-**Read more:** [Constructs Architecture](../libs/constructs/architecture/index.md)
+**Read more:** [Constructs Architecture](../libs/constructs/knowledge/index.md)
 
 ### Parser (`@art-md/parser`)
 
@@ -36,7 +36,7 @@ Transforms markdown into an `ArtDocument` via a generic dispatch loop. Construct
 - Dispatch: processors in order → `NaturalBlock` fallback
 - Context: `ParserVisitContext` stack for nested constructs
 
-**Read more:** [Parser Architecture](../libs/parser/architecture/index.md)
+**Read more:** [Parser Architecture](../libs/parser/knowledge/index.md)
 
 ### Serializer (`@art-md/serializer`)
 
@@ -47,7 +47,7 @@ Transforms an `ArtDocument` back into markdown. Builds a registry from config fa
 - Registry: `Map<string, ConstructSerializer>` keyed by construct name
 - Sibling placement: block constructs (`SectionBlock`, `FieldBlock`) emit children as siblings
 
-**Read more:** [Serializer Architecture](../libs/serializer/architecture/index.md)
+**Read more:** [Serializer Architecture](../libs/serializer/knowledge/index.md)
 
 ### Codec (`@art-md/codec`)
 

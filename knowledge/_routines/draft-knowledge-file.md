@@ -1,10 +1,10 @@
-# Draft Architecture File
+# Draft Knowledge File
 
-**Purpose:** Define the routine used to draft an architecture document before writing it.
+**Purpose:** Define the routine used to draft an knowledge document before writing it.
 
-## Routine: Create Architecture Document
+## Routine: Create Knowledge Document
 
-**Purpose:** Define the purpose, audience, use cases, content rules, and outline for an architecture document before writing it.
+**Purpose:** Define the purpose, audience, use cases, content rules, and outline for an knowledge document before writing it.
 
 **Description:** Produces a briefing that captures what the document should achieve, who it is for, what to include and exclude, how to describe concepts (summary vs detail, example vs enumeration), whether to quote code, and a draft outline. This briefing is then used by the API or Implementation routine to guide content creation.
 
@@ -30,14 +30,14 @@
 6. From `briefing`, define the **draft outline** — the section structure the document should follow.
 7. From `briefing`, define **code quoting rules** — whether to quote source code, and if so, which parts (signatures, core loops, private modules).
 8. From `briefing`, define **example rules** — whether to use examples, how detailed they should be, and what purpose they serve.
-   - Example: "Super short examples — detailed patterns live in constructs/architecture/implementation.md" vs "Extensive examples — each distinct pattern needs a concrete illustration".
+   - Example: "Super short examples — detailed patterns live in constructs/knowledge/implementation.md" vs "Extensive examples — each distinct pattern needs a concrete illustration".
 9. Return the briefing as a structured document definition.
 
 ---
 
 ## Routine: Create API Document
 
-**Purpose:** Create an `architecture/api.md` file describing the external surface of a package or module.
+**Purpose:** Create an `knowledge/api.md` file describing the external surface of a package or module.
 
 **Description:** Writes an API document that covers config shapes, public interfaces, entry point signatures, and contract references to dependent packages. Does not describe internal mechanics.
 
@@ -50,7 +50,7 @@
 
 **Procedure:**
 
-1. Execute the **Routine: Create Architecture Document** with `briefing` and `location` to define the purpose, description, outline, and content rules.
+1. Execute the **Routine: Create Knowledge Document** with `briefing` and `location` to define the purpose, description, outline, and content rules.
 2. Write the H1 title — `{Package/Module} API` — followed by a one-sentence purpose statement.
    - If the package is construct-agnostic, state that explicitly and link to the contract package's `api.md`.
 3. Write the **config section(s)** — show each config interface, explain each field's purpose, and describe how it affects behaviour.
@@ -65,7 +65,7 @@
 
 ## Routine: Create Implementation Document
 
-**Purpose:** Create an `architecture/implementation.md` file describing how a package or module internals are implemented in relation to its use cases and API surface.
+**Purpose:** Create an `knowledge/implementation.md` file describing how a package or module internals are implemented in relation to its use cases and API surface.
 
 **Description:** Writes an implementation document that covers step-by-step algorithms, context management, messaging patterns, error handling, and concrete examples from existing implementations. Does not describe config shapes or public interfaces.
 
@@ -78,7 +78,7 @@
 
 **Procedure:**
 
-1. Execute the **Routine: Create Architecture Document** with `briefing` and `location` to define the purpose, description, outline, and content rules.
+1. Execute the **Routine: Create Knowledge Document** with `briefing` and `location` to define the purpose, description, outline, and content rules.
 2. Write the H1 title — `{Package/Module} Implementation` — followed by a one-sentence purpose statement.
    - If this is a contract package (e.g. constructs), open with a note instructing future authors to add new examples when a novel pattern emerges.
 3. Write the **entry point section** — describe what the entry point does, step by step.
@@ -86,7 +86,7 @@
 4. Write the **core mechanism section(s)** — describe the dispatch loop, context stack, registry build, or other central mechanic.
    - Quote the relevant source code. Explain how each part works.
 5. Write the **hook pattern section(s)** — describe how each contract hook is exercised, with examples from existing constructs.
-   - Keep examples short if detailed patterns live in another file (e.g. `constructs/architecture/implementation.md`). Reference that file for full details.
+   - Keep examples short if detailed patterns live in another file (e.g. `constructs/knowledge/implementation.md`). Reference that file for full details.
    - Each distinct pattern should have at least one concrete example.
 6. Write the **edge case section(s)** — describe fallback paths, error handling, and boundary conditions.
 7. Review against the briefing's "what NOT to include" rules. Remove any config shapes, public interface descriptions, or ecosystem overview content.

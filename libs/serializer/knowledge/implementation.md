@@ -1,6 +1,6 @@
 # Serializer Implementation
 
-> **Adding new patterns:** This file documents how the serializer converts `ArtDocument` records back to mdast. When a new construct uses the serializer contract in a way not covered below, add a new example section. See [Constructs Implementation](../../constructs/architecture/serializers.md) for detailed construct-side `toMdast` examples.
+> **Adding new patterns:** This file documents how the serializer converts `ArtDocument` records back to mdast. When a new construct uses the serializer contract in a way not covered below, add a new example section. See [Constructs Implementation](../../constructs/knowledge/serializers.md) for detailed construct-side `toMdast` examples.
 
 ## Serializer Entry Point
 

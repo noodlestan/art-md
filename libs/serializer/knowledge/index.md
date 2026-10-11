@@ -1,4 +1,4 @@
-# Serializer Architecture
+# Knowledge: Serializer
 
 The `@art-md/serializer` package transforms an `ArtDocument` back into markdown.
 

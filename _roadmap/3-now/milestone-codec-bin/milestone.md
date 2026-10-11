@@ -10,7 +10,7 @@
 
 **Purpose:** Build the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`) so that parsing and serialising are exposed as consistent, composable command-line tools following the established Art Work CLI patterns.
 
-**Description:** Deliver the target CLI package (`@art-md/bin`) exposing three entry points — `bin/codec` (with `parse`/`serialize` commands), `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`; all three share the same commander builder utilities and the same `doParse`/`doSerialize` implementations, with the `codec` bin reimplementing nothing. The work is decomposed into four plans: scaffold the package, implement the commands, consolidate the duplicated CLI plumbing into an `@art-lib` follow-up, and capture everything about the bin in its own architecture reference set and in the project records, guides, and architecture.
+**Description:** Deliver the target CLI package (`@art-md/bin`) exposing three entry points — `bin/codec` (with `parse`/`serialize` commands), `bin/parse`, and `bin/serialize`, exported from `package.json` as `art-codec`, `art-parse`, and `art-serialize`; all three share the same commander builder utilities and the same `doParse`/`doSerialize` implementations, with the `codec` bin reimplementing nothing. The work is decomposed into four plans: scaffold the package, implement the commands, consolidate the duplicated CLI plumbing into an `@art-lib` follow-up, and capture everything about the bin in its own knowledge reference set and in the project records, guides, and knowledge.
 
 ## Mandatory Reading
 
@@ -47,12 +47,12 @@ This section describes the upstream sources, guides, knowledge, required skills,
 
 This section lists the upstream sources of work that influence the goals, scope, and constraints of this Milestone.
 
-| Kind         | Path                                                        | Role                                                          |
-| ------------ | ----------------------------------------------------------- | ------------------------------------------------------------- |
-| Milestone    | `$PROJECT/_roadmap/1-done/milestone-art-codec/milestone.md` | Delivered the `@art-md/codec` package and `createArtCodec()`. |
-| Architecture | `$PROJECT/architecture/components.md`                       | Planned packages: Bin (CLI).                                  |
-| Architecture | `$PROJECT/architecture/overview.md`                         | Ecosystem overview: parse and serialise directions.           |
-| ADR          | `$PROJECT/architecture/adr/art-md.md`                       | Adopted decisions on parser, serializer, and constructs.      |
+| Kind                  | Path                                                        | Role                                                          |
+| --------------------- | ----------------------------------------------------------- | ------------------------------------------------------------- |
+| Milestone             | `$PROJECT/_roadmap/1-done/milestone-art-codec/milestone.md` | Delivered the `@art-md/codec` package and `createArtCodec()`. |
+| Knowledge: Components | `$PROJECT/knowledge/components.md`                          | Planned packages: Bin (CLI).                                  |
+| Knowledge: Overview   | `$PROJECT/knowledge/overview.md`                            | Ecosystem overview: parse and serialise directions.           |
+| ADR                   | `$PROJECT/knowledge/adr/art-md.md`                          | Adopted decisions on parser, serializer, and constructs.      |
 
 ### Required Skills
 
@@ -133,7 +133,7 @@ Changes in the target CLI package in `$BUILD` (canonical name `@art-md/bin`): cr
 - Complete the package scaffold: dependencies, the three `bin` exports, the lint config, and the package records and docs.
 - Implement the shared commander builder utilities, the shared `doParse`/`doSerialize` operations, the operation log and logger, and the three entry points.
 - Add unit tests, mocks, and test helpers following the Art Work patterns, and drive coverage over the package's configured thresholds.
-- Write the bin's architecture reference set under `$BUILD/cli/bin/architecture/` and register the package in the project records, README, guide, and architecture.
+- Write the bin's architectureknowledge reference set under `$BUILD/cli/bin/knowledge/` and register the package in the project records, README, guide, and knowledge.
 
 **Dependencies:**
 
@@ -187,9 +187,9 @@ This section describes the ordered phases used to organise downstream work, iden
 
 ### Phase: 4 — Knowledge
 
-**Goal:** Capture everything about the bin in `bin/architecture/` and list and describe it properly across the project's records, guides, and architecture.
+**Goal:** Capture everything about the bin in `bin/knowledge/` and list and describe it properly across the project's records, guides, and knowledge.
 
-**Description:** Write the bin's architecture reference set (index, entry points, commands, operations, dependencies, CLI ADR), then register and describe the package in `$PROJECT/README.md`, `$PROJECT/_guide.md`, `_records/project.art`, and the repository `architecture/` documents, and close the milestone with its evidence and follow-ups recorded.
+**Description:** Write the bin's knowledge reference set (index, entry points, commands, operations, dependencies, CLI ADR), then register and describe the package in `$PROJECT/README.md`, `$PROJECT/_guide.md`, `_records/project.art`, and the repository `knowledge/` documents, and close the milestone with its evidence and follow-ups recorded.
 
 **Status:** `PLANNING`
 
@@ -282,7 +282,7 @@ npm run test # runs vitest against the CLI unit tests
 - **The CLI has no checkout concept** — the Art Work operation log lines carry repo and checkout columns; the codec CLI has neither, so `makeOperationLogLine` drops those columns rather than emitting placeholders.
 - **Workspace dependencies are pinned `*`** — sibling packages declare intra-workspace deps as `"@art-md/primitives": "*"`, and `commander` is not installed in the building checkout, so the first manifest change requires an `npm install` that rewrites `package-lock.json` before `npm ci` will pass.
 - **Coverage is enforced, not advisory** — `cli/bin/vitest.config.ts` already sets 90/90/90/75 thresholds, so the closing iteration closes gaps rather than raising a target.
-- **The bin is described twice, and one description is wrong** — `architecture/components.md` lists Bin under both "CLI Surface" and "Planned Packages", and the planned-packages text names `art-md-parser`, `art-md-serializer`, `art-md-validator`, and an `art-md` consolidated entry with `--write` — none of which were built.
+- **The bin is described twice, and one description is wrong** — `knowledge/components.md` lists Bin under both "CLI Surface" and "Planned Packages", and the planned-packages text names `art-md-parser`, `art-md-serializer`, `art-md-validator`, and an `art-md` consolidated entry with `--write` — none of which were built.
 
 ### Decisions
 
@@ -298,13 +298,13 @@ npm run test # runs vitest against the CLI unit tests
 
 Captured by Plan: Update Bin Knowledge.
 
-- **`cli/bin/architecture/`** — the bin's reference set: index, entry points, commands, operations, dependencies, and the CLI ADR.
-- **`architecture/components.md`** — collapse the duplicate bin entries into one `IMPLEMENTED` entry.
-- **`architecture/overview.md`** — place the bin in the ecosystem.
-- **`architecture/index.md`** — add the Bin package architecture reference.
+- **`cli/bin/knowledge/`** — the bin's reference set: index, entry points, commands, operations, dependencies, and the CLI ADR.
+- **`knowledge/components.md`** — collapse the duplicate bin entries into one `IMPLEMENTED` entry.
+- **`knowledge/overview.md`** — place the bin in the ecosystem.
+- **`knowledge/index.md`** — add the Bin package knowledge reference.
 - **`_records/project.art`** — verify the Bin package resource.
 - **`README.md`** — describe the bin and add a CLI usage section.
-- **`_guide.md`** — describe the Bin project and link its architecture reference.
+- **`_guide.md`** — describe the Bin project and link its knowledge reference.
 
 ### Follow Ups
 
