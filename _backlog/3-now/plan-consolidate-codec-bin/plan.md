@@ -134,7 +134,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 | Iteration / Instructions                                                               | Status  |
 | -------------------------------------------------------------------------------------- | ------- |
 | Iteration: Audit CLI Conventions `./instructions/audit-cli-conventions.md`             | `DONE`  |
-| Iteration: Apply CLI Conventions `./instructions/apply-cli-conventions.md`             | `READY` |
+| Iteration: Apply CLI Conventions `./instructions/apply-cli-conventions.md`             | `DONE`  |
 | Iteration: Identify Art Lib Extraction `./instructions/identify-art-lib-extraction.md` | `READY` |
 
 ### Iteration: Audit CLI Conventions
@@ -162,9 +162,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch   | Policy   | Hash      | Status      |
-| ----------------------- | -------------------------------- | -------- | --------- | ----------- |
-| `audit-cli-conventions` | Art MD / `$PROJECT` / `building` | `NOPUSH` | `4dd7979` | `COMMITTED` |
+| ID                      | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ----------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `audit-cli-conventions` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `4dd7979` | `COMMITTED` |
 
 ##### Commit: `audit-cli-conventions`
 
@@ -180,13 +180,15 @@ conventions(bin): Audit Typescript and Unit Test conventions
 
 **Id:** `apply-cli-conventions`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Refactor the audited deviations and collapse the duplication the implementation introduced, without changing behaviour.
 
 **Description:** Read the audit report, refactor the deviations it records, and collapse the internal duplication between the parallel `parse` and `serialize` paths.
 
 **Instructions:** `./instructions/apply-cli-conventions.md`
+
+**Report:** `./instructions/apply-cli-conventions__report.md`
 
 **Changes:**
 
@@ -200,9 +202,9 @@ conventions(bin): Audit Typescript and Unit Test conventions
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `apply-cli-conventions` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                      | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ----------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `apply-cli-conventions` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `7c5d15c` | `COMMITTED` |
 
 ##### Commit: `apply-cli-conventions`
 
@@ -239,9 +241,9 @@ refactor(bin): apply typescript conventions and collapse duplication
 
 #### Commits:
 
-| ID                            | Repository / Checkout / Branch   | Policy   | Hash  | Status     |
-| ----------------------------- | -------------------------------- | -------- | ----- | ---------- |
-| `identify-art-lib-extraction` | Art MD / `$PROJECT` / `building` | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                            | Repository / Checkout / Branch | Policy   | Hash  | Status     |
+| ----------------------------- | ------------------------------ | -------- | ----- | ---------- |
+| `identify-art-lib-extraction` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | (TBD) | `AUTHORED` |
 
 ##### Commit: `identify-art-lib-extraction`
 
@@ -259,7 +261,7 @@ docs(bin): record art-lib extraction inventory and follow-up
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Apply CLI Conventions.
+Delegate Iteration: Identify Art Lib Extraction.
 
 ### Blockers
 
@@ -331,10 +333,14 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 - Audit attachment `./plan__audit.md`: 79 files audited against 40 rules; ~215 deviation sites across 25 rules; 7 ambiguities flagged for decisions.
 - Commit `4dd7979` (NOPUSH) with `npm run ci` green on pre-commit hook.
+- Commit `7c5d15c` (NOPUSH, `main`) — 67 files, +529/−291; 121/121 tests (27 files); coverage 91.41/92.13/91.2/86.73 clears 90/90/90/75. Report `./instructions/apply-cli-conventions__report.md`.
+- Duplication collapsed: two command factories → one `createOperationCommand`; two `do*` bodies → one `runOperation`; option declaration trio → one `addCommandOptions`.
 
 ### Findings
 
-- None yet.
+- **`cli/bin` never ran coverage**: the `ci` script omitted it, so the 90% gate was unenforced; `test:ci` was absent (every sibling package has it). Added. At baseline three of four thresholds were failing (87.45/77.45/89.87/87.35) — worth wiring `test:ci` into the package `ci` or the turbo pipeline so regressions are caught.
+- **Remaining parallel structure** (deliberately not collapsed; candidates for the extraction inventory): `buildParseProgram` vs `buildSerializeProgram`, `createParseOperation` vs `createSerializeOperation`, and the load-config → build-program → parse sequence repeated across the three `bin/*.ts` entry scripts.
+- The audit's Filesystem table labels a rule **File as Function**, which does not exist in `@noodlestan/conventions-typescript`; the real rule is **Function Extraction**, which exempts closures — conflicting with two `createLogger` rows. One source should be corrected so the next audit does not re-decide.
 
 ### Decisions
 
