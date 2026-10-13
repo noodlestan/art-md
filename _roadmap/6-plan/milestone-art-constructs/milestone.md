@@ -82,7 +82,7 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 ## Items
 
-- `checkouts/art-md-planning/_backlog/6-plan/plan-ergonomic-factories-api/plan.md` (Plan: Ergonomic Factories API, `PLANNING`) — fix two serializer defects (SectionBlock kind-drop, a contract-Y break on the read→write path; inline list/entity values) and export the named construct factories for the records layer. Driven by `$ART_WORK`'s clone-command use case, whose five requirements are folded in as the acceptance case.
+- `checkouts/art-md-planning/_backlog/6-plan/plan-ergonomic-factories-api/plan.md` (Plan: Ergonomic Factories API, `PLANNING`) — fix inline-value serialization (list + entity defects) and export the named construct factories for the records layer. Driven by `$ART_WORK`'s clone-command use case, whose five requirements are folded in as the acceptance case.
 
 Changes will typically involved:
 
