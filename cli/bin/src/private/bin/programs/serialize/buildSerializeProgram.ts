@@ -2,9 +2,7 @@ import { Command } from 'commander';
 
 import type { BinConfig } from '../../../config/types.js';
 import { createSerializeCommand } from '../../commands/serialize/createSerializeCommand.js';
-import { addFileArgument } from '../../options/file/addFileArgument.js';
-import { addOutputOption } from '../../options/output/addOutputOption.js';
-import { addWriteOption } from '../../options/write/addWriteOption.js';
+import { addCommandOptions } from '../../options/addCommandOptions.js';
 
 import { PROGRAM_DESCRIPTION, PROGRAM_NAME } from './constants.js';
 
@@ -15,9 +13,7 @@ export function buildSerializeProgram(config: BinConfig): Command {
 	program.description(PROGRAM_DESCRIPTION);
 	program.version(config.version);
 
-	addOutputOption(program);
-	addFileArgument(program);
-	addWriteOption(program);
+	addCommandOptions(program);
 
 	program.action(createSerializeCommand(config));
 

@@ -1,11 +1,12 @@
-import { rm, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 import { makeArtDocumentJSONFixture } from '../src/test/fixtures/makeArtDocumentJSONFixture.js';
 import { makeMarkdownStringFixture } from '../src/test/fixtures/makeMarkdownStringFixture.js';
-import { makeTempDir } from '../src/test/helpers/makeTempDir.js';
+import { makeTempDir } from '../src/test/helpers/tempDirs/makeTempDir.js';
+import { removeTempDirs } from '../src/test/helpers/tempDirs/removeTempDirs.js';
 
 import { spawnCli } from './helpers/spawnCli.js';
 
@@ -29,8 +30,7 @@ describe('art-codec', () => {
 	});
 
 	afterAll(async () => {
-		const removals = tempDirs.splice(0).map(dir => rm(dir, { recursive: true, force: true }));
-		await Promise.all(removals);
+		await removeTempDirs(tempDirs);
 	});
 
 	it('WHEN asked for the version, prints the bin package version', async () => {

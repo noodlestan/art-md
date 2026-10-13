@@ -1,11 +1,11 @@
 export type LogVerbosity = 'quiet' | 'default' | 'verbose';
 
+export type LogLevel = 'log' | 'debug';
+
 export type LogMessage = {
 	level: LogLevel;
 	args: unknown[];
 };
-
-export type LogLevel = 'log' | 'debug';
 
 export type LogWriter = (message: LogMessage) => void;
 

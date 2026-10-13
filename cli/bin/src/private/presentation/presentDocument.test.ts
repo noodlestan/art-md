@@ -9,7 +9,7 @@ const codec = createArtCodec();
 const DOCUMENT: ArtDocument = codec.parse('# Title\n\nSome prose.').document;
 
 describe('presentDocument', () => {
-	it('returns the indented JSON document', () => {
+	it('WHEN presented, returns the indented JSON document', () => {
 		const presented = presentDocument(DOCUMENT);
 
 		expect(presented).toBe(JSON.stringify(DOCUMENT, null, 2));

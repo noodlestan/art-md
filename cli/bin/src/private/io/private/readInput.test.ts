@@ -1,10 +1,11 @@
-import { rm, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { Readable } from 'node:stream';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { makeTempDir } from '../../../test/helpers/makeTempDir.js';
+import { makeTempDir } from '../../../test/helpers/tempDirs/makeTempDir.js';
+import { removeTempDirs } from '../../../test/helpers/tempDirs/removeTempDirs.js';
 
 import { readInput } from './readInput.js';
 
@@ -21,8 +22,7 @@ describe('readInput', () => {
 	});
 
 	afterEach(async () => {
-		const removals = tempDirs.splice(0).map(dir => rm(dir, { recursive: true, force: true }));
-		await Promise.all(removals);
+		await removeTempDirs(tempDirs);
 	});
 
 	it('GIVEN a file path, returns the file content', async () => {

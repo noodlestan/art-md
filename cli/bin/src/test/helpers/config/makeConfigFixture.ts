@@ -6,6 +6,7 @@ const DEFAULT_CONFIG: BinConfig = {
 	codec: {},
 };
 
+/** @provides a BinConfig fixture with test defaults */
 export function makeConfigFixture(overrides: PartialBinConfig = {}): BinConfig {
 	return {
 		...DEFAULT_CONFIG,

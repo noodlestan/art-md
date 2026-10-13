@@ -1,5 +1,6 @@
 import type { OperationPending } from '../../../private/operations/types.js';
 
+/** @provides an OperationPending fixture with test defaults */
 export function makeOperationPendingFixture(
 	overrides: Partial<OperationPending> & { uri?: string } = {},
 ): OperationPending {

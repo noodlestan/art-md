@@ -10,7 +10,7 @@ export function makeOperationLogLine(
 
 	const milliseconds = op.timing();
 	const timing = standalone ? `(${milliseconds}ms)` : String(milliseconds);
-	const hasFinished = op.finishedTs !== undefined;
+	const finished = op.finishedTs !== undefined;
 
-	return [OUTCOME_GLYPHS[op.outcome], op.operation, op.message(), hasFinished ? timing : ''];
+	return [OUTCOME_GLYPHS[op.outcome], op.operation, op.message(), finished ? timing : ''];
 }

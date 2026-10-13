@@ -20,14 +20,18 @@ describe('loadBinConfig', () => {
 	});
 
 	it('GIVEN an output mode override, returns it instead of the default', () => {
-		const config = loadBinConfig({ output: { mode: 'verbose' } });
+		const config = loadBinConfig({
+			output: { mode: 'verbose' },
+		});
 
 		expect(config.output.mode).toBe('verbose');
 	});
 
 	it('GIVEN codec overrides, passes them through to the config', () => {
 		const parserConfig = { constructs: [] };
-		const config = loadBinConfig({ codec: { parserConfig } });
+		const config = loadBinConfig({
+			codec: { parserConfig },
+		});
 
 		expect(config.codec).toEqual({ parserConfig });
 	});

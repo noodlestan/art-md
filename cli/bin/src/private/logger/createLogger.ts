@@ -1,38 +1,21 @@
+import { flushMessages } from './private/flushMessages.js';
+import { shouldWrite } from './private/shouldWrite.js';
 import type { LogMessage, LogVerbosity, LogWriter, LoggerAPI } from './types.js';
 
 export function createLogger(write: LogWriter): LoggerAPI {
 	let mode: LogVerbosity | undefined;
-	const buffer: LogMessage[] = [];
-
-	function shouldWrite(message: LogMessage): boolean {
-		if (mode === 'quiet') {
-			return false;
-		}
-		if (mode === 'verbose') {
-			return true;
-		}
-		return message.level === 'log';
-	}
-
-	function flush(): void {
-		for (const message of buffer) {
-			if (shouldWrite(message)) {
-				write(message);
-			}
-		}
-		buffer.length = 0;
-	}
+	const bufferedMessages: LogMessage[] = [];
 
 	return {
 		log(...args: unknown[]): void {
 			const message = { level: 'log' as const, args };
 
 			if (mode === undefined) {
-				buffer.push(message);
+				bufferedMessages.push(message);
 				return;
 			}
 
-			if (shouldWrite(message)) {
+			if (shouldWrite(mode, message)) {
 				write(message);
 			}
 		},
@@ -41,11 +24,11 @@ export function createLogger(write: LogWriter): LoggerAPI {
 			const message = { level: 'debug' as const, args };
 
 			if (mode === undefined) {
-				buffer.push(message);
+				bufferedMessages.push(message);
 				return;
 			}
 
-			if (shouldWrite(message)) {
+			if (shouldWrite(mode, message)) {
 				write(message);
 			}
 		},
@@ -54,11 +37,11 @@ export function createLogger(write: LogWriter): LoggerAPI {
 			mode = newMode;
 
 			if (mode === 'verbose') {
-				flush();
+				flushMessages(bufferedMessages, mode, write);
 				return;
 			}
 
-			buffer.length = 0;
+			bufferedMessages.length = 0;
 		},
 	};
 }

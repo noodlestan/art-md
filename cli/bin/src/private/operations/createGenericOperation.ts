@@ -1,12 +1,11 @@
+import { formatData } from './private/formatData.js';
 import type { OperationPending } from './types.js';
 
-function formatData(data: unknown): string {
-	return data ? JSON.stringify(data) : '';
-}
-
 export function createGenericOperation(operation: string, data?: unknown): OperationPending {
+	const ts = new Date();
+
 	return {
-		ts: new Date(),
+		ts,
 		outcome: 'pending',
 		operation,
 		data,

@@ -1,36 +1,7 @@
+import { extractReason } from './private/extractReason.js';
+import { formatRawError } from './private/formatRawError.js';
+import { getFailureLabel } from './private/getFailureLabel.js';
 import type { OperationFailure, OperationPending } from './types.js';
-
-const FAILURE_LABELS: Record<string, string> = {
-	parse: 'ParseError',
-	serialize: 'SerializeError',
-};
-
-const DEFAULT_FAILURE_LABEL = 'OperationError';
-
-function formatRawError(raw: string): string {
-	const lines = raw
-		.split('\n')
-		.map(line => line.trim())
-		.filter(line => line.length > 0);
-	return lines.map(line => `  ${line}`).join('\n');
-}
-
-function extractReason(raw: string): string {
-	const reason = raw.match(/\(([^)]+)\)/)?.[1];
-	if (reason !== undefined) {
-		return reason;
-	}
-
-	const firstLine = raw.split('\n')[0]?.trim() ?? '';
-	if (firstLine.length === 0) {
-		return 'unknown error';
-	}
-	return firstLine;
-}
-
-function getFailureLabel(operation: string): string {
-	return FAILURE_LABELS[operation] ?? DEFAULT_FAILURE_LABEL;
-}
 
 export function createOperationFailure<T extends OperationPending>(
 	pending: T,
@@ -38,11 +9,12 @@ export function createOperationFailure<T extends OperationPending>(
 ): OperationFailure {
 	const rawError = error instanceof Error ? error.message : String(error);
 	const label = getFailureLabel(pending.operation);
+	const finishedTs = new Date();
 
 	return {
 		...pending,
 		outcome: 'failure',
-		finishedTs: new Date(),
+		finishedTs,
 		error: rawError,
 		message() {
 			return extractReason(this.error);

@@ -4,10 +4,12 @@ export function createOperationSuccess<T extends OperationPending>(
 	pending: T,
 	message?: string,
 ): OperationSuccess {
+	const finishedTs = new Date();
+
 	return {
 		...pending,
 		outcome: 'success',
-		finishedTs: new Date(),
+		finishedTs,
 		message: message ? () => message : pending.message,
 	};
 }

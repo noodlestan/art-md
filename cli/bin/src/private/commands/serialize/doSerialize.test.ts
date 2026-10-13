@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { makeArtDocumentJSONFixture } from '../../../test/fixtures/makeArtDocumentJSONFixture.js';
 import { makeMarkdownStringFixture } from '../../../test/fixtures/makeMarkdownStringFixture.js';
-import { createCommandContextMock } from '../../../test/helpers/codec/createCommandContextMock.js';
+import { createCommandContextMock } from '../../../test/helpers/context/createCommandContextMock.js';
 import { makeOperationPendingFixture } from '../../../test/helpers/operations/makeOperationPendingFixture.js';
 import { makeSerializeResultFixture } from '../../../test/helpers/serialize/makeSerializeResultFixture.js';
 

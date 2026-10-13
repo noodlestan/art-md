@@ -1,3 +1,4 @@
+/** @provides the JSON source of a parsed Art MD document used across the suite */
 const ART_DOCUMENT_JSON = {
 	construct: 'Document',
 	children: [

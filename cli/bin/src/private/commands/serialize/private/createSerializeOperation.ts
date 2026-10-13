@@ -1,8 +1,10 @@
 import type { SerializePending } from '../../../operations/types.js';
 
 export function createSerializeOperation(data: { uri: string }): SerializePending {
+	const ts = new Date();
+
 	return {
-		ts: new Date(),
+		ts,
 		outcome: 'pending',
 		operation: 'serialize',
 		uri: data.uri,

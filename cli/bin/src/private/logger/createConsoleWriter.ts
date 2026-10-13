@@ -1,9 +1,9 @@
-import type { LogWriter } from './types.js';
+import type { LogMessage, LogWriter } from './types.js';
 
 type ConsoleStream = 'stdout' | 'stderr';
 
 export function createConsoleWriter(stream: ConsoleStream): LogWriter {
-	return message => {
+	function writeMessage(message: LogMessage): void {
 		if (stream === 'stderr') {
 			console.error(...message.args);
 			return;
@@ -16,5 +16,7 @@ export function createConsoleWriter(stream: ConsoleStream): LogWriter {
 		}
 
 		console.info(...message.args);
-	};
+	}
+
+	return writeMessage;
 }

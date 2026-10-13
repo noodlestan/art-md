@@ -2,6 +2,7 @@ import { vi } from 'vitest';
 
 import type { LoggerAPI } from '../../../private/logger/types.js';
 
+/** @mocks LoggerAPI */
 export function createLoggerMock(): LoggerAPI {
 	return {
 		log: vi.fn<LoggerAPI['log']>(),

@@ -3,8 +3,6 @@ import { makeOperationLogLine } from '../presentation/makeOperationLogLine.js';
 
 import type { Operation, OperationsLog } from './types.js';
 
-export type { Operation, OperationsLog } from './types.js';
-
 export function createOperationsLog(logger: LoggerAPI): OperationsLog {
 	const operations: Operation[] = [];
 

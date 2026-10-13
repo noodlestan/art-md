@@ -2,7 +2,7 @@ import { createArtCodec } from '@art-md/codec';
 
 import type { BinConfig } from '../config/types.js';
 import { createCommandIo } from '../io/createCommandIo.js';
-import { type LoggerAPI } from '../logger/types.js';
+import type { LoggerAPI } from '../logger/types.js';
 import { createOperationsLog } from '../operations/createOperationsLog.js';
 
 import type { CommandContext } from './types.js';

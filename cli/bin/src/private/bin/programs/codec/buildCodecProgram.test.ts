@@ -22,9 +22,11 @@ describe('buildCodecProgram', () => {
 
 	it('WHEN built, registers the parse and serialize commands with their descriptions', () => {
 		const program = buildCodecProgram(makeConfigFixture());
-		const declared = program.commands.map(command => `${command.name()}: ${command.description()}`);
+		const declaredCommands = program.commands.map(
+			command => `${command.name()}: ${command.description()}`,
+		);
 
-		expect(declared).toEqual([
+		expect(declaredCommands).toEqual([
 			'parse: Parse an Art MD document from markdown.',
 			'serialize: Serialize an Art MD document into markdown.',
 		]);

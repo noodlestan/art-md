@@ -2,6 +2,7 @@ import { vi } from 'vitest';
 
 import type { CommandIo } from '../../../private/io/types.js';
 
+/** @mocks CommandIo */
 export function createCommandIoMock(content = ''): CommandIo {
 	return {
 		readInput: vi.fn<CommandIo['readInput']>().mockResolvedValue(content),

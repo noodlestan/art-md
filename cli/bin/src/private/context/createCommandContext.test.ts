@@ -26,7 +26,9 @@ vi.mock('../operations/createOperationsLog', () => ({
 
 describe('createCommandContext', () => {
 	it('WHEN created, returns the config it was given', () => {
-		const config = makeConfigFixture({ output: { mode: 'verbose' } });
+		const config = makeConfigFixture({
+			output: { mode: 'verbose' },
+		});
 
 		const ctx = createCommandContext(config, createLoggerMock());
 
@@ -36,7 +38,11 @@ describe('createCommandContext', () => {
 	it('WHEN created, composes the codec from the codec config', () => {
 		const codec = { parse: vi.fn(), serialize: vi.fn() };
 		mocks.createArtCodec.mockReturnValue(codec);
-		const config = makeConfigFixture({ codec: { parserConfig: { constructs: [] } } });
+		const config = makeConfigFixture({
+			codec: {
+				parserConfig: { constructs: [] },
+			},
+		});
 
 		const ctx = createCommandContext(config, createLoggerMock());
 

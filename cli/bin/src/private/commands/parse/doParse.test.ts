@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { makeMarkdownStringFixture } from '../../../test/fixtures/makeMarkdownStringFixture.js';
-import { createCommandContextMock } from '../../../test/helpers/codec/createCommandContextMock.js';
+import { createCommandContextMock } from '../../../test/helpers/context/createCommandContextMock.js';
 import { makeOperationPendingFixture } from '../../../test/helpers/operations/makeOperationPendingFixture.js';
 import { makeParseResultFixture } from '../../../test/helpers/parse/makeParseResultFixture.js';
 
