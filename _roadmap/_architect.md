@@ -22,12 +22,6 @@ Agents SHOULD scan these files for relevant clarifications when faced with ambig
 
 ## Knowledge to Update
 
-### Missing Architecture Docs/Sections:
-
-- Why
-- Use Cases
-- Vision
-- NFRs
-- Technical Debt
+- None.
 
 ## Follow Ups

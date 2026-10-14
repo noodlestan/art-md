@@ -5,6 +5,7 @@ WIP tracker, structured like the session parking lot: **ACTIONABLE** (in progres
 ## ACTIONABLE
 
 - **TagReference** — WIP in `expressions/tag.art`: backticked `#<identifier>` reference for use in instructions.
+- **Missing Architecture Docs/Sections** – In `knowledge/overview.md` add Why, Use Cases Vision, NFRs (or separate into own file leaving at the knowledge root if content of section longer than 25 lines)
 
 ## PENDING
 
