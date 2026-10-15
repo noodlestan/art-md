@@ -6,6 +6,8 @@
 
 Language specification and JavaScript libraries for extracting structured data into a MDAST derived AST, with an open construct registry. Provides parsing, validation, transformation, and serialization of Art MD content.
 
+**Keywords:** art, markdown, structured-data, language-spec, ast, parser, serializer, constructs.
+
 **Quick Links:**
 
 - [Demo and Docs](https://art-md.noodlestan.org)

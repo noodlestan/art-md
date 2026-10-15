@@ -18,6 +18,13 @@
 
 **Private:** `false`
 
+**Keywords:**
+
+- art
+- markdown
+- serializer
+- ast
+
 **Deployment:** NPM Package Deployment: Serializer
 
 **Files:**

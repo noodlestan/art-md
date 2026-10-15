@@ -2,6 +2,11 @@
   "name": "@art-md/primitives",
   "version": "0.0.3",
   "description": "Foundational types and utilities for Art modules.",
+  "keywords": [
+    "art",
+    "language",
+    "primitives"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

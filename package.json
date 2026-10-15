@@ -2,6 +2,16 @@
   "name": "noodlestan/art-md",
   "version": "0.0.1",
   "description": "Monorepo containing the Art MD roadmap and backlogs, language spec, knowledge, and library source code.",
+  "keywords": [
+    "art",
+    "markdown",
+    "structured-data",
+    "language-spec",
+    "ast",
+    "parser",
+    "serializer",
+    "constructs"
+  ],
   "author": "Noodlestan",
   "license": "MIT",
   "private": true,

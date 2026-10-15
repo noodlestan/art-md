@@ -2,6 +2,11 @@
   "name": "@art-md/constructs",
   "version": "0.0.3",
   "description": "Construct factories for Art parser records.",
+  "keywords": [
+    "art",
+    "constructs",
+    "parser"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

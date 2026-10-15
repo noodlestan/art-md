@@ -27,6 +27,17 @@
 - Package: Codec Tests
 - Package: Bin
 
+**Keywords:**
+
+- art
+- markdown
+- structured-data
+- language-spec
+- ast
+- parser
+- serializer
+- constructs
+
 **Private:** `false`
 
 **Management:** Uses Workflow: Planning Work with one backlog per package, coordinating with Workflow: Roadmapping from one project-wide roadmap.

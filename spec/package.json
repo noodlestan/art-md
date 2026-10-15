@@ -2,6 +2,11 @@
   "name": "@art-md/spec",
   "version": "0.0.1",
   "description": "The artificial language specification, written in art. Content package consumed by the parser, validator, and bundler packages.",
+  "keywords": [
+    "art",
+    "language-spec",
+    "specification"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

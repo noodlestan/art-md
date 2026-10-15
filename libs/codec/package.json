@@ -2,6 +2,11 @@
   "name": "@art-md/codec",
   "version": "0.0.2",
   "description": "Configurable Art MD codec: parse and serialize Art MD",
+  "keywords": [
+    "art",
+    "markdown",
+    "codec"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

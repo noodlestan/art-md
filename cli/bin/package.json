@@ -2,6 +2,11 @@
   "name": "@art-md/bin",
   "version": "0.0.1",
   "description": "CLI that exposes parser and serializer as commands.",
+  "keywords": [
+    "art",
+    "markdown",
+    "cli"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

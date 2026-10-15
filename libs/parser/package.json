@@ -2,6 +2,12 @@
   "name": "@art-md/parser",
   "version": "0.0.3",
   "description": "Parses context files and art modules into structured representations.",
+  "keywords": [
+    "art",
+    "markdown",
+    "parser",
+    "ast"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,

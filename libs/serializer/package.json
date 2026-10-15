@@ -2,6 +2,12 @@
   "name": "@art-md/serializer",
   "version": "0.0.3",
   "description": "Serializes Art AST back to markdown.",
+  "keywords": [
+    "art",
+    "markdown",
+    "serializer",
+    "ast"
+  ],
   "author": "Noodlestan Collective",
   "license": "MIT",
   "private": false,
