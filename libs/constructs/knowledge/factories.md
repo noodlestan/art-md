@@ -40,7 +40,6 @@ The record type lives in `types.ts`, and the factory-data type (the minimal inpu
 // src/factories/constructs/SectionBlock/factory/types.ts
 export type SectionBlockFactoryData = {
   name: string;
-  kind?: string;
   depth?: number;
   children?: ConstructBase[];
   tags?: Tag[];
@@ -55,7 +54,6 @@ export function createSectionBlock(data: SectionBlockFactoryData): SectionBlock 
     name: data.name,
     children: data.children ?? [],
   };
-  if (data.kind) section.kind = data.kind;
   if (data.depth !== undefined) section.depth = data.depth;
   if (data.tags?.length) section.tags = data.tags;
   return section;

@@ -58,7 +58,7 @@ export const createSectionBlockParser: ConstructParserFactory = () => ({
 });
 ```
 
-The `private/` folder may also hold `constants.ts` (e.g. `KIND_PATTERN`) and `helpers/` (e.g. `createSectionBlockFromNode`, `findParentSection`), each with its own test file.
+The `private/` folder may also hold `constants.ts` and `helpers/` (e.g. `createSectionBlockFromNode`, `findParentSection`), each with its own test file.
 
 ### Helpers
 
@@ -286,10 +286,8 @@ const text = rawSlice(node, context)
   .replace(/^[ \t]*#+[ \t]*/, '')
   .trim();
 const { tags, stripped } = extractTags(text);
-const kindMatch = stripped.match(KIND_PATTERN);
 const section = createSectionBlock({
-  name: kindMatch?.[2]?.trim() ?? stripped,
-  kind: kindMatch?.[1],
+  name: stripped,
   depth: node.depth,
   children: [],
   tags,
@@ -343,7 +341,7 @@ Use this decision guide to determine what a new construct's parser needs:
 
 - **Leaf / self-contained** — implement `processor` only. Detect the node and return the finished record in one pass; return `null` to pass through.
 - **Owns subsequent content** — implement `processor` + `integrator`. The processor creates the record; the integrator calls `captureChildConstruct` and pushes a nested context via `childContext`.
-- **Nests by a hierarchy (depth / kind)** — implement `processor` + `integrator`, and have the integrator walk the context stack (via `parent()`) to find the correct nesting level before pushing a nested context.
+- **Nests by a hierarchy (depth)** — implement `processor` + `integrator`, and have the integrator walk the context stack (via `parent()`) to find the correct nesting level before pushing a nested context.
 
 ## Checklist for a New Construct Parser
 

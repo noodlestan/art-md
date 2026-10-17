@@ -8,9 +8,9 @@
 
 **Category:** Structural
 
-**Purpose:** Capture resource declarations — the key construct that turns a markdown heading into a named, kinded resource that modules can reference, index, and project.
+**Purpose:** Capture named sections — the key construct that turns a markdown heading into a named resource that modules can reference, index, and project.
 
-**Description:** A SectionBlock is a structural construct consisting of a heading and its associated content. `# Kind: Name` declares a resource of that kind with that name, together with its tags and content. It is the bridge between the grammar and modules layers: the grammar fixes the form (optional kind, name, tags, content), while the meaning of each kind is provided by the structures — the domain declarations in `.art`. This is the same separation as a keyword in a programming language: `class` is fixed syntax, the meaning of `class Task` comes from the program. Closed syntax, open semantics.
+**Description:** A SectionBlock is a structural construct consisting of a heading and its associated content. The heading text is the section name, taken verbatim after tag extraction — `# Checkout: Art Work` names one section `Checkout: Art Work`; the construct never splits the text. It is the bridge between the grammar and modules layers: the grammar fixes the form (name, tags, content), while the meaning of each resource is provided by the structures — the domain declarations in `.art`. Higher layers that interpret headings as `Kind: Name` resources do that parsing themselves, downstream. Closed syntax, open semantics.
 
 <!-- refine content rules -->
 
@@ -18,8 +18,7 @@
 
 ```
 SectionBlock {
-    kind?: string          // optional; present when heading has "Kind: Name" form
-    name: string           // resource name
+    name: string           // section name: the whole heading text, tags stripped
     tags?: Tag[]           // optional projection tags
     content: NaturalBlock  // associated content (catch-all classification)
 }
@@ -28,29 +27,22 @@ SectionBlock {
 **Syntax:**
 
 ```art
-// Form 1: Name only
 <SectionBlock> =
     # <name> [<Tags>]
-    <NaturalBlock>
-
-// Form 2: Kind and Name
-<SectionBlock> =
-    # <kind>: <name> [<Tags>]
     <NaturalBlock>
 ```
 
 **Rules:**
 
 - A SectionBlock MUST define a name.
-- A SectionBlock declares a resource identified by its kind and name.
-- A SectionBlock MAY define a kind.
+- A SectionBlock declares a resource identified by its name.
 - A SectionBlock MAY be tagged with one or more Tag.
 - A SectionBlock MAY contain arbitrary content.
 - A SectionBlock MAY contain nested SectionBlocks.
 
 **Examples:**
 
-Example of Section Block without kind.
+Example of Section Block.
 
 ```md
 ## Rules
@@ -58,7 +50,7 @@ Example of Section Block without kind.
 Lorem ipsum
 ```
 
-Example of Section Block with kind `rule`.
+Example of Section Block whose heading text contains a colon — the text stays one name.
 
 ```md
 ### Rule: Maximum 4 items
