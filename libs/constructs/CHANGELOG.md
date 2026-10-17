@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.0.4
+
+### Removed
+
+- **`kind` from `SectionBlock` (breaking):** the `kind?` member is gone from the type, the factory data, and `createSectionBlock`. A heading's text is never split: `SectionBlock.name` is the whole heading text. Consumers that interpret headings as `Kind: Name` parse the text themselves.
+
+### Docs
+
+- **Round-trip fidelity:** full-text names serialise verbatim — a heading such as `## Module: Greeting` no longer degrades to `## Greeting` on write. Claim restated as structural fidelity, not byte-identity: extraneous whitespace, CRLF, and heading indentation are normalised per CommonMark; exactly one final newline.
+
 ## 0.0.3
 
 ### Fixed

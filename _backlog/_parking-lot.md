@@ -4,7 +4,7 @@ WIP tracker, structured like the session parking lot: **ACTIONABLE** (in progres
 
 ## ACTIONABLE
 
-- **Delegate `plan-drop-kind-and-reword-claims`** — plan `READY`; all 3 iterations carry self-contained instructions (`instructions/delete-kind-from-code.md` first — it ships the constructs release that unblocks `ART_JS` on the Art Records whiteboard). Awaiting user review, then delegation.
+- **Publish `@art-md/constructs@0.0.4`** — kind-free release; the whiteboard gate (`ART_JS` delegation of `implement-record-model`) pins it. Prereqs: push the integrate commit `848781b` (main is 1 ahead), bump `libs/constructs` to `0.0.4`, run `npm run ci`, release.
 - **Ops: Unit-test conventions missing** — `_guide.md` points at `./node_modules/@noodlestan/conventions-unit-tests/art/index.md`; the package is not installed (`ls node_modules/@noodlestan/` has no `conventions-unit-tests`). Install it or fix the guide reference.
 
 ## PENDING
