@@ -13,6 +13,8 @@ test-serializer → art.json → parsed.md  (return: serializer output vs source
 
 Both scripts discover fixtures by scanning `libs/constructs/test/fixtures/` for `.md` / `.art` files that have a matching `.md.json` / `.art.json` snapshot.
 
+The serializer check compares serialised output against the source **byte-for-byte**, which holds because fixtures are authored in canonical form. A source outside canonical form is normalised per CommonMark — blank-line runs, trailing spaces, CRLF, heading indentation, final newline — see the Round-Trip Fidelity decision in `$PROJECT/knowledge/adr/art-md.md`.
+
 ## Fixture Anatomy
 
 ```

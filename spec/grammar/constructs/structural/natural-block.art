@@ -14,7 +14,7 @@ NaturalBlock is the content carrier for SectionBlocks and FieldBlocks: the conte
 
 ```
 NaturalBlock {
-    value: string              // raw markdown content (lossless round-trip)
+    value: string              // raw markdown content, captured verbatim from the source
     children?: BlockContent[]  // parsed sub-records when content is structured (e.g. list items)
 }
 ```

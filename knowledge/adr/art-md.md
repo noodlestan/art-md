@@ -59,3 +59,13 @@
 **Context:** Tags use `(#tag)` syntax at the end of headings and field text.
 
 **Decision:** `Tag` has no parser factory. Owning constructs extract tags in their own processors via the shared `extractTags` helper.
+
+## Decision: Round-Trip Fidelity Is Structural
+
+**Status:** Adopted
+
+**Context:** Claims of byte-identity or lossless round-trip overstate the guarantee. Probes show the codec normalises whitespace: blank-line runs collapse, trailing spaces strip, CRLF becomes LF, heading indentation canonicalises, a missing final newline is added.
+
+**Decision:** The codec preserves all valid Markdown structure. Extraneous whitespace and invalid syntax are normalised to canonical Markdown per CommonMark by the `unified` substrate (`mdast-util-from-markdown` / `mdast-util-to-markdown`), and serialisation enforces exactly one final newline. Verified: `"# One\n\n\n\n# Two\n"` serialises to `"# One\n\n# Two\n"`.
+
+**Consequences:** Consumers needing byte-identity must retain the original content — the records layer line-splices content strings and never re-emits untouched text through the codec. The fixture corpus under `$PROJECT/libs/constructs/test/fixtures/` is authored in canonical form, so the suite verifies byte-equality for canonical input only.

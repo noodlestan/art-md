@@ -21,7 +21,7 @@ export function diffFixtureResults(
 	const diffs = diffLines(source, parsed);
 
 	if (diffs.length === 0) {
-		console.info(`LOSSLESS ROUNDTRIP ${baseName}`);
+		console.info(`CANONICAL ROUNDTRIP ${baseName}`);
 		return { hasDiff: false, diffCount: 0 };
 	}
 
