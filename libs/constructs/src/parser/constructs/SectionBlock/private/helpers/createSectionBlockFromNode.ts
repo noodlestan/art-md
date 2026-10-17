@@ -5,7 +5,6 @@ import type { Heading } from 'mdast';
 import { type SectionBlock, createSectionBlock } from '../../../../../factories/index.js';
 import { rawSlice } from '../../../../mdast/index.js';
 import { extractTags } from '../../../../tags/index.js';
-import { KIND_PATTERN } from '../constants.js';
 
 export function createSectionBlockFromNode(
 	node: Heading,
@@ -15,10 +14,8 @@ export function createSectionBlockFromNode(
 		.replace(/^[ \t]*#+[ \t]*/, '')
 		.trim();
 	const { tags, stripped } = extractTags(text);
-	const kindMatch = stripped.match(KIND_PATTERN);
 	const section = createSectionBlock({
-		name: kindMatch?.[2]?.trim() ?? stripped,
-		kind: kindMatch?.[1],
+		name: stripped,
 		depth: node.depth,
 		children: [],
 		tags,

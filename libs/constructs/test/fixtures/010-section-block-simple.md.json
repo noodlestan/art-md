@@ -3,8 +3,8 @@
   "position": {
     "end": {
       "column": 1,
-      "line": 2,
-      "offset": 14
+      "line": 4,
+      "offset": 35
     },
     "start": {
       "column": 1,
@@ -29,7 +29,26 @@
           "offset": 0
         }
       },
-      "children": []
+      "children": [
+        {
+          "construct": "SectionBlock",
+          "name": "Module: Greeting",
+          "depth": 2,
+          "position": {
+            "end": {
+              "column": 20,
+              "line": 3,
+              "offset": 34
+            },
+            "start": {
+              "column": 1,
+              "line": 3,
+              "offset": 15
+            }
+          },
+          "children": []
+        }
+      ]
     }
   ]
 }

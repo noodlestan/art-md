@@ -27,7 +27,7 @@ describe('createSectionBlockFromNode', () => {
 		expect(result).toBe(vi.mocked(createSectionBlock).mock.results[0]?.value);
 	});
 
-	it('WHEN the heading declares a kind extracts it', () => {
+	it('WHEN the heading contains a colon keeps the whole text as name', () => {
 		const markdown = '# Module: Hello';
 		const tree = fromMarkdown(markdown);
 		const heading = tree.children[0] as Heading;
@@ -36,7 +36,7 @@ describe('createSectionBlockFromNode', () => {
 		createSectionBlockFromNode(heading, context);
 
 		expect(createSectionBlock).toHaveBeenCalledWith(
-			expect.objectContaining({ kind: 'Module', name: 'Hello' }),
+			expect.objectContaining({ name: 'Module: Hello', depth: 1 }),
 		);
 	});
 

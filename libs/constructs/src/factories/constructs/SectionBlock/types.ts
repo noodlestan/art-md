@@ -4,7 +4,6 @@ import type { Tag } from '../Tag/index.js';
 
 export type SectionBlock = ContainerConstructBase & {
 	construct: 'SectionBlock';
-	kind?: string;
 	name: string;
 	tags?: Tag[];
 	children: ConstructBase[];
