@@ -2,7 +2,7 @@
 
 **ID:** `drop-kind-and-reword-claims`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -20,11 +20,14 @@
 
 ## Path Variables
 
-| Variable     | Resolved Path               | Purpose                                                 |
-| ------------ | --------------------------- | ------------------------------------------------------- |
-| `$WORKSPACE` | Current working directory   | Workspace root directory.                               |
-| `$PROJECT`   | `checkouts/art-md-planning` | Checkout for Art MD implementation.                     |
-| `$ART_JS`    | `checkouts/art-js-planning` | Whiteboard owner; contracts need amending (Follow Ups). |
+| Variable              | Resolved Path                          | Purpose                                                                  |
+| --------------------- | -------------------------------------- | ------------------------------------------------------------------------ |
+| `$WORKSPACE`          | Current working directory              | Workspace root directory.                                                |
+| `$PROJECT`            | Provided with prompt.                  | Checkout for Art MD implementation.                                      |
+| `$ART_JS`             | `$WORKSPACE/checkouts/art-js-planning` | Whiteboard owner (live board); both contracts `AGREED` (2026-10-16).     |
+| `$PACKAGE_CONSTRUCTS` | `$PROJECT/libs/constructs`             | Library owning the `SectionBlock` model and its knowledge.               |
+| `$CODEC_TESTS`        | `$PROJECT/cli/codec-tests`             | Round-trip fixture harness (corpus in `libs/constructs/test/fixtures/`). |
+| `$SPEC`               | `$PROJECT/spec`                        | The artificial language specification.                                   |
 
 ## Summary
 
@@ -34,10 +37,10 @@ Delete `kind` from the constructs model, parser, and serializer; sweep `kind` ou
 
 ### Upstream Work
 
-| Kind       | Path                                                       | Role                                                                                                  |
-| ---------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Milestone  | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md` | Coordinates this plan; the round-trip claim is codec-domain.                                          |
-| Whiteboard | `$ART_JS/_backlog/whiteboard-art-records/whiteboard.md`    | My contracts there describe `kind` and byte-identity; both now wrong — amend on my turn (Follow Ups). |
+| Kind       | Path                                                       | Role                                                                                                                                                         |
+| ---------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Milestone  | `$PROJECT/_roadmap/3-now/milestone-codec-bin/milestone.md` | Coordinates this plan; the round-trip claim is codec-domain.                                                                                                 |
+| Whiteboard | `$ART_JS/_backlog/whiteboard-art-records/whiteboard.md`    | Both my contracts were re-proposed to match this plan and are now `AGREED` — `ART_LIB` signed 2026-10-16. Live board lives in `$ART_JS`'s planning checkout. |
 
 ### Required Skills
 
@@ -57,6 +60,9 @@ Delete `kind` from the constructs model, parser, and serializer; sweep `kind` ou
 ::READ `$PROJECT/_guide.md` (Guide) — project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion.
 ::READ `$PROJECT/knowledge/design/art-md-fixture-tests.md` (Knowledge) — fixture anatomy; the harness this plan uses as its guard. Relevant for Refactoring.
 ::READ `$PROJECT/knowledge/adr/art-md.md` (Knowledge) — the round-trip decisions this plan rewords. Relevant for Refactoring.
+::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — TypeScript conventions for the code changes. Relevant for Refactoring.
+
+_Note: the unit-test conventions package declared in `$PROJECT/_guide.md` (`@noodlestan/conventions-unit-tests`) is not installed — no directive references it._
 
 ## Scope
 
@@ -92,8 +98,8 @@ Locate and eliminate `kind` as an internal feature of `@art-md`, and reword the 
 
 **Changes:**
 
-- Remove `kind` from the `SectionBlock` shape in `$PROJECT/libs/constructs/knowledge/api.md` and from every knowledge document that presents it as a language feature.
-- Remove `kind` from the grammar spec (`$PROJECT/spec/grammar/**`); **keep** `## Kind: Name` where the spec describes Resources or other higher-level concepts.
+- Remove `kind` from the `SectionBlock` samples in `$PROJECT/libs/constructs/knowledge/factories.md` and `parsers.md` (verified: `api.md` carries no `kind`) and from every knowledge document that presents it as a language feature.
+- Remove `kind` from the grammar spec (`$PROJECT/spec/grammar/**` — only `constructs/structural/section-block.art` carries it); **keep** resource discussions where the spec treats higher-level concepts.
 - Reword the round-trip claim everywhere it appears live: structural fidelity, not byte-identical or lossless; attribute whitespace normalisation to CommonMark and the `unified` substrate. Archived milestones stay untouched — historical record.
 
 **Dependencies:**
@@ -108,7 +114,7 @@ Locate and eliminate `kind` as an internal feature of `@art-md`, and reword the 
 
 **Changes:**
 
-- Execution sneaks a `## Module: Greeting` heading into the existing fixture `010-section-block-simple.md` — the silent regression, no new fixture. After deletion its snapshot regenerates with no `kind` field and the section name `Module: Greeting`, and `test-serializer` must reproduce the heading byte-for-byte.
+- Execution sneaks a `## Module: Greeting` heading into the existing fixture `010-section-block-simple.md` — the silent regression, no new fixture. The corpus lives at `$PROJECT/libs/constructs/test/fixtures/`; the harness scripts live at `$CODEC_TESTS/scripts/test/`. After deletion its snapshot regenerates with no `kind` field and the section name `Module: Greeting`, and `test-serializer` must reproduce the heading byte-for-byte. No other numbered fixture carries a `Kind: Name`-shaped heading (verified), so `010` is the only snapshot that changes.
 - All fixtures stay `LOSSLESS ROUNDTRIP`.
 
 **Dependencies:**
@@ -119,7 +125,7 @@ Locate and eliminate `kind` as an internal feature of `@art-md`, and reword the 
 
 ### Next
 
-Write the instructions for iteration `delete-kind-from-code`.
+All three iterations carry self-contained instructions and are `READY`. Delegate iteration `delete-kind-from-code` — the `@art-md/constructs` release it lands unblocks `ART_JS`'s `implement-record-model` on the Art Records whiteboard.
 
 ### Blockers
 
@@ -180,17 +186,17 @@ npm run ci # lint, build and test
 
 ## Items:
 
-| Iteration / Instructions                  | Status     |
-| ----------------------------------------- | ---------- |
-| Iteration: Delete Kind From Code          | `PLANNING` |
-| Iteration: Delete Kind From Docs and Spec | `PLANNING` |
-| Iteration: Reword Round-Trip Claims       | `PLANNING` |
+| Iteration / Instructions                                                                     | Status  |
+| -------------------------------------------------------------------------------------------- | ------- |
+| Iteration: Delete Kind From Code `./instructions/delete-kind-from-code.md`                   | `READY` |
+| Iteration: Delete Kind From Docs and Spec `./instructions/delete-kind-from-docs-and-spec.md` | `READY` |
+| Iteration: Reword Round-Trip Claims `./instructions/reword-round-trip-claims.md`             | `READY` |
 
 ### Iteration: Delete Kind From Code
 
 **Id:** `delete-kind-from-code`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** A heading's text is never split; the section name is the whole heading.
 
@@ -198,13 +204,15 @@ npm run ci # lint, build and test
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 
+**Instructions:** `./instructions/delete-kind-from-code.md`
+
 **Changes:**
 
-- Delete `kind?: string` from `SectionBlock` (`src/factories/constructs/SectionBlock/types.ts`), from `SectionBlockFactoryData`, and its handling in `createSectionBlock`.
+- Delete `kind?: string` from `SectionBlock` (`src/factories/constructs/SectionBlock/types.ts`), from `SectionBlockFactoryData` (`factory/types.ts`), and its handling in `createSectionBlock`.
 - Delete the kind-split in `createSectionBlockFromNode` — name is the raw heading text after tag extraction.
-- Delete `KIND_PATTERN` (`src/parser/constructs/SectionBlock/private/constants.ts`).
-- Delete or reword tests and mocks asserting `kind` (e.g. `createSectionBlockFromNode.test.ts`'s "heading declares a kind" case).
-- Regenerate `010-section-block-simple.md.json`; run `npm run test` from `$PROJECT/cli/codec-tests/` — expect 43/43 `LOSSLESS ROUNDTRIP`.
+- Delete `KIND_PATTERN` (`src/parser/constructs/SectionBlock/private/constants.ts`) and its `constants.test.ts`.
+- Update tests and helpers asserting `kind`: `createSectionBlockFromNode.test.ts` (kind case → whole-text name), `createSectionBlock.test.ts`, `makeSectionBlockFixture.ts`.
+- Sneak `## Module: Greeting` into `libs/constructs/test/fixtures/010-section-block-simple.md`, regenerate its snapshot (`test-parser --fixture 010 --write`), and run `npm run test` from `$CODEC_TESTS` — expect 43/43.
 
 **Dependencies:** None.
 
@@ -218,19 +226,21 @@ npm run ci # lint, build and test
 
 **Id:** `delete-kind-from-docs-and-spec`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** No doc or spec presents `kind` as a language feature.
 
-**Description:** Sweep knowledge, records, guides, and the grammar spec. Keep `## Kind: Name` where the spec discusses Resources or other higher-level concepts — that material partly belongs to other packages.
+**Description:** Sweep knowledge, records, guides, and the grammar spec. Keep resource discussions where the spec treats higher-level concepts — that material partly belongs to other packages.
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 
+**Instructions:** `./instructions/delete-kind-from-docs-and-spec.md`
+
 **Changes:**
 
-- Remove `kind` from the `SectionBlock` shape in `libs/constructs/knowledge/api.md` and any other knowledge statement of the model.
-- Remove `kind` from `$PROJECT/spec/grammar/**`; keep Resource/higher-level `Kind: Name` discussions intact.
-- Scan and reword every live doc, record, and README that names `kind` as part of the language.
+- Remove `kind` from the `SectionBlock` samples in `libs/constructs/knowledge/factories.md` and `parsers.md` (`api.md` verified clean — no change).
+- Remove `kind` from `spec/grammar/constructs/structural/section-block.art` — the only spec file carrying it; keep resource/higher-level discussions intact.
+- Sweep-verify no live doc, record, or README names `kind` as part of the language; archived material and CHANGELOGs stay untouched.
 
 **Dependencies:**
 
@@ -246,18 +256,22 @@ npm run ci # lint, build and test
 
 **Id:** `reword-round-trip-claims`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Every live claim states structural fidelity, not byte-identity.
 
-**Description:** Rewrite the round-trip claim to: the codec preserves all valid Markdown structure; extraneous whitespace (blank-line runs, trailing spaces, CRLF, heading indentation) and invalid syntax are normalised to canonical Markdown by the `unified` substrate per CommonMark, and serialisation enforces exactly one final newline. Verified today: `"# One\n\n\n\n# Two\n"` → `"# One\n\n# Two\n"`; trailing spaces stripped; CRLF→LF; `#   Hello` → `# Hello`; a source without final newline gains one. Known prior art: `implement-serialize-command__report.md` already recorded "the roundtrip is not byte-exact".
+**Description:** Rewrite the round-trip claim to: the codec preserves all valid Markdown structure; extraneous whitespace (blank-line runs, trailing spaces, CRLF, heading indentation) and invalid syntax are normalised to canonical Markdown by the `unified` substrate per CommonMark, and serialisation enforces exactly one final newline. Verified today: `"# One\n\n\n\n# Two\n"` → `"# One\n\n# Two\n"`; trailing spaces stripped; CRLF→LF; `#   Hello` → `# Hello`; a source without final newline gains one. Known prior art: `implement-serialize-command__report.md` already recorded "the roundtrip is not byte-exact". The ADR makes no fidelity claim today — the decision is recorded there, not reworded.
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 
+**Instructions:** `./instructions/reword-round-trip-claims.md`
+
 **Changes:**
 
-- Reword live claims in `knowledge/adr/art-md.md`, `knowledge/design/art-md-fixture-tests.md` ("lossless" → canonical-input lossless), `knowledge/components.md`, `knowledge/index.md`, and whatever the scan adds.
-- Leave archived milestones untouched.
+- Add the structural-fidelity decision to `knowledge/adr/art-md.md` (no claim exists to reword), with the verified normalisation example.
+- Reword the harness label `LOSSLESS ROUNDTRIP` → `CANONICAL ROUNDTRIP` in `cli/codec-tests/scripts/test/serializer/diffFixtureResults.ts`, and describe canonical-input byte-equality in `knowledge/design/art-md-fixture-tests.md`.
+- Reword the `(lossless round-trip)` claim on `NaturalBlock.value` in `spec/grammar/constructs/structural/natural-block.art`; sweep for leftovers.
+- Leave archived milestones, `_backlog` archives, and CHANGELOGs untouched.
 
 **Dependencies:**
 
@@ -278,7 +292,7 @@ npm run ci # lint, build and test
 - **Downstream `Kind: Name` parsing** — records-layer consumers parse heading text themselves; that is their domain, not the codec's.
 - **Removing extraneous-whitespace normalisation** — it is correct CommonMark behaviour from `unified`; we describe it, we do not undo it.
 - **New constructs** — `milestone-art-constructs` owns those.
-- **Amending whiteboard contracts** — needs my turn on `$ART_JS`'s board; recorded in Follow Ups.
+- **Amending whiteboard contracts** — discharged: `ART_JS` amended both `@art-md` contracts on their turn; both are now `AGREED` (`ART_LIB` signed 2026-10-16).
 
 ### Evidence
 
@@ -291,6 +305,9 @@ npm run ci # lint, build and test
 
 - `kind` is structural only in the parser's imagination — the serializer never emits it, so the concept survives on read and dies on write. Removing it costs one field, one split, one pattern, and a doc sweep.
 - The sneaked-in `## Module: Greeting` heading is the whole regression: it must survive byte-for-byte as a plain heading, which is also what makes the parser snapshot regenerate cleanly.
+- `kind` touches only `@art-md/constructs` — parser, serializer, primitives, codec, and bin sources are clean (verified 2026-10-17).
+- Corpus and harness live apart: fixtures in `libs/constructs/test/fixtures/`, harness scripts in `cli/codec-tests/scripts/test/`; only fixture `010` needs a snapshot regeneration.
+- Doc surfaces differ from the original draft: `api.md` carries no `kind`; the live samples are in `factories.md` and `parsers.md`. The ADR makes no fidelity claim — the reword is a new decision entry.
 
 ### Decisions
 
@@ -298,16 +315,18 @@ npm run ci # lint, build and test
 - **Deletion, not emission** — no serializer change is required; the fix removes code.
 - **Regression by existing fixture** — the kind heading is sneaked into `010-section-block-simple.md`; no new fixture, no new test.
 - **Claim wording follows Markdown semantics + `unified`** — normalisation is attributed to CommonMark and the substrate libraries, so the claim is checkable.
+- **Harness label reworded, not the check** — the suite keeps byte-equality against canonically-authored fixtures; only the `LOSSLESS ROUNDTRIP` success line becomes `CANONICAL ROUNDTRIP`.
 
 ### Knowledge to Update
 
-- `$PROJECT/knowledge/adr/art-md.md` — round-trip decision reworded to structural fidelity; no `kind` in the model.
-- `$PROJECT/knowledge/design/art-md-fixture-tests.md` — "lossless" labelled canonical-input lossless.
+- `$PROJECT/knowledge/adr/art-md.md` — record Decision: Round-Trip Fidelity Is Structural (no fidelity claim exists today to reword).
+- `$PROJECT/knowledge/design/art-md-fixture-tests.md` — describe the serializer check as canonical-input byte-equality.
+- `$PROJECT/libs/constructs/knowledge/factories.md` and `parsers.md` — drop `kind` from the samples.
+- `$PROJECT/spec/grammar/constructs/structural/section-block.art` — grammar without `kind`; `$PROJECT/spec/grammar/constructs/structural/natural-block.art` — soften the `lossless round-trip` claim.
 
 ### Follow Ups
 
-- **Amend my whiteboard contracts** (`$ART_JS/_backlog/whiteboard-art-records/whiteboard.md`, Contracts → `@art-md`): the shape freeze lists `SectionBlock{... kind? ...}` and the round-trip bullet promises byte-identical — both now wrong. Requires my turn; flag to the pen-holder.
-- **Downstream plans assume `kind`** — at least one records-layer plan bridges `ArtRecord{kind, name}` from `SectionBlock`; after this plan that bridge must parse the heading text itself. Their owners re-baseline; not my edit.
+- **Downstream adaptation tracked on the whiteboard** — `ART_JS` records dropped `kind` entirely (MANAGEMENT decision, 2026-10-14): `ArtRecord{name}` is the whole heading text, records parses nothing, and heading interpretation moves to a consumer-side resources layer. Nothing owed by this plan beyond landing the deletion — this plan is what enables that design.
 
 ### Feedback
 
