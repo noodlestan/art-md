@@ -2,7 +2,7 @@
 
 **ID:** `drop-kind-and-reword-claims`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -125,7 +125,7 @@ Locate and eliminate `kind` as an internal feature of `@art-md`, and reword the 
 
 ### Next
 
-All three iterations carry self-contained instructions and are `READY`. Delegate iteration `delete-kind-from-code` — the `@art-md/constructs` release it lands unblocks `ART_JS`'s `implement-record-model` on the Art Records whiteboard.
+All three iterations are `DONE`: `delete-kind-from-code` (`9567358`), `delete-kind-from-docs-and-spec` (`78f0e02`), `reword-round-trip-claims` (`b56d759`) — all `NOPUSH`, local `main` 3 commits ahead of `origin/main`. Remaining: push decision, and the `@art-md/constructs` release that unblocks `ART_JS`'s `implement-record-model` on the Art Records whiteboard.
 
 ### Blockers
 
@@ -186,17 +186,19 @@ npm run ci # lint, build and test
 
 ## Items:
 
-| Iteration / Instructions                                                                     | Status  |
-| -------------------------------------------------------------------------------------------- | ------- |
-| Iteration: Delete Kind From Code `./instructions/delete-kind-from-code.md`                   | `READY` |
-| Iteration: Delete Kind From Docs and Spec `./instructions/delete-kind-from-docs-and-spec.md` | `READY` |
-| Iteration: Reword Round-Trip Claims `./instructions/reword-round-trip-claims.md`             | `READY` |
+| Iteration / Instructions                                                                     | Status |
+| -------------------------------------------------------------------------------------------- | ------ |
+| Iteration: Delete Kind From Code `./instructions/delete-kind-from-code.md`                   | `DONE` |
+| Iteration: Delete Kind From Docs and Spec `./instructions/delete-kind-from-docs-and-spec.md` | `DONE` |
+| Iteration: Reword Round-Trip Claims `./instructions/reword-round-trip-claims.md`             | `DONE` |
 
 ### Iteration: Delete Kind From Code
 
 **Id:** `delete-kind-from-code`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/delete-kind-from-code__report.md`
 
 **Purpose:** A heading's text is never split; the section name is the whole heading.
 
@@ -218,15 +220,17 @@ npm run ci # lint, build and test
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| ----------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `delete-kind-from-code` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                      | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ----------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `delete-kind-from-code` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `9567358` | `COMMITTED` |
 
 ### Iteration: Delete Kind From Docs and Spec
 
 **Id:** `delete-kind-from-docs-and-spec`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/delete-kind-from-docs-and-spec__report.md`
 
 **Purpose:** No doc or spec presents `kind` as a language feature.
 
@@ -248,15 +252,17 @@ npm run ci # lint, build and test
 
 #### Commits:
 
-| ID                               | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| -------------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `delete-kind-from-docs-and-spec` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                               | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| -------------------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `delete-kind-from-docs-and-spec` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `78f0e02` | `COMMITTED` |
 
 ### Iteration: Reword Round-Trip Claims
 
 **Id:** `reword-round-trip-claims`
 
-**Status:** `READY`
+**Status:** `DONE`
+
+**Report:** `./instructions/reword-round-trip-claims__report.md`
 
 **Purpose:** Every live claim states structural fidelity, not byte-identity.
 
@@ -279,9 +285,9 @@ npm run ci # lint, build and test
 
 #### Commits:
 
-| ID                         | Repository / Checkout / Branch | Policy   | Hash  | Status     |
-| -------------------------- | ------------------------------ | -------- | ----- | ---------- |
-| `reword-round-trip-claims` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | (TBD) | `AUTHORED` |
+| ID                         | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| -------------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `reword-round-trip-claims` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `b56d759` | `COMMITTED` |
 
 ---
 
@@ -308,6 +314,8 @@ npm run ci # lint, build and test
 - `kind` touches only `@art-md/constructs` — parser, serializer, primitives, codec, and bin sources are clean (verified 2026-10-17).
 - Corpus and harness live apart: fixtures in `libs/constructs/test/fixtures/`, harness scripts in `cli/codec-tests/scripts/test/`; only fixture `010` needs a snapshot regeneration.
 - Doc surfaces differ from the original draft: `api.md` carries no `kind`; the live samples are in `factories.md` and `parsers.md`. The ADR makes no fidelity claim — the reword is a new decision entry.
+- Iteration `delete-kind-from-code` finding: a checkout-local `npm ci` inside `$PROJECT` is required — the workspace-root `npm ci` installs only the meta-repo, and a stale `@noodlestan/tsconfig` in the checkout broke every vitest run until reinstalled (pre-existing, verified by stash).
+- Iteration `delete-kind-from-docs-and-spec` finding: the only remaining `Kind` mention in live spec is the deliberate downstream note in the rewritten `section-block.art` Description; the stale `(e.g. KIND_PATTERN)` example in `parsers.md` was dropped because the constant no longer exists.
 
 ### Decisions
 
