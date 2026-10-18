@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.5
+
+### Fixed
+
+- **Package exports** — now target the dist build rather than the TypeScript source.
+
 ## 0.0.4
 
 ### Removed
