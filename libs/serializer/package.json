@@ -1,6 +1,6 @@
 {
   "name": "@art-md/serializer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Serializes Art AST back to markdown.",
   "keywords": [
     "library",
@@ -24,9 +24,15 @@
   },
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
   "files": [
     "src",
+    "dist",
     "LICENSE-MIT",
     "README.md"
   ],

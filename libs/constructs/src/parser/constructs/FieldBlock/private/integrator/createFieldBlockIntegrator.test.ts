@@ -1,4 +1,4 @@
-import { makeParserVisitContextMock } from '@art-md/primitives/src/test/helpers/index.js';
+import { makeParserVisitContextMock } from '@art-md/primitives/test-helpers/index.js';
 import { describe, expect, it, vi } from 'vitest';
 
 import { makeFieldBlockFixture } from '../../../../../test/helpers/index.js';

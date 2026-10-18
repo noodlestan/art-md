@@ -1,12 +1,7 @@
 import type { MdastNode } from '@art-md/primitives';
-import { nodePositionMock } from '@art-md/primitives/src/test/helpers/index.js';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { createNaturalExpressionFromNode } from './createNaturalExpressionFromNode.js';
-
-vi.mock('@art-md/primitives/src/parser/helpers', () => {
-	return nodePositionMock();
-});
 
 describe('createNaturalExpressionFronNode', () => {
 	it('WHEN creating a NaturalExpression from a node', async () => {

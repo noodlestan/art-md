@@ -12,7 +12,7 @@ Make sure you read the [Art MD README](../../README.md) first.
 
 ### Build Targets
 
-This library is packaged for use in bundlers such as Vite and Astro. The main entry point is the Typescript source code.
+This package is meant for use in Node.js environments. The entry point is built using `esbuild` pre-configured by [Workspace Tooling](https://github.com/noodlestan/workspace-tooling).
 
 ### Scripts
 

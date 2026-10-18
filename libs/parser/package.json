@@ -1,6 +1,6 @@
 {
   "name": "@art-md/parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Parses context files and art modules into structured representations.",
   "keywords": [
     "library",
@@ -24,9 +24,18 @@
   },
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./test-helpers/*": {
+      "import": "./src/test/helpers/*"
+    }
+  },
   "files": [
     "src",
+    "dist",
     "LICENSE-MIT",
     "README.md"
   ],
