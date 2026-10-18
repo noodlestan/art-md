@@ -3,10 +3,13 @@
   "version": "0.0.3",
   "description": "Serializes Art AST back to markdown.",
   "keywords": [
+    "library",
+    "serializer",
     "art",
     "markdown",
-    "serializer",
-    "ast"
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

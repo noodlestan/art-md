@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "description": "The artificial language specification, written in art. Content package consumed by the parser, validator, and bundler packages.",
   "keywords": [
-    "art",
+    "specification",
     "language-spec",
-    "specification"
+    "art",
+    "markdown",
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

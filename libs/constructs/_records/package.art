@@ -20,9 +20,13 @@
 
 **Keywords:**
 
-- art
+- library
 - constructs
-- parser
+- art
+- markdown
+- ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Constructs
 

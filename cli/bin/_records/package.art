@@ -20,9 +20,12 @@
 
 **Keywords:**
 
+- cli
 - art
 - markdown
-- cli
+- ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Bin
 

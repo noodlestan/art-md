@@ -20,9 +20,13 @@
 
 **Keywords:**
 
-- art
-- language-spec
 - specification
+- language-spec
+- art
+- markdown
+- ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Spec
 

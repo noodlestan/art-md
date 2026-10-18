@@ -20,10 +20,13 @@
 
 **Keywords:**
 
+- library
+- parser
 - art
 - markdown
-- parser
 - ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Parser
 

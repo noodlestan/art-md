@@ -5,12 +5,9 @@
   "keywords": [
     "art",
     "markdown",
-    "structured-data",
-    "language-spec",
     "ast",
-    "parser",
-    "serializer",
-    "constructs"
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan",
   "license": "MIT",

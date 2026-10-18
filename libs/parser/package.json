@@ -3,10 +3,13 @@
   "version": "0.0.3",
   "description": "Parses context files and art modules into structured representations.",
   "keywords": [
+    "library",
+    "parser",
     "art",
     "markdown",
-    "parser",
-    "ast"
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

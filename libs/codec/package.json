@@ -3,9 +3,15 @@
   "version": "0.0.2",
   "description": "Configurable Art MD codec: parse and serialize Art MD",
   "keywords": [
+    "library",
+    "codec",
+    "parser",
+    "serializer",
     "art",
     "markdown",
-    "codec"
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

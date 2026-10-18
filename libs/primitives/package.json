@@ -3,9 +3,13 @@
   "version": "0.0.3",
   "description": "Foundational types and utilities for Art modules.",
   "keywords": [
+    "library",
+    "primitives",
     "art",
-    "language",
-    "primitives"
+    "markdown",
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

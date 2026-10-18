@@ -20,9 +20,12 @@
 
 **Keywords:**
 
+- testing
 - art
 - markdown
-- testing
+- ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Codec Tests
 

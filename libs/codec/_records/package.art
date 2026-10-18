@@ -20,9 +20,15 @@
 
 **Keywords:**
 
+- library
+- codec
+- parser
+- serializer
 - art
 - markdown
-- codec
+- ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Codec
 

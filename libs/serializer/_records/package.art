@@ -20,10 +20,13 @@
 
 **Keywords:**
 
+- library
+- serializer
 - art
 - markdown
-- serializer
 - ast
+- structured-data
+- agent-instructions
 
 **Deployment:** NPM Package Deployment: Serializer
 

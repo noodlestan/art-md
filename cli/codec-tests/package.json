@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "description": "Test scripts for the parser and serializer through the codec.",
   "keywords": [
+    "testing",
     "art",
     "markdown",
-    "testing"
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

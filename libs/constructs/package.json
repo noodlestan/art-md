@@ -3,9 +3,13 @@
   "version": "0.0.4",
   "description": "Construct factories for Art parser records.",
   "keywords": [
-    "art",
+    "library",
     "constructs",
-    "parser"
+    "art",
+    "markdown",
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",

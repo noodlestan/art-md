@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "description": "CLI that exposes parser and serializer as commands.",
   "keywords": [
+    "cli",
     "art",
     "markdown",
-    "cli"
+    "ast",
+    "structured-data",
+    "agent-instructions"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",
