@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## 0.0.3
+## 0.0.5
 
 ### Fixed
 
-- **Package entry point:** `main` declares `./src/index.ts`, but `files` published only `dist/`, publish `src/` instead.
+- **Package exports** — now target the dist build rather than the TypeScript source.
 
 ## 0.0.2
 
