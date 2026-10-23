@@ -33,7 +33,7 @@
     "clean": "turbo run build:clean",
     "lint": "prettier . -c",
     "lint:fix": "prettier . -c --write",
-    "extract": "echo no purrception yet",
+    "extract": "turbo run extract",
     "ci:root": "npm run lint",
     "ci": "npm run ci:root && turbo run ci"
   },

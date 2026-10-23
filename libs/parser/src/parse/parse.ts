@@ -1,11 +1,15 @@
+/** Module: parse — turns Art MD source into Art documents. */
 import { type ParseContext, type ParseResult, createParseContext } from '@art-md/primitives';
 
 import { buildDocument } from '../buildDocument/buildDocument.js';
 import type { ParserConfig } from '../config/index.js';
 import { createDocumentVisitContext } from '../private/index.js';
 
+/** Parses markdown using the default or given context. */
 export function parse(markdown: string, config: ParserConfig): ParseResult;
+/** Parses markdown against an explicit parse context. */
 export function parse(context: ParseContext, markdown: string, config: ParserConfig): ParseResult;
+/** Parses markdown against an explicit parse context. */
 export function parse(
 	markdownOrContext: string | ParseContext,
 	markdownOrConfig: string | ParserConfig,

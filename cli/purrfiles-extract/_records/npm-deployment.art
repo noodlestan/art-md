@@ -1,0 +1,17 @@
+# Module
+
+## NPM Package Deployment: Purrfiles Extract
+
+**Owner:** Package: Purrfiles Extract
+
+**Status:** `PLANNED`
+
+**Build:** Deployment Build: NPM Command
+
+**Deploy:** Deployment Command: NPM Package CLI
+
+**Canonical Name:** `@noodlestan/purrfiles-extract`
+
+**Registry:** `https://registry.npmjs.org`
+
+**Access:** `public`

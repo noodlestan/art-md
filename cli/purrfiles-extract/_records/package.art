@@ -1,0 +1,56 @@
+# Module
+
+## Package: Purrfiles Extract
+
+**Purpose:** Purrception extraction tools for TypeScript source trees.
+
+**Description:** Generic module entity extraction built on @purrception and @noodlestan/purrfiles-entities.
+
+**Owner:** Project: Noodlestan Purrception
+
+**Author:** Noodlestan Collective
+
+**Path:** `cli/purrfiles-extract/`
+
+**Canonical Name:** `@noodlestan/purrfiles-extract`
+
+**Published:** `false`
+
+**Private:** `false`
+
+**Keywords:**
+
+- cli
+- metadata
+- extraction
+- purrception
+- entities
+- typescript
+
+**Deployment:** NPM Package Deployment: Purrfiles Extract
+
+**Files:**
+
+- `dist`
+- `LICENSE-MIT`
+- `README.md`
+
+**Language:** Typescript
+
+**Engines:**
+
+- Node: `>= 22`
+
+**PackageManager:** `npm@10.2.3`
+
+**PackageFile:** `package.json`
+
+**Dependencies:**
+
+- Runtime:
+  - `@noodlestan/purrfiles-entities`
+  - `@purrception/lang-ts-extract` @ `^0.1.0`
+  - `@purrception/primitives` @ `^0.1.0`
+  - `@purrception/source-fs` @ `^0.1.0`
+
+**License:** License: Noodlestan 2026 MIT

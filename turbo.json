@@ -16,6 +16,11 @@
       "cache": false,
       "with": []
     },
+    "extract": {
+      "cache": false,
+      "dependsOn": ["^build"],
+      "outputs": ["dist/meta.json"]
+    },
     "ci": {
       "cache": false,
       "dependsOn": ["^ci"]

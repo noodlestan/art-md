@@ -52,6 +52,7 @@
     "test": "vitest run",
     "test:ci": "vitest run --coverage",
     "test:watch": "vitest",
+    "extract": "tsx scripts/extract.ts",
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {
@@ -61,8 +62,12 @@
     "unist-util-visit": "5.2.0"
   },
   "devDependencies": {
+    "@noodlestan/purrfiles-extract": "*",
+    "@purrception/lang-ts-extract": "0.1.0",
+    "@purrception/source-fs": "0.1.0",
     "@types/mdast": "4.0.4",
     "@types/unist": "3.0.3",
+    "tsx": "4.23.15",
     "vitest": "5.0.5"
   }
 }

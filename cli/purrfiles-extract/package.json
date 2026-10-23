@@ -1,0 +1,56 @@
+{
+  "name": "@noodlestan/purrfiles-extract",
+  "version": "0.0.1",
+  "description": "Purrception extraction tools for TypeScript source trees.",
+  "keywords": [
+    "cli",
+    "metadata",
+    "extraction",
+    "purrception",
+    "entities",
+    "typescript"
+  ],
+  "author": "Noodlestan Collective",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noodlestan/art-md.git",
+    "directory": "cli/purrfiles-extract/"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE-MIT",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "esbuild-cli-watch",
+    "lint": "prettier . -c && eslint . && tsc --noEmit",
+    "lint:fix": "prettier . -c --write && eslint . --fix",
+    "build": "esbuild-cli",
+    "build:clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:ci": "vitest run --coverage",
+    "test:watch": "vitest",
+    "ci": "npm run lint && npm run build && npm run test:ci"
+  },
+  "dependencies": {
+    "@noodlestan/purrfiles-entities": "*",
+    "@purrception/lang-ts-extract": "^0.1.0",
+    "@purrception/primitives": "^0.1.0",
+    "@purrception/source-fs": "^0.1.0"
+  },
+  "devDependencies": {
+    "vitest": "4.1.8"
+  }
+}

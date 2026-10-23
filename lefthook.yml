@@ -6,6 +6,8 @@ pre-commit:
   commands:
     '0-clean':
       run: npm run clean
+    '0-build-deps':
+      run: npx turbo run build --filter=@noodlestan/purrfiles-extract --filter=@noodlestan/purrfiles-entities
     '1-extract':
       run: npm run extract
     '2-ci':
