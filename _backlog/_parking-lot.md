@@ -10,7 +10,7 @@ WIP tracker, structured like the session parking lot: **ACTIONABLE** (in progres
 
 ## ACTIONABLE
 
-- **Ops: Unit-test conventions missing** — `_guide.md` points at `./node_modules/@noodlestan/conventions-unit-tests/art/index.md`; the package is not installed (`ls node_modules/@noodlestan/` has no `conventions-unit-tests`). Install it or fix the guide reference.
+None.
 
 ## PENDING
 

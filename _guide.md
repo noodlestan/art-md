@@ -25,21 +25,8 @@ knowledge/     — repository-level knowledge
 cli/           — CLI packages
 libs/          — library packages
 spec/          — the artificial language specification
+tests/         — integration test packages
 ```
-
-## Projects
-
-| Project       | Guide                       | Backlog     |
-| ------------- | --------------------------- | ----------- |
-| Art MD (root) | `_guide.md`                 | `_backlog/` |
-| Bin           | `cli/bin/_guide.md`         | `NONE`      |
-| Codec Tests   | `cli/codec-tests/_guide.md` | `NONE`      |
-| Codec         | `libs/codec/_guide.md`      | `NONE`      |
-| Constructs    | `libs/constructs/_guide.md` | `NONE`      |
-| Parser        | `libs/parser/_guide.md`     | `NONE`      |
-| Primitives    | `libs/primitives/_guide.md` | `NONE`      |
-| Serializer    | `libs/serializer/_guide.md` | `NONE`      |
-| Spec          | `spec/_guide.md`            | `NONE`      |
 
 ## Records Management
 
@@ -56,7 +43,7 @@ This repository maintains knowledge references at:
 
 - `knowledge/index.md` — Repository-level knowledge.
 - `cli/bin/knowledge/index.md` — Art Work Cli.
-- `cli/codec-tests/knowledge/index.md` — Codec Test Fixtures.
+- `tests/codec/knowledge/index.md` — Codec Test Fixtures.
 - `libs/constructs/index.md` — `@art-js/constructs`.
 - `libs/parser/index.md` — `@art-js/parser`.
 - `libs/primitives/index.md` — `@art-js/primitives`.
@@ -126,7 +113,7 @@ npm run ci # lint, test and build
 
 **Instructions:**
 
-When making changes to parser, serializer, or constructs packages, execute from `cli/codec-tests/`:
+When making changes to parser, serializer, or constructs packages, execute from `tests/codec/`:
 
 ```bash
 npm run test # runs test-parser and test-serializer against stable fixtures

@@ -100,7 +100,7 @@ npm ci
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-From `$PROJECT/cli/codec-tests/`:
+From `$PROJECT/tests/codec/`:
 
 ```bash
 npm run test # parser + serializer against stable fixtures

@@ -3,12 +3,9 @@
   "version": "0.0.1",
   "description": "Test scripts for the parser and serializer through the codec.",
   "keywords": [
-    "testing",
     "art",
     "markdown",
-    "ast",
-    "structured-data",
-    "agent-instructions"
+    "testing"
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",
@@ -16,7 +13,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/noodlestan/art-md",
-    "directory": "cli/codec-tests"
+    "directory": "tests/codec"
   },
   "type": "module",
   "files": [

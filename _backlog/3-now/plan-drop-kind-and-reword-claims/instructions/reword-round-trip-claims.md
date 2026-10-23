@@ -25,12 +25,12 @@ This section describes how to report back to the delegator after completing the 
 
 ## Path Variables
 
-| Variable       | Resolved Path              | Purpose                                |
-| -------------- | -------------------------- | -------------------------------------- |
-| `$WORKSPACE`   | Current working directory  | Workspace root; run `npm ci` here.     |
-| `$PROJECT`     | Provided with prompt       | Where work execution is taking place.  |
-| `$CODEC_TESTS` | `$PROJECT/cli/codec-tests` | Round-trip fixture harness.            |
-| `$SPEC`        | `$PROJECT/spec`            | The artificial language specification. |
+| Variable       | Resolved Path             | Purpose                                |
+| -------------- | ------------------------- | -------------------------------------- |
+| `$WORKSPACE`   | Current working directory | Workspace root; run `npm ci` here.     |
+| `$PROJECT`     | Provided with prompt      | Where work execution is taking place.  |
+| `$CODEC_TESTS` | `$PROJECT/codec/tests`    | Round-trip fixture harness.            |
+| `$SPEC`        | `$PROJECT/spec`           | The artificial language specification. |
 
 ## Working Agreements
 

@@ -10,7 +10,7 @@
 
 **Author:** Noodlestan Collective
 
-**Path:** `cli/codec-tests/`
+**Path:** `tests/codec/`
 
 **Canonical Name:** `@art-md/codec-tests`
 
@@ -20,12 +20,9 @@
 
 **Keywords:**
 
-- testing
 - art
 - markdown
-- ast
-- structured-data
-- agent-instructions
+- testing
 
 **Deployment:** NPM Package Deployment: Codec Tests
 

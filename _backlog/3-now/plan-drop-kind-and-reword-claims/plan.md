@@ -26,7 +26,7 @@
 | `$PROJECT`            | Provided with prompt.                  | Checkout for Art MD implementation.                                      |
 | `$ART_JS`             | `$WORKSPACE/checkouts/art-js-planning` | Whiteboard owner (live board); both contracts `AGREED` (2026-10-16).     |
 | `$PACKAGE_CONSTRUCTS` | `$PROJECT/libs/constructs`             | Library owning the `SectionBlock` model and its knowledge.               |
-| `$CODEC_TESTS`        | `$PROJECT/cli/codec-tests`             | Round-trip fixture harness (corpus in `libs/constructs/test/fixtures/`). |
+| `$CODEC_TESTS`        | `$PROJECT/tests/codec`                 | Round-trip fixture harness (corpus in `libs/constructs/test/fixtures/`). |
 | `$SPEC`               | `$PROJECT/spec`                        | The artificial language specification.                                   |
 
 ## Summary
@@ -108,7 +108,7 @@ Locate and eliminate `kind` as an internal feature of `@art-md`, and reword the 
 
 ### (Scope) Package: Codec Tests
 
-**Record:** `$PROJECT/cli/codec-tests/_records/package.art`
+**Record:** `$PROJECT/tests/codec/_records/package.art`
 
 **Role:** Owns the fixture harness that guards the deletion.
 
@@ -162,7 +162,7 @@ npm ci
 
 **Instructions:** (From `$PROJECT/_guide.md`)
 
-From `$PROJECT/cli/codec-tests/`:
+From `$PROJECT/tests/codec/`:
 
 ```bash
 npm run test # test-parser (snapshot equality) + test-serializer (lossless diff)
@@ -275,7 +275,7 @@ npm run ci # lint, build and test
 **Changes:**
 
 - Add the structural-fidelity decision to `knowledge/adr/art-md.md` (no claim exists to reword), with the verified normalisation example.
-- Reword the harness label `LOSSLESS ROUNDTRIP` → `CANONICAL ROUNDTRIP` in `cli/codec-tests/scripts/test/serializer/diffFixtureResults.ts`, and describe canonical-input byte-equality in `knowledge/design/art-md-fixture-tests.md`.
+- Reword the harness label `LOSSLESS ROUNDTRIP` → `CANONICAL ROUNDTRIP` in `tests/codec/scripts/test/serializer/diffFixtureResults.ts`, and describe canonical-input byte-equality in `knowledge/design/art-md-fixture-tests.md`.
 - Reword the `(lossless round-trip)` claim on `NaturalBlock.value` in `spec/grammar/constructs/structural/natural-block.art`; sweep for leftovers.
 - Leave archived milestones, `_backlog` archives, and CHANGELOGs untouched.
 
@@ -312,7 +312,7 @@ npm run ci # lint, build and test
 - `kind` is structural only in the parser's imagination — the serializer never emits it, so the concept survives on read and dies on write. Removing it costs one field, one split, one pattern, and a doc sweep.
 - The sneaked-in `## Module: Greeting` heading is the whole regression: it must survive byte-for-byte as a plain heading, which is also what makes the parser snapshot regenerate cleanly.
 - `kind` touches only `@art-md/constructs` — parser, serializer, primitives, codec, and bin sources are clean (verified 2026-10-17).
-- Corpus and harness live apart: fixtures in `libs/constructs/test/fixtures/`, harness scripts in `cli/codec-tests/scripts/test/`; only fixture `010` needs a snapshot regeneration.
+- Corpus and harness live apart: fixtures in `libs/constructs/test/fixtures/`, harness scripts in `tests/codec/scripts/test/`; only fixture `010` needs a snapshot regeneration.
 - Doc surfaces differ from the original draft: `api.md` carries no `kind`; the live samples are in `factories.md` and `parsers.md`. The ADR makes no fidelity claim — the reword is a new decision entry.
 - Iteration `delete-kind-from-code` finding: a checkout-local `npm ci` inside `$PROJECT` is required — the workspace-root `npm ci` installs only the meta-repo, and a stale `@noodlestan/tsconfig` in the checkout broke every vitest run until reinstalled (pre-existing, verified by stash).
 - Iteration `delete-kind-from-docs-and-spec` finding: the only remaining `Kind` mention in live spec is the deliberate downstream note in the rewritten `section-block.art` Description; the stale `(e.g. KIND_PATTERN)` example in `parsers.md` was dropped because the constant no longer exists.

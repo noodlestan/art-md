@@ -30,7 +30,7 @@ This section describes how to report back to the delegator after completing the 
 | `$WORKSPACE`          | Current working directory  | Workspace root; run `npm ci` here.       |
 | `$PROJECT`            | Provided with prompt       | Where work execution is taking place.    |
 | `$PACKAGE_CONSTRUCTS` | `$PROJECT/libs/constructs` | Library owning the `SectionBlock` model. |
-| `$CODEC_TESTS`        | `$PROJECT/cli/codec-tests` | Round-trip fixture harness.              |
+| `$CODEC_TESTS`        | `$PROJECT/tests/codec/`    | Round-trip fixture harness.              |
 
 ## Working Agreements
 
