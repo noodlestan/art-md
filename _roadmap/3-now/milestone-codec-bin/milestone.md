@@ -203,13 +203,13 @@ This section describes the ordered phases used to organise downstream work, iden
 
 This section lists the downstream work items produced, coordinated, or advanced by the milestone.
 
-| Plan                                                                                                 | Status     |
-| ---------------------------------------------------------------------------------------------------- | ---------- |
-| Plan: Scaffold Bin Package `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`              | `DONE`     |
-| Plan: Implement Bin Commands `$PROJECT/_backlog/1-done/plan-implement-bin-commands/plan.md`          | `DONE`     |
-| Plan: Consolidate Codec Bin `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan.md`             | `READY`    |
-| Plan: Drop Kind and Reword Claims `$PROJECT/_backlog/3-now/plan-drop-kind-and-reword-claims/plan.md` | `DONE`     |
-| Plan: Update Bin Knowledge `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`              | `PLANNING` |
+| Plan                                                                                                  | Status     |
+| ----------------------------------------------------------------------------------------------------- | ---------- |
+| Plan: Scaffold Bin Package `$PROJECT/_backlog/1-done/plan-scaffold-bin-package/plan.md`               | `DONE`     |
+| Plan: Implement Bin Commands `$PROJECT/_backlog/1-done/plan-implement-bin-commands/plan.md`           | `DONE`     |
+| Plan: Consolidate Codec Bin `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan.md`              | `READY`    |
+| Plan: Drop Kind and Reword Claims `$PROJECT/_backlog/1-done/plan-drop-kind-and-reword-claims/plan.md` | `DONE`     |
+| Plan: Update Bin Knowledge `$PROJECT/_backlog/4-next/plan-update-bin-knowledge/plan.md`               | `PLANNING` |
 
 ---
 
