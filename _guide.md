@@ -42,7 +42,7 @@ Records are co-located with the resources they describe in `_records/` directori
 This repository maintains knowledge references at:
 
 - `knowledge/index.md` — Repository-level knowledge.
-- `cli/bin/knowledge/index.md` — Art Work Cli.
+- `cli/bin/knowledge/index.md` — Art Workspace Cli.
 - `tests/codec/knowledge/index.md` — Codec Test Fixtures.
 - `libs/constructs/index.md` — `@art-js/constructs`.
 - `libs/parser/index.md` — `@art-js/parser`.

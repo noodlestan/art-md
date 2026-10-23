@@ -29,7 +29,7 @@ This section describes how to report back to the delegator after completing the 
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
 
@@ -47,7 +47,7 @@ Produce the evidence-backed inventory that makes `@art-lib` a creatable follow-u
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
-::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source you compare against. Relevant for Refactoring.
+::READ `$ART_WORKS/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source you compare against. Relevant for Refactoring.
 ::READ `$PROJECT/knowledge/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
@@ -105,7 +105,7 @@ npm run ci # lint, test and build
 
 ### Step `1 / 4` — Build the extraction inventory
 
-Compare `$PROJECT/cli/bin/src/private/` against `$ART_WORK/cli/work/src/private/` and build an inventory of the similar modules, units, files, and functions — even if not verbatim the same shape — and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies. For example the operations log and the logger.
+Compare `$PROJECT/cli/bin/src/private/` against `$ART_WORKS/cli/work/src/private/` and build an inventory of the similar modules, units, files, and functions — even if not verbatim the same shape — and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies. For example the operations log and the logger.
 
 Per unit record: what is shared, what diverges, and the shape a shared API would take.
 

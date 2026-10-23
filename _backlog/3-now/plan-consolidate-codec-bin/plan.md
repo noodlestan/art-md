@@ -10,7 +10,7 @@
 
 **Purpose:** Audit the implemented codec CLI against the TypeScript conventions, refactor what the audit finds, and identify the precise extraction units for the `@art-lib` shared CLI libraries.
 
-**Description:** With the three entry points and both operations implemented, this plan brings the package in line with the repository's TypeScript conventions, removes duplication the implementation introduced, and produces a concrete, evidence-backed inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `cli/bin` and `$ART_WORK/cli/work` so that the shared `@art-lib` libraries can be created as a follow-up rather than guessed at. It deliberately does **not** create the shared `@art-lib` libraries.
+**Description:** With the three entry points and both operations implemented, this plan brings the package in line with the repository's TypeScript conventions, removes duplication the implementation introduced, and produces a concrete, evidence-backed inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `cli/bin` and `$ART_WORKS/cli/work` so that the shared `@art-lib` libraries can be created as a follow-up rather than guessed at. It deliberately does **not** create the shared `@art-lib` libraries.
 
 ## Mandatory Reading
 
@@ -26,7 +26,7 @@ This section lists the path variables used throughout the Plan file and its down
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 | `$ART_LIB`   | `checkouts/art-lib-planning`  | Art Lib checkout.                                           |
 
 ## Summary
@@ -70,7 +70,7 @@ This section describes the context knowledge required for the different phases o
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/node_modules/@noodlestan/conventions-typescript/art/index.md` (Conventions) — Conventions for working with TypeScript. Relevant for Auditing, Refactoring, Verifying Step.
 ::READ | `$PROJECT/node_modules/@noodlestan/conventions-unit-tests/art/index.md` (Conventions) — Unit Test conventions. Relevant for Auditing, Refactoring, Verifying Step.
-::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source the worker compares against. Relevant for Refactoring.
+::READ `$ART_WORKS/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; the source the worker compares against. Relevant for Refactoring.
 
 ## Scope
 
@@ -113,7 +113,7 @@ Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test 
 
 **Changes:**
 
-- Produce an inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, recording the shape a shared API would take.
+- Produce an inventory of the similar modules, units, and equivalent infrastructure patterns and use cases between `$PROJECT/cli/bin/src/private/` and `$ART_WORKS/cli/work/src/private/`, recording the shape a shared API would take.
 - Recommend the `@art-lib` packages boundary — which units are genuinely shared, which stay project-specific, and the naming the shared API would use.
 - Record the inventory in `$PROJECT/cli/bin/knowledge/records/adr/cli.art` and raise the `@art-lib` creation as a Follow Up on this plan and on the milestone; the package itself is not created here.
 
@@ -123,7 +123,7 @@ Audit and refactor `$PROJECT/cli/bin/src/` against the TypeScript and Unit Test 
 
 ## Execution Context
 
-Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD building checkout `$PROJECT` (checkout `$PROJECT`) on branch `building`, under `$PROJECT/cli/bin/`. The reference CLI implementation lives in `$ART_WORK` (`$ART_WORK/cli/work`).
+Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD building checkout `$PROJECT` (checkout `$PROJECT`) on branch `building`, under `$PROJECT/cli/bin/`. The reference CLI implementation lives in `$ART_WORKS` (`$ART_WORKS/cli/work`).
 
 ---
 
@@ -230,7 +230,7 @@ refactor(bin): apply typescript conventions and collapse duplication
 
 **Changes:**
 
-- Build the inventory of the similar modules, units, files, and functions between `$PROJECT/cli/bin/src/private/` and `$ART_WORK/cli/work/src/private/`, even if not verbatim the same shape, and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies — for example the operations log and the logger.
+- Build the inventory of the similar modules, units, files, and functions between `$PROJECT/cli/bin/src/private/` and `$ART_WORKS/cli/work/src/private/`, even if not verbatim the same shape, and of the equivalent infrastructure patterns and use cases, even if achieved via different strategies — for example the operations log and the logger.
 - Per unit, record what is shared, what diverges, and the shape a shared API would take.
 - Recommend the new `@art-lib` package boundaries: the units that are genuinely shared, the units that stay project-specific, and the naming the shared API would use.
 - Record the inventory in `$PROJECT/cli/bin/knowledge/records/adr/cli.art` and raise creation of the new `@art-lib` packages as a Follow Up.

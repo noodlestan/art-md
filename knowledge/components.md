@@ -79,7 +79,7 @@ The following packages are part of the art-md ecosystem but are not yet implemen
 
 ### Bin (`@art-md/bin`)
 
-Using `commander` and `$ART_WORK/cli/work` as a template.
+Using `commander` and `$ART_WORKS/cli/work` as a template.
 
 Separate entry points:
 

@@ -40,7 +40,7 @@ The pattern is identical. The deviations are in what each layer owns, how generi
 
 ### 1.1 Operation Model
 
-| Aspect                   | Art Work (`$ART_WORK/cli/work/src/private/operations/`)        | Codec Bin (planned in `$PROJECT/cli/bin/src/private/operations/`) | Deviation                     |
+| Aspect                   | Art Work (`$ART_WORKS/cli/work/src/private/operations/`)        | Codec Bin (planned in `$PROJECT/cli/bin/src/private/operations/`) | Deviation                     |
 | ------------------------ | -------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------- |
 | `OperationOutcome`       | `'pending' \| 'success' \| 'failure'`                          | Same                                                              | None                          |
 | `OperationBase`          | `{ operation, ts, finishedTs?, outcome, message(), timing() }` | Same                                                              | None                          |

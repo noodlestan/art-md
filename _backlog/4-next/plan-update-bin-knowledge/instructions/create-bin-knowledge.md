@@ -29,7 +29,7 @@ This section describes how to report back to the delegator after completing the 
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
 
@@ -50,8 +50,8 @@ Give the bin a complete, self-describing knowledge reference set so everything k
 ::READ `$WORKSPACE/knowledge/conventions/writing-commit-message.art` (Conventions) — Defines commit message conventions. Relevant for Writing Commit Message.
 ::READ `$PROJECT/knowledge/index.md` (Reference) — The repository knowledge index the bin reference must be linked from. Relevant for Implementing.
 ::READ `$PROJECT/knowledge/adr/art-md.md` (ADR) — Existing ADR style reference. Use the same terse, purposeful style for the CLI ADR.
-::READ `$ART_WORK/cli/work/knowledge/index.md` (Reference) — How the Art Work CLI organises its knowledge reference set. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/knowledge/commands.md` (Reference) — The Art Work command reference; the model for the bin's command documentation. Relevant for Implementing.
+::READ `$ART_WORKS/cli/work/knowledge/index.md` (Reference) — How the Art Work CLI organises its knowledge reference set. Relevant for Implementing.
+::READ `$ART_WORKS/cli/work/knowledge/commands.md` (Reference) — The Art Work command reference; the model for the bin's command documentation. Relevant for Implementing.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
@@ -137,7 +137,7 @@ Create `$PROJECT/cli/bin/knowledge/index.md`:
 
 - Reference index: what the bin is, the layering, the `src/` layout
 - Links to every document below
-- Follow the shape of `$ART_WORK/cli/work/knowledge/index.md` and `$PROJECT/libs/parser/knowledge/index.md`
+- Follow the shape of `$ART_WORKS/cli/work/knowledge/index.md` and `$PROJECT/libs/parser/knowledge/index.md`
 
 ### Step `2 / 8` — Create `knowledge/entry-points.md`
 

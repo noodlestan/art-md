@@ -27,7 +27,7 @@ This section lists the path variables used throughout the Milestone file and its
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
 | `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Summary
 
@@ -108,7 +108,7 @@ This section describes the context knowledge required for the different phases o
 
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
-::READ `$ART_WORK/cli/work/src/index.ts` (Reference) — Art Work CLI entry point pattern. Relevant for Implementing.
+::READ `$ART_WORKS/cli/work/src/index.ts` (Reference) — Art Work CLI entry point pattern. Relevant for Implementing.
 
 ## Scope
 
@@ -141,7 +141,7 @@ Changes in the target CLI package in `$BUILD` (canonical name `@art-md/bin`): cr
 
 ## Execution Context
 
-Execution occurs from `$WORKSPACE/`; package work is performed in the Art MD building checkout `$BUILD` (checkout `checkouts/art-md-building`) on branch `building`, under `$BUILD/cli/bin/`. The reference CLI implementation lives in `$ART_WORK` (`checkouts/art-work-building/cli/work`).
+Execution occurs from `$WORKSPACE/`; package work is performed in the Art MD building checkout `$BUILD` (checkout `checkouts/art-md-building`) on branch `building`, under `$BUILD/cli/bin/`. The reference CLI implementation lives in `$ART_WORKS` (`checkouts/art-work-building/cli/work`).
 
 ---
 

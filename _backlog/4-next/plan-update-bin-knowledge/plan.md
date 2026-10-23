@@ -26,7 +26,7 @@ This section lists the path variables used throughout the Plan file and its down
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Summary
 
@@ -77,8 +77,8 @@ This section describes the context knowledge required for the different phases o
 ::READ `$PROJECT/knowledge/components.md` (Reference) — The components document with the duplicate and stale bin entries. Relevant for Implementing.
 ::READ `$PROJECT/README.md` (Reference) — The packages table the bin row must describe. Relevant for Implementing.
 ::READ `$PROJECT/_records/project.art` (Reference) — The project record already listing `Package: Bin`. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/knowledge/index.md` (Reference) — How the Art Work CLI organises its knowledge reference set; the shape to mirror. Relevant for Implementing.
-::READ `$ART_WORK/cli/work/knowledge/commands.md` (Reference) — The Art Work command reference; the model for the bin's command documentation. Relevant for Implementing.
+::READ `$ART_WORKS/cli/work/knowledge/index.md` (Reference) — How the Art Work CLI organises its knowledge reference set; the shape to mirror. Relevant for Implementing.
+::READ `$ART_WORKS/cli/work/knowledge/commands.md` (Reference) — The Art Work command reference; the model for the bin's command documentation. Relevant for Implementing.
 
 ## Scope
 
@@ -99,7 +99,7 @@ Write the bin's knowledge reference set in `$PROJECT/cli/bin/knowledge/` and reg
 
 **Changes:**
 
-- Create `knowledge/index.md` — the reference index: what the bin is, the layering, the `src/` layout, and links to every document below, following the shape of `$ART_WORK/cli/work/knowledge/index.md` and `$PROJECT/libs/parser/knowledge/index.md`.
+- Create `knowledge/index.md` — the reference index: what the bin is, the layering, the `src/` layout, and links to every document below, following the shape of `$ART_WORKS/cli/work/knowledge/index.md` and `$PROJECT/libs/parser/knowledge/index.md`.
 - Create `knowledge/entry-points.md` — the three executables: the `art-codec`, `art-parse`, and `art-serialize` `bin` exports, the `src/bin/*.ts` → `dist/*.mjs` build mapping, and what each executable registers: `art-parse` and `art-serialize` wire their operation onto the program itself, while `art-codec` registers `parse` and `serialize` and defines no command logic of its own.
 - Create `knowledge/commands.md` — the command reference: each command's name, arguments, options (`-o, --output <mode>`, `-w, --write <file>`), stdin handling via `-`, and worked invocations. Record that parse always emits JSON, that every command writes its result to stdout and logs to stderr, and that output is newline-terminated.
 - Create `knowledge/operations.md` — the operation model: `OperationOutcome`, the pending/success/failure types, the operation factories, the logger's buffering and output modes, and the log line format, including why the checkout columns of the Art Work log line are absent.

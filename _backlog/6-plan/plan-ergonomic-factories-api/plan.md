@@ -10,7 +10,7 @@
 
 **Purpose:** Give the records layer a sanctioned path to build a document from pure data, and fix the inline-value serialization defects that block it.
 
-**Description:** `$ART_WORK` needs to create record files from pure data — the `clone` command's first run for a repo/location not yet cloned builds one `Checkout` record in memory and persists it (`init` will do the same). Two things block this. **Inline values mis-serialize**: a `FieldInline`/`FieldBlock` whose children include a list is silently dropped (emits `**Name:**&#x20;`), and an empty field emits a stray `&#x20;` HTML entity. And the construct factories are **not exported** from the package entry — the named `create{Construct}` functions exist and are complete for all seven constructs, but a consumer cannot import them. Per `$ART_WORK`'s requirement, the **CLI will not import these factories** — data→record is records-domain, so the exports serve `@art-js/records`, not the CLI. This plan fixes the inline-value defect and exposes the factories for the records layer; it adds no new construct.
+**Description:** `$ART_WORKS` needs to create record files from pure data — the `clone` command's first run for a repo/location not yet cloned builds one `Checkout` record in memory and persists it (`init` will do the same). Two things block this. **Inline values mis-serialize**: a `FieldInline`/`FieldBlock` whose children include a list is silently dropped (emits `**Name:**&#x20;`), and an empty field emits a stray `&#x20;` HTML entity. And the construct factories are **not exported** from the package entry — the named `create{Construct}` functions exist and are complete for all seven constructs, but a consumer cannot import them. Per `$ART_WORKS`'s requirement, the **CLI will not import these factories** — data→record is records-domain, so the exports serve `@art-js/records`, not the CLI. This plan fixes the inline-value defect and exposes the factories for the records layer; it adds no new construct.
 
 ## Path Variables
 
@@ -18,12 +18,12 @@
 | ------------ | ----------------------------- | --------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                           |
 | `$PROJECT`   | `checkouts/art-md-planning`   | Checkout for Art MD implementation.                 |
-| `$ART_WORK`  | `checkouts/art-work-planning` | Consumer driving this plan; use-case source.        |
+| `$ART_WORKS`  | `checkouts/art-work-planning` | Consumer driving this plan; use-case source.        |
 | `$ART_JS`    | `checkouts/art-js-planning`   | Owns `@art-js/records`; the builder's likely owner. |
 
 ## Summary
 
-Fix inline-value serialization (list + entity defects), export the named construct factories for the records layer, and prove the path with `$ART_WORK`'s real checkout record as the round-trip acceptance case.
+Fix inline-value serialization (list + entity defects), export the named construct factories for the records layer, and prove the path with `$ART_WORKS`'s real checkout record as the round-trip acceptance case.
 
 ## Context
 
@@ -32,7 +32,7 @@ Fix inline-value serialization (list + entity defects), export the named constru
 | Kind      | Path                                                             | Role                                                |
 | --------- | ---------------------------------------------------------------- | --------------------------------------------------- |
 | Milestone | `$PROJECT/_roadmap/6-plan/milestone-art-constructs/milestone.md` | Owns the constructs package; this plan's home.      |
-| Consumer  | `$ART_WORK/_backlog/_parking-lot.md`                             | Clone-command use case; fully described 2026-10-13. |
+| Consumer  | `$ART_WORKS/_backlog/_parking-lot.md`                             | Clone-command use case; fully described 2026-10-13. |
 
 ### Required Skills
 
@@ -70,7 +70,7 @@ Fix inline-value serialization fidelity and expose the factories to the records 
 
 - Fix inline-value serialization: a list child must emit a real bullet list, and an empty `FieldInline` must emit no stray `&#x20;` entity.
 - Export the named factories (`createDocument`, `createSectionBlock`, `createFieldBlock`, `createFieldInline`, `createNaturalBlock`, `createNaturalExpression`, `createTag`) and their `*FactoryData` types from the package entry, alongside the existing `FACTORIES` registry.
-- Add a round-trip test using `$ART_WORK`'s real checkout record shape (`## Checkout: X` + `**Repository:**` plain text + `**Location:**`/`**Branch:**` inline code) as the acceptance case.
+- Add a round-trip test using `$ART_WORKS`'s real checkout record shape (`## Checkout: X` + `**Repository:**` plain text + `**Location:**`/`**Branch:**` inline code) as the acceptance case.
 
 **Dependencies:**
 
@@ -156,7 +156,7 @@ npm run ci
 
 **Purpose:** The records layer can import the factories by name.
 
-**Description:** Re-export the seven `create{Construct}` functions and their `*FactoryData` types from the package entry. The consumer is `@art-js/records`, **not** the CLI (per `$ART_WORK` requirement 5). Additive; `FACTORIES` and all existing exports stay.
+**Description:** Re-export the seven `create{Construct}` functions and their `*FactoryData` types from the package entry. The consumer is `@art-js/records`, **not** the CLI (per `$ART_WORKS` requirement 5). Additive; `FACTORIES` and all existing exports stay.
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 
@@ -180,7 +180,7 @@ npm run ci
 
 **Purpose:** Prove the real consumer shape works end-to-end.
 
-**Description:** Add a test using `$ART_WORK`'s checkout record: build from pure data (heading text + plain-text + inline-code fields), serialize, parse back, assert the heading text and field values survive.
+**Description:** Add a test using `$ART_WORKS`'s checkout record: build from pure data (heading text + plain-text + inline-code fields), serialize, parse back, assert the heading text and field values survive.
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 
@@ -216,18 +216,18 @@ npm run ci
 ### Findings
 
 - The factories are complete for all seven constructs; the gaps are the export surface and the inline-value serializer defect, not missing implementations.
-- `$ART_WORK`'s read side matches on the `## Checkout:` heading text, so heading fidelity is load-bearing on both ends — the acceptance case asserts it survives.
+- `$ART_WORKS`'s read side matches on the `## Checkout:` heading text, so heading fidelity is load-bearing on both ends — the acceptance case asserts it survives.
 
 ### Decisions
 
-- **Factories serve the records layer, not the CLI** — per `$ART_WORK` requirement 5: data→record is records-domain, exactly as `createFieldResolver` is. Either `@art-js/records` owns the plain-data builder or the factories stay internal and the records layer calls them.
-- **This plan does not change `$ART_WORK`'s call site** — their build → serialize → `writeContent()` flow stands; this plan fixes what sits beneath it.
+- **Factories serve the records layer, not the CLI** — per `$ART_WORKS` requirement 5: data→record is records-domain, exactly as `createFieldResolver` is. Either `@art-js/records` owns the plain-data builder or the factories stay internal and the records layer calls them.
+- **This plan does not change `$ART_WORKS`'s call site** — their build → serialize → `writeContent()` flow stands; this plan fixes what sits beneath it.
 - **`config.checkouts.template` stays CLI-internal** — out of the records domain.
 
 ### Follow Ups
 
 - **Confirm builder ownership with `$ART_JS`** — does `@art-js/records` own the plain-data builder? Needed before the exports have a consumer.
-- **`$ART_WORK` requirement 2, record references** — `**Owner:** Package: Art Work` is plain text today; if typed references are wanted later, that is a separate construct-level question.
+- **`$ART_WORKS` requirement 2, record references** — `**Owner:** Package: Art Work` is plain text today; if typed references are wanted later, that is a separate construct-level question.
 
 ### Feedback
 

@@ -4,7 +4,7 @@
 
 **Status:** `DRAFT`
 
-**Purpose:** Capture the design for the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`), lifting the patterns from the Art Work CLI (`$ART_WORK/cli/work`) and applying them to the codec CLI.
+**Purpose:** Capture the design for the Art MD CLI binaries (`art-codec`, `art-parse`, `art-serialize`), lifting the patterns from the Art Work CLI (`$ART_WORKS/cli/work`) and applying them to the codec CLI.
 
 ## Lock Down
 
@@ -12,7 +12,7 @@ Locked down by the user during milestone drafting. The design lifts the Art Work
 
 **Validation:**
 
-- The Art Work CLI patterns (entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs) are captured from `$ART_WORK/cli/work`.
+- The Art Work CLI patterns (entry point → `run{CommandName}` → `do{OperationName}` → log operations → present outputs) are captured from `$ART_WORKS/cli/work`.
 - The `@art-md/codec` package (`createArtCodec()`) is delivered and available as the underlying implementation.
 
 **Refinements:**
@@ -21,7 +21,7 @@ Locked down by the user during milestone drafting. The design lifts the Art Work
 
 ## Art Work CLI Patterns (Reference)
 
-The reference implementation lives in `$ART_WORK/cli/work` (`checkouts/art-work-building/cli/work`). It uses the `commander` NPM dependency and establishes the following patterns:
+The reference implementation lives in `$ART_WORKS/cli/work` (`checkouts/art-work-building/cli/work`). It uses the `commander` NPM dependency and establishes the following patterns:
 
 ### Entry Point (`src/index.ts`)
 

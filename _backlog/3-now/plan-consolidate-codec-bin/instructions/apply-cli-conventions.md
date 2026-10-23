@@ -29,7 +29,7 @@ This section describes how to report back to the delegator after completing the 
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
-| `$ART_WORK`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Working Agreements
 
@@ -48,7 +48,7 @@ Bring the implemented CLI in line with the TypeScript conventions and remove the
 ::READ `$WORKSPACE/_guide.md` (Guide) — Defines workspace operations and verification. Relevant for Setting Up, Verifying Completion.
 ::READ `$PROJECT/_guide.md` (Guide) — Defines project operations and verification. Relevant for Setting Up, Verifying Step, Verifying Completion. Conventions for working with TypeScript and Unit Tests. Relevant for Executing Work, Verifying Step.
 ::READ `$PROJECT/_backlog/3-now/plan-consolidate-codec-bin/plan__audit.md` (Audit) — The audit report of the CLI against the conventions; the source of the deviations to refactor. Relevant for Refactoring.
-::READ `$ART_WORK/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; a reference for the refactoring. Relevant for Refactoring.
+::READ `$ART_WORKS/cli/work/src/private/` (Reference) — The Art Work CLI's private modules; a reference for the refactoring. Relevant for Refactoring.
 
 - RULE: You MUST follow any links under `## Mandatory Reading` sections found in the listed files.
 - RULE: If you are unable to read a file linked under `## Mandatory Reading` you must stop and REPORT A BLOCKER.
