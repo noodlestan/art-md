@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/noodlestan/art-md",
+    "url": "https://github.com/noodlestan/art-md.git",
     "directory": "spec/"
   },
   "private": false,

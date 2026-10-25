@@ -1,6 +1,6 @@
 {
   "name": "@art-md/serializer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Serializes Art AST back to markdown.",
   "keywords": [
     "library",
