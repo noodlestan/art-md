@@ -18,7 +18,7 @@
 | ------------ | ----------------------------- | --------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                           |
 | `$PROJECT`   | `checkouts/art-md-planning`   | Checkout for Art MD implementation.                 |
-| `$ART_WORKS`  | `checkouts/art-work-planning` | Consumer driving this plan; use-case source.        |
+| `$ART_WORKS` | `checkouts/art-work-planning` | Consumer driving this plan; use-case source.        |
 | `$ART_JS`    | `checkouts/art-js-planning`   | Owns `@art-js/records`; the builder's likely owner. |
 
 ## Summary
@@ -32,7 +32,7 @@ Fix inline-value serialization (list + entity defects), export the named constru
 | Kind      | Path                                                             | Role                                                |
 | --------- | ---------------------------------------------------------------- | --------------------------------------------------- |
 | Milestone | `$PROJECT/_roadmap/6-plan/milestone-art-constructs/milestone.md` | Owns the constructs package; this plan's home.      |
-| Consumer  | `$ART_WORKS/_backlog/_parking-lot.md`                             | Clone-command use case; fully described 2026-10-13. |
+| Consumer  | `$ART_WORKS/_backlog/_parking-lot.md`                            | Clone-command use case; fully described 2026-10-13. |
 
 ### Required Skills
 

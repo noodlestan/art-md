@@ -27,7 +27,7 @@ This section lists the path variables used throughout the Milestone file and its
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | `checkouts/art-md-planning`   | Planning checkout for Art MD.                               |
 | `$BUILD`     | `checkouts/art-md-building`   | Building checkout for Art MD (implementation).              |
-| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS` | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 
 ## Summary
 

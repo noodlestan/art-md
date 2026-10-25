@@ -26,7 +26,7 @@ This section lists the path variables used throughout the Plan file and its down
 | ------------ | ----------------------------- | ----------------------------------------------------------- |
 | `$WORKSPACE` | Current working directory     | Workspace root directory.                                   |
 | `$PROJECT`   | PROVIDED WITH PROMPT          | Checkout for Art MD implementation.                         |
-| `$ART_WORKS`  | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
+| `$ART_WORKS` | `checkouts/art-work-building` | Art Work checkout (reference CLI implementation to follow). |
 | `$ART_LIB`   | `checkouts/art-lib-planning`  | Art Lib checkout.                                           |
 
 ## Summary
