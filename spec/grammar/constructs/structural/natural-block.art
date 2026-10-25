@@ -25,6 +25,7 @@ NaturalBlock {
 - A NaturalBlock is the default classification for content that does not match any other construct.
 - A NaturalBlock MUST NOT be interpreted as a named property unless defined by the enclosing construct.
 - The interpretation of a NaturalBlock is determined by the enclosing construct.
+
 <!-- refine content rules -->
 
 **Syntax:**

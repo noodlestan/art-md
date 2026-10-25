@@ -68,14 +68,14 @@ Execution occurs in `$PROJECT` on branch `building`.
 
 ## Items:
 
-| Iteration / Instructions                                                                                              | Status  |
+| Iteration / Instructions | Status |
 | --------------------------------------------------------------------------------------------------------------------- | ------- | --------- |
-| Iteration: Rename and Reclassify Helpers `./plan-refactor-test-helpers/instructions/rename-and-reclassify-helpers.md` | `DONE`  | `b9a179d` |
-| Iteration: Deduplicate Primitive Helpers `./plan-refactor-test-helpers/instructions/deduplicate-primitive-helpers.md` | `DONE`  | `8bf443f` |
-| Iteration: Simplify Async Imports `./plan-refactor-test-helpers/instructions/simplify-async-imports.md`               | `DONE`  | TBD       |
-| Iteration: Format Test Scenarios `./plan-refactor-test-helpers/instructions/format-test-scenarios.md`                 | `DONE`  | `99a08da` |
-| Iteration: Write Test Conventions `./plan-refactor-test-helpers/instructions/write-test-conventions.md`               | `DONE`  | `a6daaff` |
-| Iteration: Eliminate Async Imports in Unit Tests                                                                      | `READY` |
+| Iteration: Rename and Reclassify Helpers `./plan-refactor-test-helpers/instructions/rename-and-reclassify-helpers.md` | `DONE` | `b9a179d` |
+| Iteration: Deduplicate Primitive Helpers `./plan-refactor-test-helpers/instructions/deduplicate-primitive-helpers.md` | `DONE` | `8bf443f` |
+| Iteration: Simplify Async Imports `./plan-refactor-test-helpers/instructions/simplify-async-imports.md` | `DONE` | TBD |
+| Iteration: Format Test Scenarios `./plan-refactor-test-helpers/instructions/format-test-scenarios.md` | `DONE` | `99a08da` |
+| Iteration: Write Test Conventions `./plan-refactor-test-helpers/instructions/write-test-conventions.md` | `DONE` | `a6daaff` |
+| Iteration: Eliminate Async Imports in Unit Tests | `READY` |
 
 ### Iteration: Rename and Reclassify Helpers
 

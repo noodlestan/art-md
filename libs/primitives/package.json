@@ -13,16 +13,27 @@
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noodlestan/art-md.git",
+    "directory": "libs/primitives/"
+  },
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/noodlestan/art-md",
-    "directory": "libs/primitives/"
+  "files": [
+    "src",
+    "dist",
+    "README.md",
+    "LICENSE-MIT",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
   },
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -32,12 +43,6 @@
       "import": "./src/test/helpers/*"
     }
   },
-  "files": [
-    "src",
-    "dist",
-    "LICENSE-MIT",
-    "README.md"
-  ],
   "scripts": {
     "dev": "esbuild-cli-watch",
     "lint": "prettier . -c && eslint . && tsc --noEmit",
@@ -49,7 +54,13 @@
     "test:watch": "vitest",
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
+  "dependencies": {
+    "mdast": "2.3.2"
+  },
   "devDependencies": {
-    "vitest": "4.1.8"
+    "@types/mdast": "4.0.4",
+    "@types/unist": "3.0.3",
+    "mdast-util-from-markdown": "2.1.0",
+    "vitest": "5.0.5"
   }
 }

@@ -32,9 +32,11 @@
 
 **Files:**
 
+- `src`
 - `dist`
-- `LICENSE-MIT`
 - `README.md`
+- `LICENSE-MIT`
+- `CHANGELOG.md`
 
 **Language:** Typescript
 

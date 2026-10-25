@@ -19,11 +19,11 @@ The iteration's `## Goals` — register the `@art-md/codec` package in the proje
 
 #### Files changed
 
-| File                   | Change                                                                                |
+| File | Change |
 | ---------------------- | ------------------------------------------------------------------------------------- | --------- | ---------------------- | --------------- | -------------------------------------------------------------- | ------------------------------------------------------ |
 | `_records/project.art` | Added `- Package: Codec` to the `**Resources:**` list, after `- Package: Primitives`. |
-| `README.md`            | Added the `                                                                           | `@art-md` | `libs/codec/`          | `@art-md/codec` | Configured codec implementation                                | ` row to the packages table, after the serializer row. |
-| `_guide.md`            | Added the `                                                                           | Codec     | `libs/codec/_guide.md` | `NONE`          | ` project row to the projects table, after the Constructs row. |
+| `README.md` | Added the `                                                                          |`@art-md`|`libs/codec/`         |`@art-md/codec`| Configured codec implementation                                |` row to the packages table, after the serializer row. |
+| `_guide.md` | Added the `                                                                          | Codec     |`libs/codec/_guide.md`|`NONE`         |` project row to the projects table, after the Constructs row. |
 
 Verification per Step `4 / 4`: the three files reference the codec consistently (`Package: Codec`, `@art-md/codec`, `libs/codec/_guide.md`), and no stale/duplicate references remain.
 

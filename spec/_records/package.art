@@ -14,7 +14,7 @@
 
 **Canonical Name:** `@art-md/spec`
 
-**Published:** `false`
+**Published:** `true`
 
 **Private:** `false`
 
@@ -32,9 +32,11 @@
 
 **Files:**
 
-- `dist`
-- `LICENSE-MIT`
+- `grammar`
+- `_guide.md`
 - `README.md`
+- `LICENSE-MIT`
+- `CHANGELOG.md`
 
 **Language:** Typescript
 

@@ -12,26 +12,30 @@
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noodlestan/art-md.git",
+    "directory": "cli/bin"
+  },
   "private": false,
-  "type": "module",
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/noodlestan/art-md",
-    "directory": "cli/bin"
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE-MIT",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
   },
+  "type": "module",
   "bin": {
     "art-codec": "./dist/codec.mjs",
     "art-parse": "./dist/parse.mjs",
     "art-serialize": "./dist/serialize.mjs"
   },
-  "files": [
-    "dist",
-    "LICENSE-MIT",
-    "README.md"
-  ],
   "scripts": {
     "dev": "esbuild-cli-watch",
     "lint": "prettier . -c && eslint . && tsc --noEmit",
@@ -47,9 +51,9 @@
   "dependencies": {
     "@art-md/codec": "*",
     "@art-md/primitives": "*",
-    "commander": "^12.0.0"
+    "commander": "12.0.0"
   },
   "devDependencies": {
-    "vitest": "4.1.8"
+    "vitest": "5.0.5"
   }
 }

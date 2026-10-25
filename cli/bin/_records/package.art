@@ -14,7 +14,7 @@
 
 **Canonical Name:** `@art-md/bin`
 
-**Published:** `true`
+**Published:** `false`
 
 **Private:** `false`
 
@@ -31,12 +31,10 @@
 
 **Files:**
 
-- `src/bin/codec.ts`
-- `src/bin/parse.ts`
-- `src/bin/serialize.ts`
 - `dist`
-- `LICENSE-MIT`
 - `README.md`
+- `LICENSE-MIT`
+- `CHANGELOG.md`
 
 **Language:** Typescript
 

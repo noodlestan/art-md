@@ -37,11 +37,7 @@ export type SerializePending = OperationPending & {
 };
 
 export type Operation =
-	| ParsePending
-	| SerializePending
-	| OperationPending
-	| OperationSuccess
-	| OperationFailure;
+	ParsePending | SerializePending | OperationPending | OperationSuccess | OperationFailure;
 
 export type OperationsLog = {
 	log: (operation: Operation) => void;

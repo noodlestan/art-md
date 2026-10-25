@@ -32,9 +32,11 @@
 
 **Files:**
 
+- `src`
 - `dist`
-- `LICENSE-MIT`
 - `README.md`
+- `LICENSE-MIT`
+- `CHANGELOG.md`
 
 **Language:** Typescript
 
@@ -51,7 +53,7 @@
 - Runtime:
   - `@art-md/primitives`
   - `@art-md/constructs`
-  - `mdast-util-from-markdown` @ `^2.0.0` — Generates mdast from MD.
+  - `mdast-util-from-markdown` @ `^2.1.0` — Generates mdast from MD.
   - `unist-util-visit` @ `^5.0.0` — mdast traversing.
 
 **License:** License: Noodlestan 2026 MIT

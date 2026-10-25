@@ -13,14 +13,24 @@
   ],
   "author": "Noodlestan Collective",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noodlestan/art-md.git",
+    "directory": "libs/serializer/"
+  },
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/noodlestan/art-md",
-    "directory": "libs/serializer/"
+  "files": [
+    "src",
+    "dist",
+    "README.md",
+    "LICENSE-MIT",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22"
   },
   "type": "module",
   "sideEffects": false,
@@ -30,12 +40,6 @@
       "import": "./dist/index.mjs"
     }
   },
-  "files": [
-    "src",
-    "dist",
-    "LICENSE-MIT",
-    "README.md"
-  ],
   "scripts": {
     "dev": "esbuild-cli-watch",
     "lint": "prettier . -c && eslint . && tsc --noEmit",
@@ -50,7 +54,10 @@
   "dependencies": {
     "@art-md/primitives": "*",
     "@art-md/constructs": "*",
-    "mdast-util-to-markdown": "^2.0.0"
+    "mdast-util-to-markdown": "2.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/mdast": "4.0.4",
+    "vitest": "5.0.5"
+  }
 }
