@@ -1,6 +1,6 @@
 {
   "name": "@art-md/parser",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Parses context files and art modules into structured representations.",
   "keywords": [
     "library",
