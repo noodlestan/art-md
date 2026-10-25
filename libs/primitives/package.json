@@ -1,6 +1,6 @@
 {
   "name": "@art-md/primitives",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Foundational types and utilities for Art modules.",
   "keywords": [
     "library",
@@ -53,9 +53,6 @@
     "test:ci": "vitest run --coverage",
     "test:watch": "vitest",
     "ci": "npm run lint && npm run build && npm run test:ci"
-  },
-  "dependencies": {
-    "mdast": "2.3.2"
   },
   "devDependencies": {
     "@types/mdast": "4.0.4",

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.6
+
+### Changed
+
+- **Update dependencies** - `mdast-util-from-markdown@2.1.0`
+
 ## 0.0.5
 
 ### Fixed
