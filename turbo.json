@@ -18,12 +18,12 @@
     },
     "extract": {
       "cache": false,
-      "dependsOn": ["^build"],
+      "dependsOn": ["@noodlestan/purrfiles-extract#build", "@noodlestan/purrfiles-entities#build"],
       "outputs": ["dist/meta.json"]
     },
     "ci": {
       "cache": false,
-      "dependsOn": ["^ci"]
+      "dependsOn": ["extract", "^ci"]
     },
     "lint": {
       "dependsOn": ["^lint"]

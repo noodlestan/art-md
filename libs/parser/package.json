@@ -63,8 +63,8 @@
   },
   "devDependencies": {
     "@noodlestan/purrfiles-extract": "*",
-    "@purrception/lang-ts-extract": "0.1.0",
-    "@purrception/source-fs": "0.1.0",
+    "@purrception/lang-ts-extract": "0.1.1",
+    "@purrception/source-fs": "0.1.1",
     "@types/mdast": "4.0.4",
     "@types/unist": "3.0.3",
     "tsx": "4.23.15",
