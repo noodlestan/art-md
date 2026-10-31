@@ -131,10 +131,10 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                   | Status     |
-| ------------------------------------------------------------------------------------------ | ---------- |
-| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `DONE`     |
-| Iteration: Publish Construct API                                                           | `PLANNING` |
+| Iteration / Instructions                                                                   | Status  |
+| ------------------------------------------------------------------------------------------ | ------- |
+| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `DONE`  |
+| Iteration: Publish Construct API `./instructions/publish-construct-api.md`                 | `READY` |
 
 ### Iteration: Define Construct API on Codec
 
@@ -189,18 +189,19 @@ build(codec): Expose construct creation and toText on ArtCodec
 
 **Id:** `publish-construct-api`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Republish both packages so the new API is consumable.
 
 **Description:** Bump `@art-md/primitives` and `@art-md/codec`, keep the dependency range aligned, verify the repository, and publish.
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
+**Instructions:** `./instructions/publish-construct-api.md`
 
 **Changes:**
 
 - Bump `@art-md/primitives` from `0.0.6` and `@art-md/codec` from `0.0.3` in their `package.json` files.
-- Keep `@art-md/codec`'s `@art-md/primitives` dependency range aligned with the bumped version.
+- Leave every `@art-md/*` dependency range as `"*"` — this repository's packages interdepend on `"*"`, so nothing is aligned with the bump.
 - Run `npm run ci` from `$PROJECT/`.
 - Publish both packages following `$PROJECT/_guide.md` and the deployment records at `$PROJECT/libs/primitives/_records/npm-deployment.art` and `$PROJECT/libs/codec/_records/npm-deployment.art`.
 
@@ -230,7 +231,7 @@ release(art-md): Republish primitives and codec with construct API
 
 This section states the immediate action needed to advance the Plan.
 
-Write instructions for Iteration: Publish Construct API.
+Delegate Iteration: Publish Construct API.
 
 ### Blockers
 
