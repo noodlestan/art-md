@@ -131,22 +131,24 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                 | Status     |
-| ---------------------------------------- | ---------- |
-| Iteration: Define Construct API on Codec | `PLANNING` |
-| Iteration: Publish Construct API         | `PLANNING` |
+| Iteration / Instructions                                                                   | Status     |
+| ------------------------------------------------------------------------------------------ | ---------- |
+| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `READY`    |
+| Iteration: Publish Construct API                                                           | `PLANNING` |
 
 ### Iteration: Define Construct API on Codec
 
 **Id:** `define-construct-api-on-codec`
 
-**Status:** `PLANNING`
+**Status:** `READY`
 
 **Purpose:** Give `ArtCodec` an open construct creation and reading surface that any configured factory list can serve.
 
 **Description:** Extend the `ArtCodec` interface in primitives, implement it in codec over a lazily built index of the configured construct factories with `Document` discarded, and cover lookup, creation, rejection, and text reading with tests in both packages.
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
+
+**Instructions:** `./instructions/define-construct-api-on-codec.md`
 
 **Changes:**
 
@@ -156,7 +158,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
   - `toText(construct: ConstructBase): string;`
 - Define the factory function type and the registry entry type (`{ name, factory }`) beside the codec types, in terms of `ConstructBase`.
 - In `$PROJECT/libs/codec/src/types.ts`, add `factories` to `ArtCodecConfig` and `PartialArtCodecConfig`.
-- In `$PROJECT/libs/codec/src/createArtCodec.ts`, build a `Map<name, factory>` lazily on first access from `config.factories ?? FACTORIES`, discarding the `Document` entry.
+- In `$PROJECT/libs/codec/src/createArtCodec.ts`, build a `Map<name, factory>` lazily on first access from `config.factories ?? FACTORIES`, discarding the `Document` entry — the builder is extracted to `$PROJECT/libs/codec/src/private/createFactoryIndex.ts` per **Function Extraction**.
 - Implement the three members; `toText` performs the structural walk (`value` first, then recursive `children` joined, else an empty string).
 - Throw a single not-found error for any name missing from the index, so `Document` and unknown names are indistinguishable.
 - Add tests to `$PROJECT/libs/codec/src/createArtCodec.test.ts` and the primitives codec types covering: default index contents (no `Document`), configured factories replacing the default, a factory from another package being creatable, `Document` rejected, an unknown name rejected, `toText` on nested and valueless constructs, and repeated access not rebuilding the index.
@@ -227,7 +229,7 @@ release(art-md): Republish primitives and codec with construct API
 
 This section states the immediate action needed to advance the Plan.
 
-Write instructions for Iteration: Define Construct API on Codec.
+Delegate Iteration: Define Construct API on Codec.
 
 ### Blockers
 
