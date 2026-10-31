@@ -2,7 +2,7 @@
 
 **ID:** `expose-construct-creation-in-codec`
 
-**Status:** `PLANNING`
+**Status:** `WORKING`
 
 **Template:** `.agents/domains/plans/templates/plan.tart`
 
@@ -133,14 +133,14 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 | Iteration / Instructions                                                                   | Status     |
 | ------------------------------------------------------------------------------------------ | ---------- |
-| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `READY`    |
+| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `DONE`     |
 | Iteration: Publish Construct API                                                           | `PLANNING` |
 
 ### Iteration: Define Construct API on Codec
 
 **Id:** `define-construct-api-on-codec`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Give `ArtCodec` an open construct creation and reading surface that any configured factory list can serve.
 
@@ -149,6 +149,7 @@ This section lists the downstream work items produced, coordinated, or advanced 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 
 **Instructions:** `./instructions/define-construct-api-on-codec.md`
+**Report:** `./instructions/define-construct-api-on-codec__report.md`
 
 **Changes:**
 
@@ -170,9 +171,9 @@ This section lists the downstream work items produced, coordinated, or advanced 
 
 #### Commits:
 
-| ID                     | Repository / Checkout / Branch | Policy   | Hash    | Status     |
-| ---------------------- | ------------------------------ | -------- | ------- | ---------- |
-| `define-construct-api` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `(TBD)` | `AUTHORED` |
+| ID                     | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ---------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `define-construct-api` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `b6396ef` | `COMMITTED` |
 
 ##### Commit: `define-construct-api`
 
@@ -229,7 +230,7 @@ release(art-md): Republish primitives and codec with construct API
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Define Construct API on Codec.
+Write instructions for Iteration: Publish Construct API.
 
 ### Blockers
 
@@ -303,6 +304,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
+- Commit `b6396ef` (NOPUSH, `main`) — 8 files, +207/−2; root `npm run ci` 12/12 tasks; codec 15 tests at 100% coverage, primitives 22 tests. Report `./instructions/define-construct-api-on-codec__report.md`.
 - `FACTORIES` verified against the installed `@art-md/constructs@0.0.6`: `FACTORIES.find(f => f.name === 'NaturalBlock').factory({ value: 'x', children: [] })` returns `{"construct":"NaturalBlock","value":"x","children":[]}` — the default registry input works with no change to constructs.
 - The published `0.0.6` runtime exports exactly `CONSTRUCT_PARSERS, CONSTRUCT_SERIALIZERS, DEFAULT_CONSTRUCT_PARSER, FACTORIES, createArtDocumentFromNode`; every construct factory is reachable only through `FACTORIES`.
 
@@ -334,4 +336,4 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Feedback
 
-- None.
+- Extending `ArtCodec` forced updates to existing `ArtCodec` mocks (`libs/primitives/src/source/createArtDocumentSource.test.ts`) — every interface extension in primitives lands a compile break in its consumers' test doubles; expect it and do not treat it as a blocker.
