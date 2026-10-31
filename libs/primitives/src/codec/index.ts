@@ -1,1 +1,1 @@
-export type { ArtCodec } from './types.js';
+export type { ArtCodec, ConstructFactoryEntry, ConstructFactoryFunction } from './types.js';

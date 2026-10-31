@@ -12,6 +12,9 @@ describe('createArtDocumentSource', () => {
 		const codecMock: ArtCodec = {
 			parse: vi.fn().mockReturnValue({ document, context: { uri: 'file:///a.md' } }),
 			serialize: vi.fn(),
+			getConstructFactory: vi.fn(),
+			create: vi.fn(),
+			toText: vi.fn(),
 		};
 		const contentSourceMock: ArtContentSource = {
 			type: 'file',
@@ -36,6 +39,9 @@ describe('createArtDocumentSource', () => {
 		const codecMock: ArtCodec = {
 			parse: vi.fn().mockReturnValue({ document, context: { uri: 'file:///a.md' } }),
 			serialize: vi.fn(),
+			getConstructFactory: vi.fn(),
+			create: vi.fn(),
+			toText: vi.fn(),
 		};
 		const contentSourceMock: ArtContentSource = {
 			type: 'file',
@@ -58,6 +64,9 @@ describe('createArtDocumentSource', () => {
 		const codecMock: ArtCodec = {
 			parse: vi.fn(),
 			serialize: vi.fn().mockReturnValue({ content: '# Hello', context: { uri: 'file:///a.md' } }),
+			getConstructFactory: vi.fn(),
+			create: vi.fn(),
+			toText: vi.fn(),
 		};
 		const contentSourceMock: ArtContentSource = {
 			type: 'file',
