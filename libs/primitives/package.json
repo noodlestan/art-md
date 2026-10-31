@@ -1,6 +1,6 @@
 {
   "name": "@art-md/primitives",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Foundational types and utilities for Art modules.",
   "keywords": [
     "library",

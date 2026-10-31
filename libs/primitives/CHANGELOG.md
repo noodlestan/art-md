@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.7
+
+### Added
+
+- **Codec construct API** — `ArtCodec` gains `getConstructFactory(name)`, `create<C>(name, ...args)`, and `toText(construct)`.
+- **Codec factory types** — `ConstructFactoryFunction` and `ConstructFactoryEntry` describe the registry entries any package can contribute.
+
 ## 0.0.6
 
 ### Changed

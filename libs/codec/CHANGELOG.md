@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.0.4
+
+### Added
+
+- **Construct registry config** — `ArtCodecConfig.factories` supplies the construct factory list, defaulting to `FACTORIES` from `@art-md/constructs`.
+- **Factory lookup and creation** — codec instances build their `name => factory` index lazily and create construct instances; `Document` is not creatable and shares the not-found error with any unknown name.
+- **`toText`** — reads a construct's text, walking `value` and recursive `children`.
+
 ## 0.0.3
 
 ### Fixed
