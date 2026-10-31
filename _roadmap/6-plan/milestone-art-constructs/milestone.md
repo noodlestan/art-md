@@ -27,12 +27,25 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 | Index | Name                            | Status  |
 | ----- | ------------------------------- | ------- |
-| #1    | Refine Grammar                  | `DRAFT` |
-| #2    | Implement block constructs      | `DRAFT` |
-| #3    | Implement inline constructs     | `DRAFT` |
-| #4    | Implement expression constructs | `DRAFT` |
+| #1    | API Ergonomics                  | `DRAFT` |
+| #2    | Refine Grammar                  | `DRAFT` |
+| #3    | Implement block constructs      | `DRAFT` |
+| #4    | Implement inline constructs     | `DRAFT` |
+| #5    | Implement expression constructs | `DRAFT` |
 
-### Phase: 1 — Refine Grammar
+### Phase: 1 — API Ergonomics
+
+**Goal:** Let consumers create construct instances through a codec instance API.
+
+**Description:** Expose `getConstructFactory`, `create`, and `toText` on `ArtCodec` over the construct factory list the instance is configured with, keeping documents outside the creatable set, and republish `@art-md/primitives` and `@art-md/codec`.
+
+**Status:** `DRAFT`
+
+**Dependencies:**
+
+- None.
+
+### Phase: 2 — Refine Grammar
 
 **Goal:** Confirm which constructs to implement and their shapes.
 
@@ -44,7 +57,7 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 - Spec: `spec/grammar/`, `spec/expressions/`
 
-### Phase: 2 — Implement block constructs
+### Phase: 3 — Implement block constructs
 
 **Goal:** Implement the block-level constructs.
 
@@ -54,9 +67,9 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 **Dependencies:**
 
-- Phase 1 — Refine Grammar
+- Phase 2 — Refine Grammar
 
-### Phase: 3 — Implement inline constructs
+### Phase: 4 — Implement inline constructs
 
 **Goal:** Implement the inline constructs.
 
@@ -66,9 +79,9 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 **Dependencies:**
 
-- Phase 1 — Refine Grammar
+- Phase 2 — Refine Grammar
 
-### Phase: 4 — Implement expression constructs
+### Phase: 5 — Implement expression constructs
 
 **Goal:** Implement the expression-level constructs.
 
@@ -78,11 +91,12 @@ The constructs package currently ships `Document`, `FieldBlock`, `FieldInline`, 
 
 **Dependencies:**
 
-- Phase 1 — Refine Grammar
+- Phase 2 — Refine Grammar
 
 ## Items
 
-- `checkouts/art-md-planning/_backlog/6-plan/plan-ergonomic-factories-api/plan.md` (Plan: Ergonomic Factories API, `PLANNING`) — fix inline-value serialization (list + entity defects) and export the named construct factories for the records layer. Driven by `$ART_WORKS`'s clone-command use case, whose five requirements are folded in as the acceptance case.
+- `checkouts/art-md/_backlog/3-now/plan-expose-construct-creation-in-codec/plan.md` (Plan: Expose Construct Creation in Codec, `PLANNING`) — give `ArtCodec` `getConstructFactory`, `create`, and `toText` over the construct factory list the instance is configured with, then republish `@art-md/primitives` and `@art-md/codec`.
+- `checkouts/art-md/_backlog/6-plan/plan-ergonomic-factories-api/plan.md` (Plan: Ergonomic Factories API, `PLANNING`) — fix inline-value serialization (list + entity defects) and export the named construct factories for the records layer. Driven by `$ART_WORKS`'s clone-command use case, whose five requirements are folded in as the acceptance case.
 
 Changes will typically involved:
 

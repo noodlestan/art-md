@@ -1,3 +1,9 @@
+> **STALE — QUESTION THIS PLAN BEFORE USE.**
+>
+> Written against `checkouts/art-md-planning`, `checkouts/art-work-planning`, and `checkouts/art-js-planning`, none of which exist — every path variable below resolves to nothing. Its purpose also overlaps `checkouts/art-md/_backlog/3-now/plan-expose-construct-creation-in-codec/plan.md`, which exposes construct creation through a codec instance instead of exporting the `create{Construct}` functions directly.
+>
+> Re-scope against the current checkouts and settle which plan owns construct creation before planning or delegating any iteration of this one.
+
 # Plan: Ergonomic Factories API
 
 **ID:** `ergonomic-factories-api`
