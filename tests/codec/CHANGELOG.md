@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.2
+
+### Changed
+
+- **Exact dependency pins** — depends on `@art-md/codec@0.0.5` instead of `*`.
+
 ## 0.0.1
 
 ### Added

@@ -1,6 +1,6 @@
 {
   "name": "@art-md/codec-tests",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Test scripts for the parser and serializer through the codec.",
   "keywords": [
     "art",
@@ -40,7 +40,7 @@
     "ci": "npm run lint && npm run build && npm run test"
   },
   "dependencies": {
-    "@art-md/codec": "*"
+    "@art-md/codec": "0.0.5"
   },
   "devDependencies": {
     "tsx": "4.23.15"
