@@ -1,6 +1,6 @@
 {
   "name": "@art-md/serializer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Serializes Art AST back to markdown.",
   "keywords": [
     "library",
@@ -52,8 +52,8 @@
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {
-    "@art-md/primitives": "*",
-    "@art-md/constructs": "*",
+    "@art-md/primitives": "0.0.7",
+    "@art-md/constructs": "0.0.7",
     "mdast-util-to-markdown": "2.1.0"
   },
   "devDependencies": {

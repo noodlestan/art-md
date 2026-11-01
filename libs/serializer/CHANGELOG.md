@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.6
+
+### Changed
+
+- **Exact dependency pins** — depends on `@art-md/primitives@0.0.7` and `@art-md/constructs@0.0.7` instead of `*`.
+
 ## 0.0.5
 
 ### Changed
