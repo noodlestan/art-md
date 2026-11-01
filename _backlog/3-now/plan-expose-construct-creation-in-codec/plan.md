@@ -131,10 +131,10 @@ Execution occurs from `$WORKSPACE/`; the package work is performed in the Art MD
 
 This section lists the downstream work items produced, coordinated, or advanced by the plan, identifying blocking dependencies across resources of different owners.
 
-| Iteration / Instructions                                                                   | Status  |
-| ------------------------------------------------------------------------------------------ | ------- |
-| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `DONE`  |
-| Iteration: Publish Construct API `./instructions/publish-construct-api.md`                 | `READY` |
+| Iteration / Instructions                                                                   | Status |
+| ------------------------------------------------------------------------------------------ | ------ |
+| Iteration: Define Construct API on Codec `./instructions/define-construct-api-on-codec.md` | `DONE` |
+| Iteration: Publish Construct API `./instructions/publish-construct-api.md`                 | `DONE` |
 
 ### Iteration: Define Construct API on Codec
 
@@ -189,7 +189,7 @@ build(codec): Expose construct creation and toText on ArtCodec
 
 **Id:** `publish-construct-api`
 
-**Status:** `READY`
+**Status:** `DONE`
 
 **Purpose:** Republish both packages so the new API is consumable.
 
@@ -197,6 +197,7 @@ build(codec): Expose construct creation and toText on ArtCodec
 
 **Instructions Mode:** `INSTRUCTIONS_SELF_CONTAINED_FILE`
 **Instructions:** `./instructions/publish-construct-api.md`
+**Report:** `./instructions/publish-construct-api__report.md`
 
 **Changes:**
 
@@ -211,9 +212,9 @@ build(codec): Expose construct creation and toText on ArtCodec
 
 #### Commits:
 
-| ID                      | Repository / Checkout / Branch | Policy   | Hash    | Status     |
-| ----------------------- | ------------------------------ | -------- | ------- | ---------- |
-| `publish-construct-api` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `(TBD)` | `AUTHORED` |
+| ID                      | Repository / Checkout / Branch | Policy   | Hash      | Status      |
+| ----------------------- | ------------------------------ | -------- | --------- | ----------- |
+| `publish-construct-api` | Art MD / `$PROJECT` / `main`   | `NOPUSH` | `332d1da` | `COMMITTED` |
 
 ##### Commit: `publish-construct-api`
 
@@ -231,7 +232,7 @@ release(art-md): Republish primitives and codec with construct API
 
 This section states the immediate action needed to advance the Plan.
 
-Delegate Iteration: Publish Construct API.
+Both iterations are `DONE`; review the release and archive the plan.
 
 ### Blockers
 
@@ -305,6 +306,7 @@ This section describes the boundaries, evidence, and follow ups of this work ite
 
 ### Evidence
 
+- Commit `332d1da` (NOPUSH) — 4 files, version bumps and changelog sections; pre-commit `npm run ci` 12/12. Published and confirmed: `@art-md/primitives@0.0.7`, `@art-md/codec@0.0.4` on `registry.npmjs.org`. Report `./instructions/publish-construct-api__report.md`.
 - Commit `b6396ef` (NOPUSH, `main`) — 8 files, +207/−2; root `npm run ci` 12/12 tasks; codec 15 tests at 100% coverage, primitives 22 tests. Report `./instructions/define-construct-api-on-codec__report.md`.
 - `FACTORIES` verified against the installed `@art-md/constructs@0.0.6`: `FACTORIES.find(f => f.name === 'NaturalBlock').factory({ value: 'x', children: [] })` returns `{"construct":"NaturalBlock","value":"x","children":[]}` — the default registry input works with no change to constructs.
 - The published `0.0.6` runtime exports exactly `CONSTRUCT_PARSERS, CONSTRUCT_SERIALIZERS, DEFAULT_CONSTRUCT_PARSER, FACTORIES, createArtDocumentFromNode`; every construct factory is reachable only through `FACTORIES`.
