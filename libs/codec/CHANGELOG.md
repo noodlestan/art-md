@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.5
+
+### Changed
+
+- **Exact dependency pins** — depends on `@art-md/primitives@0.0.7`, `@art-md/constructs@0.0.7`, `@art-md/parser@0.0.6`, and `@art-md/serializer@0.0.6` instead of `*`.
+
 ## 0.0.4
 
 ### Added

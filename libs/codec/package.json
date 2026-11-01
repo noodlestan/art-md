@@ -1,6 +1,6 @@
 {
   "name": "@art-md/codec",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Configurable Art MD codec: parse and serialize Art MD",
   "keywords": [
     "library",
@@ -54,10 +54,10 @@
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {
-    "@art-md/primitives": "*",
-    "@art-md/constructs": "*",
-    "@art-md/parser": "*",
-    "@art-md/serializer": "*"
+    "@art-md/primitives": "0.0.7",
+    "@art-md/constructs": "0.0.7",
+    "@art-md/parser": "0.0.6",
+    "@art-md/serializer": "0.0.6"
   },
   "devDependencies": {
     "vitest": "5.0.5"
