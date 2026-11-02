@@ -18,6 +18,8 @@
     "url": "https://github.com/noodlestan/art-md.git",
     "directory": "libs/parser/"
   },
+  "homepage": "https://art-md.noodlestan.org/",
+  "docs": "https://art-md.noodlestan.org/docs/api/art-md/parser",
   "private": false,
   "publishConfig": {
     "access": "public"
