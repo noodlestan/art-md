@@ -8,7 +8,7 @@
  *
  * The two overloads converge on one implementation: build a visit context,
  * then hand it to `buildDocument`. Raw markdown gets a default context built
- * from {@link createDefaultParserConfig}.
+ * from {@link config#createDefaultParserConfig}.
  *
  * @see `knowledge/api.md` for the entry point contract, and
  *   `knowledge/parser.md` for how nodes are claimed during the walk.

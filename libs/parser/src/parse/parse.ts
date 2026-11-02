@@ -7,7 +7,7 @@ import { createDocumentVisitContext } from '../private/index.js';
 /**
  * Parses Art MD source into an `ArtDocument`.
  *
- * Takes raw markdown together with a {@link ParserConfig}. Use the second
+ * Takes raw markdown together with a {@link config#ParserConfig}. Use the second
  * overload when the caller already holds a {@link ParseContext} — markdown and
  * config are mandatory either way, and a supplied context comes first.
  *

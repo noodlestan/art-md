@@ -1,7 +1,7 @@
 /**
  * Parser configuration module.
  *
- * Owns {@link ParserConfig} — the construct factories the parser consults — and
+ * Owns {@link config#ParserConfig} — the construct factories the parser consults — and
  * the factory that assembles the stock set. The parser core never names a
  * concrete construct; it only receives factories from here.
  *
