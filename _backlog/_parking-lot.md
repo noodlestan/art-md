@@ -44,6 +44,7 @@ rm checkouts/art-md/_backlog/3-now/plan-expose-construct-creation-in-codec/plan.
 
 ## PENDING
 
+- **Adopt `@art-lib/logger` and retire the local copy** — `cli/bin/src/private/logger/createLogger.ts` duplicates the package (it carries its own `setVerbosity()` rather than `setOutputMode()`) and repeats its defect: `quiet` **discards** the buffer instead of flushing it, so a warning logged before the mode was set is never written — `createLogger.test.ts` asserts precisely that ("GIVEN a quiet output mode set after logging, drops the buffer"). `@art-lib/logger@0.0.1` is published, `0.0.2` adds the `normal` mode, and every mode there flushes then filters, so adopting it removes the bug and lets `cli/bin/knowledge/design/operations.md` (which documents "`quiet` discards the buffered operations") be corrected in the same pass. Same shape as the adoption Art Works already landed in `bf2fc78`; art-lib tracks the source package as `Plan: Add Logger Package` (`$ART_LIB/_backlog/3-now/plan-add-logger/plan.md`).
 - **Ops: Package Records Dependencies** — add `dependencies` back to package records, generate a dependencies.md file in knowledge with graph of internal packages and list of external runtime deps.
 - **Routine: Knowledge Files** — There is a draft for 3 different types os files in `knowledge/_routines/draft-knowledge-file.md` - abstract, deduplicate, compact and publish to `art-domains`. All useful routines (along with other architect tasks) to expose in a skill. Eventually, an abstract slice of reusable code, belongs in the knowledge domain.
 
