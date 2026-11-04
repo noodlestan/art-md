@@ -18,7 +18,6 @@
     },
     "extract": {
       "cache": false,
-      "dependsOn": ["@noodlestan/purrfiles-extract#build", "@noodlestan/purrfiles-entities#build"],
       "outputs": ["dist/meta.json"]
     },
     "ci": {
