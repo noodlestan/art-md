@@ -1,6 +1,6 @@
 {
   "name": "@art-md/parser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Parses context files and art modules into structured representations.",
   "keywords": [
     "library",
@@ -55,6 +55,7 @@
     "test:ci": "vitest run --coverage",
     "test:watch": "vitest",
     "extract": "tsx scripts/extract.ts",
+    "prepack": "npm run extract",
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {

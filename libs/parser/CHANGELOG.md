@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.0.7
+
+### Added
+
+- `prepack` lifecycle regenerates `dist/meta.json` at pack and publish time, so releases can never ship stale meta.
+
+### Changed
+
+- `{@link}` targets re-authored as `entity#symbol` expressions, resolving to the owning module's page anchor.
+
 ## 0.0.6
 
 ### Changed
