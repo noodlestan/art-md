@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.0.7
+
+### Added
+
+- **Extraction** — `npm run extract` writes `dist/meta.json`, the module and symbol metadata the docs site renders.
+- **Authored copy** — one-line module and symbol descriptions across the three extracted modules.
+
+### Changed
+
+- **Dependency pins** — depends on `@art-md/primitives@0.0.8` and `@art-md/constructs@0.0.8`.
+
 ## 0.0.6
 
 ### Changed
