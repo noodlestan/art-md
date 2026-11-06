@@ -1,6 +1,6 @@
 {
   "name": "@art-md/constructs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Construct factories for Art parser records.",
   "keywords": [
     "library",
@@ -56,7 +56,7 @@
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {
-    "@art-md/primitives": "0.0.7",
+    "@art-md/primitives": "0.0.8",
     "mdast-util-from-markdown": "2.1.0",
     "mdast-util-phrasing": "4.1.0"
   },
