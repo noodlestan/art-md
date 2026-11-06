@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.8
+
+### Added
+
+- **Extraction** — `npm run extract` writes `dist/meta.json`, the module and symbol metadata the docs site renders.
+- **Authored copy** — one-line module and symbol descriptions across the nine extracted modules.
+
 ## 0.0.7
 
 ### Added
