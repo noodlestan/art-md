@@ -1,9 +1,15 @@
+/**
+ * The construct-by-construct walk from Art AST to mdast — the machinery
+ * `serialize` runs on. Reach for it when the tree must be built node by node
+ * instead of printing a whole document through `serialize`.
+ */
 import type { ConstructSerializer } from '@art-md/constructs';
 import type { ArtDocument } from '@art-md/primitives';
 import type { Node, Root } from 'mdast';
 
 import type { SerialisableNode, SerializerConfig } from '../config/types.js';
 
+/** Builds an mdast tree from an `ArtDocument`, dispatching each construct to its registered serializer. */
 export function artAstToMdast(config: SerializerConfig, document: ArtDocument): Node {
 	const registry = new Map<string, ConstructSerializer>();
 	for (const factory of config.constructs) {

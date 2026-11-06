@@ -10,6 +10,11 @@ import { toMarkdown } from 'mdast-util-to-markdown';
 import { artAstToMdast } from '../artAstToMdast/artAstToMdast.js';
 import type { SerializerConfig } from '../config/types.js';
 
+/**
+ * Writes an `ArtDocument` to markdown and returns it as a
+ * {@link @art-md/primitives:serializer#SerializeResult}; the overloads accept a
+ * leading `SerializeContext` when the write carries a `uri`.
+ */
 export function serialize(document: ArtDocument, config: SerializerConfig): SerializeResult;
 export function serialize(
 	context: SerializeContext,
