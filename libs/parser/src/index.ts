@@ -1,8 +1,8 @@
 /**
  * The `@art-md/parser` public surface.
  *
- * Re-exports the entry point, its config factory, and the config type — the
- * three names a caller needs to turn markdown into an `ArtDocument`.
+ * `parse` is the main entry point; the config factory and the config type are
+ * exposed so consumers can recompose the parser if needed.
  *
  * Everything else in the package is internal: the visit loop, the mdast
  * helpers, and the visit context are reachable only through these functions.

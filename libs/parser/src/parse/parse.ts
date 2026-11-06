@@ -8,8 +8,9 @@ import { createDocumentVisitContext } from '../private/index.js';
  * Parses Art MD source into an `ArtDocument`.
  *
  * Takes raw markdown together with a {@link config#ParserConfig}. Use the second
- * overload when the caller already holds a {@link ParseContext} — markdown and
- * config are mandatory either way, and a supplied context comes first.
+ * overload when the caller already holds a
+ * {@link @art-md/primitives:context#ParseContext} — markdown and config are
+ * mandatory either way, and a supplied context comes first.
  *
  * The raw-markdown form builds a default parse context, opens a visit context
  * over the mdast tree, and hands both to `buildDocument`. Construct parsers are
@@ -27,8 +28,9 @@ export function parse(markdown: string, config: ParserConfig): ParseResult;
 /**
  * Parses markdown against an explicit parse context.
  *
- * For callers that carry their own {@link ParseContext} — for example to reuse
- * a URI, or to supply construct state shared with a surrounding document.
+ * For callers that carry their own {@link @art-md/primitives:context#ParseContext}
+ * — for example to reuse a URI, or to supply construct state shared with a
+ * surrounding document.
  *
  * @param {ParseContext} context - Caller-supplied parse context.
  * @param {string} markdown - Raw Art MD source to parse.

@@ -9,9 +9,6 @@ import type { ParserConfig } from './types.js';
  * natural-block parser as the {@link config#ParserConfig.defaultConstruct} fallback,
  * and the registered construct factories as {@link config#ParserConfig.constructs}.
  *
- * Use this when the caller wants stock behaviour. Callers that need a narrower
- * parser — or no fallback at all — build a {@link config#ParserConfig} literal instead.
- *
  * @returns {ParserConfig} A ready-to-use config carrying the default construct
  *   set.
  */

@@ -3,10 +3,8 @@ import { BLOCK_TYPES } from './constants.js';
 /**
  * Reports whether an mdast node type carries block-level content.
  *
- * Answers from {@link mdast#BLOCK_TYPES}, so a node is a block exactly when it is a
- * paragraph, code fence, list, blockquote, table, thematic break, HTML block, or
- * definition. The parser consults this after constructs have had their chance to
- * claim a node.
+ * Answers from {@link mdast#BLOCK_TYPES} — a node is a block exactly when its
+ * type is a member of that set.
  *
  * @param {string} type - The mdast `node.type` to classify.
  * @returns {boolean} `true` when the type is a block-level node.

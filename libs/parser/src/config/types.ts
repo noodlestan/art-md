@@ -3,9 +3,8 @@ import type { ConstructParserFactory } from '@art-md/constructs';
 /**
  * Configuration accepted by the parser entry point.
  *
- * The parser core stays construct-agnostic: it never names a concrete construct
- * type and drives detection entirely through the contract types from
- * `@art-md/constructs`. This config only supplies the factories that do the
+ * Drives detection entirely through the contract types from
+ * `@art-md/constructs`: this config only supplies the factories that do the
  * recognising.
  */
 export type ParserConfig = {

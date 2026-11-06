@@ -11,9 +11,10 @@ import type { DocumentVisitContext } from './types.js';
  * attaches the parse context, the source tree, and the raw markdown so that
  * construct parsers can read where they came from.
  *
- * This is the bridge between the caller-supplied {@link ParseContext} and the
- * mutable {@link DocumentVisitContext} that `buildDocument` walks. It is
- * internal — `parse` owns the call.
+ * This is the bridge between the caller-supplied
+ * {@link @art-md/primitives:context#ParseContext} and the mutable
+ * {@link DocumentVisitContext} that `buildDocument` walks. It is internal —
+ * `parse` owns the call.
  *
  * @param {string} markdown - Raw Art MD source to parse into an mdast tree.
  * @param {ParseContext} parseContext - Supplies construct configuration and
