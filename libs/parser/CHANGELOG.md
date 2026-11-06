@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.0.8
+
+### Changed
+
+- **Qualified cross-package links** — `{@link}` targets now carry the owning package and module (`{@link @art-md/primitives:context#ParseContext}`-style), resolving to the dependency's docs page.
+- **Authoring rules alignment** — module descriptions carry the what/when; per-symbol descriptions no longer repeat it.
+- **Exact dependency pins** — depends on `@art-md/primitives@0.0.8` and `@art-md/constructs@0.0.8`.
+
 ## 0.0.7
 
 ### Added

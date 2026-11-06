@@ -1,6 +1,6 @@
 {
   "name": "@art-md/parser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Parses context files and art modules into structured representations.",
   "keywords": [
     "library",
@@ -59,8 +59,8 @@
     "ci": "npm run lint && npm run build && npm run test:ci"
   },
   "dependencies": {
-    "@art-md/primitives": "0.0.7",
-    "@art-md/constructs": "0.0.7",
+    "@art-md/primitives": "0.0.8",
+    "@art-md/constructs": "0.0.8",
     "mdast-util-from-markdown": "2.1.0",
     "unist-util-visit": "5.2.0"
   },
