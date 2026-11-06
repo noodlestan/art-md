@@ -2,6 +2,10 @@ import type { NaturalBlock } from '../types.js';
 
 import type { NaturalBlockFactoryData } from './types.js';
 
+/**
+ * Builds a `NaturalBlock`, spreading `attributes` and applying `type`,
+ * `lang`, `meta`, and `tags` only when given.
+ */
 export function createNaturalBlock(data: NaturalBlockFactoryData): NaturalBlock {
 	const block: NaturalBlock = {
 		...data.attributes,

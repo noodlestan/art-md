@@ -1,3 +1,8 @@
+/**
+ * The parse side — the per-construct parsers and the document entry point
+ * that turn mdast into an `ArtDocument`; reach for them when you need the
+ * walk recomposed or seeded by hand.
+ */
 export { createArtDocumentFromNode } from './document/index.js';
 
 export * from './constructs/FieldBlock/index.js';

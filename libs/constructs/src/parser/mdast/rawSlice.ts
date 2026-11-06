@@ -1,5 +1,9 @@
 import type { MdastNode, ParserVisitContext } from '@art-md/primitives';
 
+/**
+ * Returns the source markdown behind a node's position, or an empty string
+ * when it carries none.
+ */
 export function rawSlice(node: MdastNode, context: ParserVisitContext): string {
 	if (!node.position?.start || !node.position?.end) {
 		return '';

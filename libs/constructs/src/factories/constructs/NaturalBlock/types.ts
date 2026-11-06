@@ -2,6 +2,7 @@ import type { ContainerConstructBase } from '@art-md/primitives';
 
 import type { Tag } from '../Tag/index.js';
 
+/** A block-level construct carrying a raw `value` plus optional `type`, `lang`, `meta`, and `tags`. */
 export type NaturalBlock = ContainerConstructBase & {
 	construct: 'NaturalBlock';
 	value: string;

@@ -3,6 +3,10 @@ import { type Tag, createTag } from '../../factories/index.js';
 const TRAILING_TAGS = /^(.*?)((?:\(#[\w-]+\)\s*)+)$/;
 const TAG = /\(#([\w-]+)\)/g;
 
+/**
+ * Splits trailing `(#name)` tags off a text value, returning the `Tag`
+ * records and the remaining text.
+ */
 export function extractTags(text: string): { tags: Tag[]; stripped: string } {
 	const trimmed = text.trimEnd();
 	const match = trimmed.match(TRAILING_TAGS);

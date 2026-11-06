@@ -5,6 +5,10 @@ import type { SectionBlock } from '../../../factories/index.js';
 import { tagsToMdast } from '../../tags/index.js';
 import type { ConstructSerializer } from '../../types.js';
 
+/**
+ * Creates the `SectionBlock` serializer, which parses `# name` into a
+ * heading and applies the section's `depth` and tags.
+ */
 export function createSectionBlockToMdast(): ConstructSerializer {
 	return {
 		name: 'SectionBlock',

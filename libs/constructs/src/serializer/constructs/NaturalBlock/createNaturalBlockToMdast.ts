@@ -5,6 +5,10 @@ import type { NaturalBlock } from '../../../factories/index.js';
 import { tagsToMdast } from '../../tags/index.js';
 import type { ConstructSerializer } from '../../types.js';
 
+/**
+ * Creates the `NaturalBlock` serializer, which parses the block's value with
+ * `fromMarkdown` and merges paragraph children and tags into it.
+ */
 export function createNaturalBlockToMdast(): ConstructSerializer {
 	return {
 		name: 'NaturalBlock',

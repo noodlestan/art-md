@@ -30,7 +30,11 @@ export interface InlineConstructMap {
 /** Open registry of all constructs. */
 export type ConstructMap = BlockConstructMap & InlineConstructMap;
 
+/** A block-level construct: any value of `BlockConstructMap`. */
 export type BlockContent = BlockConstructMap[keyof BlockConstructMap];
+
+/** An inline construct: any value of `InlineConstructMap`. */
 export type InlineContent = InlineConstructMap[keyof InlineConstructMap];
 
+/** Any construct: a value of `ConstructMap`, block or inline. */
 export type Construct = ConstructMap[keyof ConstructMap];

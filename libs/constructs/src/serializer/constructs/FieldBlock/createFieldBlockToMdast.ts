@@ -4,6 +4,10 @@ import type { FieldBlock } from '../../../factories/index.js';
 import { tagsToMdast } from '../../tags/index.js';
 import type { ConstructSerializer } from '../../types.js';
 
+/**
+ * Creates the `FieldBlock` serializer, which emits a strong label paragraph
+ * with the field's tags appended.
+ */
 export function createFieldBlockToMdast(): ConstructSerializer {
 	return {
 		name: 'FieldBlock',

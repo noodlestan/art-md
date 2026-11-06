@@ -4,6 +4,10 @@ import type { FieldInline } from '../../../factories/index.js';
 import { tagsToMdast } from '../../tags/index.js';
 import type { ConstructSerializer } from '../../types.js';
 
+/**
+ * Creates the `FieldInline` serializer, which emits a strong label paragraph
+ * that holds the field's children and tags.
+ */
 export function createFieldInlineToMdast(): ConstructSerializer {
 	return {
 		name: 'FieldInline',

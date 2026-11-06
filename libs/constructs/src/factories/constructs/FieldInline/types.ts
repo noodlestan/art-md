@@ -3,6 +3,7 @@ import type { ContainerConstructBase } from '@art-md/primitives';
 import type { NaturalExpression } from '../NaturalExpression/index.js';
 import type { Tag } from '../Tag/index.js';
 
+/** A block-level construct pairing a `name` label with inline `children` and optional `tags`. */
 export type FieldInline = ContainerConstructBase & {
 	construct: 'FieldInline';
 	name: string;
