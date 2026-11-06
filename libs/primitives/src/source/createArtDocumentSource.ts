@@ -3,6 +3,10 @@ import type { ArtDocument } from '../document/index.js';
 
 import type { ArtContentSource, ArtDocumentSource } from './types.js';
 
+/**
+ * Wraps a content source in a document source: parse on read, serialize on
+ * write, cache in between.
+ */
 export function createArtDocumentSource(
 	codec: ArtCodec,
 	contentSource: ArtContentSource,

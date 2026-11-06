@@ -13,6 +13,7 @@ import type { ArtDocument } from '../document/index.js';
 
 import type { ParseContext } from './context/index.js';
 
+/** The child node union mdast exposes to `MdastNode`. */
 type ChildNode =
 	| RootContent
 	| BlockContent
@@ -22,6 +23,7 @@ type ChildNode =
 	| TableContent
 	| RowContent;
 
+/** An mdast node as the parser sees it: children and value made optional. */
 export type MdastNode = Node & {
 	children?: ChildNode[];
 	value?: string;
@@ -40,6 +42,7 @@ export type Position = {
 	end: Point;
 };
 
+/** The `ArtDocument` a parse produced, paired with the `ParseContext` it was built from. */
 export interface ParseResult {
 	document: ArtDocument;
 	context: ParseContext;

@@ -2,6 +2,10 @@ import type { Node } from 'unist';
 
 import type { Position } from '../types.js';
 
+/**
+ * Converts an mdast node's position into the package's `Position`, throwing
+ * when it carries none.
+ */
 export function nodePosition(node: Node): Position {
 	if (!node.position) {
 		throw new Error(`Expected source position for ${node.type}`);
