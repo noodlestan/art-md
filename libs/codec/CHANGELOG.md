@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.0.6
+
+### Added
+
+- **Extraction** — `npm run extract` writes `dist/meta.json`, the module and symbol metadata the docs site renders.
+- **Authored copy** — module and symbol descriptions across the extracted `codec` module.
+
+### Changed
+
+- **Dependency pins** — depends on `@art-md/primitives@0.0.8`, `@art-md/constructs@0.0.8`, `@art-md/parser@0.0.8`, and `@art-md/serializer@0.0.7`.
+- **Source layout** — `createArtCodec` and its config types moved into `src/codec/`, the module the extractor reads.
+
 ## 0.0.5
 
 ### Changed
