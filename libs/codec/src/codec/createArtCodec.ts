@@ -18,13 +18,19 @@ import type {
 } from '@art-md/primitives';
 import { serialize } from '@art-md/serializer';
 
-import { createFactoryIndex } from './private/createFactoryIndex.js';
-import { readConstructText } from './private/readConstructText.js';
+import { createFactoryIndex } from '../private/createFactoryIndex.js';
+import { readConstructText } from '../private/readConstructText.js';
+
 import type { PartialArtCodecConfig } from './types.js';
 
 // FACTORIES entries declare concrete parameter types, so the registry is cast once here.
 const defaultConstructFactories = FACTORIES as unknown as readonly ConstructFactoryEntry[];
 
+/**
+ * Creates an {@link @art-md/primitives:codec#ArtCodec} from an optional partial
+ * config — parser and serializer fall back to the default construct registries,
+ * and the factory index is built lazily on first lookup.
+ */
 export function createArtCodec(config: PartialArtCodecConfig = {}): ArtCodec {
 	const parserConfig = {
 		defaultConstruct: config.parserConfig?.defaultConstruct ?? DEFAULT_CONSTRUCT_PARSER,
